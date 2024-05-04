@@ -23,7 +23,7 @@ public class FXWrapper {
 
     public void launchSetupScreen(PlayerManager playerManager) {
         try {
-            FXMLLoader setupLoader = new FXMLLoader(getClass().getResource("/fxml/setup_screen.fxml"));
+            FXMLLoader setupLoader = new FXMLLoader(getClass().getResource("/fxml/set_up_screen.fxml"));
             // provide a custom Controller with parameters
             setupLoader.setControllerFactory(param -> new SetUpScreenController(playerManager));
             Parent setupParent  = setupLoader.load();
