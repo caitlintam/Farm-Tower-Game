@@ -1,6 +1,6 @@
 package seng201.team0.models;
 
-public class Player {
+public class Player{
         private String name;
         private int numRounds;
         private int gameDifficulty;

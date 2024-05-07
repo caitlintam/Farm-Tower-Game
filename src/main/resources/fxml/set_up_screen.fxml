@@ -52,13 +52,13 @@
             <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
          </GridPane.margin>
       </Label>
-      <Button fx:id="beginGameButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="126.0" text="Begin Game!" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+      <Button fx:id="beginGameButton" mnemonicParsing="false" onAction="#onBeginClicked" prefHeight="50.0" prefWidth="126.0" text="Begin Game!" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Slider fx:id="numRoundsSlider" blockIncrement="1.0" majorTickUnit="5.0" max="15.0" maxHeight="-Infinity" maxWidth="-Infinity" min="5.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="21.0" prefWidth="241.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-      <Slider fx:id="gameDifficultySlider" blockIncrement="1.0" layoutX="312.0" layoutY="218.0" majorTickUnit="1.0" max="3.0" maxHeight="-Infinity" maxWidth="-Infinity" min="1.0" prefHeight="41.0" prefWidth="239.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+      <Slider fx:id="numRoundsSlider" blockIncrement="1.0" majorTickUnit="5.0" max="15.0" maxHeight="-Infinity" maxWidth="-Infinity" min="5.0" minHeight="-Infinity" minWidth="-Infinity"  prefHeight="21.0" prefWidth="241.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+      <Slider fx:id="gameDifficultySlider" blockIncrement="1.0" layoutX="312.0" layoutY="218.0" majorTickUnit="1.0" max="3.0" maxHeight="-Infinity" maxWidth="-Infinity" min="1.0" minorTickCount="0"  prefHeight="41.0" prefWidth="239.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
       <TextArea fx:id="nameInputTextArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="235.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
    </children>
 </GridPane>
