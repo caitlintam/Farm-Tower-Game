@@ -19,7 +19,7 @@ public class FXWrapper {
 
     public void init(Stage stage) {
         this.stage = stage;
-        new PlayerManager(this::launchSetupScreen, this::launchTowerSetupScreen, this::clearPane, this::launchHomeScreen);
+        new PlayerManager(this::launchSetupScreen, this::launchTowerSetupScreen, this::clearPane, this::launchHomeScreen, this::launchShopScreen);
     }
 
     public void launchSetupScreen(PlayerManager playerManager) {
@@ -34,6 +34,18 @@ public class FXWrapper {
             e.printStackTrace();
         }
     }
+    public void launchShopScreen(PlayerManager playerManager) {
+        try {
+            FXMLLoader shopScreenLoader = new FXMLLoader(getClass().getResource("/fxml/shop.fxml"));
+            shopScreenLoader.setControllerFactory(param -> new TowerSetUpController(playerManager));
+            Parent setupParent  = shopScreenLoader.load();
+            pane.getChildren().add(setupParent);
+            stage.setTitle("Shop Screen");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public void clearPane() {
         pane.getChildren().removeAll(pane.getChildren());
