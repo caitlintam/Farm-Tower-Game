@@ -20,4 +20,8 @@ public class TowerManager {
                 new Tower("Haybale Haven", 50, "Hay", 10, 1, 10.00),
                 new Tower("Timber Turret", 20, "Timber", 60, 2, 50.00)));
     }
+
+    public List<Tower> getTowerList(){
+        return towerList;
+    }
 }
