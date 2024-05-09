@@ -73,7 +73,7 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="Upgrade1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onUpgrade1Clicked" text="Upgrade 1" GridPane.rowIndex="3">
+      <Button fx:id="upgradeButton1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"  text="Upgrade 1" GridPane.rowIndex="3">
          <font>
             <Font size="18.0" />
          </font>
@@ -81,7 +81,7 @@
             <Insets bottom="20.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="Upgrade2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onUpgrade2Clicked" text="Upgrade 2" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <Button fx:id="upgradeButton2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"  text="Upgrade 2" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets bottom="20.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin>
@@ -89,7 +89,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="Upgrade3" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onUpgrade3Clicked" text="Upgrade 3" GridPane.columnIndex="2" GridPane.rowIndex="3">
+      <Button fx:id="upgradeButton3" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Upgrade 3" GridPane.columnIndex="2" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets bottom="20.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin>

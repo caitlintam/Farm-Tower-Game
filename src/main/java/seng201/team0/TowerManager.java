@@ -42,7 +42,4 @@ public class TowerManager {
         return defaultTowers;
     }
 
-    public List<Tower> getTowerList(){
-        return towerList;
-    }
 }

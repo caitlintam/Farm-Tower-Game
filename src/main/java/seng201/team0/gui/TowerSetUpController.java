@@ -39,6 +39,7 @@ public class TowerSetUpController {
         List<Button> selectedTowerButtons = List.of(selectedTower1,selectedTower2,selectedTower3);
         List<Button> towerButtons = List.of(towerOption1,towerOption2,towerOption3,towerOption4,towerOption5,towerOption6);
 
+        // changes stats, and shows selected button
         for (int i =0; i< towerButtons.size(); i++){
             int finalI = i;
             towerButtons.get(i).setOnAction(actionEvent -> {
@@ -53,6 +54,7 @@ public class TowerSetUpController {
                 });
             });
         }
+        // sets selected towers
         for (int i = 0; i < selectedTowerButtons.size(); i++){
             int finalI = i;
             selectedTowerButtons.get(i).setOnAction(event -> {

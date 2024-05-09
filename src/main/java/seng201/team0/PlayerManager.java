@@ -52,6 +52,7 @@ public class PlayerManager {
         clearScreen.run();
     }
     public void closeMainScreen() {
+        clearScreen.run();
     }
     public void launchHomeScreen(){homeScreenLauncher.accept(this);}
 }
