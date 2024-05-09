@@ -27,7 +27,7 @@ public class HomePageController {
     private Button viewInventoryButton;
 
 
-    public void initialize(){
+    public void initialize() {
         playerNameLabel.setText("Hello: " + playerManager.getName());
         //homepageMoney.setText("Money: $ " + playerManager.getMoney()); // need to find a way get money from player class
         //homepageCurrentRoundLabel.setText("Round: " + PlayerManager.getCurrentRound()); // need to get current round from player class
@@ -35,27 +35,23 @@ public class HomePageController {
 
     }
 
-    public HomePageController(PlayerManager playerManager){
+    public HomePageController(PlayerManager playerManager) {
         this.playerManager = playerManager;
-
     }
 
-    public void onGoToShopButtonClicked(){
+    public void onGoToShopButtonClicked() {
         // link to shop screen
         System.out.println("Shop clicked");
         playerManager.closeMainScreen();
         playerManager.launchShopScreen();
-
     }
 
-    public void onPlayRoundButtonClicked(){
+    public void onPlayRoundButtonClicked() {
         // link to round screen
-
     }
 
-    public void onViewInventoryButtonClicked(){
+    public void onViewInventoryButtonClicked() {
         // link to inventory screen
-
     }
 
 }
