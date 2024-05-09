@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.HomePageController">
+   <children>
+      <GridPane layoutX="-1.0" layoutY="-1.0" prefHeight="400.0" prefWidth="600.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="316.4000244140625" minWidth="10.0" prefWidth="300.4000244140625" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="303.1999755859375" minWidth="10.0" prefWidth="299.1999755859375" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="303.1999755859375" minWidth="10.0" prefWidth="299.1999755859375" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="123.00000610351563" minHeight="0.0" prefHeight="58.200006103515626" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="266.8" minHeight="10.0" prefHeight="45.39999389648438" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="258.20001220703125" minHeight="10.0" prefHeight="170.2" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="127.0" minHeight="10.0" prefHeight="127.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="HomeLabel" alignment="CENTER" contentDisplay="CENTER" text="Home" textAlignment="CENTER" GridPane.columnSpan="2">
+               <font>
+                  <Font name="Britannic Bold" size="34.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="250.0" top="10.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="playerNameLabel" text="Hello" GridPane.rowIndex="1">
+               <font>
+                  <Font size="25.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="homepageNameLabel" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="100.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Button fx:id="goToShopButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Go To Shop" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="playRoundButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Play Round" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="viewInventoryButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="View/Edit Inventory" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </GridPane.margin>
+            </Button>
+            <Label fx:id="homepageMoney" text="Money:" GridPane.rowIndex="2">
+               <font>
+                  <Font size="22.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="15.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="homepageCurrentRoundLabel" text="Current round:" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="remainingRoundsLabel" text="/" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
