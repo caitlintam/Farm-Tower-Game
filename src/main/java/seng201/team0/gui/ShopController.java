@@ -15,6 +15,9 @@ public class ShopController {
     public Button upgradeButton3;
     public Button upgradeButton2;
     public Button upgradeButton1;
+    public Button buyTowerbutton3;
+    public Button buyTowerButton2;
+    public Button buyTowerButton1;
     @FXML
     private Label ShopMoneyLabel;
     @FXML
@@ -27,16 +30,11 @@ public class ShopController {
     private Button ShopHomeButton;
     @FXML
     private Button BuyButton;
-    @FXML
-    private Button ShopTower1;
-    @FXML
-    private Button ShopTower2;
-    @FXML
-    private Button ShopTower3;
     private PlayerManager playerManager;
     private TowerManager towerManager;
     private UpgradeManager upgradeManager;
     private int selectedUpgradeIndex = -1;
+    private int selectedTowerIndex = -1;
 
 
     public ShopController(PlayerManager playerManager, TowerManager towerManager, UpgradeManager upgradeManager){
@@ -45,16 +43,28 @@ public class ShopController {
         this.upgradeManager = upgradeManager;
     }
     public void initialize(){
-        List<Button> upgradeButtons = List.of(upgradeButton1,upgradeButton2,upgradeButton3);
-        List<Button> towerToBuyButtons = List.of()
+        List<Button> buyUpgradeButtons = List.of(upgradeButton1,upgradeButton2,upgradeButton3);
+        List<Button> buyTowerButtons = List.of(buyTowerButton1,buyTowerButton2,buyTowerbutton3);
+        List<Button> allButtons = List.of(buyTowerButton1,buyTowerButton2,buyTowerbutton3,upgradeButton1,upgradeButton2,upgradeButton3);
 
-        for (int i=0; i<upgradeButtons.size(); i++){
+        for (int i=0; i<buyUpgradeButtons.size(); i++){
             int finalI = i;
-            upgradeButtons.get(i).setOnAction(actionEvent -> {
+            buyTowerButtons.get(i).setOnAction(actionEvent ->{
+                updateTowerInfo(towerManager.getDefaultTowers().get(finalI+6)); // +6 indexes to end of  default towerlist
+                selectedTowerIndex = finalI+ 6;
+                buyTowerButtons.forEach(button -> {
+                    if (button == buyTowerButtons.get(finalI)){
+                        button.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
+                    } else{
+                        button.setStyle("");
+                    }
+                });
+            });
+            buyUpgradeButtons.get(i).setOnAction(actionEvent -> {
                 updateUpgradeInfo(upgradeManager.getUpgradeList().get(finalI));
                 selectedUpgradeIndex = finalI;
-                upgradeButtons.forEach(button -> {
-                    if (button == upgradeButtons.get(finalI)){
+                buyUpgradeButtons.forEach(button -> {
+                    if (button == buyUpgradeButtons.get(finalI)){
                         button.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
                     } else{
                         button.setStyle("");
@@ -62,7 +72,6 @@ public class ShopController {
                 });
             });
         }
-        for
     }
     @FXML
     private void onBuyButtonClicked() {
@@ -70,48 +79,6 @@ public class ShopController {
         // adds to inventory
         // decreases money
     }
-
-    @FXML
-    private void onShopTower1Clicked() {
-        // Handle Tower 1 button click event
-        Tower tower = towerManager.getTowerList().get(0);
-        updateTowerInfo(tower);
-    }
-
-    @FXML
-    private void onShopTower2Clicked() {
-        // Handle Tower 2 button click event
-        Tower tower = towerManager.getTowerList().get(1);
-        updateTowerInfo(tower);
-    }
-
-    @FXML
-    private void onShopTower3Clicked() {
-        // Handle Tower 3 button click event
-        Tower tower = towerManager.getTowerList().get(2);
-        updateTowerInfo(tower);
-    }
-
-//    @FXML
-//    private void onUpgrade1Clicked() {
-//        // Handle Upgrade 1 button click event
-//        Upgrade upgrade = upgradeManager.getUpgradeList().get(0);
-//        updateUpgradeInfo(upgrade);
-//    }
-
-//    @FXML
-//    private void onUpgrade2Clicked() {
-//        // Handle Upgrade 2 button click event
-//        Upgrade upgrade = upgradeManager.getUpgradeList().get(1);
-//        updateUpgradeInfo(upgrade);
-//    }
-//
-//    @FXML
-//    private void onUpgrade3Clicked() {
-//        // Handle Upgrade 3 button click event
-//        Upgrade upgrade = upgradeManager.getUpgradeList().get(2);
-//        updateUpgradeInfo(upgrade);
-//    }
     @FXML
     private void onShopHomeButtonClicked() {
         // launch home screen

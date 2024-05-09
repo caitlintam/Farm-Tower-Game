@@ -23,7 +23,10 @@ public class TowerManager {
                 new Tower("Haybale Haven", 50, "Hay", 10, 1, 10.00),
                 new Tower("Timber Turret", 20, "Timber", 60, 2, 50.00),
                 new Tower("Tower 5", 15, "t5", 25, 9, 48.00),
-                new Tower("Tower 6", 35, "t6", 45, 4, 40.00)));
+                new Tower("Tower 6", 35, "t6", 45, 4, 40.00),
+                new Tower("Tower 7", 35, "t6", 45, 4, 40.00),
+                new Tower("Tower 8", 35, "t6", 45, 4, 40.00),
+                new Tower("Tower 9", 35, "t6", 45, 4, 40.00)));
 
     }
     public List<Tower> getTowerList(){

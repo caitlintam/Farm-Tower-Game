@@ -49,7 +49,7 @@
             <Insets left="10.0" right="10.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="ShopTower1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onShopTower1Clicked" text="Tower 1" GridPane.rowIndex="2">
+      <Button fx:id="buyTowerButton1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"  text="Tower 1" GridPane.rowIndex="2">
          <font>
             <Font size="18.0" />
          </font>
@@ -57,7 +57,7 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="ShopTower2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onShopTower2Clicked" text="Tower 2" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <Button fx:id="buyTowerButton2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"  text="Tower 2" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <font>
             <Font size="18.0" />
          </font>
@@ -65,7 +65,7 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="ShopTower3" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onShopTower3Clicked" text="Tower 3" GridPane.columnIndex="2" GridPane.rowIndex="2">
+      <Button fx:id="buyTowerbutton3" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Tower 3" GridPane.columnIndex="2" GridPane.rowIndex="2">
          <font>
             <Font size="18.0" />
          </font>
