@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import seng201.team0.PlayerManager;
+import seng201.team0.TowerManager;
 
 import java.io.IOException;
 
@@ -18,7 +19,7 @@ public class FXWrapper {
 
     public void init(Stage stage) {
         this.stage = stage;
-        new PlayerManager(this::launchSetupScreen, this::launchTowerSetupScreen, this::clearPane);
+        new PlayerManager(this::launchSetupScreen, this::launchTowerSetupScreen, this::clearPane, this::launchHomeScreen);
     }
 
     public void launchSetupScreen(PlayerManager playerManager) {
@@ -26,7 +27,7 @@ public class FXWrapper {
             FXMLLoader setupLoader = new FXMLLoader(getClass().getResource("/fxml/set_up_screen.fxml"));
             // provide a custom Controller with parameters
             setupLoader.setControllerFactory(param -> new SetUpScreenController(playerManager));
-            Parent setupParent  = setupLoader.load();
+            Parent setupParent = setupLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Player Manager Setup");
         } catch (IOException e) {
@@ -42,9 +43,21 @@ public class FXWrapper {
         try {
             FXMLLoader towerSetupScreenLoader = new FXMLLoader(getClass().getResource("/fxml/tower_setup_screen.fxml"));
             towerSetupScreenLoader.setControllerFactory(param -> new TowerSetUpController(playerManager));
-            Parent setupParent  = towerSetupScreenLoader.load();
+            Parent setupParent = towerSetupScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Tower Setup Screen");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void launchHomeScreen(PlayerManager playerManager) {
+        try {
+            FXMLLoader homeScreenLoader = new FXMLLoader(getClass().getResource("/fxml/homepage.fxml"));
+            homeScreenLoader.setControllerFactory(param -> new HomePageController(playerManager));
+            Parent setupParent = homeScreenLoader.load();
+            pane.getChildren().add(setupParent);
+            stage.setTitle("Home Screen");
         } catch (IOException e) {
             e.printStackTrace();
         }

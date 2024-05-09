@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -18,7 +18,8 @@
   <rowConstraints>
     <RowConstraints maxHeight="146.66666412353516" minHeight="10.0" prefHeight="141.3333511352539" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="94.66665649414062" minHeight="10.0" prefHeight="46.66666666666666" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="94.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="94.66665649414062" minHeight="10.0" prefHeight="15.000010172526032" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="94.0" minHeight="10.0" prefHeight="73.66665649414062" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="94.0" minHeight="10.0" prefHeight="47.33331298828125" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="98.66668701171875" minHeight="10.0" prefHeight="88.66668701171875" vgrow="SOMETIMES" />
   </rowConstraints>
@@ -36,7 +37,7 @@
             <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
          </GridPane.margin>
       </Label>
-      <Label text="Choose a game difficulty: " GridPane.rowIndex="3">
+      <Label text="Choose a game difficulty: " GridPane.rowIndex="4">
          <font>
             <Font size="15.0" />
          </font>
@@ -44,7 +45,7 @@
             <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
          </GridPane.margin>
       </Label>
-      <Label text="Choose number of rounds to play:" GridPane.rowIndex="2">
+      <Label text="Choose number of rounds to play:" GridPane.rowIndex="3">
          <font>
             <Font size="15.0" />
          </font>
@@ -52,13 +53,18 @@
             <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
          </GridPane.margin>
       </Label>
-      <Button fx:id="beginGameButton" mnemonicParsing="false" onAction="#onBeginClicked" prefHeight="50.0" prefWidth="126.0" text="Begin Game!" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+      <Button fx:id="beginGameButton" mnemonicParsing="false" onAction="#onBeginClicked" prefHeight="50.0" prefWidth="126.0" text="Begin Game!" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Slider fx:id="numRoundsSlider" blockIncrement="1.0" majorTickUnit="5.0" max="15.0" maxHeight="-Infinity" maxWidth="-Infinity" min="5.0" minHeight="-Infinity" minWidth="-Infinity"  prefHeight="21.0" prefWidth="241.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-      <Slider fx:id="gameDifficultySlider" blockIncrement="1.0" layoutX="312.0" layoutY="218.0" majorTickUnit="1.0" max="3.0" maxHeight="-Infinity" maxWidth="-Infinity" min="1.0" minorTickCount="0"  prefHeight="41.0" prefWidth="239.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-      <TextArea fx:id="nameInputTextArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="235.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+      <Slider fx:id="numRoundsSlider" blockIncrement="1.0" majorTickUnit="5.0" max="15.0" maxHeight="-Infinity" maxWidth="-Infinity" min="5.0" minHeight="-Infinity" minWidth="-Infinity"  prefHeight="21.0" prefWidth="241.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+      <Slider fx:id="gameDifficultySlider" blockIncrement="1.0" layoutX="312.0" layoutY="218.0" majorTickUnit="1.0" max="3.0" maxHeight="-Infinity" maxWidth="-Infinity" min="1.0" minorTickCount="0"  prefHeight="41.0" prefWidth="247.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+      <TextField fx:id="nameInputTextField" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="245.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+         </GridPane.margin>
+      </TextField>
+      <Label fx:id="invalidNameLabel" text="please input a valid name " textFill="#e91616" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
    </children>
 </GridPane>

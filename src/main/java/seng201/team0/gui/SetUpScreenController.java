@@ -1,8 +1,6 @@
 package seng201.team0.gui;
 import javafx.beans.property.DoubleProperty;
-import javafx.scene.control.Button;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import seng201.team0.PlayerManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,9 +15,10 @@ public class SetUpScreenController {
     @FXML
     public Slider gameDifficultySlider;
     @FXML
-    public TextArea nameInputTextArea;
+    public TextField nameInputTextField;
     @FXML
     public Button beginGameButton;
+    public Label invalidNameLabel;
     private PlayerManager playerManager;
 
     public SetUpScreenController(PlayerManager playerManager){
@@ -27,23 +26,33 @@ public class SetUpScreenController {
 
     }
     public void initialize(){
-        DoubleProperty sliderValue = numRoundsSlider.valueProperty();
-        //playerManager.
+        invalidNameLabel.setVisible(false);
 
+    }
+    public boolean validNameInput(String name){
+        return name.matches("^[a-zA-Z0-9]{3,15}$");
     }
     public void onBeginClicked(){
         System.out.println("Begin Clicked!");
+        String name = nameInputTextField.getText();
 
-        playerManager.setName(nameInputTextArea.getText());
-        playerManager.setNumGameRounds((int)numRoundsSlider.getValue());
-        playerManager.setGameDifficulty((int) gameDifficultySlider.getValue());
-        System.out.println("Player name: " + playerManager.getName());
-        System.out.println("Number of game rounds: " + playerManager.getNumGameRounds());
-        System.out.println("Game difficulty: " + playerManager.getGameDifficulty());
-        playerManager.closeSetupScreen();
-        playerManager.launchTowerSetUpScreen();
+        if (validNameInput(nameInputTextField.getText())){
+            System.out.println("valid input");
+            playerManager.setName(nameInputTextField.getText());
+            playerManager.setNumGameRounds((int)numRoundsSlider.getValue());
+            playerManager.setGameDifficulty((int) gameDifficultySlider.getValue());
+            System.out.println("Player name: " + playerManager.getName());
+            System.out.println("Number of game rounds: " + playerManager.getNumGameRounds());
+            System.out.println("Game difficulty: " + playerManager.getGameDifficulty());
+            playerManager.closeSetupScreen();
+            playerManager.launchTowerSetUpScreen();
+        }
+        else{
+            System.out.println("Invalid Name Input");
+            invalidNameLabel.setVisible(true);
+        }
+
+
+
     }
-
-
-
 }

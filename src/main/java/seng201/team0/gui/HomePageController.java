@@ -29,14 +29,14 @@ public class HomePageController {
 
 
     public void initialize(){
-        playerNameLabel.setText(PlayerManager.getName());
+        playerNameLabel.setText(playerManager.getName());
         homepageMoney.setText(PlayerManager.getMoney()); // need to find a way get money from player class
         //homepageCurrentRoundLabel.setText(PlayerManager.getCurrentRound());
         remainingRoundsLabel.setText(PlayerManager.getNumGameRounds());
 
     }
 
-    private HomePageController(TowerManager towerManager){
+    public HomePageController(PlayerManager playerManager){
         this.towerManager = towerManager;
         updateHomePage();
 
