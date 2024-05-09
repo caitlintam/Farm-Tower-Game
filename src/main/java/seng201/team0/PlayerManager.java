@@ -49,7 +49,7 @@ public class PlayerManager {
         towerSetUpScreenLauncher.accept(this);
     }
     public void closeTowerSetUpScreen(){
-        System.exit(0);
+        clearScreen.run();
     }
     public void closeMainScreen() {
     }

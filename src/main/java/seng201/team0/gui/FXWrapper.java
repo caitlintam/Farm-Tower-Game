@@ -37,7 +37,7 @@ public class FXWrapper {
     public void launchShopScreen(PlayerManager playerManager) {
         try {
             FXMLLoader shopScreenLoader = new FXMLLoader(getClass().getResource("/fxml/shop.fxml"));
-            shopScreenLoader.setControllerFactory(param -> new TowerSetUpController(playerManager));
+            shopScreenLoader.setControllerFactory(param -> new TowerSetUpController(playerManager, new TowerManager()));
             Parent setupParent  = shopScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Shop Screen");
@@ -54,7 +54,7 @@ public class FXWrapper {
     public void launchTowerSetupScreen(PlayerManager playerManager) {
         try {
             FXMLLoader towerSetupScreenLoader = new FXMLLoader(getClass().getResource("/fxml/tower_setup_screen.fxml"));
-            towerSetupScreenLoader.setControllerFactory(param -> new TowerSetUpController(playerManager));
+            towerSetupScreenLoader.setControllerFactory(param -> new TowerSetUpController(playerManager, new TowerManager()));
             Parent setupParent = towerSetupScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Tower Setup Screen");

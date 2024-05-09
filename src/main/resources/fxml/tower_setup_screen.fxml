@@ -11,6 +11,7 @@
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.TowerSetUpController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints />
@@ -41,16 +42,25 @@
               <rowConstraints>
                 <RowConstraints maxHeight="89.66665267944336" minHeight="10.0" prefHeight="80.66665649414062" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="124.6666488647461" minHeight="10.0" prefHeight="77.33333333333333" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="128.0" minHeight="10.0" prefHeight="77.33333333333331" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="128.0" minHeight="10.0" prefHeight="95.33333333333331" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="128.0" minHeight="10.0" prefHeight="23.333333333333314" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="59.333343505859375" minHeight="0.0" prefHeight="20.666666666666686" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="towerOption2" mnemonicParsing="false" prefHeight="53.0" prefWidth="115.0" text="Tower 2" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                  <Button fx:id="towerOption1" layoutX="227.0" layoutY="27.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="115.0" text="Tower 1" GridPane.halignment="CENTER" />
-                  <Button fx:id="towerOption6" layoutX="227.0" layoutY="27.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="115.0" text="Tower 6" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                  <Button fx:id="towerOption5" layoutX="227.0" layoutY="27.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="115.0" text="Tower 5" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                  <Button fx:id="towerOption3" layoutX="227.0" layoutY="27.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="115.0" text="Tower 3" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                  <Button fx:id="towerOption4" layoutX="227.0" layoutY="27.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="115.0" text="Tower 4" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <Button fx:id="towerOption1" layoutX="227.0" layoutY="27.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="115.0" text="Piglet Palace" GridPane.halignment="CENTER" />
+                   <Button fx:id="towerOption2" mnemonicParsing="false" prefHeight="53.0" prefWidth="115.0" text="Cowtopia Castle" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                   <Button fx:id="towerOption3" layoutX="227.0" layoutY="27.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="115.0" text="Haybale Haven" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                   <Button fx:id="towerOption4" layoutX="227.0" layoutY="27.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="115.0" text="Timber Turret" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                   <Button fx:id="towerOption5" layoutX="227.0" layoutY="27.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="115.0" text="Tower 5" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                   <Button fx:id="towerOption6" layoutX="227.0" layoutY="27.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="115.0" text="Tower 6" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                  <Label text="Selected Towers: " GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets left="15.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
                </children>
             </GridPane>
             <GridPane GridPane.columnIndex="1">
