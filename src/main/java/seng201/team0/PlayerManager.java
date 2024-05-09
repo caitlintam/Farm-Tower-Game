@@ -1,5 +1,7 @@
 package seng201.team0;
 
+import seng201.team0.models.Player;
+
 import java.util.function.Consumer;
 
 public class PlayerManager {
@@ -9,13 +11,15 @@ public class PlayerManager {
     private  int gameDifficulty;
     private final Consumer<PlayerManager> setupScreenLauncher;
     private final Consumer<PlayerManager> towerSetUpScreenLauncher;
+    private final Consumer<PlayerManager> shopScreenLauncher;
     private final Runnable clearScreen;
     //private DoubleProperty numRounds;
 
-    public PlayerManager(Consumer<PlayerManager> setupScreenLauncher, Consumer<PlayerManager> towerSetUpScreenLauncher, Runnable clearScreen) {
+    public PlayerManager(Consumer<PlayerManager> setupScreenLauncher, Consumer<PlayerManager> towerSetUpScreenLauncher, Runnable clearScreen, Consumer<PlayerManager> shopScreenLauncher) {
         this.setupScreenLauncher = setupScreenLauncher;
         this.towerSetUpScreenLauncher = towerSetUpScreenLauncher;
         this.clearScreen = clearScreen;
+        this.shopScreenLauncher = shopScreenLauncher;
         launchSetupScreen();
     }
     public void launchSetupScreen() {
@@ -23,6 +27,9 @@ public class PlayerManager {
     }
     public void closeSetupScreen(){
         clearScreen.run();
+    }
+    public void launchShopScreen() {
+        shopScreenLauncher.accept(this);
     }
     public String getName(){
         return name;
@@ -39,4 +46,8 @@ public class PlayerManager {
     public void closeTowerSetUpScreen(){
         System.exit(0);
     }
+
+    public void closeMainScreen() {
+    }
+
 }

@@ -48,17 +48,17 @@
                   <Font size="25.0" />
                </font>
             </Label>
-            <Button fx:id="goToShopButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Go To Shop" GridPane.rowIndex="3">
+            <Button fx:id="goToShopButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onGoToShopButtonClicked" text="Go To Shop" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="playRoundButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Play Round" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Button fx:id="playRoundButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPlayRoundButtonClicked" text="Play Round" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="viewInventoryButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="View/Edit Inventory" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <Button fx:id="viewInventoryButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onViewInventoryButtonClicked" text="View/Edit Inventory" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </GridPane.margin>
