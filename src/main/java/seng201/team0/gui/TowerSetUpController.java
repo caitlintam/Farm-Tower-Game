@@ -26,16 +26,20 @@ public class TowerSetUpController {
     public Button selectedTower3;
     public Button selectedTower2;
     public Button selectedTower1;
+    public Label errorTowerNumLabel;
     private PlayerManager playerManager;
     private TowerManager towerManager;
     private int selectedTowerIndex = -1;
     private final Tower[] selectedTowers = new Tower[3];
+    private Button selectedButton;
     public TowerSetUpController(PlayerManager playerManager, TowerManager towerManager){
         this.playerManager = playerManager;
         this.towerManager = towerManager;
 
     }
+
     public void initialize(){
+        errorTowerNumLabel.setVisible(false);
         List<Button> selectedTowerButtons = List.of(selectedTower1,selectedTower2,selectedTower3);
         List<Button> towerButtons = List.of(towerOption1,towerOption2,towerOption3,towerOption4,towerOption5,towerOption6);
 
@@ -73,8 +77,18 @@ public class TowerSetUpController {
     }
     @FXML
     public void onNextClicked(){
+
         towerManager.setTowerList(Arrays.stream(selectedTowers).filter((Objects::nonNull)).toList());
-        playerManager.closeTowerSetUpScreen();
-        playerManager.launchHomeScreen();
+        if (towerManager.getTowerList().size() < 3){
+            System.out.println("Error: not enough towers selected");
+            errorTowerNumLabel.setVisible(true);
+        }else{
+            for(int i=0; i<towerManager.getTowerList().size(); i++){
+                System.out.println("Tower " + (i+1)+ " " + towerManager.getTowerList().get(i).getTowerName());
+            }
+            playerManager.closeTowerSetUpScreen();
+            playerManager.launchHomeScreen();
+        }
+
     }
 }

@@ -24,16 +24,6 @@ public class PlayerManager {
         this.clearScreen = clearScreen;
         launchSetupScreen();
     }
-    public void launchSetupScreen() {
-        setupScreenLauncher.accept(this);
-    }
-    public void closeSetupScreen(){
-        clearScreen.run();
-    }
-    public void launchShopScreen() {
-        shopScreenLauncher.accept(this);
-    }
-
     public String getName(){
         return name;
     }
@@ -45,6 +35,12 @@ public class PlayerManager {
     public void setNumGameRounds(int gameRounds){ this.numGameRounds = gameRounds;}
     public int getGameDifficulty(){ return gameDifficulty;}
     public void setGameDifficulty(int gameDifficulty){ this.gameDifficulty = gameDifficulty;}
+    public void launchSetupScreen() {
+        setupScreenLauncher.accept(this);
+    }
+    public void closeSetupScreen(){
+        clearScreen.run();
+    }
     public void launchTowerSetUpScreen(){
         towerSetUpScreenLauncher.accept(this);
     }
@@ -55,4 +51,10 @@ public class PlayerManager {
         clearScreen.run();
     }
     public void launchHomeScreen(){homeScreenLauncher.accept(this);}
+    public void launchShopScreen() {
+        shopScreenLauncher.accept(this);
+    }
+    public void closeShopScreen(){
+        clearScreen.run();
+    }
 }

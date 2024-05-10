@@ -19,6 +19,8 @@ public class SetUpScreenController {
     @FXML
     public Button beginGameButton;
     public Label invalidNameLabel;
+    public Label invalidLengthNameLabel;
+    public Label invalidCharsNameLabel;
     private PlayerManager playerManager;
 
     public SetUpScreenController(PlayerManager playerManager){
@@ -26,7 +28,9 @@ public class SetUpScreenController {
 
     }
     public void initialize(){
-        invalidNameLabel.setVisible(false);
+        invalidLengthNameLabel.setVisible(false);
+        invalidCharsNameLabel.setVisible(false);
+
 
     }
     public boolean validNameInput(String name){
@@ -35,6 +39,8 @@ public class SetUpScreenController {
     public void onBeginClicked(){
         System.out.println("Begin Clicked!");
         String name = nameInputTextField.getText();
+        invalidCharsNameLabel.setVisible(false);
+        invalidLengthNameLabel.setVisible(false);
 
         if (validNameInput(nameInputTextField.getText())){
             System.out.println("valid input");
@@ -48,8 +54,14 @@ public class SetUpScreenController {
             playerManager.launchTowerSetUpScreen();
         }
         else{
-            System.out.println("Invalid Name Input");
-            invalidNameLabel.setVisible(true);
+            if(nameInputTextField.getText().matches("^.{3,15}$") == false){
+                System.out.println("Error: Name must be between 3 and 15 characters long");
+                invalidLengthNameLabel.setVisible(true);
+            }else{
+                System.out.println("Error: Name must not contain special characters");
+                invalidCharsNameLabel.setVisible(true);
+            }
+
         }
 
 

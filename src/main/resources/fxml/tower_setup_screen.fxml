@@ -42,9 +42,10 @@
               <rowConstraints>
                 <RowConstraints maxHeight="89.66665267944336" minHeight="10.0" prefHeight="80.66665649414062" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="124.6666488647461" minHeight="10.0" prefHeight="77.33333333333333" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="128.0" minHeight="10.0" prefHeight="95.33333333333331" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="128.0" minHeight="10.0" prefHeight="23.333333333333314" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="59.333343505859375" minHeight="0.0" prefHeight="20.666666666666686" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="128.0" minHeight="10.0" prefHeight="69.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="128.0" minHeight="9.0" prefHeight="9.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="128.0" minHeight="10.0" prefHeight="11.666656494140625" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="59.333343505859375" minHeight="0.0" prefHeight="13.666676839192718" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Button fx:id="towerOption1" layoutX="227.0" layoutY="27.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="115.0" text="Piglet Palace" GridPane.halignment="CENTER" />
@@ -53,7 +54,7 @@
                    <Button fx:id="towerOption4" layoutX="227.0" layoutY="27.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="115.0" text="Timber Turret" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                    <Button fx:id="towerOption5" layoutX="227.0" layoutY="27.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="115.0" text="Tower 5" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                    <Button fx:id="towerOption6" layoutX="227.0" layoutY="27.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="115.0" text="Tower 6" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                  <Label text="Selected Towers: " GridPane.rowIndex="3">
+                  <Label text="Selected Towers: " GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="15.0" />
                      </GridPane.margin>
@@ -104,11 +105,6 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="nextButton" mnemonicParsing="false" onAction="#onNextClicked" prefHeight="47.0" prefWidth="71.0" text="Next" GridPane.columnIndex="1" GridPane.halignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-            </Button>
             <GridPane>
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -116,13 +112,35 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="65.00000381469727" minHeight="10.0" prefHeight="57.99995549519856" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="31.0" minHeight="8.999996185302734" prefHeight="16.666711171468094" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="75.66669082641602" minHeight="10.0" prefHeight="71.00000381469727" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="31.0" minHeight="8.999996185302734" prefHeight="14.333329518636063" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Button fx:id="selectedTower3" mnemonicParsing="false" prefHeight="59.0" prefWidth="87.0" text="Button" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
                   <Button fx:id="selectedTower2" layoutX="217.0" layoutY="17.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="87.0" text="Button" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                   <Button fx:id="selectedTower1" layoutX="117.0" layoutY="17.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="87.0" text="Button" GridPane.halignment="CENTER" />
+               </children>
+            </GridPane>
+            <GridPane GridPane.columnIndex="1">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="53.66665458679199" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="33.999989827473954" minHeight="0.0" prefHeight="10.666642506917313" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="34.000024159749344" minHeight="10.0" prefHeight="34.000024159749344" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="nextButton" mnemonicParsing="false" onAction="#onNextClicked" prefHeight="47.0" prefWidth="71.0" text="Next" GridPane.halignment="CENTER">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Button>
+                  <Label fx:id="errorTowerNumLabel" text="Error: Not enough towers selected " textFill="RED" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Label>
                </children>
             </GridPane>
          </children>

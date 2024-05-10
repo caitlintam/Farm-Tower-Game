@@ -35,6 +35,7 @@ public class ShopController {
     private UpgradeManager upgradeManager;
     private int selectedUpgradeIndex = -1;
     private int selectedTowerIndex = -1;
+    private Button selectedButton;
 
 
     public ShopController(PlayerManager playerManager, TowerManager towerManager, UpgradeManager upgradeManager){
@@ -53,10 +54,10 @@ public class ShopController {
                 updateTowerInfo(towerManager.getDefaultTowers().get(finalI+6)); // +6 indexes to end of  default towerlist
                 selectedTowerIndex = finalI+ 6;
                 buyTowerButtons.forEach(button -> {
-                    if (button == buyTowerButtons.get(finalI)){
+                    if (button != selectedButton){
+                        selectedButton.setStyle("");
+                        selectedButton = button;
                         button.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
-                    } else{
-                        button.setStyle("");
                     }
                 });
             });
@@ -64,10 +65,10 @@ public class ShopController {
                 updateUpgradeInfo(upgradeManager.getUpgradeList().get(finalI));
                 selectedUpgradeIndex = finalI;
                 buyUpgradeButtons.forEach(button -> {
-                    if (button == buyUpgradeButtons.get(finalI)){
-                        button.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
-                    } else{
-                        button.setStyle("");
+                    if (button != selectedButton){
+                        selectedButton.setStyle("");
+                        selectedButton = button;
+                        selectedButton.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
                     }
                 });
             });
@@ -81,13 +82,14 @@ public class ShopController {
     }
     @FXML
     private void onShopHomeButtonClicked() {
-        // launch home screen
+        playerManager.closeShopScreen();
+        playerManager.launchHomeScreen();
     }
     private void updateTowerInfo(Tower tower) {
         ShopNameLabel.setText("Name: " + tower.getTowerName());
         ShopCostLabel.setText("Cost: $" + tower.getTowerCost());
         ShopInfoLabel.setText("Info: \nLevel: " + tower.getTowerLevel() + "\nLoad " + tower.getTowerResourceAmount()
-        + "\nSpeed: " + tower.getTowerReloadSpeed() + "\nType: " + tower.getTowerResourceType());
+                + "\nSpeed: " + tower.getTowerReloadSpeed() + "\nType: " + tower.getTowerResourceType());
     }
 
     private void updateUpgradeInfo(Upgrade upgrade) {
