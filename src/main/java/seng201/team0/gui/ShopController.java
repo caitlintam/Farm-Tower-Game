@@ -9,6 +9,7 @@ import seng201.team0.UpgradeManager;
 import seng201.team0.models.Tower;
 import seng201.team0.models.Upgrade;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShopController {
@@ -35,7 +36,7 @@ public class ShopController {
     private UpgradeManager upgradeManager;
     private int selectedUpgradeIndex = -1;
     private int selectedTowerIndex = -1;
-    private Button selectedButton;
+    private Button selectedButton = null;
 
 
     public ShopController(PlayerManager playerManager, TowerManager towerManager, UpgradeManager upgradeManager){
@@ -43,34 +44,34 @@ public class ShopController {
         this.towerManager = towerManager;
         this.upgradeManager = upgradeManager;
     }
-    public void initialize(){
-        List<Button> buyUpgradeButtons = List.of(upgradeButton1,upgradeButton2,upgradeButton3);
-        List<Button> buyTowerButtons = List.of(buyTowerButton1,buyTowerButton2,buyTowerbutton3);
-        List<Button> allButtons = List.of(buyTowerButton1,buyTowerButton2,buyTowerbutton3,upgradeButton1,upgradeButton2,upgradeButton3);
 
-        for (int i=0; i<buyUpgradeButtons.size(); i++){
+    public void initialize() {
+
+        List<Button> buyUpgradeButtons = List.of(upgradeButton1, upgradeButton2, upgradeButton3);
+        List<Button> buyTowerButtons = List.of(buyTowerButton1, buyTowerButton2, buyTowerbutton3);
+        List<Button> allButtons = new ArrayList<>();
+        allButtons.addAll(buyTowerButtons);
+        allButtons.addAll(buyUpgradeButtons);
+
+        for (int i = 0; i < buyUpgradeButtons.size(); i++) {
             int finalI = i;
-            buyTowerButtons.get(i).setOnAction(actionEvent ->{
-                updateTowerInfo(towerManager.getDefaultTowers().get(finalI+6)); // +6 indexes to end of  default towerlist
-                selectedTowerIndex = finalI+ 6;
-                buyTowerButtons.forEach(button -> {
-                    if (button != selectedButton){
-                        selectedButton.setStyle("");
-                        selectedButton = button;
-                        button.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
-                    }
-                });
+            buyTowerButtons.get(i).setOnAction(actionEvent -> {
+                if (selectedButton != null) {
+                    selectedButton.setStyle("");
+                }
+                updateTowerInfo(towerManager.getDefaultTowers().get(finalI + 6));
+                selectedTowerIndex = finalI + 6;
+                selectedButton = buyTowerButtons.get(finalI);
+                selectedButton.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
             });
             buyUpgradeButtons.get(i).setOnAction(actionEvent -> {
+                if (selectedButton != null) {
+                    selectedButton.setStyle("");
+                }
                 updateUpgradeInfo(upgradeManager.getUpgradeList().get(finalI));
                 selectedUpgradeIndex = finalI;
-                buyUpgradeButtons.forEach(button -> {
-                    if (button != selectedButton){
-                        selectedButton.setStyle("");
-                        selectedButton = button;
-                        selectedButton.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
-                    }
-                });
+                selectedButton = buyUpgradeButtons.get(finalI);
+                selectedButton.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
             });
         }
     }
@@ -91,7 +92,9 @@ public class ShopController {
         ShopInfoLabel.setText("Info: \nLevel: " + tower.getTowerLevel() + "\nLoad " + tower.getTowerResourceAmount()
                 + "\nSpeed: " + tower.getTowerReloadSpeed() + "\nType: " + tower.getTowerResourceType());
     }
-
+    private void updateMoneyLabel(){
+        ShopMoneyLabel.setText("Money: $"+playerManager.getMoney());
+    }
     private void updateUpgradeInfo(Upgrade upgrade) {
         ShopNameLabel.setText("Upgrade: " + upgrade.getUpgradeName());
         ShopCostLabel.setText("Cost: $" + upgrade.getUpgradeCost());

@@ -13,7 +13,7 @@ public class PlayerManager {
     private final Consumer<PlayerManager> homeScreenLauncher;
     private final Consumer<PlayerManager> shopScreenLauncher;
     private final Runnable clearScreen;
-    private double money = 0;
+    private double money = 1000.00;
     //private DoubleProperty numRounds;
 
     public PlayerManager(Consumer<PlayerManager> setupScreenLauncher, Consumer<PlayerManager> towerSetUpScreenLauncher, Runnable clearScreen, Consumer<PlayerManager> homeScreenLauncher,  Consumer<PlayerManager> shopScreenLauncher) {

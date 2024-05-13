@@ -42,7 +42,17 @@ public class SetUpScreenController {
         invalidCharsNameLabel.setVisible(false);
         invalidLengthNameLabel.setVisible(false);
 
-        if (validNameInput(nameInputTextField.getText())){
+        if (!validNameInput(nameInputTextField.getText())){
+            if(!nameInputTextField.getText().matches("^.{3,15}$")){
+                System.out.println("Error: Name must be between 3 and 15 characters long");
+                invalidLengthNameLabel.setVisible(true);
+            }else{
+                System.out.println("Error: Name must not contain special characters");
+                invalidCharsNameLabel.setVisible(true);
+            }
+
+        }
+        else{
             System.out.println("valid input");
             playerManager.setName(nameInputTextField.getText());
             playerManager.setNumGameRounds((int)numRoundsSlider.getValue());
@@ -52,15 +62,7 @@ public class SetUpScreenController {
             System.out.println("Game difficulty: " + playerManager.getGameDifficulty());
             playerManager.closeSetupScreen();
             playerManager.launchTowerSetUpScreen();
-        }
-        else{
-            if(nameInputTextField.getText().matches("^.{3,15}$") == false){
-                System.out.println("Error: Name must be between 3 and 15 characters long");
-                invalidLengthNameLabel.setVisible(true);
-            }else{
-                System.out.println("Error: Name must not contain special characters");
-                invalidCharsNameLabel.setVisible(true);
-            }
+
 
         }
 
