@@ -47,6 +47,9 @@ public class PlayerManager {
     public List getTowerInventory(){
         return towerInventory;
     }
+    public List<Upgrade> getUpgradeInventory(){
+        return upgradeInventory;
+    }
 
     public int getNumGameRounds(){ return numGameRounds;}
     public void setNumGameRounds(int gameRounds){ this.numGameRounds = gameRounds;}
@@ -84,10 +87,5 @@ public class PlayerManager {
     public void addUpgradesToInventory(Upgrade upgrade){
         upgradeInventory.add(upgrade);
     }
-    public List<Tower> getTowerInventory(){
-        return towerInventory;
-    }
-    public List<Upgrade> getUpgradeInventory(){
-        return upgradeInventory;
-    }
+
 }
