@@ -46,7 +46,7 @@ public class ShopController {
     }
 
     public void initialize() {
-
+        updateMoneyLabel();
         List<Button> buyUpgradeButtons = List.of(upgradeButton1, upgradeButton2, upgradeButton3);
         List<Button> buyTowerButtons = List.of(buyTowerButton1, buyTowerButton2, buyTowerbutton3);
         List<Button> allButtons = new ArrayList<>();

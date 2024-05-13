@@ -23,8 +23,12 @@
    <children>
       <TableView fx:id="towerTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="towerNameColumn" prefWidth="100.0" text="Tower Name" />
+          <TableColumn fx:id="towerResTypeColumn" prefWidth="94.66671752929688" text="Resource Type" />
+            <TableColumn fx:id="towerResAmountColumn" prefWidth="114.6666259765625" text="Resource Amount" />
+            <TableColumn fx:id="towerReloadColumn" prefWidth="93.3333740234375" text="Reload Speed" />
+            <TableColumn fx:id="towerLevelColumn" minWidth="0.0" prefWidth="45.3333740234375" text="Level" />
+            <TableColumn fx:id="towerCostColumn" prefWidth="94.6666259765625" text="Cost" />
         </columns>
       </TableView>
       <TableView fx:id="upgradeTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="3">

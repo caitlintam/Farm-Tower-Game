@@ -20,7 +20,20 @@ public class FXWrapper {
 
     public void init(Stage stage) {
         this.stage = stage;
-        new PlayerManager(this::launchSetupScreen, this::launchTowerSetupScreen, this::clearPane, this::launchHomeScreen, this::launchShopScreen);
+        new PlayerManager(this::launchSetupScreen, this::launchTowerSetupScreen, this::clearPane, this::launchHomeScreen, this::launchShopScreen, this::launchInventoryScreen);
+    }
+
+    private void launchInventoryScreen(PlayerManager playerManager) {
+        try {
+            FXMLLoader setupLoader = new FXMLLoader(getClass().getResource("/fxml/inventory.fxml"));
+            // provide a custom Controller with parameters
+            setupLoader.setControllerFactory(param -> new InventoryController(playerManager));
+            Parent setupParent = setupLoader.load();
+            pane.getChildren().add(setupParent);
+            stage.setTitle("Inventory");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void launchSetupScreen(PlayerManager playerManager) {

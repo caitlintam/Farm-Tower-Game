@@ -1,10 +1,9 @@
 package seng201.team0;
 
-import java.beans.beancontext.BeanContextServiceAvailableEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
-import seng201.team0.models.Player;
+
 import seng201.team0.models.Tower;
 import seng201.team0.models.Upgrade;
 
@@ -16,18 +15,20 @@ public class PlayerManager {
     private final Consumer<PlayerManager> towerSetUpScreenLauncher;
     private final Consumer<PlayerManager> homeScreenLauncher;
     private final Consumer<PlayerManager> shopScreenLauncher;
+    private final Consumer<PlayerManager> inventoryScreenLauncher;
     private final Runnable clearScreen;
     private double money = 1000.0;
     private List<Tower> towerInventory;
     private List<Upgrade> upgradeInventory;
     //private DoubleProperty numRounds;
 
-    public PlayerManager(Consumer<PlayerManager> setupScreenLauncher, Consumer<PlayerManager> towerSetUpScreenLauncher, Runnable clearScreen, Consumer<PlayerManager> homeScreenLauncher,  Consumer<PlayerManager> shopScreenLauncher) {
+    public PlayerManager(Consumer<PlayerManager> setupScreenLauncher, Consumer<PlayerManager> towerSetUpScreenLauncher, Runnable clearScreen, Consumer<PlayerManager> homeScreenLauncher, Consumer<PlayerManager> shopScreenLauncher, Consumer<PlayerManager> inventoryScreenLauncher) {
         this.setupScreenLauncher = setupScreenLauncher;
         this.towerSetUpScreenLauncher = towerSetUpScreenLauncher;
         this.homeScreenLauncher = homeScreenLauncher;
         this.shopScreenLauncher = shopScreenLauncher;
         this.clearScreen = clearScreen;
+        this.inventoryScreenLauncher = inventoryScreenLauncher;
         this.towerInventory = new ArrayList<>();
         this.upgradeInventory = new ArrayList<>();
         launchSetupScreen();
@@ -67,6 +68,9 @@ public class PlayerManager {
     public void launchShopScreen() {
         shopScreenLauncher.accept(this);
     }
+    public void launchInventoryScreen(){
+        inventoryScreenLauncher.accept(this);
+    }
     public void closeShopScreen(){
         clearScreen.run();
     }
@@ -76,5 +80,11 @@ public class PlayerManager {
     }
     public void addUpgradesToInventory(List<Upgrade> upgrades){
         upgradeInventory.addAll(upgrades);
+    }
+    public List<Tower> getTowerInventory(){
+        return towerInventory;
+    }
+    public List<Upgrade> getUpgradeInventory(){
+        return upgradeInventory;
     }
 }
