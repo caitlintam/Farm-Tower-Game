@@ -17,7 +17,7 @@ public class PlayerManager {
     private final Consumer<PlayerManager> homeScreenLauncher;
     private final Consumer<PlayerManager> shopScreenLauncher;
     private final Runnable clearScreen;
-    private double money = 1000.0;
+    private double money = 1000.00;
     private List<Tower> towerInventory;
     private List<Upgrade> upgradeInventory;
     //private DoubleProperty numRounds;
@@ -42,6 +42,9 @@ public class PlayerManager {
     }
     public void setMoney(double money){
         this.money = money;
+    }
+    public List getTowerInventory(){
+        return towerInventory;
     }
 
     public int getNumGameRounds(){ return numGameRounds;}
@@ -71,10 +74,10 @@ public class PlayerManager {
         clearScreen.run();
     }
 
-    public void addTowersToInventory(List<Tower> towers) {
-        towerInventory.addAll(towers);
+    public void addTowersToInventory(Tower tower) {
+        towerInventory.add(tower);
     }
-    public void addUpgradesToInventory(List<Upgrade> upgrades){
-        upgradeInventory.addAll(upgrades);
+    public void addUpgradesToInventory(Upgrade upgrade){
+        upgradeInventory.add(upgrade);
     }
 }

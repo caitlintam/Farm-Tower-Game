@@ -46,7 +46,7 @@ public class ShopController {
     }
 
     public void initialize() {
-
+        updateMoneyLabel();
         List<Button> buyUpgradeButtons = List.of(upgradeButton1, upgradeButton2, upgradeButton3);
         List<Button> buyTowerButtons = List.of(buyTowerButton1, buyTowerButton2, buyTowerbutton3);
         List<Button> allButtons = new ArrayList<>();
@@ -82,11 +82,27 @@ public class ShopController {
             if (selectedButton == buyTowerButton1 || selectedButton == buyTowerButton2 || selectedButton == buyTowerbutton3) {
                 // Access TowerManager
                 Tower selectedTower = towerManager.getDefaultTowers().get(selectedTowerIndex);
+                double cost = selectedTower.getTowerCost();
+                if (cost <= playerManager.getMoney()){
+                    playerManager.setMoney(playerManager.getMoney() - cost);
+                    playerManager.addTowersToInventory(selectedTower);
+                    updateMoneyLabel();
+                } else {
+                    System.out.println("You don't have enough money");
+                }
 
                 // Perform operations with selected tower
             } else if (selectedButton == upgradeButton1 || selectedButton == upgradeButton2 || selectedButton == upgradeButton3) {
                 // Access UpgradeManager
                 Upgrade selectedUpgrade = upgradeManager.getUpgradeList().get(selectedUpgradeIndex);
+                double cost = selectedUpgrade.getUpgradeCost();
+                if (cost <= playerManager.getMoney()){
+                    playerManager.setMoney(playerManager.getMoney() - cost);
+                    playerManager.addUpgradesToInventory(selectedUpgrade);
+                    updateMoneyLabel();
+                } else {
+                    System.out.println("You don't have enough money");
+                }
                 // Perform operations with selected upgrade
             }
         } else {
@@ -105,7 +121,7 @@ public class ShopController {
                 + "\nSpeed: " + tower.getTowerReloadSpeed() + "\nType: " + tower.getTowerResourceType());
     }
     private void updateMoneyLabel(){
-        ShopMoneyLabel.setText("Money: $"+playerManager.getMoney());
+        ShopMoneyLabel.setText("Money: $"+ playerManager.getMoney());
     }
     private void updateUpgradeInfo(Upgrade upgrade) {
         ShopNameLabel.setText("Upgrade: " + upgrade.getUpgradeName());

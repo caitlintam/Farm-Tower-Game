@@ -24,7 +24,5 @@ public class UpgradeManager {
     public List<Upgrade> getUpgradeList(){
         return upgradeList;
     }
-    public void addUpgradesListToPlayer(PlayerManager playerManager){
-        playerManager.addUpgradesToInventory(upgradeList); // adds tower list to inventory
-    }
+
 }

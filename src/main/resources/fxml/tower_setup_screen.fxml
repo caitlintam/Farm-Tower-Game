@@ -52,8 +52,8 @@
                    <Button fx:id="towerOption2" mnemonicParsing="false" prefHeight="53.0" prefWidth="115.0" text="Cowtopia Castle" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                    <Button fx:id="towerOption3" layoutX="227.0" layoutY="27.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="115.0" text="Haybale Haven" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                    <Button fx:id="towerOption4" layoutX="227.0" layoutY="27.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="115.0" text="Timber Turret" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                   <Button fx:id="towerOption5" layoutX="227.0" layoutY="27.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="115.0" text="Tower 5" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                   <Button fx:id="towerOption6" layoutX="227.0" layoutY="27.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="115.0" text="Tower 6" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                   <Button fx:id="towerOption5" layoutX="227.0" layoutY="27.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="115.0" text="Water Tower" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                   <Button fx:id="towerOption6" layoutX="227.0" layoutY="27.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="115.0" text="Steele Steeple" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                   <Label text="Selected Towers: " GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="15.0" />
