@@ -17,6 +17,7 @@ public class Tower {
         this.towerLevel = towerLevel;
         this.towerCost = towerCost;
     }
+
     public String getTowerName(){
         return towerName;
     }

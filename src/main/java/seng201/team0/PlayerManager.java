@@ -1,8 +1,12 @@
 package seng201.team0;
 
 import java.beans.beancontext.BeanContextServiceAvailableEvent;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 import seng201.team0.models.Player;
+import seng201.team0.models.Tower;
+import seng201.team0.models.Upgrade;
 
 public class PlayerManager {
     private String name;
@@ -13,7 +17,9 @@ public class PlayerManager {
     private final Consumer<PlayerManager> homeScreenLauncher;
     private final Consumer<PlayerManager> shopScreenLauncher;
     private final Runnable clearScreen;
-    private double money = 1000.00;
+    private double money = 1000.0;
+    private List<Tower> towerInventory = new ArrayList<>();
+    private List<Upgrade> upgradeInventory = new ArrayList<>();
     //private DoubleProperty numRounds;
 
     public PlayerManager(Consumer<PlayerManager> setupScreenLauncher, Consumer<PlayerManager> towerSetUpScreenLauncher, Runnable clearScreen, Consumer<PlayerManager> homeScreenLauncher,  Consumer<PlayerManager> shopScreenLauncher) {
@@ -29,7 +35,12 @@ public class PlayerManager {
     }
     public void setName(String name) {
         this.name = name;}
-    public double getMoney(){return money;}
+    public double getMoney(){
+        return money;
+    }
+    public void setMoney(double money){
+        this.money = money;
+    }
 
     public int getNumGameRounds(){ return numGameRounds;}
     public void setNumGameRounds(int gameRounds){ this.numGameRounds = gameRounds;}
