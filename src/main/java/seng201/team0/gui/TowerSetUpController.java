@@ -69,6 +69,7 @@ public class TowerSetUpController {
             });
         }
     }
+
     private void updateStats(Tower tower){
         towerNameLabel.setText(tower.getTowerName());
         resTypeLabel.setText(tower.getTowerResourceType());

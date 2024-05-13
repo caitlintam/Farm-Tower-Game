@@ -18,8 +18,8 @@ public class PlayerManager {
     private final Consumer<PlayerManager> shopScreenLauncher;
     private final Runnable clearScreen;
     private double money = 1000.0;
-    private List<Tower> towerInventory = new ArrayList<>();
-    private List<Upgrade> upgradeInventory = new ArrayList<>();
+    private List<Tower> towerInventory;
+    private List<Upgrade> upgradeInventory;
     //private DoubleProperty numRounds;
 
     public PlayerManager(Consumer<PlayerManager> setupScreenLauncher, Consumer<PlayerManager> towerSetUpScreenLauncher, Runnable clearScreen, Consumer<PlayerManager> homeScreenLauncher,  Consumer<PlayerManager> shopScreenLauncher) {
@@ -28,6 +28,8 @@ public class PlayerManager {
         this.homeScreenLauncher = homeScreenLauncher;
         this.shopScreenLauncher = shopScreenLauncher;
         this.clearScreen = clearScreen;
+        this.towerInventory = new ArrayList<>();
+        this.upgradeInventory = new ArrayList<>();
         launchSetupScreen();
     }
     public String getName(){
@@ -67,5 +69,12 @@ public class PlayerManager {
     }
     public void closeShopScreen(){
         clearScreen.run();
+    }
+
+    public void addTowersToInventory(List<Tower> towers) {
+        towerInventory.addAll(towers);
+    }
+    public void addUpgradesToInventory(List<Upgrade> upgrades){
+        upgradeInventory.addAll(upgrades);
     }
 }

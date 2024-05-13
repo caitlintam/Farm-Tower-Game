@@ -13,17 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShopController {
-    @FXML
     public Button upgradeButton3;
-    @FXML
     public Button upgradeButton2;
-    @FXML
     public Button upgradeButton1;
-    @FXML
     public Button buyTowerbutton3;
-    @FXML
     public Button buyTowerButton2;
-    @FXML
     public Button buyTowerButton1;
     @FXML
     private Label ShopMoneyLabel;
@@ -83,16 +77,20 @@ public class ShopController {
     }
     @FXML
     private void onBuyButtonClicked() {
-        // adds to inventory list by playerManager<list name> .add selected
-        double cost = Double.parseDouble(ShopCostLabel.getText().substring(6));
-        if (playerManager.getMoney()>= cost){
-            playerManager.setMoney(playerManager.getMoney() - cost);
-            updateMoneyLabel();
-            System.out.println("Item purchased");
-            //Item item = new Item(ShopNameLabel.getText(), cost);
-            //playerManager.towerInventory.add(item);
+        if (selectedButton != null) {
+            // Check which manager to access based on the selected button's properties
+            if (selectedButton == buyTowerButton1 || selectedButton == buyTowerButton2 || selectedButton == buyTowerbutton3) {
+                // Access TowerManager
+                Tower selectedTower = towerManager.getDefaultTowers().get(selectedTowerIndex);
+
+                // Perform operations with selected tower
+            } else if (selectedButton == upgradeButton1 || selectedButton == upgradeButton2 || selectedButton == upgradeButton3) {
+                // Access UpgradeManager
+                Upgrade selectedUpgrade = upgradeManager.getUpgradeList().get(selectedUpgradeIndex);
+                // Perform operations with selected upgrade
+            }
         } else {
-            System.out.println("Not enough Money!");
+            // No button is selected
         }
     }
     @FXML
@@ -103,7 +101,7 @@ public class ShopController {
     private void updateTowerInfo(Tower tower) {
         ShopNameLabel.setText("Name: " + tower.getTowerName());
         ShopCostLabel.setText("Cost: $" + tower.getTowerCost());
-        ShopInfoLabel.setText("Info: \nLevel: " + tower.getTowerLevel() + "\nLoad: " + tower.getTowerResourceAmount()
+        ShopInfoLabel.setText("Info: \nLevel: " + tower.getTowerLevel() + "\nLoad " + tower.getTowerResourceAmount()
                 + "\nSpeed: " + tower.getTowerReloadSpeed() + "\nType: " + tower.getTowerResourceType());
     }
     private void updateMoneyLabel(){

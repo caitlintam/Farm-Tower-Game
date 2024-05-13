@@ -1,5 +1,6 @@
 package seng201.team0;
 
+import seng201.team0.models.Player;
 import seng201.team0.models.Tower;
 
 import java.util.ArrayList;
@@ -28,6 +29,9 @@ public class TowerManager {
                 new Tower("Tower 8", 35, "t6", 45, 4, 40.00),
                 new Tower("Tower 9", 35, "t6", 45, 4, 40.00)));
 
+    }
+    public void addTowerListToPlayer(PlayerManager playerManager){
+        playerManager.addTowersToInventory(towerList); // adds tower list to inventory
     }
     public List<Tower> getTowerList(){
         return towerList;
