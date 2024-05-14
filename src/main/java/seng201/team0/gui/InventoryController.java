@@ -3,6 +3,8 @@ package seng201.team0.gui;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -24,6 +26,11 @@ public class InventoryController {
     public TableColumn<Tower, Integer> towerReloadColumn;
     public TableColumn<Tower, Integer> towerLevelColumn;
     public TableColumn<Tower, Integer> towerCostColumn;
+    public Button inventoryHomeButton;
+    public TableColumn<Tower, String> towerStatusColumn;
+    public Button sellSelectedTowerButton;
+    public Label moneyLabel;
+    public Button changeTowerStatusButton;
 
 
     // public TableColumn<PlayerManager, String>
@@ -55,9 +62,21 @@ public class InventoryController {
         towerReloadColumn.setCellValueFactory(new PropertyValueFactory<Tower, Integer>("towerReloadSpeed"));
         towerLevelColumn.setCellValueFactory(new PropertyValueFactory<Tower, Integer>("towerLevel"));
         towerCostColumn.setCellValueFactory(new PropertyValueFactory<Tower, Integer>("towerCost"));
+        towerStatusColumn.setCellValueFactory(new PropertyValueFactory<Tower, String>("towerStatus"));
 
         // Set tower inventory data to the table
         towerTable.setItems(towerData);
     }
+    @FXML
+    private void onSellSelectedButtonClicked(){
+        // get selected tower, remove from tableview, remove cost
+
+    }
+    @FXML
+    private void onInventoryHomeButtonClicked() {
+        playerManager.closeInventoryScreen();
+        playerManager.launchHomeScreen();
+    }
+
 
 }

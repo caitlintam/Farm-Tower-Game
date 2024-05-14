@@ -20,15 +20,15 @@ public class TowerManager {
 //                new Tower("Timber Turret", 20, "Timber", 60, 2, 50.00)));
 
         defaultTowers.addAll(List.of(
-                new Tower("Piglet Palace", 25, "Pigs", 15, 2, 45.00),
-                new Tower("Cowtopia Castle", 10, "Cows", 30, 1,25.00),
-                new Tower("Haybale Haven", 50, "Hay", 10, 1, 10.00),
-                new Tower("Timber Turret", 20, "Timber", 60, 2, 50.00),
-                new Tower("Water Tower ", 15, "Water", 25, 9, 48.00),
-                new Tower("Steel Steeple", 35, "Steel", 45, 4, 40.00),
-                new Tower("Corn Castle", 40, "Corn", 45, 3, 20.00),
-                new Tower("Wheat Tower", 65, "Wheat", 45, 2, 30.00),
-                new Tower("Chicken Coop", 20, "Chickens", 45, 4, 40.00)));
+                new Tower("Piglet Palace", 25, "Pigs", 15, 2, 45.00, "Reserve"),
+                new Tower("Cowtopia Castle", 10, "Cows", 30, 1,25.00, "Reserve"),
+                new Tower("Haybale Haven", 50, "Hay", 10, 1, 10.00,"Reserve"),
+                new Tower("Timber Turret", 20, "Timber", 60, 2, 50.00,"Reserve"),
+                new Tower("Water Tower ", 15, "Water", 25, 9, 48.00,"Reserve"),
+                new Tower("Steel Steeple", 35, "Steel", 45, 4, 40.00,"Reserve"),
+                new Tower("Corn Castle", 40, "Corn", 45, 3, 20.00,"Reserve"),
+                new Tower("Wheat Tower", 65, "Wheat", 45, 2, 30.00,"Reserve"),
+                new Tower("Chicken Coop", 20, "Chickens", 45, 4, 40.00,"Reserve")));
 
     }
     public void addTowerListToPlayer(PlayerManager playerManager){
@@ -53,5 +53,11 @@ public class TowerManager {
         return towerCost;
     }
 
-
+    public void setTowerStatus(Tower tower) {
+        if (towerList.contains(tower)){
+            tower.setTowerStatus("In-Game");
+        }else{
+            tower.setTowerStatus("Reserve");
+        }
+    }
 }

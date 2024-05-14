@@ -7,15 +7,18 @@ public class Tower {
     private int towerReloadSpeed;
     private int towerLevel;
     private double towerCost;
+    private String towerStatus;
+
     private static final String[] RESOURCE_TYPES = {"Hay", "Water", "Cows", "Pigs", "Timber", "Chickens"};
 
-    public Tower(String towerName, int towerResourceAmount, String towerResourceType, int towerReloadSpeed, int towerLevel, double towerCost){
+    public Tower(String towerName, int towerResourceAmount, String towerResourceType, int towerReloadSpeed, int towerLevel, double towerCost, String towerStatus){
         this.towerName = towerName;
         this.towerResourceAmount = towerResourceAmount;
         this.towerResourceType = towerResourceType;
         this.towerReloadSpeed = towerReloadSpeed;
         this.towerLevel = towerLevel;
         this.towerCost = towerCost;
+        this.towerStatus = towerStatus;
     }
 
     public String getTowerName(){
@@ -39,5 +42,9 @@ public class Tower {
     public double getTowerCost(){
         return towerCost;
     }
+    public void setTowerStatus(String towerStatus){
+        this.towerStatus = towerStatus;
+    }
+    public String getTowerStatus(){return towerStatus;}
 
 }

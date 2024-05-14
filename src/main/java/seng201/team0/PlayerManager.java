@@ -87,5 +87,8 @@ public class PlayerManager {
     public void addUpgradesToInventory(Upgrade upgrade){
         upgradeInventory.add(upgrade);
     }
+    public void closeInventoryScreen(){
+        clearScreen.run();
+    }
 
 }

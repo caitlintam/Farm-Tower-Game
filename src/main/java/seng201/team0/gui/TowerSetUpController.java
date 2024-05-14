@@ -87,6 +87,7 @@ public class TowerSetUpController {
             for(int i=0; i<towerManager.getTowerList().size(); i++){
                 playerManager.addTowersToInventory(towerManager.getTowerList().get(i));
                 System.out.println("Tower " + (i+1)+ " " + towerManager.getTowerList().get(i).getTowerName());
+                towerManager.setTowerStatus(towerManager.getTowerList().get(i));
             }
             playerManager.closeTowerSetUpScreen();
             playerManager.launchHomeScreen();

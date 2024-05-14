@@ -16,34 +16,43 @@
   </columnConstraints>
   <rowConstraints>
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="138.66668701171875" minHeight="10.0" prefHeight="138.66668701171875" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="84.0" minHeight="0.0" prefHeight="33.33331298828125" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="134.0" minHeight="10.0" prefHeight="83.33334350585938" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="196.6666463216146" minHeight="10.0" prefHeight="188.6666463216146" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="98.00000508626303" minHeight="10.0" prefHeight="49.33335367838541" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="98.00000508626303" minHeight="0.0" prefHeight="49.33335367838541" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="134.0" minHeight="10.0" prefHeight="39.000030517578125" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="46.999969482421875" minHeight="5.0" prefHeight="46.999969482421875" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <TableView fx:id="towerTable" prefHeight="104.0" prefWidth="600.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+      <TableView fx:id="towerTable" minHeight="-Infinity" minWidth="-Infinity" prefHeight="155.0" prefWidth="600.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
         <columns>
           <TableColumn fx:id="towerNameColumn" prefWidth="100.0" text="Tower Name" />
           <TableColumn fx:id="towerResTypeColumn" prefWidth="94.66671752929688" text="Resource Type" />
             <TableColumn fx:id="towerResAmountColumn" prefWidth="114.6666259765625" text="Resource Amount" />
             <TableColumn fx:id="towerReloadColumn" prefWidth="93.3333740234375" text="Reload Speed" />
             <TableColumn fx:id="towerLevelColumn" minWidth="0.0" prefWidth="45.3333740234375" text="Level" />
-            <TableColumn fx:id="towerCostColumn" prefWidth="94.6666259765625" text="Cost" />
+            <TableColumn fx:id="towerCostColumn" prefWidth="56.66668701171875" text="Cost" />
+            <TableColumn fx:id="towerStatusColumn" prefWidth="90.0" text="Status" />
         </columns>
       </TableView>
-      <TableView fx:id="upgradeTable" prefHeight="105.0" prefWidth="600.0" GridPane.columnSpan="2" GridPane.rowIndex="3">
+      <TableView fx:id="upgradeTable" prefHeight="43.0" prefWidth="600.0" GridPane.columnSpan="2" GridPane.rowIndex="4">
         <columns>
           <TableColumn prefWidth="75.0" text="C1" />
           <TableColumn prefWidth="75.0" text="C2" />
         </columns>
       </TableView>
-      <Label text="Inventory" GridPane.halignment="CENTER">
+      <Label text="Tower Inventory" GridPane.halignment="CENTER">
          <font>
-            <Font size="31.0" />
+            <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="Home" mnemonicParsing="false" text="Home" GridPane.rowIndex="5" />
+      <Button fx:id="inventoryHomeButton" mnemonicParsing="false" onAction="#onInventoryHomeButtonClicked" text="Home" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+      <Label text="Upgrade Inventory" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="moneyLabel" text="Money: $" GridPane.columnIndex="1" />
+      <Button fx:id="sellSelectedTowerButton" mnemonicParsing="false" onAction="#onSellSelectedButtonClicked" text="Sell Selected Tower" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+      <Button fx:id="changeTowerStatusButton" mnemonicParsing="false" text="Change Tower Status" GridPane.columnIndex="1" GridPane.rowIndex="2" />
    </children>
 </GridPane>
