@@ -70,7 +70,10 @@ public class InventoryController {
     @FXML
     private void onSellSelectedButtonClicked(){
         // get selected tower, remove from tableview, remove cost
+        Tower selectedTower = towerTable.getSelectionModel().getSelectedItem();
+        if (selectedTower == null){
 
+        }
     }
     @FXML
     private void onInventoryHomeButtonClicked() {
