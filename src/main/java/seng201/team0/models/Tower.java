@@ -1,5 +1,7 @@
 package seng201.team0.models;
 
+import java.util.Objects;
+
 public class Tower {
     private String towerName;
     private int towerResourceAmount;
@@ -46,5 +48,12 @@ public class Tower {
         this.towerStatus = towerStatus;
     }
     public String getTowerStatus(){return towerStatus;}
+    public void updateTowerStatus(){
+        if (Objects.equals(towerStatus, "In-Game")){
+            towerStatus = "Reserve";
+        } else{
+            towerStatus = "In-Game";
+        }
+    }
 
 }

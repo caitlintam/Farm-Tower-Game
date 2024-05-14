@@ -39,3 +39,24 @@ Submission:
 - README file
 - program as a jar ( runs on lab machines)
 
+
+## working on at the moment:
+
+Inventory
+
+# DONE
+- selling items D
+  - updating inventory( removing selected item)
+  - updating fxml tableview
+  - updating cost ( adding after sell)
+
+- When towers are added to inventoyr, set their status to ingame
+- 
+
+# DOING
+- status of towers 
+  - if button clicked, change towerStatus
+    - if 3 towers already in game , send msg 'Cannot change Status: 3 towers already in game'
+    - otherwise. if in game - change to reserve. if reserve, change to in game
+
+- 

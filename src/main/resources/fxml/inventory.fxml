@@ -17,7 +17,8 @@
   <rowConstraints>
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="196.6666463216146" minHeight="10.0" prefHeight="188.6666463216146" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="98.00000508626303" minHeight="10.0" prefHeight="49.33335367838541" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="98.00000508626303" minHeight="10.0" prefHeight="23.33331298828125" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="98.00000508626303" minHeight="10.0" prefHeight="60.66668701171872" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="98.00000508626303" minHeight="0.0" prefHeight="49.33335367838541" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="134.0" minHeight="10.0" prefHeight="39.000030517578125" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="46.999969482421875" minHeight="5.0" prefHeight="46.999969482421875" vgrow="SOMETIMES" />
@@ -34,7 +35,7 @@
             <TableColumn fx:id="towerStatusColumn" prefWidth="90.0" text="Status" />
         </columns>
       </TableView>
-      <TableView fx:id="upgradeTable" prefHeight="43.0" prefWidth="600.0" GridPane.columnSpan="2" GridPane.rowIndex="4">
+      <TableView fx:id="upgradeTable" prefHeight="43.0" prefWidth="600.0" GridPane.columnSpan="2" GridPane.rowIndex="5">
         <columns>
           <TableColumn prefWidth="75.0" text="C1" />
           <TableColumn prefWidth="75.0" text="C2" />
@@ -45,14 +46,16 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="inventoryHomeButton" mnemonicParsing="false" onAction="#onInventoryHomeButtonClicked" text="Home" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-      <Label text="Upgrade Inventory" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+      <Button fx:id="inventoryHomeButton" mnemonicParsing="false" onAction="#onInventoryHomeButtonClicked" text="Home" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+      <Label text="Upgrade Inventory" GridPane.halignment="CENTER" GridPane.rowIndex="4">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
       <Label fx:id="moneyLabel" text="Money: $" GridPane.columnIndex="1" />
-      <Button fx:id="sellSelectedTowerButton" mnemonicParsing="false" onAction="#onSellSelectedButtonClicked" text="Sell Selected Tower" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-      <Button fx:id="changeTowerStatusButton" mnemonicParsing="false" text="Change Tower Status" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Button fx:id="sellSelectedTowerButton" mnemonicParsing="false" onAction="#onSellSelectedButtonClicked" text="Sell Selected Tower" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+      <Button fx:id="changeTowerStatusButton" mnemonicParsing="false" onAction="#onChangeTowerStatusButtonClicked" text="Change Tower Status" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Label fx:id="errorNoTowerSelectedLabel" text="No Tower Selected" textFill="#dd0505" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+      <Label fx:id="errorChangeStatusLabel" text="Cannot Change Status: 3 towers already in game" textFill="#ef0202" GridPane.rowIndex="2" />
    </children>
 </GridPane>

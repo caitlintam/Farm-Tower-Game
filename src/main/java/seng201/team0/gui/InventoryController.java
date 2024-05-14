@@ -2,6 +2,7 @@ package seng201.team0.gui;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,6 +14,8 @@ import seng201.team0.models.Tower;
 
 import javax.sound.midi.SysexMessage;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class InventoryController {
     private final PlayerManager playerManager;
@@ -31,6 +34,8 @@ public class InventoryController {
     public Button sellSelectedTowerButton;
     public Label moneyLabel;
     public Button changeTowerStatusButton;
+    public Label errorChangeStatusLabel;
+    public Label errorNoTowerSelectedLabel;
 
 
     // public TableColumn<PlayerManager, String>
@@ -43,8 +48,10 @@ public class InventoryController {
     }
     public void initialize() {
         // Populate tower inventory table
-
+        updateMoneyLabel();
         initializeTowerTable();
+        errorChangeStatusLabel.setVisible(false);
+        errorNoTowerSelectedLabel.setVisible(false);
 
     }
 
@@ -67,16 +74,59 @@ public class InventoryController {
         // Set tower inventory data to the table
         towerTable.setItems(towerData);
     }
+
     @FXML
     private void onSellSelectedButtonClicked(){
         // get selected tower, remove from tableview, remove cost
-
+    Tower selectedTower = towerTable.getSelectionModel().getSelectedItem();
+    if (selectedTower == null){
+        errorNoTowerSelectedLabel.setVisible(true);
+    }else{
+        errorNoTowerSelectedLabel.setVisible(false);
+        // remove from towerInventory
+        playerManager.removeTowerFromInventory(selectedTower);
+        // update fxml - remove from tableview( initialise tower method)
+        initializeTowerTable();
+        // remove from cost of player
+        double cost = selectedTower.getTowerCost();
+        playerManager.setMoney(playerManager.getMoney() + cost);
+        // update fxml money label
+        updateMoneyLabel();
     }
+    }
+
+    @FXML
+    public void onChangeTowerStatusButtonClicked() {
+        System.out.println("Change Tower Status Clicked");
+        Tower selectedTower = towerTable.getSelectionModel().getSelectedItem();
+        // error cant change tower status: too many towers in game
+        // only if trying to change reserve tower status to ingame but already 3 towers inventory in game
+
+        List<Tower> towerInventory = playerManager.getTowerInventory();
+        // use of streams, to filter by status = In-Game
+        long countInGame = towerInventory.stream()
+                .filter(tower -> tower.getTowerStatus().equals("In-Game"))
+                .count();
+
+        if (Objects.equals(selectedTower.getTowerStatus(), "Reserve") && countInGame >=3){
+            errorChangeStatusLabel.setVisible(true);
+            System.out.println("Cannot Change Status");
+        } else{
+            System.out.println(selectedTower.getTowerName() + "status changed to "+ selectedTower.getTowerStatus());
+            selectedTower.updateTowerStatus();
+            // FIX THIS< NOT CHANGING INVENOTRY
+            initializeTowerTable();
+        }
+    }
+    public void updateMoneyLabel(){
+        moneyLabel.setText("Money: $"+playerManager.getMoney());
+    }
+
     @FXML
     private void onInventoryHomeButtonClicked() {
+        System.out.println("Home Button Clicked");
         playerManager.closeInventoryScreen();
         playerManager.launchHomeScreen();
     }
-
 
 }

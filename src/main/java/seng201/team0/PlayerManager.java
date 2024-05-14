@@ -44,7 +44,7 @@ public class PlayerManager {
     public void setMoney(double money){
         this.money = money;
     }
-    public List getTowerInventory(){
+    public List<Tower> getTowerInventory(){
         return towerInventory;
     }
     public List<Upgrade> getUpgradeInventory(){
@@ -91,4 +91,7 @@ public class PlayerManager {
         clearScreen.run();
     }
 
+    public void removeTowerFromInventory(Tower selectedTower) {
+        towerInventory.remove(selectedTower);
+    }
 }
