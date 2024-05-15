@@ -98,6 +98,7 @@ public class InventoryController {
     @FXML
     public void onChangeTowerStatusButtonClicked() {
         System.out.println("Change Tower Status Clicked");
+        // THSI DOENST SELECT AND CHANGE SELECTED< ONLY CREATE REPLICAA
         Tower selectedTower = towerTable.getSelectionModel().getSelectedItem();
         // error cant change tower status: too many towers in game
         // only if trying to change reserve tower status to ingame but already 3 towers inventory in game
@@ -113,8 +114,7 @@ public class InventoryController {
             System.out.println("Cannot Change Status");
         } else{
             System.out.println(selectedTower.getTowerName() + "status changed to "+ selectedTower.getTowerStatus());
-            selectedTower.updateTowerStatus();
-            // FIX THIS< NOT CHANGING INVENOTRY
+            selectedTower.updateTowerStatus(selectedTower);
             initializeTowerTable();
         }
     }

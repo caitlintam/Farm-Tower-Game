@@ -48,11 +48,12 @@ public class Tower {
         this.towerStatus = towerStatus;
     }
     public String getTowerStatus(){return towerStatus;}
-    public void updateTowerStatus(){
-        if (Objects.equals(towerStatus, "In-Game")){
-            towerStatus = "Reserve";
-        } else{
-            towerStatus = "In-Game";
+
+    public void updateTowerStatus(Tower selectedTower) {
+        if (Objects.equals(selectedTower.getTowerStatus(), "In-Game")) {
+            selectedTower.setTowerStatus("Reserve"); // Assuming setTowerStatus() method exists
+        } else {
+            selectedTower.setTowerStatus("In-Game"); // Assuming setTowerStatus() method exists
         }
     }
 

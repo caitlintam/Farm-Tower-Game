@@ -59,4 +59,4 @@ Inventory
     - if 3 towers already in game , send msg 'Cannot change Status: 3 towers already in game'
     - otherwise. if in game - change to reserve. if reserve, change to in game
 
-- 
+- change update status stuff - bad method in towercontroller
