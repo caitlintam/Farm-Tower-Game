@@ -77,6 +77,7 @@ public class InventoryController {
 
     @FXML
     private void onSellSelectedButtonClicked(){
+        System.out.println("Sell Button Clicked");
         // get selected tower, remove from tableview, remove cost
     Tower selectedTower = towerTable.getSelectionModel().getSelectedItem();
     if (selectedTower == null){
@@ -84,7 +85,9 @@ public class InventoryController {
     }else{
         errorNoTowerSelectedLabel.setVisible(false);
         // remove from towerInventory
+        System.out.println("Tower Inventory before" + playerManager.getTowerInventory().size());
         playerManager.removeTowerFromInventory(selectedTower);
+        System.out.println("Tower removed from Inventory :" + playerManager.getTowerInventory().size());
         // update fxml - remove from tableview( initialise tower method)
         initializeTowerTable();
         // remove from cost of player
@@ -100,9 +103,6 @@ public class InventoryController {
         System.out.println("Change Tower Status Clicked");
         // THSI DOENST SELECT AND CHANGE SELECTED< ONLY CREATE REPLICAA
         Tower selectedTower = towerTable.getSelectionModel().getSelectedItem();
-        // error cant change tower status: too many towers in game
-        // only if trying to change reserve tower status to ingame but already 3 towers inventory in game
-
         List<Tower> towerInventory = playerManager.getTowerInventory();
         // use of streams, to filter by status = In-Game
         long countInGame = towerInventory.stream()
@@ -113,10 +113,19 @@ public class InventoryController {
             errorChangeStatusLabel.setVisible(true);
             System.out.println("Cannot Change Status");
         } else{
-            System.out.println(selectedTower.getTowerName() + "status changed to "+ selectedTower.getTowerStatus());
             selectedTower.updateTowerStatus(selectedTower);
+            System.out.println(selectedTower.getTowerName() + "status changed to "+ selectedTower.getTowerStatus());
+            //refresh tower table
+            clearTowerTable();
             initializeTowerTable();
         }
+    }
+
+    public void clearTowerTable(){
+        ObservableList<Tower> items = towerTable.getItems();
+
+    // Clear the items list
+        items.clear();
     }
     public void updateMoneyLabel(){
         moneyLabel.setText("Money: $"+playerManager.getMoney());
