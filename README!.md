@@ -78,3 +78,21 @@ Inventory
 ### Carts
 
 ### Random Events
+
+
+# Other Notes
+
+- MAYBE: shopitem /shopmanager
+- --- need to reveiw responsibilities of controllers vs managers
+- 
+### Models: Cart, Round, RoundTask 
+- Round - represents single round in game. Contains parameters like round num, diff, no. carts, track dist, attributes
+- Cart - represents cart objec t, stores attributes - size, res type, speed, filled status
+- Event - random events that could occur, info on event type, efects, associated conditions.
+
+### Managers: Cart, Round, Game, Event
+- Game Manager - overall flow, starting/ending game, handling events, interactiosn between compoennts
+- RoundManager - creation, progression completion of rounds,. initliasiing parameters, advancing to next, round specific logic. Also runs the roundTask thread 
+- CartManager - manages carts to be filled duirng rounds. Creating carts with attributes, movement, filling with resources, determing completion
+- EventManager - random event ( tower upgrades/breakages/ other)
+- 
