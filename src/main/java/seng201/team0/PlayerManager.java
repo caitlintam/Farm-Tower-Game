@@ -91,7 +91,8 @@ public class PlayerManager {
         //towerInventory.add(tower);
     }
     public void addUpgradesToInventory(Upgrade upgrade){
-        upgradeInventory.add(upgrade);
+        Upgrade newUpgrade = new Upgrade(upgrade.getUpgradeName(), upgrade.getUpgradeCost());
+        upgradeInventory.add(newUpgrade);
     }
     public void closeInventoryScreen(){
         clearScreen.run();
@@ -99,5 +100,9 @@ public class PlayerManager {
 
     public void removeTowerFromInventory(Tower selectedTower) {
         towerInventory.remove(selectedTower);
+    }
+
+    public void removeUpgradeFromInventory(Upgrade selectedUpgrade) {
+        upgradeInventory.remove(selectedUpgrade);
     }
 }

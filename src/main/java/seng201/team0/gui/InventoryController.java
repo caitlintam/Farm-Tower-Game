@@ -10,7 +10,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import seng201.team0.PlayerManager;
+import seng201.team0.UpgradeManager;
 import seng201.team0.models.Tower;
+import seng201.team0.models.Upgrade;
 
 import javax.sound.midi.SysexMessage;
 import java.util.ArrayList;
@@ -19,10 +21,11 @@ import java.util.Objects;
 
 public class InventoryController {
     private final PlayerManager playerManager;
+    //private final UpgradeManager upgradeManager;
     @FXML
     public TableView<Tower> towerTable;
     @FXML
-    public TableView upgradeTable;
+    public TableView<Upgrade> upgradeTable;
     public TableColumn<Tower, String> towerNameColumn;
     public TableColumn<Tower, String> towerResTypeColumn;
     public TableColumn<Tower, Integer> towerResAmountColumn;
@@ -36,6 +39,12 @@ public class InventoryController {
     public Button changeTowerStatusButton;
     public Label errorChangeStatusLabel;
     public Label errorNoTowerSelectedLabel;
+    public Button sellSelectedUpgradeButton;
+    //public Label errornoUpgradeSelectedLabel;
+    public Label errorNoUpgradeSelectedLabel;
+    public TableColumn<Upgrade,Double> upgradeCostColumn;
+    //public TableColumn<Upgrade, String> upgradeDescriptionColumn;
+    public TableColumn<Upgrade,String> upgradeNameColumn;
 
 
     // public TableColumn<PlayerManager, String>
@@ -52,9 +61,10 @@ public class InventoryController {
         initializeTowerTable();
         errorChangeStatusLabel.setVisible(false);
         errorNoTowerSelectedLabel.setVisible(false);
+        errorNoUpgradeSelectedLabel.setVisible(false);
+        initializeUpgradeTable();
 
     }
-
 
     private void initializeTowerTable() {
         ArrayList<Tower> towerInventory = (ArrayList<Tower>) playerManager.getTowerInventory();
@@ -76,8 +86,8 @@ public class InventoryController {
     }
 
     @FXML
-    private void onSellSelectedButtonClicked(){
-        System.out.println("Sell Button Clicked");
+    private void onSellSelectedTowerButtonClicked(){
+        System.out.println("Sell Tower Button Clicked");
         // get selected tower, remove from tableview, remove cost
     Tower selectedTower = towerTable.getSelectionModel().getSelectedItem();
     if (selectedTower == null){
@@ -108,16 +118,50 @@ public class InventoryController {
         long countInGame = towerInventory.stream()
                 .filter(tower -> tower.getTowerStatus().equals("In-Game"))
                 .count();
+        if (selectedTower == null){
+            errorNoTowerSelectedLabel.setVisible(true);
+        }else {
+            errorNoTowerSelectedLabel.setVisible(false);
+            if (Objects.equals(selectedTower.getTowerStatus(), "Reserve") && countInGame >= 3) {
+                errorChangeStatusLabel.setVisible(true);
+                System.out.println("Cannot Change Status");
+            } else {
+                errorChangeStatusLabel.setVisible(false);
+                selectedTower.updateTowerStatus(selectedTower);
+                System.out.println(selectedTower.getTowerName() + "status changed to " + selectedTower.getTowerStatus());
+                //refresh tower table
+                clearTowerTable();
+                initializeTowerTable();
+            }
+        }
+    }
+    private void initializeUpgradeTable() {
+        ArrayList<Upgrade> upgradeInventory = (ArrayList<Upgrade>) playerManager.getUpgradeInventory();
+        System.out.println(upgradeInventory);
 
-        if (Objects.equals(selectedTower.getTowerStatus(), "Reserve") && countInGame >=3){
-            errorChangeStatusLabel.setVisible(true);
-            System.out.println("Cannot Change Status");
-        } else{
-            selectedTower.updateTowerStatus(selectedTower);
-            System.out.println(selectedTower.getTowerName() + "status changed to "+ selectedTower.getTowerStatus());
-            //refresh tower table
-            clearTowerTable();
-            initializeTowerTable();
+        // Convert ArrayList to ObservableList
+        ObservableList<Upgrade> upgradeData = FXCollections.observableArrayList(upgradeInventory);
+
+        upgradeNameColumn.setCellValueFactory(new PropertyValueFactory<Upgrade, String>("upgradeName"));
+        upgradeCostColumn.setCellValueFactory(new PropertyValueFactory<Upgrade, Double>("upgradeCost"));
+        upgradeTable.setItems(upgradeData);
+    }
+    @FXML
+    private void onSellSelectedUpgradeButtonClicked() {
+        System.out.println("Sell Upgrade Button Clicked");
+        // get selected tower, remove from tableview, remove cost
+        Upgrade selectedUpgrade = upgradeTable.getSelectionModel().getSelectedItem();
+        if (selectedUpgrade == null) {
+            errorNoUpgradeSelectedLabel.setVisible(true);
+        } else {
+            errorNoUpgradeSelectedLabel.setVisible(false);
+            System.out.println("Upgrade Inventory before" + playerManager.getUpgradeInventory().size());
+            playerManager.removeUpgradeFromInventory(selectedUpgrade);
+            System.out.println("Upgrade removed from Inventory :" + playerManager.getUpgradeInventory().size());
+            initializeUpgradeTable();
+            double cost = selectedUpgrade.getUpgradeCost();
+            playerManager.setMoney(playerManager.getMoney() + cost);
+            updateMoneyLabel();
         }
     }
 
@@ -137,5 +181,7 @@ public class InventoryController {
         playerManager.closeInventoryScreen();
         playerManager.launchHomeScreen();
     }
+
+
 
 }

@@ -51,15 +51,30 @@ Inventory
   - updating cost ( adding after sell)
 
 - When towers are added to inventoyr, set their status to ingame
-- 
-
-# DOING
-- status of towers 
-  - if button clicked, change towerStatus
-    - if 3 towers already in game , send msg 'Cannot change Status: 3 towers already in game'
-    - otherwise. if in game - change to reserve. if reserve, change to in game
-
-- change update status stuff - bad method in towercontroller
-- implement 'Game difficulty' 1 - $20, 2 - $100, 3 - $500  = starting money
 - invenotry statsu works - but is referencing only 1 type of tower. If change status of 1 tower, but have 2 of them, changes both status
   - DONE problem: adding same objects to inventory. need to at NEW objects to be individual items
+- - status of towers
+- if button clicked, change towerStatus
+  - if 3 towers already in game , send msg 'Cannot change Status: 3 towers already in game'
+  - otherwise. if in game - change to reserve. if reserve, change to in game
+
+# DOING
+
+### setup of game
+- implement 'Game difficulty' 1 - $20, 2 - $100, 3 - $500  = starting money
+
+## inventory
+### upgrades
+- implement upgrades. edit inventory so they can be applied
+- 'main group must always have one tower'
+- applying selected upgrades to selected tower. changing level
+
+### Rounds
+## round set up screen
+- dont set up screen if not enough towers in game
+- create fxml
+- 
+
+### Carts
+
+### Random Events
