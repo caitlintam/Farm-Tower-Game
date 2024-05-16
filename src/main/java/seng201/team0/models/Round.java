@@ -5,4 +5,5 @@ public class Round {
     private int difficulty;
     private double trackDistance;
     private int numberOfCarts;
+
 }

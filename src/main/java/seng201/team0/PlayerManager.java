@@ -9,7 +9,8 @@ import seng201.team0.models.Upgrade;
 
 public class PlayerManager {
     private String name;
-    private int numGameRounds;
+    private int currentNumRounds = 0;
+    private int numGameRounds = 0;
     private  int gameDifficulty;
     private final Consumer<PlayerManager> setupScreenLauncher;
     private final Consumer<PlayerManager> towerSetUpScreenLauncher;
@@ -53,6 +54,8 @@ public class PlayerManager {
 
     public int getNumGameRounds(){ return numGameRounds;}
     public void setNumGameRounds(int gameRounds){ this.numGameRounds = gameRounds;}
+    public int getCurrentNumRounds(){ return currentNumRounds;}
+    public void setCurrentNumRounds(int currentNumRounds){ this.currentNumRounds = currentNumRounds;}
     public int getGameDifficulty(){ return gameDifficulty;}
     public void setGameDifficulty(int gameDifficulty){ this.gameDifficulty = gameDifficulty;}
     public void launchSetupScreen() {

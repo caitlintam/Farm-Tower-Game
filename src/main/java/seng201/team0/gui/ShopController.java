@@ -28,6 +28,12 @@ public class ShopController {
     @FXML
     private Label ShopInfoLabel;
     @FXML
+    private Label LoadLabel;
+    @FXML
+    private Label SpeedLabel;
+    @FXML
+    private Label TypeLabel;
+    @FXML
     private Button ShopHomeButton;
     @FXML
     private Button BuyButton;
@@ -117,8 +123,10 @@ public class ShopController {
     private void updateTowerInfo(Tower tower) {
         ShopNameLabel.setText("Name: " + tower.getTowerName());
         ShopCostLabel.setText("Cost: $" + tower.getTowerCost());
-        ShopInfoLabel.setText("Info: \nLevel: " + tower.getTowerLevel() + "\nLoad " + tower.getTowerResourceAmount()
-                + "\nSpeed: " + tower.getTowerReloadSpeed() + "\nType: " + tower.getTowerResourceType());
+        ShopInfoLabel.setText("Level: " + tower.getTowerLevel());
+        LoadLabel.setText("Load: " + tower.getTowerResourceAmount());
+        SpeedLabel.setText("Load: " + tower.getTowerReloadSpeed());
+        TypeLabel.setText("Type: " + tower.getTowerResourceType());
     }
     private void updateMoneyLabel(){
         ShopMoneyLabel.setText("Money: $"+ playerManager.getMoney());
@@ -126,6 +134,10 @@ public class ShopController {
     private void updateUpgradeInfo(Upgrade upgrade) {
         ShopNameLabel.setText("Upgrade: " + upgrade.getUpgradeName());
         ShopCostLabel.setText("Cost: $" + upgrade.getUpgradeCost());
+        ShopInfoLabel.setText("");
+        LoadLabel.setText("");
+        SpeedLabel.setText("");
+        TypeLabel.setText("");
         // You can similarly update other labels with upgrade information
     }
 }

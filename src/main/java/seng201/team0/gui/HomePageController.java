@@ -30,8 +30,8 @@ public class HomePageController {
     public void initialize() {
         playerNameLabel.setText("Hello: " + playerManager.getName());
         homepageMoney.setText("Money: $ " + playerManager.getMoney()); // need to find a way get money from player class
-        //homepageCurrentRoundLabel.setText("Round: " + PlayerManager.getCurrentRound()); // need to get current round from player class
-        remainingRoundsLabel.setText(" / " + playerManager.getNumGameRounds());
+        homepageCurrentRoundLabel.setText("Round: " + playerManager.getCurrentNumRounds() + " / " + playerManager.getNumGameRounds()); // need to get current round from player class
+
 
     }
 
