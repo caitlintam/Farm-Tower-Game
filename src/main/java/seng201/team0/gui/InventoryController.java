@@ -2,6 +2,7 @@ package seng201.team0.gui;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,6 +14,8 @@ import seng201.team0.models.Tower;
 
 import javax.sound.midi.SysexMessage;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class InventoryController {
     private final PlayerManager playerManager;
@@ -31,6 +34,8 @@ public class InventoryController {
     public Button sellSelectedTowerButton;
     public Label moneyLabel;
     public Button changeTowerStatusButton;
+    public Label errorChangeStatusLabel;
+    public Label errorNoTowerSelectedLabel;
 
 
     // public TableColumn<PlayerManager, String>
@@ -43,8 +48,10 @@ public class InventoryController {
     }
     public void initialize() {
         // Populate tower inventory table
-
+        updateMoneyLabel();
         initializeTowerTable();
+        errorChangeStatusLabel.setVisible(false);
+        errorNoTowerSelectedLabel.setVisible(false);
 
     }
 
@@ -67,19 +74,68 @@ public class InventoryController {
         // Set tower inventory data to the table
         towerTable.setItems(towerData);
     }
+
     @FXML
     private void onSellSelectedButtonClicked(){
+        System.out.println("Sell Button Clicked");
         // get selected tower, remove from tableview, remove cost
-        Tower selectedTower = towerTable.getSelectionModel().getSelectedItem();
-        if (selectedTower == null){
+    Tower selectedTower = towerTable.getSelectionModel().getSelectedItem();
+    if (selectedTower == null){
+        errorNoTowerSelectedLabel.setVisible(true);
+    }else{
+        errorNoTowerSelectedLabel.setVisible(false);
+        // remove from towerInventory
+        System.out.println("Tower Inventory before" + playerManager.getTowerInventory().size());
+        playerManager.removeTowerFromInventory(selectedTower);
+        System.out.println("Tower removed from Inventory :" + playerManager.getTowerInventory().size());
+        // update fxml - remove from tableview( initialise tower method)
+        initializeTowerTable();
+        // remove from cost of player
+        double cost = selectedTower.getTowerCost();
+        playerManager.setMoney(playerManager.getMoney() + cost);
+        // update fxml money label
+        updateMoneyLabel();
+    }
+    }
 
+    @FXML
+    public void onChangeTowerStatusButtonClicked() {
+        System.out.println("Change Tower Status Clicked");
+        // THSI DOENST SELECT AND CHANGE SELECTED< ONLY CREATE REPLICAA
+        Tower selectedTower = towerTable.getSelectionModel().getSelectedItem();
+        List<Tower> towerInventory = playerManager.getTowerInventory();
+        // use of streams, to filter by status = In-Game
+        long countInGame = towerInventory.stream()
+                .filter(tower -> tower.getTowerStatus().equals("In-Game"))
+                .count();
+
+        if (Objects.equals(selectedTower.getTowerStatus(), "Reserve") && countInGame >=3){
+            errorChangeStatusLabel.setVisible(true);
+            System.out.println("Cannot Change Status");
+        } else{
+            selectedTower.updateTowerStatus(selectedTower);
+            System.out.println(selectedTower.getTowerName() + "status changed to "+ selectedTower.getTowerStatus());
+            //refresh tower table
+            clearTowerTable();
+            initializeTowerTable();
         }
     }
+
+    public void clearTowerTable(){
+        ObservableList<Tower> items = towerTable.getItems();
+
+    // Clear the items list
+        items.clear();
+    }
+    public void updateMoneyLabel(){
+        moneyLabel.setText("Money: $"+playerManager.getMoney());
+    }
+
     @FXML
     private void onInventoryHomeButtonClicked() {
+        System.out.println("Home Button Clicked");
         playerManager.closeInventoryScreen();
         playerManager.launchHomeScreen();
     }
-
 
 }

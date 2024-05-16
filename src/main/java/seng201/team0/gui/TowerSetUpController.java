@@ -85,6 +85,8 @@ public class TowerSetUpController {
             errorTowerNumLabel.setVisible(true);
         }else{
             for(int i=0; i<towerManager.getTowerList().size(); i++){
+                // HERE NEED TO UPDATE STATUS TO INGAME
+                towerManager.getTowerList().get(i).updateTowerStatus(towerManager.getTowerList().get(i));
                 playerManager.addTowersToInventory(towerManager.getTowerList().get(i));
                 System.out.println("Tower " + (i+1)+ " " + towerManager.getTowerList().get(i).getTowerName());
                 towerManager.setTowerStatus(towerManager.getTowerList().get(i));

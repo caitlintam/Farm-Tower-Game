@@ -44,7 +44,7 @@ public class PlayerManager {
     public void setMoney(double money){
         this.money = money;
     }
-    public List getTowerInventory(){
+    public List<Tower> getTowerInventory(){
         return towerInventory;
     }
     public List<Upgrade> getUpgradeInventory(){
@@ -82,7 +82,13 @@ public class PlayerManager {
     }
 
     public void addTowersToInventory(Tower tower) {
-        towerInventory.add(tower);
+        Tower newTower = new Tower(tower.getTowerName(), tower.getTowerResourceAmount(), tower.getTowerResourceType(),
+                tower.getTowerReloadSpeed(), tower.getTowerLevel(), tower.getTowerCost(),
+                tower.getTowerStatus());
+        // Add the new tower object to the inventory
+        towerInventory.add(newTower);
+
+        //towerInventory.add(tower);
     }
     public void addUpgradesToInventory(Upgrade upgrade){
         upgradeInventory.add(upgrade);
@@ -91,4 +97,7 @@ public class PlayerManager {
         clearScreen.run();
     }
 
+    public void removeTowerFromInventory(Tower selectedTower) {
+        towerInventory.remove(selectedTower);
+    }
 }

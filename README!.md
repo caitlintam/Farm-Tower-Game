@@ -39,3 +39,27 @@ Submission:
 - README file
 - program as a jar ( runs on lab machines)
 
+
+## working on at the moment:
+
+Inventory
+
+# DONE
+- selling items D
+  - updating inventory( removing selected item)
+  - updating fxml tableview
+  - updating cost ( adding after sell)
+
+- When towers are added to inventoyr, set their status to ingame
+- 
+
+# DOING
+- status of towers 
+  - if button clicked, change towerStatus
+    - if 3 towers already in game , send msg 'Cannot change Status: 3 towers already in game'
+    - otherwise. if in game - change to reserve. if reserve, change to in game
+
+- change update status stuff - bad method in towercontroller
+- implement 'Game difficulty' 1 - $20, 2 - $100, 3 - $500  = starting money
+- invenotry statsu works - but is referencing only 1 type of tower. If change status of 1 tower, but have 2 of them, changes both status
+  - DONE problem: adding same objects to inventory. need to at NEW objects to be individual items

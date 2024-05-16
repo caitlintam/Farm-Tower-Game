@@ -5,6 +5,7 @@ import seng201.team0.models.Tower;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class TowerManager {
     private double towerCost;
@@ -60,4 +61,11 @@ public class TowerManager {
             tower.setTowerStatus("Reserve");
         }
     }
+//    public void updateTowerStatus(Tower selectedTower) {
+//        if (Objects.equals(selectedTower.getTowerStatus(), "In-Game")) {
+//            selectedTower.setTowerStatus("Reserve"); // Assuming setTowerStatus() method exists
+//        } else {
+//            selectedTower.setTowerStatus("In-Game"); // Assuming setTowerStatus() method exists
+//        }
+//    }
 }
