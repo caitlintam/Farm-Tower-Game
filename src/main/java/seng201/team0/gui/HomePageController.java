@@ -48,6 +48,9 @@ public class HomePageController {
 
     public void onPlayRoundButtonClicked() {
         // link to round screen
+        System.out.println("Play Round Button Clicked");
+        playerManager.closeMainScreen();
+        playerManager.launchApplyUpgradeScreen();
     }
 
     public void onViewInventoryButtonClicked() {

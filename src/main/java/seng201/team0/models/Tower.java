@@ -32,15 +32,18 @@ public class Tower {
     public int getTowerResourceAmount(){
         return towerResourceAmount;
     }
+    private void setTowerResourceAmount(int newResourceAmount) {this.towerResourceAmount = newResourceAmount;}
     public String getTowerResourceType(){
         return towerResourceType;
     }
     public int getTowerReloadSpeed(){
         return towerReloadSpeed;
     }
+    public void setTowerReloadSpeed(int newTowerReloadSpeed){this.towerReloadSpeed= newTowerReloadSpeed;}
     public int getTowerLevel(){
         return towerLevel;
     }
+    private void setTowerLevel(int newTowerLevel) {this.towerLevel = newTowerLevel;}
     public double getTowerCost(){
         return towerCost;
     }
@@ -57,4 +60,13 @@ public class Tower {
         }
     }
 
+    public void updateTowerReloadSpeed(Tower selectedTower) {
+        selectedTower.setTowerReloadSpeed(towerReloadSpeed+1);
+    }
+    public void updateTowerResourceAmount(Tower selectedTower){
+        selectedTower.setTowerResourceAmount(towerResourceAmount+1);
+    }
+    public void updateTowerLevel(Tower selectedTower){
+        selectedTower.setTowerLevel(towerLevel+1);
+    }
 }

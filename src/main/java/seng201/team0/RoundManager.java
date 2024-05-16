@@ -1,39 +1,38 @@
 package seng201.team0;
 
-public class RoundManager {
-//    private List<Round> rounds;
-//    private int currentRoundIndex;
+import seng201.team0.models.Round;
+import seng201.team0.models.RoundTask;
 
-//    public void createRoundThreads(List<Round> rounds) {
-//        for (Round round : rounds) {
-//            RoundTask roundTask = new RoundTask(round);
-//            Thread roundThread = new Thread(roundTask);
-//            roundThreads.add(roundThread);
-//        }
-//    }
-//
+import java.util.ArrayList;
+import java.util.List;
+
+public class RoundManager {
+    //
+    private List<Round> rounds;
+    private int currentRoundIndex;
+    public RoundManager(List<Round> rounds){
+        this.rounds = rounds;
+    }
+    public void startRounds() {
+        for (Round round : rounds) {
+            RoundTask roundTask = new RoundTask(round);
+            RoundThread roundThread = new RoundThread(roundTask);
+            roundThread.run();
+        }
+    }
+
 //    public void startRoundThreads() {
 //        for (Thread roundThread : roundThreads) {
 //            roundThread.start();
 //        }
 //    }
-//
+
 //    public void endRoundThreads() {
-//        for (Thread roundThread : roundThreads) {
-//            roundThread.interrupt();
+//        for (Round round : rounds) {
+//            round.interrupt();
 //        }
 //    }
-//
-//    private class RoundTask implements Runnable {
-//        private Round round;
-//
-//        public RoundTask(Round round) {
-//            this.round = round;
-//        }
-//
-//        @Override
-//        public void run() {
-//            // Logic for processing the round
-//        }
-//    }
+
+
 }
+

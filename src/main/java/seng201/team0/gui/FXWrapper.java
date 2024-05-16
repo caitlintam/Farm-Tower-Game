@@ -20,7 +20,7 @@ public class FXWrapper {
 
     public void init(Stage stage) {
         this.stage = stage;
-        new PlayerManager(this::launchSetupScreen, this::launchTowerSetupScreen, this::clearPane, this::launchHomeScreen, this::launchShopScreen, this::launchInventoryScreen);
+        new PlayerManager(this::launchSetupScreen, this::launchTowerSetupScreen, this::clearPane, this::launchHomeScreen, this::launchShopScreen, this::launchInventoryScreen, this::launchApplyUpgradeScreen);
     }
 
     private void launchInventoryScreen(PlayerManager playerManager) {
@@ -61,9 +61,7 @@ public class FXWrapper {
     }
 
 
-    public void clearPane() {
-        pane.getChildren().removeAll(pane.getChildren());
-    }
+
 
     public void launchTowerSetupScreen(PlayerManager playerManager) {
         try {
@@ -87,5 +85,19 @@ public class FXWrapper {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public void launchApplyUpgradeScreen(PlayerManager playerManager){
+        try {
+            FXMLLoader applyUpgradeScreen = new FXMLLoader(getClass().getResource("/fxml/apply_upgrades.fxml"));
+            applyUpgradeScreen.setControllerFactory(param -> new ApplyUpgradeScreenController(playerManager));
+            Parent setupParent  = applyUpgradeScreen.load();
+            pane.getChildren().add(setupParent);
+            stage.setTitle("Apply Upgrade Screen");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void clearPane() {
+        pane.getChildren().removeAll(pane.getChildren());
     }
 }

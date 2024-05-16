@@ -10,9 +10,9 @@ public class UpgradeManager {
     private String upgradeName;
     private List<Upgrade> upgradeList = new ArrayList<>();
     public UpgradeManager(){
-        upgradeList.addAll(List.of(new Upgrade("Level Boost!", 200.00),
-                new Upgrade("Double Load!", 400.00),
-                new Upgrade("Jackpot!", 700.00)));
+        upgradeList.addAll(List.of(new Upgrade("Tower Level Boost!", 200.00),
+                new Upgrade("Tower Resource Amount Boost!", 400.00),
+                new Upgrade("Tower Reload Speed Boost!", 700.00)));
     }
 
     public void setUpgradeList(List<Upgrade> upgradeList){

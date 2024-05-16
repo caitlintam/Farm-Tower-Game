@@ -7,7 +7,7 @@ import java.util.function.Consumer;
 import seng201.team0.models.Tower;
 import seng201.team0.models.Upgrade;
 
-public class PlayerManager {
+public class PlayerManager implements toStringOverride {
     private String name;
     private int currentNumRounds = 0;
     private int numGameRounds = 0;
@@ -17,23 +17,29 @@ public class PlayerManager {
     private final Consumer<PlayerManager> homeScreenLauncher;
     private final Consumer<PlayerManager> shopScreenLauncher;
     private final Consumer<PlayerManager> inventoryScreenLauncher;
+    private final Consumer<PlayerManager> applyUpgradeScreenLauncher;
     private final Runnable clearScreen;
     private double money = 1000.00;
     private List<Tower> towerInventory;
     private List<Upgrade> upgradeInventory;
+    private List<Tower> towersInGame;
+
     //private DoubleProperty numRounds;
 
-    public PlayerManager(Consumer<PlayerManager> setupScreenLauncher, Consumer<PlayerManager> towerSetUpScreenLauncher, Runnable clearScreen, Consumer<PlayerManager> homeScreenLauncher, Consumer<PlayerManager> shopScreenLauncher, Consumer<PlayerManager> inventoryScreenLauncher) {
+    public PlayerManager(Consumer<PlayerManager> setupScreenLauncher, Consumer<PlayerManager> towerSetUpScreenLauncher, Runnable clearScreen, Consumer<PlayerManager> homeScreenLauncher, Consumer<PlayerManager> shopScreenLauncher, Consumer<PlayerManager> inventoryScreenLauncher, Consumer<PlayerManager> applyUpgradeScreenLauncher) {
         this.setupScreenLauncher = setupScreenLauncher;
         this.towerSetUpScreenLauncher = towerSetUpScreenLauncher;
         this.homeScreenLauncher = homeScreenLauncher;
         this.shopScreenLauncher = shopScreenLauncher;
         this.clearScreen = clearScreen;
         this.inventoryScreenLauncher = inventoryScreenLauncher;
-        this.towerInventory = new ArrayList<>();
-        this.upgradeInventory = new ArrayList<>();
+        this.applyUpgradeScreenLauncher = applyUpgradeScreenLauncher;
+        this.towerInventory = new ArrayList<Tower>();
+        this.upgradeInventory = new ArrayList<Upgrade>();
+        this.towersInGame = new ArrayList<Tower>();
         launchSetupScreen();
     }
+
     public String getName(){
         return name;
     }
@@ -80,9 +86,11 @@ public class PlayerManager {
     public void launchInventoryScreen(){
         inventoryScreenLauncher.accept(this);
     }
+    public void launchApplyUpgradeScreen(){applyUpgradeScreenLauncher.accept(this);}
     public void closeShopScreen(){
         clearScreen.run();
     }
+    public void closeApplyUpgradeScreen(){clearScreen.run();}
 
     public void addTowersToInventory(Tower tower) {
         Tower newTower = new Tower(tower.getTowerName(), tower.getTowerResourceAmount(), tower.getTowerResourceType(),
@@ -107,5 +115,8 @@ public class PlayerManager {
 
     public void removeUpgradeFromInventory(Upgrade selectedUpgrade) {
         upgradeInventory.remove(selectedUpgrade);
+    }
+
+    public void setTowersInGame(List<Tower> towersInGame) { this.towersInGame = towersInGame;
     }
 }
