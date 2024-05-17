@@ -86,14 +86,16 @@ public class TowerSetUpController {
         }else{
 
             int i = 1;
-            for(Tower tower: towerManager.getTowerList()){
+            for(Tower tower: selectedTowers){
                 // HERE NEED TO UPDATE STATUS TO INGAME
-                tower.updateTowerStatus(tower);
+                tower.setTowerStatus("In-Game");
+                System.out.println(tower.getTowerStatus());
                 playerManager.addTowersToInventory(tower);
                 System.out.println("Tower " + (i)+ " " + tower.getTowerName());
                 towerManager.setTowerStatus(tower);
                 i+=1;
             }
+            playerManager.setTowersInGame();
             playerManager.closeTowerSetUpScreen();
             playerManager.launchHomeScreen();
         }

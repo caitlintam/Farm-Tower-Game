@@ -19,4 +19,6 @@ public class Cart {
     public float getCartSpeed(){
         return cartSpeed;
     }
+
+
 }

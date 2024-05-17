@@ -128,6 +128,7 @@ public class InventoryController {
                 errorChangeStatusLabel.setVisible(false);
                 selectedTower.updateTowerStatus(selectedTower);
                 System.out.println(selectedTower.getTowerName() + "status changed to " + selectedTower.getTowerStatus());
+                playerManager.setTowersInGame();
                 //refresh tower table
                 clearTowerTable();
                 initializeTowerTable();
