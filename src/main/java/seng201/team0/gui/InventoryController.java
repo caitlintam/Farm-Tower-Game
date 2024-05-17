@@ -111,7 +111,6 @@ public class InventoryController {
     @FXML
     public void onChangeTowerStatusButtonClicked() {
         System.out.println("Change Tower Status Clicked");
-        // THSI DOENST SELECT AND CHANGE SELECTED< ONLY CREATE REPLICAA
         Tower selectedTower = towerTable.getSelectionModel().getSelectedItem();
         List<Tower> towerInventory = playerManager.getTowerInventory();
         // use of streams, to filter by status = In-Game

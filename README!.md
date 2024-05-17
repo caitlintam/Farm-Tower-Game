@@ -5,10 +5,12 @@
 
 - add more prints to show what happening when buttons are clicked ( shop/ buy )
   - add error label when buy label clicked but nothing selected
-- play round button
-  - show error label if not enough towers in game ( 3 towers must be in game)
+  - not enough money error label
+  - item bought pop up?
 - inventory - overlapping error labels. 
-- 
+
+
+- if selected two of same, status is resevr for one n 
 
 
 # DOING

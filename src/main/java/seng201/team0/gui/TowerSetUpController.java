@@ -84,12 +84,15 @@ public class TowerSetUpController {
             System.out.println("Error: not enough towers selected");
             errorTowerNumLabel.setVisible(true);
         }else{
-            for(int i=0; i<towerManager.getTowerList().size(); i++){
+
+            int i = 1;
+            for(Tower tower: towerManager.getTowerList()){
                 // HERE NEED TO UPDATE STATUS TO INGAME
-                towerManager.getTowerList().get(i).updateTowerStatus(towerManager.getTowerList().get(i));
-                playerManager.addTowersToInventory(towerManager.getTowerList().get(i));
-                System.out.println("Tower " + (i+1)+ " " + towerManager.getTowerList().get(i).getTowerName());
-                towerManager.setTowerStatus(towerManager.getTowerList().get(i));
+                tower.updateTowerStatus(tower);
+                playerManager.addTowersToInventory(tower);
+                System.out.println("Tower " + (i)+ " " + tower.getTowerName());
+                towerManager.setTowerStatus(tower);
+                i+=1;
             }
             playerManager.closeTowerSetUpScreen();
             playerManager.launchHomeScreen();

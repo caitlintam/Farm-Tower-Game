@@ -38,7 +38,7 @@ public class ApplyUpgradeScreenController {
 
     private void initializeTables() {
         // only load towers in game!
-//        gameList<Tower> towersInGame = playerManager.getTowerInventory().stream()
+//        List<Tower> towersInGame = playerManager.getTowerInventory().stream()
 //                .filter(tower -> tower.getTowerStatus().equals("In-Game"))
 //                .toList();
 
@@ -48,7 +48,7 @@ public class ApplyUpgradeScreenController {
         System.out.println(upgradeInventory);
 
         // Convert ArrayList to ObservableList
-        ObservableList<Tower> inGameTowersData = FXCollections.observableArrayList(towersInGame);
+        ObservableList<Tower> inGameTowersData = FXCollections.observableArrayList(playerManager.getTowersInGame());
         ObservableList<Upgrade> upgradeData = FXCollections.observableArrayList(upgradeInventory);
 // Bind tower inventory data to table columns
         prepTowerColumn.setCellValueFactory(new PropertyValueFactory<Tower, String>("towerName"));

@@ -19,9 +19,10 @@
         </columnConstraints>
         <rowConstraints>
           <RowConstraints maxHeight="123.00000610351563" minHeight="0.0" prefHeight="58.200006103515626" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="266.8" minHeight="10.0" prefHeight="45.39999389648438" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="258.20001220703125" minHeight="10.0" prefHeight="170.2" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="127.0" minHeight="10.0" prefHeight="127.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="266.8" minHeight="10.0" prefHeight="87.66665649414062" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="258.20001220703125" minHeight="10.0" prefHeight="150.3333435058594" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="258.20001220703125" minHeight="0.0" prefHeight="29.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="141.33333333333331" minHeight="10.0" prefHeight="112.33333333333331" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label fx:id="HomeLabel" alignment="CENTER" contentDisplay="CENTER" text="Home" textAlignment="CENTER" GridPane.columnSpan="2">
@@ -48,17 +49,17 @@
                   <Font size="25.0" />
                </font>
             </Label>
-            <Button fx:id="goToShopButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onGoToShopButtonClicked" text="Go To Shop" GridPane.rowIndex="3">
+            <Button fx:id="goToShopButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onGoToShopButtonClicked" text="Go To Shop" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="playRoundButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPlayRoundButtonClicked" text="Play Round" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Button fx:id="playRoundButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPlayRoundButtonClicked" text="Play Round" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="viewInventoryButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onViewInventoryButtonClicked" text="View/Edit Inventory" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <Button fx:id="viewInventoryButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onViewInventoryButtonClicked" text="View/Edit Inventory" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </GridPane.margin>
@@ -85,6 +86,7 @@
                   <Insets />
                </GridPane.margin>
             </Label>
+            <Label fx:id="errorNoTowersInGameLabel" text="Error: Must have 3 Towers In-Game" textFill="#fb0505" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
          </children>
       </GridPane>
    </children>

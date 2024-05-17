@@ -3,6 +3,7 @@ package seng201.team0;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 import seng201.team0.models.Player;
 import seng201.team0.models.Tower;
@@ -38,6 +39,7 @@ public class PlayerManager implements toStringOverride {
         this.towerInventory = new ArrayList<Tower>();
         this.upgradeInventory = new ArrayList<Upgrade>();
         this.towersInGame = new ArrayList<Tower>();
+
         launchSetupScreen();
     }
 
@@ -65,6 +67,7 @@ public class PlayerManager implements toStringOverride {
     public void setCurrentNumRounds(int currentNumRounds){ this.currentNumRounds = currentNumRounds;}
     public int getGameDifficulty(){ return gameDifficulty;}
     public void setGameDifficulty(int gameDifficulty){ this.gameDifficulty = gameDifficulty;}
+    public List<Tower> getTowersInGame(){return towersInGame;}
     public void launchSetupScreen() {
         setupScreenLauncher.accept(this);
     }
@@ -117,11 +120,10 @@ public class PlayerManager implements toStringOverride {
     public void removeUpgradeFromInventory(Upgrade selectedUpgrade) {
         upgradeInventory.remove(selectedUpgrade);
     }
-
     public void setTowersInGame() {
-        List<Tower> towersInGame = towerInventory.stream()
+        // Filter towerInventory to get only the towers that are in-game
+        towersInGame = towerInventory.stream()
                 .filter(tower -> tower.getTowerStatus().equals("In-Game"))
-                .toList();
-        this.towersInGame = towersInGame;
+                .collect(Collectors.toList());
     }
 }
