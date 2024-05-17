@@ -8,6 +8,7 @@ public class Round {
     private double trackDistance;
     private int numberOfCarts;
     private List<Cart> carts;
+    private boolean roundComplete;
 
     public Round(int roundNumber, List<Cart> carts, int roundDifficulty, double trackDistance, int numberOfCarts){
         this.roundDifficulty = roundDifficulty;
@@ -15,6 +16,7 @@ public class Round {
         this.numberOfCarts = numberOfCarts;
         this.roundNumber = roundNumber;
         this.carts = carts;
+        this.roundComplete = false;
     }
     public int getRoundNumber(){
         return roundNumber;
@@ -23,11 +25,19 @@ public class Round {
         return carts;
     }
     public boolean isRoundComplete(){
-        /// implement////
-        return true;
+        return roundComplete;
     }
-    public int getRoundDifficulty(){return roundDifficulty;}
-    public double getTrackDistance(){return trackDistance;}
-    public int getNumberOfCarts(){return numberOfCarts;}
+    public void setRoundComplete(boolean roundComplete) {
+        this.roundComplete = roundComplete;
+    }
+    public int getRoundDifficulty(){
+        return roundDifficulty;
+    }
+    public double getTrackDistance(){
+        return trackDistance;
+    }
+    public int getNumberOfCarts(){
+        return numberOfCarts;
+    }
 
 }

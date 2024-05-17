@@ -2,16 +2,16 @@ package seng201.team0;
 
 import seng201.team0.models.Round;
 import seng201.team0.models.RoundTask;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class RoundManager {
     //
-    private List<Round> rounds;
+    private final List<Round> rounds;
     private int currentRoundIndex;
     public RoundManager(List<Round> rounds){
         this.rounds = rounds;
+        this.currentRoundIndex = 0;
     }
     public void startRounds() {
         for (Round round : rounds) {
@@ -19,6 +19,9 @@ public class RoundManager {
             RoundThread roundThread = new RoundThread(roundTask);
             roundThread.run();
         }
+    }
+    public boolean allRoundsCompleted() {
+        return currentRoundIndex >= rounds.size();
     }
 
 //    public void startRoundThreads() {

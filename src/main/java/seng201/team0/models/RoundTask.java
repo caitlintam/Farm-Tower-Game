@@ -14,6 +14,11 @@ public class RoundTask implements Runnable {
             // do something / call method to do something to carts
             System.out.println("FILL CART");
         }
+        try {
+            Thread.sleep(2000); // time taken for round (based on track distance)
+        } catch (InterruptedException e){
+            Thread.currentThread().interrupt();
+        } round.isRoundComplete();
         if (round.isRoundComplete()){
             System.out.println("Round " + round.getRoundNumber() + " completed.");
         }else{

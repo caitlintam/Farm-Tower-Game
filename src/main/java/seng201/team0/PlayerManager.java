@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+import seng201.team0.models.Player;
 import seng201.team0.models.Tower;
 import seng201.team0.models.Upgrade;
 
@@ -117,6 +118,10 @@ public class PlayerManager implements toStringOverride {
         upgradeInventory.remove(selectedUpgrade);
     }
 
-    public void setTowersInGame(List<Tower> towersInGame) { this.towersInGame = towersInGame;
+    public void setTowersInGame() {
+        List<Tower> towersInGame = towerInventory.stream()
+                .filter(tower -> tower.getTowerStatus().equals("In-Game"))
+                .toList();
+        this.towersInGame = towersInGame;
     }
 }

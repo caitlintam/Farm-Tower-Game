@@ -38,11 +38,11 @@ public class ApplyUpgradeScreenController {
 
     private void initializeTables() {
         // only load towers in game!
-        List<Tower> towersInGame = playerManager.getTowerInventory().stream()
-                .filter(tower -> tower.getTowerStatus().equals("In-Game"))
-                .toList();
-        playerManager.setTowersInGame(towersInGame);
-        System.out.println(towersInGame);
+//        gameList<Tower> towersInGame = playerManager.getTowerInventory().stream()
+//                .filter(tower -> tower.getTowerStatus().equals("In-Game"))
+//                .toList();
+
+        System.out.println();
 
         ArrayList<Upgrade> upgradeInventory = (ArrayList<Upgrade>) playerManager.getUpgradeInventory();
         System.out.println(upgradeInventory);
