@@ -27,8 +27,8 @@ public class TowerManager {
                 new Tower("Timber Turret", 20, "Timber", 60, 2, 50.00,"Reserve"),
                 new Tower("Water Tower ", 15, "Water", 25, 9, 48.00,"Reserve"),
                 new Tower("Steel Steeple", 35, "Steel", 45, 4, 40.00,"Reserve"),
-                new Tower("Corn Castle", 40, "Corn", 45, 3, 20.00,"Reserve"),
-                new Tower("Wheat Tower", 65, "Wheat", 45, 2, 30.00,"Reserve"),
+                new Tower("Corn Castle", 30, "Corn", 45, 3, 20.00,"Reserve"),
+                new Tower("Wheat Tower", 25, "Wheat", 45, 2, 30.00,"Reserve"),
                 new Tower("Chicken Coop", 20, "Chickens", 45, 4, 40.00,"Reserve")));
 
     }
