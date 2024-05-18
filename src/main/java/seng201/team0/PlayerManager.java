@@ -129,6 +129,7 @@ public class PlayerManager {
     public void addUpgradesToInventory(Upgrade upgrade){
         Upgrade newUpgrade = new Upgrade(upgrade.getUpgradeName(), upgrade.getUpgradeCost());
         upgradeInventory.add(newUpgrade);
+
     }
     public void closeInventoryScreen(){
         clearScreen.run();
@@ -164,12 +165,15 @@ public class PlayerManager {
         gameSuccess = false;
         int numRoundsWon = 0;
         int numRoundsLost = 0;
+
         // for each round
         for (int i = 0; i <= numGameRounds; i++){
+            // launch game screen
             roundSuccess = false;
             // run round, determines if round success or not
-
             runRound(currentTrackDistance);
+
+
             if (!roundSuccess){
                 // stop game? add to counter of failed rounds?  make changes to game success
                 numRoundsLost+=1;

@@ -113,6 +113,7 @@ public class ApplyUpgradeScreenController {
         System.out.println("Next Button Clicked");
         playerManager.closeApplyUpgradeScreen();
         playerManager.launchChooseRoundDifficultyScreen();
+
     }
 }
 

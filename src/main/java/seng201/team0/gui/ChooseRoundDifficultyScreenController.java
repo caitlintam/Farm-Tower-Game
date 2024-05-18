@@ -40,7 +40,7 @@ public class ChooseRoundDifficultyScreenController {
         }
     }
 
-    public void onNextButtonClicked(ActionEvent event) {
+    public void onNextButtonClicked() {
         if (selectedDifficultyIndex == -1) { // no difficulty selected, error
             errorNoDiffSelected.setVisible(true);
             System.out.println("Error: No difficulty selected");
@@ -49,6 +49,9 @@ public class ChooseRoundDifficultyScreenController {
             System.out.println("Difficulty selected:" + (selectedDifficultyIndex));
             //sets track distance
             playerManager.setCurrentTrackDistance(selectedDifficultyIndex);
+            playerManager.runGame();
+
+
 
 
             //show error
