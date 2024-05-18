@@ -49,7 +49,9 @@ public class ChooseRoundDifficultyScreenController {
             System.out.println("Difficulty selected:" + (selectedDifficultyIndex));
             //sets track distance
             playerManager.setCurrentTrackDistance(selectedDifficultyIndex);
-            playerManager.runGame();
+   //         playerManager.runGame();
+            playerManager.closeChooseRoundDifficultyScreen();
+            playerManager.launchMainGameScreen();
 
 
 

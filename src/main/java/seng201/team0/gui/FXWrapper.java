@@ -1,5 +1,6 @@
 package seng201.team0.gui;
 
+import com.sun.tools.javac.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,8 +21,10 @@ public class FXWrapper {
 
     public void init(Stage stage) {
         this.stage = stage;
-        new PlayerManager(this::launchSetupScreen, this::launchTowerSetupScreen, this::clearPane, this::launchHomeScreen, this::launchShopScreen, this::launchInventoryScreen, this::launchApplyUpgradeScreen, this::launchChooseRoundDifficultyScreen);
+        new PlayerManager(this::launchSetupScreen, this::launchTowerSetupScreen, this::clearPane, this::launchHomeScreen, this::launchShopScreen, this::launchInventoryScreen, this::launchApplyUpgradeScreen, this::launchChooseRoundDifficultyScreen, this::launchMainGameScreen);
     }
+
+
 
     private void launchInventoryScreen(PlayerManager playerManager) {
         try {
@@ -88,9 +91,9 @@ public class FXWrapper {
     }
     public void launchApplyUpgradeScreen(PlayerManager playerManager){
         try {
-            FXMLLoader applyUpgradeScreen = new FXMLLoader(getClass().getResource("/fxml/apply_upgrades.fxml"));
-            applyUpgradeScreen.setControllerFactory(param -> new ApplyUpgradeScreenController(playerManager));
-            Parent setupParent  = applyUpgradeScreen.load();
+            FXMLLoader applyUpgradeScreenLoader = new FXMLLoader(getClass().getResource("/fxml/apply_upgrades.fxml"));
+            applyUpgradeScreenLoader.setControllerFactory(param -> new ApplyUpgradeScreenController(playerManager));
+            Parent setupParent  = applyUpgradeScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Apply Upgrade Screen");
         } catch (IOException e) {
@@ -99,11 +102,22 @@ public class FXWrapper {
     }
     public void launchChooseRoundDifficultyScreen(PlayerManager playerManager){
         try {
-            FXMLLoader chooseRoundDifficultyScreen = new FXMLLoader(getClass().getResource("/fxml/choose_round_difficulty_screen.fxml"));
-            chooseRoundDifficultyScreen.setControllerFactory(param -> new ChooseRoundDifficultyScreenController(playerManager));
-            Parent setupParent  = chooseRoundDifficultyScreen.load();
+            FXMLLoader chooseRoundDifficultyScreenLoader = new FXMLLoader(getClass().getResource("/fxml/choose_round_difficulty_screen.fxml"));
+            chooseRoundDifficultyScreenLoader.setControllerFactory(param -> new ChooseRoundDifficultyScreenController(playerManager));
+            Parent setupParent  = chooseRoundDifficultyScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Choose Round Difficulty Screen");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void launchMainGameScreen(PlayerManager playerManager) {
+        try {
+            FXMLLoader mainGameScreenLoader = new FXMLLoader(getClass().getResource("/fxml/main_game_screen.fxml"));
+            mainGameScreenLoader.setControllerFactory(param -> new MainGameScreenController(playerManager));
+            Parent setupParent = mainGameScreenLoader.load();
+            pane.getChildren().add(setupParent);
+            stage.setTitle("Main Game Screen");
         } catch (IOException e) {
             e.printStackTrace();
         }

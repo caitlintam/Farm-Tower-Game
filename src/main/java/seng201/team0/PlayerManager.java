@@ -21,6 +21,7 @@ public class PlayerManager {
     private final Consumer<PlayerManager> inventoryScreenLauncher;
     private final Consumer<PlayerManager> applyUpgradeScreenLauncher;
     private final Consumer<PlayerManager> chooseRoundDifficultyScreenLauncher;
+    private final Consumer<PlayerManager> mainGameScreenLauncher;
     private final Runnable clearScreen;
     private double money = 1000.00;
     private List<Tower> towerInventory;
@@ -36,7 +37,7 @@ public class PlayerManager {
     private CartManager cartManager;
     private List<Cart> cartsInRound;
 
-    public PlayerManager(Consumer<PlayerManager> setupScreenLauncher, Consumer<PlayerManager> towerSetUpScreenLauncher, Runnable clearScreen, Consumer<PlayerManager> homeScreenLauncher, Consumer<PlayerManager> shopScreenLauncher, Consumer<PlayerManager> inventoryScreenLauncher, Consumer<PlayerManager> applyUpgradeScreenLauncher, Consumer<PlayerManager> chooseRoundDifficultyScreenLauncher) {
+    public PlayerManager(Consumer<PlayerManager> setupScreenLauncher, Consumer<PlayerManager> towerSetUpScreenLauncher, Runnable clearScreen, Consumer<PlayerManager> homeScreenLauncher, Consumer<PlayerManager> shopScreenLauncher, Consumer<PlayerManager> inventoryScreenLauncher, Consumer<PlayerManager> applyUpgradeScreenLauncher, Consumer<PlayerManager> chooseRoundDifficultyScreenLauncher, Consumer<PlayerManager> mainGameScreenLauncher) {
         this.setupScreenLauncher = setupScreenLauncher;
         this.towerSetUpScreenLauncher = towerSetUpScreenLauncher;
         this.homeScreenLauncher = homeScreenLauncher;
@@ -45,6 +46,7 @@ public class PlayerManager {
         this.inventoryScreenLauncher = inventoryScreenLauncher;
         this.applyUpgradeScreenLauncher = applyUpgradeScreenLauncher;
         this.chooseRoundDifficultyScreenLauncher = chooseRoundDifficultyScreenLauncher;
+        this.mainGameScreenLauncher = mainGameScreenLauncher;
         this.towerInventory = new ArrayList<Tower>();
         this.upgradeInventory = new ArrayList<Upgrade>();
         this.towersInGame = new ArrayList<Tower>();
@@ -109,6 +111,9 @@ public class PlayerManager {
     }
     public void launchApplyUpgradeScreen(){applyUpgradeScreenLauncher.accept(this);}
     public void launchChooseRoundDifficultyScreen(){chooseRoundDifficultyScreenLauncher.accept(this);
+    }
+    public void launchMainGameScreen() {
+        mainGameScreenLauncher.accept(this);
     }
     public void closeChooseRoundDifficultyScreen(){clearScreen.run();}
     public void closeShopScreen(){
@@ -225,4 +230,6 @@ public class PlayerManager {
         // if all carts filled ( failed is empty == true ), otherwise false, have a cart not filled
         roundSuccess = failedFilledCarts.isEmpty();
     }
+
+
 }
