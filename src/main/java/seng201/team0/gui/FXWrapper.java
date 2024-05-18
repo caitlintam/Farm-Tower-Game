@@ -128,7 +128,7 @@ public class FXWrapper {
             lostRoundScreenLoader.setControllerFactory(param -> new LostRoundScreenController(playerManager));
             Parent setupParent = lostRoundScreenLoader.load();
             pane.getChildren().add(setupParent);
-            stage.setTitle("Round Won Screen");
+            stage.setTitle("Round Lost Screen");
         } catch (IOException e) {
             e.printStackTrace();
         }

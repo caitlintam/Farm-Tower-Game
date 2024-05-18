@@ -32,7 +32,7 @@ public class PlayerManager {
     private List<Tower> towersInGame;
     private int timeOnTrack;
     //private DoubleProperty numRounds;
-    private int currentTrackDistance;
+    private int currentTrackDistance = 15;
     private List<Integer> trackDistanceOptionsList;
 
     private List<Cart> newCartsInRound;
@@ -178,7 +178,7 @@ public class PlayerManager {
     }
     // sets the current Track Distance after 'difficulty' selected
     public void setCurrentTrackDistance(int selectedDistanceIndex){currentTrackDistance = trackDistanceOptionsList.get(selectedDistanceIndex);}
-
+    public int getCurrentTrackDistance(){return currentTrackDistance;}
 
     // cbb putting at top now
     private int numRoundsWon = 0;
@@ -202,6 +202,9 @@ public class PlayerManager {
     public void setRandomEventRounds(List<Integer> randomEventRounds) {
         this.randomEventManager = new RandomEventManager(randomEventRounds);
     }
+    public void setCartsInRound() {
+        this.cartsInRound = cartManager.getCartsInRound();
+    }
     public void toHomeOrRandomEvent() {
         currentRoundNumber += 1;
         // if current round is a round of a random event, generate the random event
@@ -213,24 +216,31 @@ public class PlayerManager {
     }
     // since each round has different track distance
     public void runRound(int trackDistance) {
-        System.out.println("Running Round");
+        System.out.println("------- Running Round " + currentRoundNumber +  " ------");
         List<Integer> successfullyFilledCarts = new ArrayList<Integer>();
         List<Integer> failedFilledCarts = new ArrayList<Integer>();
-
-        // for each cart
+        cartManager.generateNewCartsInGame();
+        setCartsInRound();
+        // for each cart;
         for (Cart cart : cartsInRound) {
+            System.out.println("Cart " + cart.getCartID() + " -- Resource Type: "+ cart.getCartResourceType() + " -- Speed: " + cart.getCartSpeed()+  "  ...is going round the track");
             // for each tower
+            System.out.println(towersInGame);
             for (Tower tower : towersInGame) {
                 // if the resources types match
                 if (cart.getCartResourceType() == tower.getTowerResourceType()) {
+                    System.out.println("Tower: " + tower.getTowerName() + " Resource type: " + tower.getTowerResourceType() + " Matches with cart: " + cart.getCartID());
                     // calculate the carts time on the track..  turn time to integer
-                    int cartTimeOnTrack = (int) (trackDistance/cart.getCartSpeed());
+                    int cartTimeOnTrack = (int) (trackDistance / cart.getCartSpeed());
                     int numTowerReloads = (int) (Math.floorDiv(cartTimeOnTrack, tower.getTowerReloadSpeed()));
                     // for each reload of cart
                     int currentCartSize = 0;
-                    for (int i =0; i <= numTowerReloads; i++) {
+                    System.out.println("Cart is being filled from inital size: " + currentCartSize);
+                    for (int i = 0; i <= numTowerReloads; i++) {
                         currentCartSize += tower.getTowerResourceAmount();
-                        }
+                        System.out.println("To fill size: " + currentCartSize);
+                    }
+                }
                     // once done all possible tower reloads, check if filled capacity (>=size) or not ( <size)
                     if (currentCartSize >= cart.getCartSize()) {
                         System.out.println("You successfully filled cart " + cart.getCartID() + " with " + tower.getTowerResourceType());
@@ -245,7 +255,6 @@ public class PlayerManager {
                         // adds unsucesfily filled cart to list
                         failedFilledCarts.add(cart.getCartID());
                         //launch round lose screen
-                    }
                 }
             }
         }
