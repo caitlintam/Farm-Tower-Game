@@ -19,6 +19,8 @@ public class ShopController {
     public Button buyTowerbutton3;
     public Button buyTowerButton2;
     public Button buyTowerButton1;
+    public Label noMoneyLabel;
+    public Label errorNoMoneyLabel;
     @FXML
     private Label ShopMoneyLabel;
     @FXML
@@ -53,6 +55,7 @@ public class ShopController {
 
     public void initialize() {
         updateMoneyLabel();
+        errorNoMoneyLabel.setVisible(false);
         List<Button> buyUpgradeButtons = List.of(upgradeButton1, upgradeButton2, upgradeButton3);
         List<Button> buyTowerButtons = List.of(buyTowerButton1, buyTowerButton2, buyTowerbutton3);
         List<Button> allButtons = new ArrayList<>();
@@ -83,30 +86,37 @@ public class ShopController {
     }
     @FXML
     private void onBuyButtonClicked() {
+        System.out.println("Buy Button Clicked");
         if (selectedButton != null) {
             // Check which manager to access based on the selected button's properties
             if (selectedButton == buyTowerButton1 || selectedButton == buyTowerButton2 || selectedButton == buyTowerbutton3) {
+                errorNoMoneyLabel.setVisible(false);
                 // Access TowerManager
                 Tower selectedTower = towerManager.getDefaultTowers().get(selectedTowerIndex);
                 double cost = selectedTower.getTowerCost();
                 if (cost <= playerManager.getMoney()){
+                    System.out.println(selectedTower.getTowerName() + " Bought");
                     playerManager.setMoney(playerManager.getMoney() - cost);
                     playerManager.addTowersToInventory(selectedTower);
                     updateMoneyLabel();
                 } else {
+                    errorNoMoneyLabel.setVisible(true);
                     System.out.println("You don't have enough money");
                 }
 
                 // Perform operations with selected tower
             } else if (selectedButton == upgradeButton1 || selectedButton == upgradeButton2 || selectedButton == upgradeButton3) {
+                errorNoMoneyLabel.setVisible(false);
                 // Access UpgradeManager
                 Upgrade selectedUpgrade = upgradeManager.getUpgradeList().get(selectedUpgradeIndex);
                 double cost = selectedUpgrade.getUpgradeCost();
                 if (cost <= playerManager.getMoney()){
+                    System.out.println(selectedUpgrade.getUpgradeName() + " Bought");
                     playerManager.setMoney(playerManager.getMoney() - cost);
                     playerManager.addUpgradesToInventory(selectedUpgrade);
                     updateMoneyLabel();
                 } else {
+                    errorNoMoneyLabel.setVisible(true);
                     System.out.println("You don't have enough money");
                 }
                 // Perform operations with selected upgrade
@@ -117,6 +127,7 @@ public class ShopController {
     }
     @FXML
     private void onShopHomeButtonClicked() {
+        System.out.println("Home Button Clicked");
         playerManager.closeShopScreen();
         playerManager.launchHomeScreen();
     }

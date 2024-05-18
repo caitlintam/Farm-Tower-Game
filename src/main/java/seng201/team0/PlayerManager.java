@@ -33,8 +33,8 @@ public class PlayerManager {
     private boolean roundSuccess;
     private boolean gameSuccess;
     private List<Cart> newCartsInRound;
-    private CartManager cartManager = new CartManager(newCartsInRound);
-    List<Cart> cartsInRound = cartManager.getCartsInRound();
+    private CartManager cartManager;
+    private List<Cart> cartsInRound;
 
     public PlayerManager(Consumer<PlayerManager> setupScreenLauncher, Consumer<PlayerManager> towerSetUpScreenLauncher, Runnable clearScreen, Consumer<PlayerManager> homeScreenLauncher, Consumer<PlayerManager> shopScreenLauncher, Consumer<PlayerManager> inventoryScreenLauncher, Consumer<PlayerManager> applyUpgradeScreenLauncher, Consumer<PlayerManager> chooseRoundDifficultyScreenLauncher) {
         this.setupScreenLauncher = setupScreenLauncher;
@@ -52,6 +52,10 @@ public class PlayerManager {
             trackDistanceOptionsList.add(20);
             trackDistanceOptionsList.add(30);
             trackDistanceOptionsList.add(40);
+
+        this.newCartsInRound = new ArrayList<Cart>();
+        this.cartManager = new CartManager(this, new TowerManager());
+        this.cartsInRound = cartManager.getCartsInRound();
 
         launchSetupScreen();
     }
@@ -158,6 +162,8 @@ public class PlayerManager {
     //run the whole game
     public void runGame(){
         gameSuccess = false;
+        int numRoundsWon = 0;
+        int numRoundsLost = 0;
         // for each round
         for (int i = 0; i <= numGameRounds; i++){
             roundSuccess = false;
@@ -166,6 +172,9 @@ public class PlayerManager {
             runRound(currentTrackDistance);
             if (!roundSuccess){
                 // stop game? add to counter of failed rounds?  make changes to game success
+                numRoundsLost+=1;
+            }else{
+                numRoundsWon +=1;
             }
             // otherwise loops to next round
         }

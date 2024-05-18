@@ -5,6 +5,7 @@ import seng201.team0.models.Tower;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class CartManager {
     private List<Cart> carts;
@@ -13,6 +14,7 @@ public class CartManager {
     private PlayerManager playerManager;
     private TowerManager towerManager;
     private List<String> cartsInRoundResourceTypes;
+    private Random random;
     private int numberOfCarts;
     // private int currentCartSize;
     //privcate int num_reloads = 0;
@@ -22,6 +24,7 @@ public class CartManager {
         return cartsInRound;
     }
     public CartManager(List<Cart> cartsInRound){
+        this.random = new Random();
         generateNewCartsInGame();
         this.cartsInRound = cartsInRound;
     }
@@ -29,7 +32,8 @@ public class CartManager {
         this.playerManager = playerManager;
         this.towerManager = towerManager;
         // this.carts = new ArrayList<>();
-        this.cartsInRound = new ArrayList<>();
+        this.cartsInRound = new ArrayList<Cart>();
+        this.potentialCartResourceTypes = new ArrayList<String>();
 //        carts.addAll(List.of(
 //                new Cart(100, "Pigs", 20),
 //                new Cart(70, "Cows", 10),
@@ -46,6 +50,7 @@ public class CartManager {
 
     // gives each cart an id
     public void setPotentialCartResourceTypes() {
+        this.potentialCartResourceTypes = new ArrayList<>();
         for (Tower tower : towerManager.getDefaultTowers()) {
             potentialCartResourceTypes.add(tower.getTowerResourceType());
         }
@@ -59,20 +64,35 @@ public class CartManager {
     // call this function when starting game, generates carts based on resource type
     public void generateNewCartsInGame() {
         // Clear existing carts
-        cartsInRound.clear();
+
         shuffleCartsInGameResourceTypes();
+        List<Tower> towersInGame = playerManager.getTowersInGame();
         for (int i = 0; i < numberOfCarts; i++) {
 
             //     Collections.shuffle(tower);
             String resourceType = cartsInRoundResourceTypes.get(i);
-            // SET CART SIZES AND SPEEDS( randomise? )
-            //     int cartSize = tower.getTowerResourceAmount(); // Assume the cart size is based on the tower resource amount
-            //       int cartSpeed =
+            int cartSize = generateRandomCartSize(towersInGame.get(i).getTowerResourceAmount()); // Assume the cart size is based on the tower resource amount
+            int cartSpeed = generateRandomCartSpeed(towersInGame.get(i).getTowerReloadSpeed());
             int cartID = i;
-//            cartsInRound.add(new Cart(cartID, cartSize, resourceType, cartSpeed));
+            cartsInRound.add(new Cart(cartID, cartSize, resourceType, cartSpeed));
         }
     }
+    private int generateRandomCartSize(int towerResourceAmount) {
+        // Example: Cart size can be between 80% and 120% of tower resource amount
+        int minSize = (int) (towerResourceAmount * 0.8);
+        int maxSize = (int) (towerResourceAmount * 1.2);
+        // gets random integer between 80-120% bounds for cart size
+        return random.nextInt(maxSize - minSize + 1) + minSize;
+    }
 
+    private int generateRandomCartSpeed(int towerReloadSpeed) {
+        // Example: Cart speed can be between 70% and 130% of a base value derived from tower resource amount
+        int baseSpeed = towerReloadSpeed / 10; // Arbitrary scaling factor
+        int minSpeed = (int) (baseSpeed * 0.7);
+        int maxSpeed = (int) (baseSpeed * 1.3);
+        // gets random integer between 80-120% bounds for cart speed
+        return random.nextInt(maxSpeed - minSpeed + 1) + minSpeed;
+    }
     // call this somewhere need to reset resource types
     // shuffles the resource types, for number of carts
     public void shuffleCartsInGameResourceTypes() {
