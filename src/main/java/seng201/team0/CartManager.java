@@ -45,8 +45,6 @@ public class CartManager {
         return selectedCarts;
     }
 
-    // methods:
-    //fill cart
     public void runRound() {
         for (Cart cart : selectedCarts) {
             for (Tower tower : playerManager.getTowersInGame()) {
@@ -72,6 +70,3 @@ public class CartManager {
         }
     }
 }
-
-    //new cart
-    //round complete
