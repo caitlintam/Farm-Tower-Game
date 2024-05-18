@@ -5,7 +5,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import seng201.team0.PlayerManager;
 import seng201.team0.models.Tower;
-import javafx.stage.Stage;
 
 import java.util.List;
 
@@ -34,7 +33,7 @@ public class HomePageController {
         errorNoTowersInGameLabel.setVisible(false);
         playerNameLabel.setText("Hello: " + playerManager.getName());
         homepageMoney.setText("Money: $ " + playerManager.getMoney()); // need to find a way get money from player class
-        homepageCurrentRoundLabel.setText("Round: " + playerManager.getCurrentNumRounds() + " / " + playerManager.getNumGameRounds()); // need to get current round from player class
+        homepageCurrentRoundLabel.setText("Round: " + playerManager.getCurrentRoundNumber() + " / " + playerManager.getNumGameRounds()); // need to get current round from player class
 
 
     }

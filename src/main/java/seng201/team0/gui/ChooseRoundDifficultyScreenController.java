@@ -51,7 +51,9 @@ public class ChooseRoundDifficultyScreenController {
             playerManager.setCurrentTrackDistance(selectedDifficultyIndex);
    //         playerManager.runGame();
             playerManager.closeChooseRoundDifficultyScreen();
-            playerManager.launchMainGameScreen();
+            //playerManager.launchMainGameScreen();
+            // launches main screen to start round
+            playerManager.startRound();
 
 
 

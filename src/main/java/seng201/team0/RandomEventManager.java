@@ -38,6 +38,9 @@ public class RandomEventManager {
     private void executeEvent3() {
         // Logic for executing event 3
     }
+    private List<Integer> getRandomEventRounds(){
+        return randomEventRounds;
+    }
     }
 
 
