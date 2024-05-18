@@ -40,7 +40,7 @@
             <Font size="23.0" />
          </font>
       </Label>
-      <Button fx:id="nextScreenButton" mnemonicParsing="false" text="Next " GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+      <Button fx:id="nextScreenButton" mnemonicParsing="false" onAction="#onNextClicked" text="Next " GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
       <Button fx:id="toHomeButton" mnemonicParsing="false" onAction="#onHomeButtonClicked" text="Home" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
       <Label fx:id="errorNoTowerSelectedLabel" text="No Tower Selected" textFill="#fd0505" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       <Label fx:id="errorNoUpgradeSelectedLabel" text="No Upgrade Selected" textFill="#fd0505" GridPane.columnIndex="3" GridPane.rowIndex="2" />

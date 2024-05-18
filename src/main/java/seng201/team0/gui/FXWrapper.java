@@ -20,7 +20,7 @@ public class FXWrapper {
 
     public void init(Stage stage) {
         this.stage = stage;
-        new PlayerManager(this::launchSetupScreen, this::launchTowerSetupScreen, this::clearPane, this::launchHomeScreen, this::launchShopScreen, this::launchInventoryScreen, this::launchApplyUpgradeScreen);
+        new PlayerManager(this::launchSetupScreen, this::launchTowerSetupScreen, this::clearPane, this::launchHomeScreen, this::launchShopScreen, this::launchInventoryScreen, this::launchApplyUpgradeScreen, this::launchChooseRoundDifficultyScreen);
     }
 
     private void launchInventoryScreen(PlayerManager playerManager) {
@@ -97,6 +97,18 @@ public class FXWrapper {
             e.printStackTrace();
         }
     }
+    public void launchChooseRoundDifficultyScreen(PlayerManager playerManager){
+        try {
+            FXMLLoader chooseRoundDifficultyScreen = new FXMLLoader(getClass().getResource("/fxml/choose_round_difficulty_screen.fxml"));
+            chooseRoundDifficultyScreen.setControllerFactory(param -> new ChooseRoundDifficultyScreenController(playerManager));
+            Parent setupParent  = chooseRoundDifficultyScreen.load();
+            pane.getChildren().add(setupParent);
+            stage.setTitle("Choose Round Difficulty Screen");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void clearPane() {
         pane.getChildren().removeAll(pane.getChildren());
     }

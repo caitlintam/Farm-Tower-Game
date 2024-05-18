@@ -149,5 +149,6 @@
             <Insets bottom="30.0" left="10.0" />
          </GridPane.margin>
       </Label>
+      <Label fx:id="errorNoMoneyLabel" text="Not Enough Money" textFill="#f60808" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
    </children>
 </GridPane>
