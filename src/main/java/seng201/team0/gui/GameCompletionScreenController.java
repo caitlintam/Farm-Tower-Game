@@ -8,4 +8,5 @@ public class GameCompletionScreenController {
     public GameCompletionScreenController(PlayerManager playerManager) {
         this.playerManager = playerManager;
     }
+
 }

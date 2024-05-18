@@ -139,6 +139,7 @@ public class PlayerManager {
     }
     private void launchGameCompleteScreen() {gameCompletionScreenLauncher.accept(this);
     }
+
     public void closeChooseRoundDifficultyScreen(){clearScreen.run();}
     public void closeShopScreen(){
         clearScreen.run();
@@ -218,6 +219,7 @@ public class PlayerManager {
     public void toHomeOrRandomEventOrGameFinish() {
         currentRoundNumber += 1;
         if (currentRoundNumber > numGameRounds){
+            System.out.println("Here! compelte game");
             launchGameCompleteScreen();
         }
         // if current round is a round of a random event, generate the random event
