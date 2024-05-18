@@ -5,9 +5,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-import seng201.team0.gui.ChooseRoundDifficultyScreenController;
 import seng201.team0.models.Cart;
-import seng201.team0.models.Round;
 import seng201.team0.models.Tower;
 import seng201.team0.models.Upgrade;
 
@@ -34,6 +32,9 @@ public class PlayerManager {
     private List<Integer> trackDistanceOptionsList;
     private boolean roundSuccess;
     private boolean gameSuccess;
+    private List<Cart> newCartsInRound;
+    private CartManager cartManager = new CartManager(newCartsInRound);
+    List<Cart> cartsInRound = cartManager.getCartsInRound();
 
     public PlayerManager(Consumer<PlayerManager> setupScreenLauncher, Consumer<PlayerManager> towerSetUpScreenLauncher, Runnable clearScreen, Consumer<PlayerManager> homeScreenLauncher, Consumer<PlayerManager> shopScreenLauncher, Consumer<PlayerManager> inventoryScreenLauncher, Consumer<PlayerManager> applyUpgradeScreenLauncher, Consumer<PlayerManager> chooseRoundDifficultyScreenLauncher) {
         this.setupScreenLauncher = setupScreenLauncher;
@@ -152,6 +153,8 @@ public class PlayerManager {
     // sets the current Track Distance after 'difficulty' selected
     public void setCurrentTrackDistance(int selectedDistanceIndex){currentTrackDistance = trackDistanceOptionsList.get(selectedDistanceIndex);}
 
+
+
     //run the whole game
     public void runGame(){
         gameSuccess = false;
@@ -172,16 +175,16 @@ public class PlayerManager {
     public void runRound(int trackDistance) {
         List<Integer> successfullyFilledCarts = new ArrayList<Integer>();
         List<Integer> failedFilledCarts = new ArrayList<Integer>();
+
         // for each cart
-        for (Cart cart : selectedCarts) {
+        for (Cart cart : cartsInRound) {
             // for each tower
-            int cartNumber = 0;
             for (Tower tower : towersInGame) {
                 // if the resources types match
                 if (cart.getCartResourceType() == tower.getTowerResourceType()) {
                     // calculate the carts time on the track..  turn time to integer
                     int cartTimeOnTrack = (int) (trackDistance/cart.getCartSpeed());
-                    int numTowerReloads = (int) (Math.floorDiv(cartTimeOnTrack, tower.getTowerReloadSpeed());
+                    int numTowerReloads = (int) (Math.floorDiv(cartTimeOnTrack, tower.getTowerReloadSpeed()));
                     // for each reload of cart
                     int currentCartSize = 0;
                     for (int i =0; i <= numTowerReloads; i++) {
@@ -189,17 +192,17 @@ public class PlayerManager {
                         }
                     // once done all possible tower reloads, check if filled capacity (>=size) or not ( <size)
                     if (currentCartSize >= cart.getCartSize()) {
-                        System.out.println("You successfully filled cart " + cartNumber + " with " + tower.getTowerResourceType());
+                        System.out.println("You successfully filled cart " + cart.getCartID() + " with " + tower.getTowerResourceType());
                         // adds succesfully filled cart to list
-                        successfullyFilledCarts.add(cartNumber);
+                        successfullyFilledCarts.add(cart.getCartID());
                         // increase money
-                        setMoney(money *= numReloads);
+    //                    setMoney(money *= numReloads);
                         // launch round win screen
                         // playerManager.setNumRoundsWon(getNumRoundsWon + 1));
                     } else if (currentCartSize < cart.getCartSize()) {
-                        System.out.println("Uh Oh, you didn't fill cart " + cartNumber + " with enough "+ tower.getTowerResourceType());
+                        System.out.println("Uh Oh, you didn't fill cart " + cart.getCartID() + " with enough "+ tower.getTowerResourceType());
                         // adds unsucesfily filled cart to list
-                        failedFilledCarts.add(cartNumber);
+                        failedFilledCarts.add(cart.getCartID());
                         //launch round lose screen
                     }
                 }

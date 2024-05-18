@@ -22,7 +22,7 @@ public class Cart {
     public float getCartSpeed(){
         return cartSpeed;
     }
-    public int getCartNumber(){return cartNumber;}
+    public int getCartID(){return cartNumber;}
 
 
 

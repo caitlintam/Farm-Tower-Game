@@ -121,7 +121,7 @@ public class InventoryController {
             errorNoTowerSelectedLabel.setVisible(true);
         }else {
             errorNoTowerSelectedLabel.setVisible(false);
-            if (Objects.equals(selectedTower.getTowerStatus(), "Reserve") && countInGame >= 3) {
+            if (Objects.equals(selectedTower.getTowerStatus(), "Reserve") && countInGame >= 5) {
                 errorChangeStatusLabel.setVisible(true);
                 System.out.println("Cannot Change Status");
             } else {
