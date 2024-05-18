@@ -4,8 +4,11 @@ public class Cart {
     private int cartSize;
     private String cartResourceType;
     private float cartSpeed;
+    private int numReloads;
+    private int cartNumber;
 
-    public Cart(int cartSize, String cartResourceType, float cartSpeed){
+    public Cart(int cartNumber, int cartSize, String cartResourceType, float cartSpeed){
+        this.cartNumber = cartNumber;
         this.cartSize = cartSize;
         this.cartResourceType = cartResourceType;
         this.cartSpeed = cartSpeed;
@@ -19,6 +22,8 @@ public class Cart {
     public float getCartSpeed(){
         return cartSpeed;
     }
+    public int getCartNumber(){return cartNumber;}
+
 
 
 }
