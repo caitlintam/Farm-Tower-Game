@@ -1,6 +1,5 @@
 package seng201.team0.gui;
 
-import com.sun.tools.javac.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,7 +20,7 @@ public class FXWrapper {
 
     public void init(Stage stage) {
         this.stage = stage;
-        new PlayerManager(this::launchSetupScreen, this::launchTowerSetupScreen, this::clearPane, this::launchHomeScreen, this::launchShopScreen, this::launchInventoryScreen, this::launchApplyUpgradeScreen, this::launchChooseRoundDifficultyScreen, this::launchMainGameScreen, this::launchWonRoundScreen, this::launchLostRoundScreen);
+        new PlayerManager(this::launchSetupScreen, this::launchTowerSetupScreen, this::clearPane, this::launchHomeScreen, this::launchShopScreen, this::launchInventoryScreen, this::launchApplyUpgradeScreen, this::launchChooseRoundDifficultyScreen, this::launchMainGameScreen, this::launchWonRoundScreen, this::launchLostRoundScreen, this::launchGameCompletionScreen);
     }
 
 
@@ -137,7 +136,7 @@ public class FXWrapper {
     private void launchWonRoundScreen(PlayerManager playerManager) {
         try {
             FXMLLoader wonRoundScreenLoader = new FXMLLoader(getClass().getResource("/fxml/round_won_screen.fxml"));
-            wonRoundScreenLoader.setControllerFactory(param -> new wonRoundScreenController(playerManager));
+            wonRoundScreenLoader.setControllerFactory(param -> new WonRoundScreenController(playerManager));
             Parent setupParent = wonRoundScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Round Won Screen");
@@ -145,6 +144,18 @@ public class FXWrapper {
             e.printStackTrace();
         }
     }
+    private void launchGameCompletionScreen(PlayerManager playerManager) {
+        try {
+            FXMLLoader gameCompletionScreenLoader = new FXMLLoader(getClass().getResource("/fxml/game_completion_screen.fxml"));
+            gameCompletionScreenLoader.setControllerFactory(param -> new GameCompletionScreenController(playerManager));
+            Parent setupParent = gameCompletionScreenLoader.load();
+            pane.getChildren().add(setupParent);
+            stage.setTitle("Game Completion Screen");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public void clearPane() {
         pane.getChildren().removeAll(pane.getChildren());

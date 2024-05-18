@@ -13,7 +13,7 @@ public class LostRoundScreenController {
 
     public void onHomeButtonClicked() {
         playerManager.closeLostRoundScreen();
-        playerManager.toHomeOrRandomEvent();
+        playerManager.toHomeOrRandomEventOrGameFinish();
 
     }
 }

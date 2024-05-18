@@ -28,6 +28,7 @@ public class SetUpScreenController {
 
     }
     public void initialize(){
+        System.out.println("----- Set Up Screen ----");
         invalidLengthNameLabel.setVisible(false);
         invalidCharsNameLabel.setVisible(false);
 
@@ -57,9 +58,9 @@ public class SetUpScreenController {
             playerManager.setName(nameInputTextField.getText());
             playerManager.setNumGameRounds((int)numRoundsSlider.getValue());
             playerManager.setGameDifficulty((int) gameDifficultySlider.getValue());
-            System.out.println("Player name: " + playerManager.getName());
-            System.out.println("Number of game rounds: " + playerManager.getNumGameRounds());
-            System.out.println("Game difficulty: " + playerManager.getGameDifficulty());
+            System.out.println("Player Name: " + playerManager.getName());
+            System.out.println("Number of Game Rounds: " + playerManager.getNumGameRounds());
+            System.out.println("Game Difficulty: " + playerManager.getGameDifficulty());
             playerManager.closeSetupScreen();
             playerManager.launchTowerSetUpScreen();
 

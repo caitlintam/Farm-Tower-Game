@@ -30,12 +30,13 @@ public class HomePageController {
 
 
     public void initialize() {
+        System.out.println("---------- Home Page ---------");
+        System.out.println("Current Money: " + playerManager.getMoney());
+        System.out.println("Round Number: " + playerManager.getCurrentRoundNumber() +" / " + playerManager.getNumGameRounds());
         errorNoTowersInGameLabel.setVisible(false);
         playerNameLabel.setText("Hello: " + playerManager.getName());
         homepageMoney.setText("Money: $ " + playerManager.getMoney()); // need to find a way get money from player class
         homepageCurrentRoundLabel.setText("Round: " + playerManager.getCurrentRoundNumber() + " / " + playerManager.getNumGameRounds()); // need to get current round from player class
-
-
     }
 
     public HomePageController(PlayerManager playerManager) {
@@ -52,6 +53,7 @@ public class HomePageController {
     public void onPlayRoundButtonClicked() {
         // link to round screen
         // filter list of in game towers
+        System.out.println("Play Round Clicked!");
         List<Tower> towersInGame = playerManager.getTowerInventory().stream()
                 .filter(tower -> tower.getTowerStatus().equals("In-Game"))
                 .toList();

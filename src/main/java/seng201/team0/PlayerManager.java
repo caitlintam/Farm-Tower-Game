@@ -3,7 +3,6 @@ package seng201.team0;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
@@ -26,6 +25,7 @@ public class PlayerManager {
     private final Consumer<PlayerManager> mainGameScreenLauncher;
     private final Consumer<PlayerManager> wonRoundScreenLauncher;
     private final Consumer<PlayerManager> lostRoundScreenLauncher;
+    private final Consumer<PlayerManager> gameCompletionScreenLauncher;
     private final Runnable clearScreen;
     private double money = 1000.00;
     private List<Tower> towerInventory;
@@ -41,7 +41,7 @@ public class PlayerManager {
     private List<Cart> cartsInRound;
     private RandomEventManager randomEventManager;
 
-    public PlayerManager(Consumer<PlayerManager> setupScreenLauncher, Consumer<PlayerManager> towerSetUpScreenLauncher, Runnable clearScreen, Consumer<PlayerManager> homeScreenLauncher, Consumer<PlayerManager> shopScreenLauncher, Consumer<PlayerManager> inventoryScreenLauncher, Consumer<PlayerManager> applyUpgradeScreenLauncher, Consumer<PlayerManager> chooseRoundDifficultyScreenLauncher, Consumer<PlayerManager> mainGameScreenLauncher, Consumer<PlayerManager> wonRoundScreenLauncher, Consumer<PlayerManager> lostRoundScreenLauncher) {
+    public PlayerManager(Consumer<PlayerManager> setupScreenLauncher, Consumer<PlayerManager> towerSetUpScreenLauncher, Runnable clearScreen, Consumer<PlayerManager> homeScreenLauncher, Consumer<PlayerManager> shopScreenLauncher, Consumer<PlayerManager> inventoryScreenLauncher, Consumer<PlayerManager> applyUpgradeScreenLauncher, Consumer<PlayerManager> chooseRoundDifficultyScreenLauncher, Consumer<PlayerManager> mainGameScreenLauncher, Consumer<PlayerManager> wonRoundScreenLauncher, Consumer<PlayerManager> lostRoundScreenLauncher, Consumer<PlayerManager> gameCompletionScreenLauncher) {
         this.setupScreenLauncher = setupScreenLauncher;
         this.towerSetUpScreenLauncher = towerSetUpScreenLauncher;
         this.homeScreenLauncher = homeScreenLauncher;
@@ -53,6 +53,7 @@ public class PlayerManager {
         this.mainGameScreenLauncher = mainGameScreenLauncher;
         this.lostRoundScreenLauncher = lostRoundScreenLauncher;
         this.wonRoundScreenLauncher = wonRoundScreenLauncher;
+        this.gameCompletionScreenLauncher = gameCompletionScreenLauncher;
         this.towerInventory = new ArrayList<Tower>();
         this.upgradeInventory = new ArrayList<Upgrade>();
         this.towersInGame = new ArrayList<Tower>();
@@ -93,7 +94,11 @@ public class PlayerManager {
     public int getCurrentRoundNumber(){ return currentRoundNumber;}
     public void setCurrentRoundNumber(int currentRoundNumber){ this.currentRoundNumber = currentRoundNumber;}
     public int getGameDifficulty(){ return gameDifficulty;}
-    public void setGameDifficulty(int gameDifficulty){ this.gameDifficulty = gameDifficulty;}
+    public void setGameDifficulty(int gameDifficulty){
+        this.gameDifficulty = gameDifficulty;
+        // easier (smaller) gamedifficulty = more initialmoney
+        setMoney((4-gameDifficulty) * 500);
+    }
     public List<Tower> getTowersInGame(){return towersInGame;}
     public void launchSetupScreen() {
         setupScreenLauncher.accept(this);
@@ -110,7 +115,10 @@ public class PlayerManager {
     public void closeMainScreen() {
         clearScreen.run();
     }
-    public void launchHomeScreen(){homeScreenLauncher.accept(this);}
+    public void launchHomeScreen(){
+        homeScreenLauncher.accept(this);
+        // catch if rounds exceeded
+    }
     public void launchShopScreen() {
         shopScreenLauncher.accept(this);
     }
@@ -127,8 +135,9 @@ public class PlayerManager {
     public void launchWonRoundScreen(){
         wonRoundScreenLauncher.accept(this);
     }
-    public void launchLostRoundScreen(){
-        lostRoundScreenLauncher.accept(this);
+    public void launchLostRoundScreen(){lostRoundScreenLauncher.accept(this);
+    }
+    private void launchGameCompleteScreen() {gameCompletionScreenLauncher.accept(this);
     }
     public void closeChooseRoundDifficultyScreen(){clearScreen.run();}
     public void closeShopScreen(){
@@ -206,14 +215,23 @@ public class PlayerManager {
     public void setCartsInRound() {
         this.cartsInRound = cartManager.getCartsInRound();
     }
-    public void toHomeOrRandomEvent() {
+    public void toHomeOrRandomEventOrGameFinish() {
         currentRoundNumber += 1;
+        if (currentRoundNumber > numGameRounds){
+            launchGameCompleteScreen();
+        }
         // if current round is a round of a random event, generate the random event
-        if (randomEventManager != null && randomEventManager.isRandomEvent(currentRoundNumber)) {
+        else if (randomEventManager != null && randomEventManager.isRandomEvent(currentRoundNumber)) {
             randomEventManager.generateRandomEvent();
         } else {
             launchHomeScreen();
         }
+    }
+
+
+
+    private void evaluateGameProgress(){
+
     }
     private int currentCartSize;
     // since each round has different track distance

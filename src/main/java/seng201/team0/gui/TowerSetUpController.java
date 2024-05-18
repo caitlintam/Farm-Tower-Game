@@ -39,6 +39,7 @@ public class TowerSetUpController {
     }
 
     public void initialize(){
+        System.out.println("----- Tower Set Up Screen ------");
         errorTowerNumLabel.setVisible(false);
         List<Button> selectedTowerButtons = List.of(selectedTower1,selectedTower2,selectedTower3);
         List<Button> towerButtons = List.of(towerOption1,towerOption2,towerOption3,towerOption4,towerOption5,towerOption6);
@@ -78,26 +79,26 @@ public class TowerSetUpController {
     }
     @FXML
     public void onNextClicked(){
-
+        System.out.println("Next Clicked! ");
         towerManager.setTowerList(Arrays.stream(selectedTowers).filter((Objects::nonNull)).toList());
         if (towerManager.getTowerList().size() < 3){
             System.out.println("Error: not enough towers selected");
             errorTowerNumLabel.setVisible(true);
         }else{
-
+            System.out.println("Towers Added to Inventory: ");
             int i = 1;
             for(Tower tower: selectedTowers){
                 // HERE NEED TO UPDATE STATUS TO INGAME
                 tower.setTowerStatus("In-Game");
-                System.out.println(tower.getTowerStatus());
                 playerManager.addTowersToInventory(tower);
-                System.out.println("Tower " + (i)+ " " + tower.getTowerName());
+                System.out.println("      Tower " + (i)+ " " + tower.getTowerName());
                 towerManager.setTowerStatus(tower);
                 i+=1;
             }
             playerManager.setTowersInGame();
             playerManager.closeTowerSetUpScreen();
             playerManager.launchHomeScreen();
+
         }
 
     }
