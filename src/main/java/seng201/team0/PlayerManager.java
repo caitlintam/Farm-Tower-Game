@@ -2,6 +2,7 @@ package seng201.team0;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
@@ -214,7 +215,9 @@ public class PlayerManager {
             launchHomeScreen();
         }
     }
+    private int currentCartSize;
     // since each round has different track distance
+
     public void runRound(int trackDistance) {
         System.out.println("------- Running Round " + currentRoundNumber +  " ------");
         List<Integer> successfullyFilledCarts = new ArrayList<Integer>();
@@ -223,45 +226,46 @@ public class PlayerManager {
         setCartsInRound();
         // for each cart;
         for (Cart cart : cartsInRound) {
-            System.out.println("Cart " + cart.getCartID() + " -- Resource Type: "+ cart.getCartResourceType() + " -- Speed: " + cart.getCartSpeed()+  "  ...is going round the track");
+            currentCartSize = 0;
+            System.out.println("--- Cart " + cart.getCartID() + " -- Resource Type: "+ cart.getCartResourceType() + " -- Speed: " + cart.getCartSpeed()+  "  ...is going round the track ---");
             // for each tower
-            System.out.println(towersInGame);
             for (Tower tower : towersInGame) {
                 // if the resources types match
-                if (cart.getCartResourceType() == tower.getTowerResourceType()) {
-                    System.out.println("Tower: " + tower.getTowerName() + " Resource type: " + tower.getTowerResourceType() + " Matches with cart: " + cart.getCartID());
+                if (Objects.equals(cart.getCartResourceType(), tower.getTowerResourceType())) {
+                    System.out.println("Tower: " + tower.getTowerName() + " -- Resource type: " + tower.getTowerResourceType() + " -- Matches with cart: " + cart.getCartID());
                     // calculate the carts time on the track..  turn time to integer
                     int cartTimeOnTrack = (int) (trackDistance / cart.getCartSpeed());
                     int numTowerReloads = (int) (Math.floorDiv(cartTimeOnTrack, tower.getTowerReloadSpeed()));
                     // for each reload of cart
-                    int currentCartSize = 0;
-                    System.out.println("Cart is being filled from inital size: " + currentCartSize);
+                    System.out.println("Cart is being filled from initial size: " + currentCartSize);
                     for (int i = 0; i <= numTowerReloads; i++) {
                         currentCartSize += tower.getTowerResourceAmount();
                         System.out.println("To fill size: " + currentCartSize);
                     }
                 }
-                    // once done all possible tower reloads, check if filled capacity (>=size) or not ( <size)
-                    if (currentCartSize >= cart.getCartSize()) {
-                        System.out.println("You successfully filled cart " + cart.getCartID() + " with " + tower.getTowerResourceType());
-                        // adds succesfully filled cart to list
-                        successfullyFilledCarts.add(cart.getCartID());
-                        // increase money
-    //                    setMoney(money *= numReloads);
-                        // launch round win screen
-                        // playerManager.setNumRoundsWon(getNumRoundsWon + 1));
-                    } else if (currentCartSize < cart.getCartSize()) {
-                        System.out.println("Uh Oh, you didn't fill cart " + cart.getCartID() + " with enough "+ tower.getTowerResourceType());
-                        // adds unsucesfily filled cart to list
-                        failedFilledCarts.add(cart.getCartID());
-                        //launch round lose screen
-                }
             }
+                    // once done all possible tower reloads, check if filled capacity (>=size) or not ( <size)
+        if (currentCartSize >= cart.getCartSize()) {
+            System.out.println("You successfully filled cart " + cart.getCartID() + " with " + cart.getCartResourceType());
+            // adds succesfully filled cart to list
+            successfullyFilledCarts.add(cart.getCartID());
+            // increase money
+//                    setMoney(money *= numReloads);
+            // launch round win screen
+            // playerManager.setNumRoundsWon(getNumRoundsWon + 1));
+        } else if (currentCartSize < cart.getCartSize()) {
+            System.out.println("Uh Oh, you didn't fill cart " + cart.getCartID() + " with enough "+ cart.getCartResourceType());
+            // adds unsucesfily filled cart to list
+            failedFilledCarts.add(cart.getCartID());
+            //launch round lose screen
         }
+        System.out.println("---------------------------------------------");
+
+            }
+
         // once all carts have been through round
         // if all carts filled ( failed is empty == true ) won, otherwise false, have a cart not filled
         roundSuccess = failedFilledCarts.isEmpty();
-
 
     }
 }
