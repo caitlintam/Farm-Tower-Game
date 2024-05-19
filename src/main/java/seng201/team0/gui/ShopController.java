@@ -4,6 +4,7 @@ import javafx.scene.control.Label;
 import seng201.team0.PlayerManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import seng201.team0.ShopManager;
 import seng201.team0.TowerManager;
 import seng201.team0.UpgradeManager;
 import seng201.team0.models.Tower;
@@ -45,12 +46,14 @@ public class ShopController {
     private int selectedUpgradeIndex = -1;
     private int selectedTowerIndex = -1;
     private Button selectedButton = null;
+    private ShopManager shopManager;
 
 
-    public ShopController(PlayerManager playerManager, TowerManager towerManager, UpgradeManager upgradeManager){
+    public ShopController(PlayerManager playerManager, TowerManager towerManager, UpgradeManager upgradeManager, ShopManager shopManager){
         this.playerManager = playerManager;
         this.towerManager = towerManager;
         this.upgradeManager = upgradeManager;
+        this.shopManager = shopManager;
     }
 
     public void initialize() {
@@ -61,8 +64,14 @@ public class ShopController {
         List<Button> allButtons = new ArrayList<>();
         allButtons.addAll(buyTowerButtons);
         allButtons.addAll(buyUpgradeButtons);
-
+        shopManager.generateNewPurchasableTowers();
+        // generate new purchasable towers/ upgrades call method
+        // purchasable upgrades
+// neeed to fix this. make new list for purchasable towers - should be the ones player doesnt click at beginning
         for (int i = 0; i < buyUpgradeButtons.size(); i++) {
+            // change this to label purchasbel i
+            buyUpgradeButtons.get(i).setText(upgradeManager.getUpgradeList().get(i).getUpgradeName());
+            buyTowerButtons.get(i).setText(towerManager.getDefaultTowers().get(i+6).getTowerName());
             int finalI = i;
             buyTowerButtons.get(i).setOnAction(actionEvent -> {
                 if (selectedButton != null) {
