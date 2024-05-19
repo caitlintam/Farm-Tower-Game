@@ -43,7 +43,7 @@ public class Tower {
     public int getTowerLevel(){
         return towerLevel;
     }
-    private void setTowerLevel(int newTowerLevel) {this.towerLevel = newTowerLevel;}
+    public void setTowerLevel(int newTowerLevel) {this.towerLevel = newTowerLevel;}
     public double getTowerCost(){
         return towerCost;
     }
