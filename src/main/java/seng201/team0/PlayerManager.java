@@ -232,11 +232,24 @@ public class PlayerManager {
     public List<Integer> getRandomEventsRoundList(){
         return randomEventRoundsList;
     }
+    private int earnedMoney;
+    public int getEarnedMoney(){
+        return earnedMoney;
+    }
+    public void setEarnedMoney(int currentRoundNumber){
+        this.earnedMoney = (currentRoundNumber+1) *12;
+    }
     public void evaluateRoundSuccess(){
         if (roundSuccess == true){
+            setEarnedMoney(currentRoundNumber);
+            System.out.println("money before " + money);
+            setMoney(money + earnedMoney);
+            System.out.println("money after " + money);
+//            setMoney(money+=);
             numRoundsWon += 1;
             launchWonRoundScreen();
         }else{
+            System.out.println("No Money eared");
             numRoundsLost += 1;
             launchLostRoundScreen();
         }
@@ -314,7 +327,7 @@ public class PlayerManager {
             // adds succesfully filled cart to list
             successfullyFilledCarts.add(cart.getCartID());
             // increase money
-//                    setMoney(money *= numReloads);
+  //          setMoney(money *= numReloads);
             // launch round win screen
             // playerManager.setNumRoundsWon(getNumRoundsWon + 1));
         } else if (currentCartSize < cart.getCartSize()) {
