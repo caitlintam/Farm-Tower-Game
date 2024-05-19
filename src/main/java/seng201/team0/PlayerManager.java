@@ -268,9 +268,12 @@ public class PlayerManager {
                     System.out.println("Tower: " + tower.getTowerName() + " -- Resource type: " + tower.getTowerResourceType() + " -- Matches with cart: " + cart.getCartID());
                     // calculate the carts time on the track..  turn time to integer
                     int cartTimeOnTrack = (int) (trackDistance / cart.getCartSpeed());
+                    System.out.println("cartTimeOnTrack: "+ cartTimeOnTrack);
+                    System.out.println("tower relaod speed: "+ tower.getTowerReloadSpeed());
                     int numTowerReloads = (int) (Math.floorDiv(cartTimeOnTrack, tower.getTowerReloadSpeed()));
                     // for each reload of cart
                     System.out.println("Cart is being filled from current size: " + currentCartSize);
+                    System.out.println("Num tower reloads " + numTowerReloads);
                     for (int i = 0; i <= numTowerReloads; i++) {
                         currentCartSize += tower.getTowerResourceAmount();
                         System.out.println("To current size after fill: " + currentCartSize);
@@ -304,7 +307,7 @@ public class PlayerManager {
         int numCartsFilled = successfullyFilledCarts.size();
         int numCartsNotFilled = failedFilledCarts.size();
         int numCarts = cartsInRound.size();
-        if (numCartsFilled >= ((numCarts/2 )+1)){
+        if (numCartsFilled >= ((numCarts/2 ))){
             roundSuccess = true;
         }else{
             roundSuccess = false;
