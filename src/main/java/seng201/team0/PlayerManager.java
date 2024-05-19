@@ -27,6 +27,7 @@ public class PlayerManager {
     private final Consumer<PlayerManager> wonRoundScreenLauncher;
     private final Consumer<PlayerManager> lostRoundScreenLauncher;
     private final Consumer<PlayerManager> gameCompletionScreenLauncher;
+    private final Consumer<PlayerManager> randomEventScreenLauncher;
     private final Runnable clearScreen;
     private double money = 1000.00;
     private List<Tower> towerInventory;
@@ -44,8 +45,9 @@ public class PlayerManager {
     private List<Cart> cartsInRound;
     private RandomEventManager randomEventManager;
     private RandomEventController randomEventController;
+    private List<Integer> randomEventRoundsList;
 
-    public PlayerManager(Consumer<PlayerManager> setupScreenLauncher, Consumer<PlayerManager> towerSetUpScreenLauncher, Runnable clearScreen, Consumer<PlayerManager> homeScreenLauncher, Consumer<PlayerManager> shopScreenLauncher, Consumer<PlayerManager> inventoryScreenLauncher, Consumer<PlayerManager> applyUpgradeScreenLauncher, Consumer<PlayerManager> chooseRoundDifficultyScreenLauncher, Consumer<PlayerManager> mainGameScreenLauncher, Consumer<PlayerManager> wonRoundScreenLauncher, Consumer<PlayerManager> lostRoundScreenLauncher, Consumer<PlayerManager> gameCompletionScreenLauncher) {
+    public PlayerManager(Consumer<PlayerManager> setupScreenLauncher, Consumer<PlayerManager> towerSetUpScreenLauncher, Runnable clearScreen, Consumer<PlayerManager> homeScreenLauncher, Consumer<PlayerManager> shopScreenLauncher, Consumer<PlayerManager> inventoryScreenLauncher, Consumer<PlayerManager> applyUpgradeScreenLauncher, Consumer<PlayerManager> chooseRoundDifficultyScreenLauncher, Consumer<PlayerManager> mainGameScreenLauncher, Consumer<PlayerManager> wonRoundScreenLauncher, Consumer<PlayerManager> lostRoundScreenLauncher, Consumer<PlayerManager> gameCompletionScreenLauncher, Consumer<PlayerManager> randomEventScreenLauncher) {
         this.setupScreenLauncher = setupScreenLauncher;
         this.towerSetUpScreenLauncher = towerSetUpScreenLauncher;
         this.homeScreenLauncher = homeScreenLauncher;
@@ -70,11 +72,12 @@ public class PlayerManager {
         this.newCartsInRound = new ArrayList<Cart>();
         this.cartManager = new CartManager(this, new TowerManager());
         this.cartsInRound = cartManager.getCartsInRound();
+        this.randomEventScreenLauncher = randomEventScreenLauncher;
+        this.randomEventManager = new RandomEventManager(randomEventManager.getRandomEventRounds());
+        //this.randomEventRoundsList =randomEventManager.setRandomEventRounds();
 
         launchSetupScreen();
     }
-
-
 
     public String getName(){
         return name;
@@ -139,6 +142,9 @@ public class PlayerManager {
     public void launchMainGameScreen() {
         mainGameScreenLauncher.accept(this);
     }
+    public void launchRandomEventScreen() {
+       randomEventScreenLauncher.accept(this);
+    }
     public void launchWonRoundScreen(){
         wonRoundScreenLauncher.accept(this);
     }
@@ -154,6 +160,9 @@ public class PlayerManager {
     public void closeApplyUpgradeScreen(){clearScreen.run();}
     public void closeWonRoundScreen(){ clearScreen.run();}
     public void closeLostRoundScreen(){clearScreen.run();}
+    public void closeRandomEventScreen(){
+        clearScreen.run();
+    }
 
 
     public void addTowersToInventory(Tower tower) {
@@ -224,21 +233,20 @@ public class PlayerManager {
             launchLostRoundScreen();
         }
     }
-    public void setRandomEventRounds(List<Integer> randomEventRounds) {
-        this.randomEventManager = new RandomEventManager(randomEventRounds);
-    }
     public void setCartsInRound() {
         this.cartsInRound = cartManager.getCartsInRound();
     }
     public void toHomeOrRandomEventOrGameFinish() {
         currentRoundNumber += 1;
+        List<Integer> randomEventRounds = randomEventManager.getRandomEventRounds();
         if (currentRoundNumber > numGameRounds){
             System.out.println("Here! compelte game");
             launchGameCompleteScreen();
         }
         // if current round is a round of a random event, generate the random event
-        else if (randomEventManager != null && randomEventManager.isRandomEvent(currentRoundNumber)) {
+        else if (randomEventRounds.contains(currentRoundNumber)) {
             randomEventManager.generateRandomEvent();
+            launchRandomEventScreen();
         } else {
             launchHomeScreen();
         }

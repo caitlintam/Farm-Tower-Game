@@ -1,5 +1,6 @@
 package seng201.team0;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import seng201.team0.models.Tower;
@@ -67,7 +68,7 @@ public class RandomEventManager {
         }
     }
 
-    private List<Integer> getRandomEventRounds() {
+    public List<Integer> getRandomEventRounds() {
         return randomEventRounds;
     }
 
@@ -84,6 +85,17 @@ public class RandomEventManager {
 
             }
         }
+    }
+    public void setRandomEventRounds(){
+        random.nextInt(playerManager.getNumGameRounds());
+        List<Integer> randomEventRounds = new ArrayList<Integer>();
+        for (int i=0; i <= playerManager.getNumGameRounds()/3 ;i++){
+            int randomRound =random.nextInt(playerManager.getNumGameRounds() + 1);
+                randomRound = random.nextInt(playerManager.getNumGameRounds()) + 1;
+            randomEventRounds.add(randomRound);
+
+        }
+        this.randomEventRounds = randomEventRounds;
     }
 }
 

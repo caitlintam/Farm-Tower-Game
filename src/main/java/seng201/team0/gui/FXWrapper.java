@@ -21,7 +21,7 @@ public class FXWrapper {
 
     public void init(Stage stage) {
         this.stage = stage;
-        new PlayerManager(this::launchSetupScreen, this::launchTowerSetupScreen, this::clearPane, this::launchHomeScreen, this::launchShopScreen, this::launchInventoryScreen, this::launchApplyUpgradeScreen, this::launchChooseRoundDifficultyScreen, this::launchMainGameScreen, this::launchWonRoundScreen, this::launchLostRoundScreen, this::launchGameCompletionScreen);
+        new PlayerManager(this::launchSetupScreen, this::launchTowerSetupScreen, this::clearPane, this::launchHomeScreen, this::launchShopScreen, this::launchInventoryScreen, this::launchApplyUpgradeScreen, this::launchChooseRoundDifficultyScreen, this::launchMainGameScreen, this::launchWonRoundScreen, this::launchLostRoundScreen, this::launchGameCompletionScreen, this::launchRandomEventScreen);
     }
 
 
@@ -62,8 +62,17 @@ public class FXWrapper {
             e.printStackTrace();
         }
     }
-
-
+    public void launchRandomEventScreen(PlayerManager playerManager) {
+        try {
+            FXMLLoader randomEventScreenLoader = new FXMLLoader(getClass().getResource("/fxml/random_event.fxml"));
+            randomEventScreenLoader.setControllerFactory(param -> new RandomEventController(playerManager));
+            Parent setupParent = randomEventScreenLoader.load();
+            pane.getChildren().add(setupParent);
+            stage.setTitle("Random Event Screen");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     public void launchTowerSetupScreen(PlayerManager playerManager) {
