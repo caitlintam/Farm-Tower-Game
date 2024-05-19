@@ -292,13 +292,21 @@ public class PlayerManager {
             failedFilledCarts.add(cart.getCartID());
             //launch round lose screen
         }
+
         System.out.println("---------------------------------------------");
 
             }
 
         // once all carts have been through round
         // if all carts filled ( failed is empty == true ) won, otherwise false, have a cart not filled
-        roundSuccess = failedFilledCarts.isEmpty();
+        int numCartsFilled = successfullyFilledCarts.size();
+        int numCartsNotFilled = failedFilledCarts.size();
+        int numCarts = cartsInRound.size();
+        if (numCartsFilled >= ((numCarts/2 )+1)){
+            roundSuccess = true;
+        }else{
+            roundSuccess = false;
+        }
 
     }
 }
