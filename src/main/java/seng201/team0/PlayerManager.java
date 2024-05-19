@@ -247,7 +247,7 @@ public class PlayerManager {
         // for each cart;
         for (Cart cart : cartsInRound) {
             currentCartSize = 0;
-            System.out.println("--- Cart " + cart.getCartID() + " -- Resource Type: "+ cart.getCartResourceType() + " -- Speed: " + cart.getCartSpeed()+  "  ...is going round the track ---");
+            System.out.println("--- Cart " + cart.getCartID() + " -- Resource Type: "+ cart.getCartResourceType() + " -- Size: "+ cart.getCartSize() + cart.getCartSpeed()+  "  ...is going round the track ---");
             // for each tower
             for (Tower tower : towersInGame) {
                 // if the resources types match
@@ -257,11 +257,13 @@ public class PlayerManager {
                     int cartTimeOnTrack = (int) (trackDistance / cart.getCartSpeed());
                     int numTowerReloads = (int) (Math.floorDiv(cartTimeOnTrack, tower.getTowerReloadSpeed()));
                     // for each reload of cart
-                    System.out.println("Cart is being filled from initial size: " + currentCartSize);
+                    System.out.println("Cart is being filled from current size: " + currentCartSize);
                     for (int i = 0; i <= numTowerReloads; i++) {
                         currentCartSize += tower.getTowerResourceAmount();
-                        System.out.println("To fill size: " + currentCartSize);
+                        System.out.println("To current size after fill: " + currentCartSize);
                     }
+                } else {
+                    System.out.println("Oh no, none of your towers matched cart " + cart.getCartID() + " resource type.");
                 }
             }
                     // once done all possible tower reloads, check if filled capacity (>=size) or not ( <size)
