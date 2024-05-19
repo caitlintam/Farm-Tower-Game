@@ -68,7 +68,7 @@ public class InventoryController {
 
     private void initializeTowerTable() {
         ArrayList<Tower> towerInventory = (ArrayList<Tower>) playerManager.getTowerInventory();
-        System.out.println(towerInventory);
+        System.out.println("here" + towerInventory.toString());
 
         // Convert ArrayList to ObservableList
         ObservableList<Tower> towerData = FXCollections.observableArrayList(towerInventory);
@@ -127,7 +127,7 @@ public class InventoryController {
             } else {
                 errorChangeStatusLabel.setVisible(false);
                 selectedTower.updateTowerStatus(selectedTower);
-                System.out.println(selectedTower.getTowerName() + "status changed to " + selectedTower.getTowerStatus());
+                System.out.println(selectedTower.getTowerName() + " status changed to " + selectedTower.getTowerStatus());
                 playerManager.setTowersInGame();
                 //refresh tower table
                 clearTowerTable();

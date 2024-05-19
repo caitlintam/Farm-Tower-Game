@@ -64,21 +64,23 @@ public class ShopController {
         List<Button> allButtons = new ArrayList<>();
         allButtons.addAll(buyTowerButtons);
         allButtons.addAll(buyUpgradeButtons);
-        shopManager.generateNewPurchasableTowers();
-        // generate new purchasable towers/ upgrades call method
-        // purchasable upgrades
-// neeed to fix this. make new list for purchasable towers - should be the ones player doesnt click at beginning
+
+        // makes list of new purchasable towers
+        List<Tower> newPurchasableTowers = shopManager.generateNewPurchasableTowers();
+
         for (int i = 0; i < buyUpgradeButtons.size(); i++) {
-            // change this to label purchasbel i
+            // change this to label purchasbel i //////////////////////
             buyUpgradeButtons.get(i).setText(upgradeManager.getUpgradeList().get(i).getUpgradeName());
-            buyTowerButtons.get(i).setText(towerManager.getDefaultTowers().get(i+6).getTowerName());
+            buyTowerButtons.get(i).setText(newPurchasableTowers.get(i).getTowerName());
+
             int finalI = i;
             buyTowerButtons.get(i).setOnAction(actionEvent -> {
                 if (selectedButton != null) {
                     selectedButton.setStyle("");
                 }
-                updateTowerInfo(towerManager.getDefaultTowers().get(finalI + 6));
-                selectedTowerIndex = finalI + 6;
+                updateTowerInfo(newPurchasableTowers.get(finalI));
+
+                selectedTowerIndex = finalI ;
                 selectedButton = buyTowerButtons.get(finalI);
                 selectedButton.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
             });
@@ -101,12 +103,13 @@ public class ShopController {
             if (selectedButton == buyTowerButton1 || selectedButton == buyTowerButton2 || selectedButton == buyTowerbutton3) {
                 errorNoMoneyLabel.setVisible(false);
                 // Access TowerManager
-                Tower selectedTower = towerManager.getDefaultTowers().get(selectedTowerIndex);
-                double cost = selectedTower.getTowerCost();
-                if (cost <= playerManager.getMoney()){
-                    System.out.println(selectedTower.getTowerName() + " Bought");
-                    playerManager.setMoney(playerManager.getMoney() - cost);
-                    playerManager.addTowersToInventory(selectedTower);
+                boolean hasEnoughMoney = shopManager.tryBuyTower(selectedTowerIndex);
+                //////////////////////////// do this all in shop manager ///////////
+                // call new boolean method tryBuyTower();
+                /// if can buy tower, change attributes, return true
+                /// otherwise return false, change visible labels
+
+                if (hasEnoughMoney){
                     updateMoneyLabel();
                 } else {
                     errorNoMoneyLabel.setVisible(true);
@@ -116,13 +119,10 @@ public class ShopController {
                 // Perform operations with selected tower
             } else if (selectedButton == upgradeButton1 || selectedButton == upgradeButton2 || selectedButton == upgradeButton3) {
                 errorNoMoneyLabel.setVisible(false);
-                // Access UpgradeManager
-                Upgrade selectedUpgrade = upgradeManager.getUpgradeList().get(selectedUpgradeIndex);
-                double cost = selectedUpgrade.getUpgradeCost();
-                if (cost <= playerManager.getMoney()){
-                    System.out.println(selectedUpgrade.getUpgradeName() + " Bought");
-                    playerManager.setMoney(playerManager.getMoney() - cost);
-                    playerManager.addUpgradesToInventory(selectedUpgrade);
+                //////////  Access UpgradeManager///////////////
+                /// do same boolean method above, move code of attributes into manager, not fxml class
+                boolean hasEnoughMoney = shopManager.tryBuyUpgrade(selectedUpgradeIndex);
+                if (hasEnoughMoney){
                     updateMoneyLabel();
                 } else {
                     errorNoMoneyLabel.setVisible(true);

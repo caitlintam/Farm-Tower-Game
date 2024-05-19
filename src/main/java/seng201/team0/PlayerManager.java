@@ -31,6 +31,7 @@ public class PlayerManager {
     private List<Tower> towerInventory;
     private List<Upgrade> upgradeInventory;
     private List<Tower> towersInGame;
+    private List<Tower> initialTowerList;
     private int timeOnTrack;
     //private DoubleProperty numRounds;
     private int currentTrackDistance = 15;
@@ -100,6 +101,8 @@ public class PlayerManager {
         setMoney((4-gameDifficulty) * 500);
     }
     public List<Tower> getTowersInGame(){return towersInGame;}
+    //public List<Tower> getInitialTowerList(){return initialTowerList;}
+  //  public List<Tower> setInitialTowerList(List<Tower> towers){this.initialTowerList = towers;}
     public void launchSetupScreen() {
         setupScreenLauncher.accept(this);
     }

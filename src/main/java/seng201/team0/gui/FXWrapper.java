@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import seng201.team0.PlayerManager;
+import seng201.team0.ShopManager;
 import seng201.team0.TowerManager;
 import seng201.team0.UpgradeManager;
 
@@ -53,7 +54,7 @@ public class FXWrapper {
     public void launchShopScreen(PlayerManager playerManager) {
         try {
             FXMLLoader shopScreenLoader = new FXMLLoader(getClass().getResource("/fxml/shop.fxml"));
-            shopScreenLoader.setControllerFactory(param -> new ShopController(playerManager, new TowerManager(), new UpgradeManager()));
+            shopScreenLoader.setControllerFactory(param -> new ShopController(playerManager, new TowerManager(), new UpgradeManager(), new ShopManager(playerManager, new TowerManager(), new UpgradeManager())));
             Parent setupParent  = shopScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Shop Screen");
