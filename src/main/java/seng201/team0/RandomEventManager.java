@@ -41,6 +41,8 @@ public class RandomEventManager {
         if (tower != null) {
             tower.setTowerLevel(tower.getTowerLevel() + 1);
             System.out.println("Random Event: Tower " + tower.getTowerName() + "increased levels");
+            String levelIncreaseText = "Tower " + tower.getTowerName() + "has increased levels to level: " + tower.getTowerLevel();
+            playerManager.setRandomEventText(levelIncreaseText);
         }
     }
 
@@ -49,6 +51,8 @@ public class RandomEventManager {
         if (tower != null) {
             tower.setTowerLevel(tower.getTowerLevel() - 1);
             System.out.println("Random Event: Tower " + tower.getTowerName() + "decreased levels");
+            String levelDecreaseText = "Tower " + tower.getTowerName() + "has decreased levels to level: " + tower.getTowerLevel();
+            playerManager.setRandomEventText(levelDecreaseText);
         }
     }
 
@@ -58,6 +62,8 @@ public class RandomEventManager {
             playerManager.removeTowerFromInventory(tower);
             System.out.println("Random Event: Tower " + tower.getTowerName() + " broke and was removed.");
             // set text for random event fxml
+            String brokenTowerText = "Tower " + tower.getTowerName() + "broke! it has now been removed from your inventory";
+            playerManager.setRandomEventText(brokenTowerText);
         }
     }
 

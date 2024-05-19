@@ -6,6 +6,7 @@ import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
+import seng201.team0.gui.RandomEventController;
 import seng201.team0.models.Cart;
 import seng201.team0.models.Tower;
 import seng201.team0.models.Upgrade;
@@ -42,6 +43,7 @@ public class PlayerManager {
     private CartManager cartManager;
     private List<Cart> cartsInRound;
     private RandomEventManager randomEventManager;
+    private RandomEventController randomEventController;
 
     public PlayerManager(Consumer<PlayerManager> setupScreenLauncher, Consumer<PlayerManager> towerSetUpScreenLauncher, Runnable clearScreen, Consumer<PlayerManager> homeScreenLauncher, Consumer<PlayerManager> shopScreenLauncher, Consumer<PlayerManager> inventoryScreenLauncher, Consumer<PlayerManager> applyUpgradeScreenLauncher, Consumer<PlayerManager> chooseRoundDifficultyScreenLauncher, Consumer<PlayerManager> mainGameScreenLauncher, Consumer<PlayerManager> wonRoundScreenLauncher, Consumer<PlayerManager> lostRoundScreenLauncher, Consumer<PlayerManager> gameCompletionScreenLauncher) {
         this.setupScreenLauncher = setupScreenLauncher;
@@ -302,8 +304,10 @@ public class PlayerManager {
             }
         }
     }
-
     public List<Tower> getReserveTowers() {
         return reserveTowers;
+    }
+    public void setRandomEventText(String text){
+        randomEventController.setRandomEventText(text);
     }
 }
