@@ -23,11 +23,11 @@ public class CartManager {
     public List<Cart> getCartsInRound() {
         return cartsInRound;
     }
-    public CartManager(List<Cart> cartsInRound){
-        this.random = new Random(201);
-        generateNewCartsInGame();
-        this.cartsInRound = cartsInRound;
-    }
+//    public CartManager(List<Cart> cartsInRound){
+//        this.random = new Random(201);
+//        generateNewCartsInGame();
+//        this.cartsInRound = cartsInRound;
+//    }
     public CartManager(PlayerManager playerManager, TowerManager towerManager) {
         this.playerManager = playerManager;
         this.towerManager = towerManager;
@@ -72,19 +72,32 @@ public class CartManager {
         setNumberOfCarts();
         shuffleCartsInGameResourceTypes();
         List<Tower> towersInGame = playerManager.getTowersInGame();
-
+        //
+        cartsInRound.clear();
 
         for (int i = 0; i < numberOfCarts; i++) {
             String resourceType = cartsInRoundResourceTypes.get(i);
+            String primaryResourceType = cartsInRoundResourceTypes.get(i);
+            String secondaryResourceType = getRandomResTypeDiffFromPrimary(primaryResourceType);
             int cartSize = generateRandomCartSize(towersInGame.get(i).getTowerResourceAmount()); // Assume the cart size is based on the tower resource amount
             int cartSpeed = generateRandomCartSpeed(towersInGame.get(i).getTowerReloadSpeed());
             int cartID = i;
-            System.out.println("Cart "+cartID + " -- Size: " + cartSize + " -- Type: " + resourceType + " -- Speed: " + cartSpeed);
-            cartsInRound.add(new Cart(cartID, cartSize, resourceType, cartSpeed));
+            System.out.println("Cart "+cartID + " -- Size: " + cartSize + " -- Primary Res Type: " + primaryResourceType + " -- Secondary Res Type: " + secondaryResourceType + cartSpeed);
+            cartsInRound.add(new Cart(cartID, cartSize, primaryResourceType, secondaryResourceType, cartSpeed));
 
         }
+        System.out.println("My Towers: " + playerManager.getTowersResTypeInGame());
         System.out.println("-------------------");
+
     }
+
+    // returns another type different to the first res type
+    private String getRandomResTypeDiffFromPrimary(String primaryResourceType) {
+        List<String> otherTypes = new ArrayList<String>(potentialCartResourceTypes);
+        otherTypes.remove(primaryResourceType);
+        return otherTypes.get(random.nextInt(otherTypes.size()));
+    }
+
     private int generateRandomCartSize(int towerResourceAmount) {
         // Example: Cart size can be between 80% and 120% of tower resource amount
         int minSize = (int) (towerResourceAmount * 0.8);

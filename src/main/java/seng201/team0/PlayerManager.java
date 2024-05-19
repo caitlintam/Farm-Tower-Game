@@ -177,6 +177,13 @@ public class PlayerManager {
     public void removeUpgradeFromInventory(Upgrade selectedUpgrade) {
         upgradeInventory.remove(selectedUpgrade);
     }
+    public List<String> getTowersResTypeInGame(){
+        List<String> listOfInGameTowerResTypes = new ArrayList<String>();
+        for (Tower tower: towersInGame){
+            listOfInGameTowerResTypes.add(tower.getTowerResourceType());
+        }
+        return listOfInGameTowerResTypes;
+    }
     public void setTowersInGame() {
         // Filter towerInventory to get only the towers that are in-game
         towersInGame = towerInventory.stream()
@@ -247,14 +254,15 @@ public class PlayerManager {
         List<Integer> failedFilledCarts = new ArrayList<Integer>();
         cartManager.generateNewCartsInGame();
         setCartsInRound();
+        System.out.println("num of carts in round" + cartsInRound.size());
         // for each cart;
         for (Cart cart : cartsInRound) {
             currentCartSize = 0;
-            System.out.println("--- Cart " + cart.getCartID() + " -- Resource Type: "+ cart.getCartResourceType() + " -- Size: "+ cart.getCartSize() + cart.getCartSpeed()+  "  ...is going round the track ---");
+            System.out.println("--- Cart " + cart.getCartID() + " -- Primary Resource Type: "+ cart.getPrimaryCartResourceType() + " -- Secondary Resource Type: " + cart.getSecondaryCartResourceType() + " -- Size: "+ cart.getCartSize() + cart.getCartSpeed()+  "  ...is going round the track ---");
             // for each tower
             for (Tower tower : towersInGame) {
                 // if the resources types match
-                if (Objects.equals(cart.getCartResourceType(), tower.getTowerResourceType())) {
+                if ((Objects.equals(cart.getPrimaryCartResourceType() , tower.getTowerResourceType())) | (Objects.equals(cart.getSecondaryCartResourceType() , tower.getTowerResourceType()))) {
                     System.out.println("Tower: " + tower.getTowerName() + " -- Resource type: " + tower.getTowerResourceType() + " -- Matches with cart: " + cart.getCartID());
                     // calculate the carts time on the track..  turn time to integer
                     int cartTimeOnTrack = (int) (trackDistance / cart.getCartSpeed());
@@ -271,7 +279,7 @@ public class PlayerManager {
             }
                     // once done all possible tower reloads, check if filled capacity (>=size) or not ( <size)
         if (currentCartSize >= cart.getCartSize()) {
-            System.out.println("You successfully filled cart " + cart.getCartID() + " with " + cart.getCartResourceType());
+            System.out.println("You successfully filled cart " + cart.getCartID()  );
             // adds succesfully filled cart to list
             successfullyFilledCarts.add(cart.getCartID());
             // increase money
@@ -279,7 +287,7 @@ public class PlayerManager {
             // launch round win screen
             // playerManager.setNumRoundsWon(getNumRoundsWon + 1));
         } else if (currentCartSize < cart.getCartSize()) {
-            System.out.println("Uh Oh, you didn't fill cart " + cart.getCartID() + " with enough "+ cart.getCartResourceType());
+            System.out.println("Uh Oh, you didn't manage to fill cart " + cart.getCartID() );
             // adds unsucesfily filled cart to list
             failedFilledCarts.add(cart.getCartID());
             //launch round lose screen

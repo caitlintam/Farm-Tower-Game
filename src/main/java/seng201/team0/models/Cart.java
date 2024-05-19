@@ -2,24 +2,27 @@ package seng201.team0.models;
 
 public class Cart {
     private int cartSize;
-    private String cartResourceType;
+    private String primaryCartResourceType;
+    private String secondaryCartResourceType;
 
     private float cartSpeed;
     private int numReloads;
     private int cartNumber;
 
-    public Cart(int cartNumber, int cartSize, String cartResourceType, float cartSpeed){
+    public Cart(int cartNumber, int cartSize, String primaryCartResourceType, String secondaryCartResourceType, float cartSpeed){
         this.cartNumber = cartNumber;
         this.cartSize = cartSize;
-        this.cartResourceType = cartResourceType;
+        this.primaryCartResourceType = primaryCartResourceType;
+        this.secondaryCartResourceType = secondaryCartResourceType;
         this.cartSpeed = cartSpeed;
     }
     public int getCartSize(){
         return cartSize;
     }
-    public String getCartResourceType(){
-        return cartResourceType;
+    public String getPrimaryCartResourceType(){
+        return primaryCartResourceType;
     }
+    public String getSecondaryCartResourceType(){return secondaryCartResourceType;}
     public float getCartSpeed(){
         return cartSpeed;
     }
