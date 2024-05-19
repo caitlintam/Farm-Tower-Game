@@ -31,6 +31,7 @@ public class PlayerManager {
     private List<Tower> towerInventory;
     private List<Upgrade> upgradeInventory;
     private List<Tower> towersInGame;
+    private List<Tower> reserveTowers;
     private List<Tower> initialTowerList;
     private int timeOnTrack;
     //private DoubleProperty numRounds;
@@ -58,6 +59,7 @@ public class PlayerManager {
         this.towerInventory = new ArrayList<Tower>();
         this.upgradeInventory = new ArrayList<Upgrade>();
         this.towersInGame = new ArrayList<Tower>();
+        this.reserveTowers = new ArrayList<Tower>();
         trackDistanceOptionsList = new ArrayList<Integer>();
             trackDistanceOptionsList.add(20);
             trackDistanceOptionsList.add(30);
@@ -292,5 +294,16 @@ public class PlayerManager {
         // if all carts filled ( failed is empty == true ) won, otherwise false, have a cart not filled
         roundSuccess = failedFilledCarts.isEmpty();
 
+    }
+    public void setReserveTowers() {
+        for (Tower tower : towersInGame) {
+            if (tower.getTowerStatus().equals("Reserve")) { // corrected tower status comparison
+                reserveTowers.add(tower);
+            }
+        }
+    }
+
+    public List<Tower> getReserveTowers() {
+        return reserveTowers;
     }
 }
