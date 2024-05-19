@@ -12,8 +12,14 @@ public class RandomEventController {
     @FXML
     public Label RandomEventLabel;
     private final PlayerManager playerManager;
-    public RandomEventController(PlayerManager playerManager) {
+    private RandomEventManager randomEventManager;
+    public RandomEventController(PlayerManager playerManager, RandomEventManager randomEventManager) {
         this.playerManager = playerManager;
+        this.randomEventManager = randomEventManager;
+    }
+    public void initialize(){
+        System.out.println("rtest" + playerManager.getRandomText());
+        RandomEventLabel.setText(playerManager.getRandomText());
     }
     public void onNextClicked() {
         playerManager.closeRandomEventScreen();

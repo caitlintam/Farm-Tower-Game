@@ -65,20 +65,24 @@ public class PlayerManager {
         this.towersInGame = new ArrayList<Tower>();
         this.reserveTowers = new ArrayList<Tower>();
         trackDistanceOptionsList = new ArrayList<Integer>();
-            trackDistanceOptionsList.add(20);
-            trackDistanceOptionsList.add(30);
-            trackDistanceOptionsList.add(40);
+            trackDistanceOptionsList.add(170);
+            trackDistanceOptionsList.add(150);
+            trackDistanceOptionsList.add(130);
 
         this.newCartsInRound = new ArrayList<Cart>();
         this.cartManager = new CartManager(this, new TowerManager());
         this.cartsInRound = cartManager.getCartsInRound();
         this.randomEventScreenLauncher = randomEventScreenLauncher;
-        this.randomEventManager = new RandomEventManager(randomEventManager.getRandomEventRounds());
-        //this.randomEventRoundsList =randomEventManager.setRandomEventRounds();
+        this.randomEventManager = new RandomEventManager(this);
+
 
         launchSetupScreen();
     }
-
+    public void setRandomEventRoundsList(){
+        randomEventManager.setRandomEventRounds();
+        this.randomEventRoundsList = randomEventManager.getRandomEventRounds();
+        System.out.println(randomEventRoundsList);
+    }
     public String getName(){
         return name;
     }
@@ -206,13 +210,14 @@ public class PlayerManager {
     // resets the distance options list, to +5, +10, +15 each round
     // call this method in the page between rounds when next clicked. to refresh track dist.
     public void updateTrackDistanceOptionsList(){
-        trackDistanceOptionsList.set(0,currentTrackDistance + 5);
-        trackDistanceOptionsList.set(1,currentTrackDistance + 10);
-        trackDistanceOptionsList.set(2,currentTrackDistance + 15);
+        trackDistanceOptionsList.set(0,currentTrackDistance - 2);
+        trackDistanceOptionsList.set(1,currentTrackDistance - 5);
+        trackDistanceOptionsList.set(2,currentTrackDistance - 8);
     }
     // sets the current Track Distance after 'difficulty' selected
     public void setCurrentTrackDistance(int selectedDistanceIndex){currentTrackDistance = trackDistanceOptionsList.get(selectedDistanceIndex);}
     public int getCurrentTrackDistance(){return currentTrackDistance;}
+
 
     // cbb putting at top now
     private int numRoundsWon = 0;
@@ -224,6 +229,9 @@ public class PlayerManager {
         runRound(currentTrackDistance);
     }
 
+    public List<Integer> getRandomEventsRoundList(){
+        return randomEventRoundsList;
+    }
     public void evaluateRoundSuccess(){
         if (roundSuccess == true){
             numRoundsWon += 1;
@@ -236,8 +244,9 @@ public class PlayerManager {
     public void setCartsInRound() {
         this.cartsInRound = cartManager.getCartsInRound();
     }
+    private String randomText;
     public void toHomeOrRandomEventOrGameFinish() {
-        currentRoundNumber += 1;
+
         List<Integer> randomEventRounds = randomEventManager.getRandomEventRounds();
         if (currentRoundNumber > numGameRounds){
             System.out.println("Here! compelte game");
@@ -246,10 +255,16 @@ public class PlayerManager {
         // if current round is a round of a random event, generate the random event
         else if (randomEventRounds.contains(currentRoundNumber)) {
             randomEventManager.generateRandomEvent();
+            this.randomText = randomEventManager.getRandomEventText();
             launchRandomEventScreen();
+            currentRoundNumber += 1;
         } else {
+            currentRoundNumber += 1;
             launchHomeScreen();
         }
+    }
+    public String getRandomText(){
+        return randomText;
     }
 
 

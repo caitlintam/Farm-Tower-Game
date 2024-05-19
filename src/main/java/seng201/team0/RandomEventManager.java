@@ -1,6 +1,7 @@
 package seng201.team0;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import seng201.team0.models.Tower;
@@ -11,10 +12,12 @@ public class RandomEventManager {
     private List<Integer> randomEventRounds;
     private Random random;
     private List<Tower> reserveTowers;
+    private String randomEventText;
 
-    public RandomEventManager(List<Integer> randomEventRounds) {
-        this.randomEventRounds = randomEventRounds;
+    public RandomEventManager(PlayerManager playerManager) {
         this.random = new Random();
+        this.randomEventRounds = new ArrayList<Integer>();
+        this.playerManager = playerManager;
     }
 
     public boolean isRandomEvent(int currentRound) {
@@ -43,7 +46,8 @@ public class RandomEventManager {
             tower.setTowerLevel(tower.getTowerLevel() + 1);
             System.out.println("Random Event: Tower " + tower.getTowerName() + "increased levels");
             String levelIncreaseText = "Tower " + tower.getTowerName() + "has increased levels to level: " + tower.getTowerLevel();
-            playerManager.setRandomEventText(levelIncreaseText);
+            this.randomEventText = levelIncreaseText;
+  //          playerManager.setRandomEventText(levelIncreaseText);
         }
     }
 
@@ -53,7 +57,8 @@ public class RandomEventManager {
             tower.setTowerLevel(tower.getTowerLevel() - 1);
             System.out.println("Random Event: Tower " + tower.getTowerName() + "decreased levels");
             String levelDecreaseText = "Tower " + tower.getTowerName() + "has decreased levels to level: " + tower.getTowerLevel();
-            playerManager.setRandomEventText(levelDecreaseText);
+            this.randomEventText = levelDecreaseText;
+       //     playerManager.setRandomEventText(levelDecreaseText);
         }
     }
 
@@ -64,8 +69,16 @@ public class RandomEventManager {
             System.out.println("Random Event: Tower " + tower.getTowerName() + " broke and was removed.");
             // set text for random event fxml
             String brokenTowerText = "Tower " + tower.getTowerName() + "broke! it has now been removed from your inventory";
-            playerManager.setRandomEventText(brokenTowerText);
+            this.randomEventText = brokenTowerText;
+
+        //    playerManager.setRandomEventText(brokenTowerText);
         }
+    }
+    public void setRandomEventText(String randomEventText){
+        this.randomEventText = randomEventText;
+    }
+    public String getRandomEventText(){
+        return randomEventText;
     }
 
     public List<Integer> getRandomEventRounds() {
@@ -87,16 +100,18 @@ public class RandomEventManager {
         }
     }
     public void setRandomEventRounds(){
-        random.nextInt(playerManager.getNumGameRounds());
-        List<Integer> randomEventRounds = new ArrayList<Integer>();
-        for (int i=0; i <= playerManager.getNumGameRounds()/3 ;i++){
-            int randomRound =random.nextInt(playerManager.getNumGameRounds() + 1);
-                randomRound = random.nextInt(playerManager.getNumGameRounds()) + 1;
-            randomEventRounds.add(randomRound);
-
+        List<Integer> randomEventRoundsList = new ArrayList<Integer>();
+        List<Integer> potentialRoundsList = new ArrayList<Integer>();
+        for (int i=0; i <= playerManager.getNumGameRounds();i++){
+            potentialRoundsList.add(i);
         }
-        this.randomEventRounds = randomEventRounds;
+        Collections.shuffle(potentialRoundsList);
+        for (int i=0; i <= playerManager.getNumGameRounds()/3; i++){
+            randomEventRoundsList.add(potentialRoundsList.get(i));
+        }
+        this.randomEventRounds = randomEventRoundsList;
     }
+
 }
 
 

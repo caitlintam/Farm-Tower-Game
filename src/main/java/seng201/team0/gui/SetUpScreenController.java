@@ -61,6 +61,8 @@ public class SetUpScreenController {
             System.out.println("Player Name: " + playerManager.getName());
             System.out.println("Number of Game Rounds: " + playerManager.getNumGameRounds());
             System.out.println("Game Difficulty: " + playerManager.getGameDifficulty());
+            playerManager.setRandomEventRoundsList();
+            System.out.println("random " + playerManager.getRandomEventsRoundList());
             playerManager.closeSetupScreen();
             playerManager.launchTowerSetUpScreen();
 

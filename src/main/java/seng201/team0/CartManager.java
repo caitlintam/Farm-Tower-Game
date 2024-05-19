@@ -47,7 +47,6 @@ public class CartManager {
 //                new Cart(100, "Chickens", 40))))
         setPotentialCartResourceTypes();
 
-        System.out.println("From constructor, no carts " + numberOfCarts);
     }
 
     // gives each cart an id
@@ -124,5 +123,6 @@ public class CartManager {
         cartsInRoundResourceTypes = new ArrayList<String>(potentialCartResourceTypes.subList(0, numberOfCarts));
         System.out.println("New Carts in Round Resource Types: " + cartsInRoundResourceTypes);
     }
+
 }
 

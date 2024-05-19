@@ -5,10 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import seng201.team0.PlayerManager;
-import seng201.team0.ShopManager;
-import seng201.team0.TowerManager;
-import seng201.team0.UpgradeManager;
+import seng201.team0.*;
 
 import java.io.IOException;
 
@@ -65,7 +62,7 @@ public class FXWrapper {
     public void launchRandomEventScreen(PlayerManager playerManager) {
         try {
             FXMLLoader randomEventScreenLoader = new FXMLLoader(getClass().getResource("/fxml/random_event.fxml"));
-            randomEventScreenLoader.setControllerFactory(param -> new RandomEventController(playerManager));
+            randomEventScreenLoader.setControllerFactory(param -> new RandomEventController(playerManager, new RandomEventManager(playerManager)));
             Parent setupParent = randomEventScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Random Event Screen");
