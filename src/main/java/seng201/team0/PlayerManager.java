@@ -154,7 +154,7 @@ public class PlayerManager {
     }
     public void launchLostRoundScreen(){lostRoundScreenLauncher.accept(this);
     }
-    private void launchGameCompleteScreen() {gameCompletionScreenLauncher.accept(this);
+    private void launchGameCompletionScreen() {gameCompletionScreenLauncher.accept(this);
     }
 
     public void closeChooseRoundDifficultyScreen(){clearScreen.run();}
@@ -248,13 +248,14 @@ public class PlayerManager {
     public void toHomeOrRandomEventOrGameFinish() {
 
         List<Integer> randomEventRounds = randomEventManager.getRandomEventRounds();
-        if (currentRoundNumber > numGameRounds){
+        if ((currentRoundNumber+1) > numGameRounds){
             System.out.println("Here! compelte game");
-            launchGameCompleteScreen();
+            launchGameCompletionScreen();
         }
         // if current round is a round of a random event, generate the random event
         else if (randomEventRounds.contains(currentRoundNumber)) {
             randomEventManager.generateRandomEvent();
+
             this.randomText = randomEventManager.getRandomEventText();
             launchRandomEventScreen();
             currentRoundNumber += 1;

@@ -21,10 +21,10 @@ public class TowerManager {
 //                new Tower("Timber Turret", 20, "Timber", 60, 2, 50.00)));
 
         defaultTowers.addAll(List.of(
-                new Tower("Piglet Palace", 25, "Pigs", 15, 2, 45.00, "Reserve"),
-                new Tower("Cowtopia Castle", 10, "Cows", 30, 1,25.00, "Reserve"),
-                new Tower("Haybale Haven", 50, "Hay", 10, 1, 10.00,"Reserve"),
-                new Tower("Timber Turret", 20, "Timber", 60, 2, 50.00,"Reserve"),
+                new Tower("Piglet Palace", 10, "Pigs", 30, 2, 45.00, "Reserve"),
+                new Tower("Cowtopia Castle", 8, "Cows", 25, 1,25.00, "Reserve"),
+                new Tower("Haybale Haven", 12, "Hay", 27, 1, 10.00,"Reserve"),
+                new Tower("Timber Turret", 7, "Timber", 24, 2, 50.00,"Reserve"),
                 new Tower("Water Tower ", 15, "Water", 25, 9, 48.00,"Reserve"),
                 new Tower("Steel Steeple", 35, "Steel", 45, 4, 40.00,"Reserve"),
                 new Tower("Corn Castle", 30, "Corn", 45, 3, 20.00,"Reserve"),

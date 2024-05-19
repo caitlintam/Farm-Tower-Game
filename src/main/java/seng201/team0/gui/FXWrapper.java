@@ -153,7 +153,7 @@ public class FXWrapper {
     }
     private void launchGameCompletionScreen(PlayerManager playerManager) {
         try {
-            FXMLLoader gameCompletionScreenLoader = new FXMLLoader(getClass().getResource("/fxml/game_completion_screen.fxml"));
+            FXMLLoader gameCompletionScreenLoader = new FXMLLoader(getClass().getResource("/fxml/game_complete_screen.fxml"));
             gameCompletionScreenLoader.setControllerFactory(param -> new GameCompletionScreenController(playerManager));
             Parent setupParent = gameCompletionScreenLoader.load();
             pane.getChildren().add(setupParent);

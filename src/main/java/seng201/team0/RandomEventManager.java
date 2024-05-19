@@ -65,7 +65,9 @@ public class RandomEventManager {
     private void executeBreakTower() {
         Tower tower = getRandomTower();
         if (tower != null) {
+            System.out.println("invent size before"+ playerManager.getTowerInventory().size());
             playerManager.removeTowerFromInventory(tower);
+            System.out.println("invent size after"+ playerManager.getTowerInventory().size());
             System.out.println("Random Event: Tower " + tower.getTowerName() + " broke and was removed.");
             // set text for random event fxml
             String brokenTowerText = "Tower " + tower.getTowerName() + "broke! it has now been removed from your inventory";
