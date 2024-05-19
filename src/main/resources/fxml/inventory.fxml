@@ -10,25 +10,26 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.InventoryController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.InventoryController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="236.5333251953125" minWidth="10.0" prefWidth="236.5333251953125" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.40003458658856" minWidth="10.0" prefWidth="124.79999796549481" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="568.6666463216146" minWidth="10.0" prefWidth="312.11109415690106" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="501.8888956705729" minWidth="0.0" prefWidth="307.33335367838544" />
+      <ColumnConstraints maxWidth="306.0" minWidth="0.0" prefWidth="280.33331298828125" />
       <ColumnConstraints />
       <ColumnConstraints />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="196.6666463216146" minHeight="10.0" prefHeight="148.66665649414062" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="100.33332570393881" minHeight="10.0" prefHeight="26.000010172526032" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="98.00000508626303" minHeight="6.666661580403627" prefHeight="32.66667683919272" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="128.6666717529297" minHeight="0.0" prefHeight="19.666656494140625" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="140.99996948242188" minHeight="10.0" prefHeight="91.33333333333334" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="73.22222900390625" minHeight="10.0" prefHeight="65.22222900390625" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="196.88892618815103" minHeight="10.0" prefHeight="175.1111043294271" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="100.33332570393881" minHeight="10.0" prefHeight="12.444407145182282" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="117.22224934895831" minHeight="6.666661580403627" prefHeight="31.11113484700519" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="210.55553181966144" minHeight="10.0" prefHeight="202.55553181966144" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="46.999969482421875" minHeight="4.333363850911439" prefHeight="18.333333333333314" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="46.999969482421875" minHeight="4.333363850911439" prefHeight="18.333333333333314" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="46.999969482421875" minHeight="5.0" prefHeight="46.999969482421875" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <TableView fx:id="towerTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="137.0" prefWidth="605.0" GridPane.columnSpan="4" GridPane.rowIndex="1">
+      <TableView fx:id="towerTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="145.0" prefWidth="606.0" GridPane.columnSpan="3" GridPane.halignment="LEFT" GridPane.rowIndex="1">
         <columns>
           <TableColumn fx:id="towerNameColumn" prefWidth="100.0" text="Tower Name" />
           <TableColumn fx:id="towerResTypeColumn" prefWidth="94.66671752929688" text="Resource Type" />
@@ -39,27 +40,27 @@
             <TableColumn fx:id="towerStatusColumn" prefWidth="90.66664632161462" text="Status" />
         </columns>
          <GridPane.margin>
-            <Insets right="30.0" />
+            <Insets left="50.0" />
          </GridPane.margin>
       </TableView>
-      <TableView fx:id="upgradeTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="78.0" prefWidth="364.0" GridPane.columnSpan="4" GridPane.halignment="LEFT" GridPane.rowIndex="5">
+      <TableView fx:id="upgradeTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="178.0" prefWidth="360.0" GridPane.columnSpan="3" GridPane.halignment="LEFT" GridPane.rowIndex="4">
         <columns>
           <TableColumn fx:id="upgradeNameColumn" prefWidth="178.0000203847885" text="Upgrade Name" />
             <TableColumn fx:id="upgradeCostColumn" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="185.3333282470703" text="Cost" />
         </columns>
          <GridPane.margin>
-            <Insets left="120.0" right="30.0" />
+            <Insets left="50.0" />
          </GridPane.margin>
       </TableView>
-      <Label text="Tower Inventory" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+      <Label text="Tower Inventory" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
          <font>
-            <Font size="18.0" />
+            <Font size="31.0" />
          </font>
          <GridPane.margin>
-            <Insets right="20.0" />
+            <Insets />
          </GridPane.margin>
       </Label>
-      <Button fx:id="inventoryHomeButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onInventoryHomeButtonClicked" text="Home" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+      <Button fx:id="inventoryHomeButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onInventoryHomeButtonClicked" text="Home" GridPane.halignment="CENTER" GridPane.rowIndex="6">
          <GridPane.margin>
             <Insets bottom="10.0" left="30.0" right="30.0" />
          </GridPane.margin>
@@ -69,32 +70,41 @@
          <padding>
             <Insets bottom="10.0" />
          </padding></Button>
-      <Label text="Upgrade Inventory" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+      <Label text="Upgrade Inventory" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BASELINE">
          <font>
-            <Font size="18.0" />
+            <Font size="29.0" />
          </font>
          <GridPane.margin>
-            <Insets top="20.0" />
+            <Insets />
          </GridPane.margin>
       </Label>
-      <Label fx:id="moneyLabel" text="Money: $" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="7">
+      <Label fx:id="moneyLabel" text="Money: $" GridPane.columnIndex="2" GridPane.columnSpan="2">
          <font>
             <Font size="17.0" />
          </font></Label>
-      <Button fx:id="sellSelectedTowerButton" mnemonicParsing="false" onAction="#onSellSelectedTowerButtonClicked" text="Sell Selected Tower" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+      <Button fx:id="sellSelectedTowerButton" mnemonicParsing="false" onAction="#onSellSelectedTowerButtonClicked" prefHeight="25.0" prefWidth="127.0" text="Sell Selected Tower" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
          <GridPane.margin>
-            <Insets top="20.0" />
+            <Insets right="50.0" top="20.0" />
          </GridPane.margin></Button>
-      <Button fx:id="changeTowerStatusButton" mnemonicParsing="false" onAction="#onChangeTowerStatusButtonClicked" text="Change Tower Status" GridPane.columnIndex="2" GridPane.rowIndex="2">
+      <Button fx:id="changeTowerStatusButton" mnemonicParsing="false" onAction="#onChangeTowerStatusButtonClicked" text="Change Tower Status" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
          <GridPane.margin>
-            <Insets left="30.0" top="20.0" />
+            <Insets right="50.0" top="30.0" />
          </GridPane.margin></Button>
-      <Label fx:id="errorNoTowerSelectedLabel" text="No Tower Selected" textFill="#dd0505" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-      <Label fx:id="errorChangeStatusLabel" prefHeight="17.0" prefWidth="249.0" text="Cannot Change Status: 3 towers already in game" textFill="#ef0202" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-      <Button fx:id="sellSelectedUpgradeButton" mnemonicParsing="false" onAction="#onSellSelectedUpgradeButtonClicked" text="Sell Selected Upgrade" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-      <Label fx:id="errorNoUpgradeSelectedLabel" text="Error: No Upgrade Selected" textFill="#e90a0a" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="6">
+      <Label fx:id="errorNoTowerSelectedLabel" text="No Tower Selected" textFill="#dd0505" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
          <GridPane.margin>
-            <Insets right="100.0" />
+            <Insets left="70.0" />
          </GridPane.margin></Label>
+      <Label fx:id="errorChangeStatusLabel" prefHeight="17.0" prefWidth="249.0" text="Cannot Change Status: 3 towers already in game" textFill="#ef0202" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="70.0" />
+         </GridPane.margin></Label>
+      <Button fx:id="sellSelectedUpgradeButton" mnemonicParsing="false" onAction="#onSellSelectedUpgradeButtonClicked" text="Sell Selected Upgrade" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+      <Label fx:id="errorNoUpgradeSelectedLabel" text="Error: No Upgrade Selected" textFill="#e90a0a" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets bottom="50.0" />
+         </GridPane.margin>
+         <padding>
+            <Insets top="50.0" />
+         </padding></Label>
    </children>
 </GridPane>
