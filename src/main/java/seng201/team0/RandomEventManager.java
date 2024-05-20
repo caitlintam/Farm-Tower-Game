@@ -96,8 +96,11 @@ public class RandomEventManager {
             if (random.nextDouble() < usedTowerProbability) {
                 return playerManager.getTowersInGame().get(random.nextInt(playerManager.getTowersInGame().size()));
             } else {
-                return playerManager.getReserveTowers().get(random.nextInt(playerManager.getReserveTowers().size()));
-
+                if (playerManager.getReserveTowers().size() == 0){ //  to stop invocation error or non postiive bound
+                    return playerManager.getTowersInGame().get(random.nextInt(playerManager.getTowersInGame().size()));
+                }else{
+                    return playerManager.getReserveTowers().get(random.nextInt(playerManager.getReserveTowers().size()));
+                }
             }
         }
     }
