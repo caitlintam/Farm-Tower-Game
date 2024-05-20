@@ -367,3 +367,7 @@ public class PlayerManager {
         randomEventController.setRandomEventText(text);
     }
 }
+
+
+// need to make round difficulty related to winning money amt.
+// harder diff when button clicked, set index to something, times that um by money.
