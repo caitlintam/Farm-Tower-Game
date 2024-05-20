@@ -49,6 +49,7 @@ public class ChooseRoundDifficultyScreenController {
             errorNoDiffSelected.setVisible(true);
             System.out.println("Error: No difficulty selected");
         }else{
+            playerManager.resetMainGameText();
             errorNoDiffSelected.setVisible(false);
             System.out.println("Difficulty selected:" + (selectedDifficultyIndex));
             System.out.println(playerManager.getCurrentTrackDistance());

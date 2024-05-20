@@ -33,13 +33,20 @@ public class ShopManager {
         Tower selectedTower = towerManager.getDefaultTowers().get(selectedTowerIndex);
         double cost = selectedTower.getTowerCost();
         if (cost <= playerManager.getMoney()){
-            System.out.println(selectedTower.getTowerName() + " Bought");
-            playerManager.setMoney(playerManager.getMoney() - cost);
-            playerManager.addTowersToInventory(selectedTower);
-            return true;
-        } else {
-            return false;
-        }
+            // if inventory size <10
+            if (playerManager.getTowerInventory().size() < 10){ // can buy, add to inventory with certain status
+                if (playerManager.getTowersInGame().size() < 5){
+                    selectedTower.setTowerStatus("In-Game");
+                }else{
+                    selectedTower.setTowerStatus("Reserve");
+                }
+                System.out.println(selectedTower.getTowerName() + " Bought, Set to Status " + selectedTower.getTowerStatus());
+                playerManager.setMoney(playerManager.getMoney() - cost);
+                playerManager.addTowersToInventory(selectedTower);
+                playerManager.setTowersInGame();
+                return true;
+            }
+        }return false;
 
     }
 

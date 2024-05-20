@@ -15,6 +15,7 @@ public class MainGameScreenController {
     }
 
     public void initialize(){
+        mainGameTextLabel.setText(" ");
         System.out.println("Game Text " + playerManager.getMainGameScreenRoundText());
         mainGameTextLabel.setText(playerManager.getMainGameScreenRoundText());
     }

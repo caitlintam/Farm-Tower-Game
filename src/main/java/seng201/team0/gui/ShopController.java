@@ -22,6 +22,8 @@ public class ShopController {
     public Button buyTowerButton1;
     public Label noMoneyLabel;
     public Label errorNoMoneyLabel;
+    public Label errorInventoryFullLabel;
+    public Label itemBoughtLabel;
     @FXML
     private Label ShopMoneyLabel;
     @FXML
@@ -58,6 +60,7 @@ public class ShopController {
 
     public void initialize() {
         updateMoneyLabel();
+        errorInventoryFullLabel.setVisible(false);
         errorNoMoneyLabel.setVisible(false);
         List<Button> buyUpgradeButtons = List.of(upgradeButton1, upgradeButton2, upgradeButton3);
         List<Button> buyTowerButtons = List.of(buyTowerButton1, buyTowerButton2, buyTowerbutton3);
@@ -102,23 +105,32 @@ public class ShopController {
             // Check which manager to access based on the selected button's properties
             if (selectedButton == buyTowerButton1 || selectedButton == buyTowerButton2 || selectedButton == buyTowerbutton3) {
                 errorNoMoneyLabel.setVisible(false);
+                errorInventoryFullLabel.setVisible(false);
                 // Access TowerManager
-                boolean hasEnoughMoney = shopManager.tryBuyTower(selectedTowerIndex);
+                boolean canBuy = shopManager.tryBuyTower(selectedTowerIndex);
                 //////////////////////////// do this all in shop manager ///////////
                 // call new boolean method tryBuyTower();
                 /// if can buy tower, change attributes, return true
                 /// otherwise return false, change visible labels
 
-                if (hasEnoughMoney){
+                if (canBuy){
                     updateMoneyLabel();
                 } else {
-                    errorNoMoneyLabel.setVisible(true);
-                    System.out.println("You don't have enough money");
+                    if (playerManager.getTowerInventory().size() ==10){
+                        errorNoMoneyLabel.setVisible(false);
+                        errorInventoryFullLabel.setVisible(true);
+                        System.out.println("Your Tower Inventory is Full");
+                    }else{
+                        errorInventoryFullLabel.setVisible(false);
+                        errorNoMoneyLabel.setVisible(true);
+                        System.out.println("You don't have enough money");
+                    }
                 }
 
                 // Perform operations with selected tower
             } else if (selectedButton == upgradeButton1 || selectedButton == upgradeButton2 || selectedButton == upgradeButton3) {
                 errorNoMoneyLabel.setVisible(false);
+                errorInventoryFullLabel.setVisible(false);
                 //////////  Access UpgradeManager///////////////
                 /// do same boolean method above, move code of attributes into manager, not fxml class
                 boolean hasEnoughMoney = shopManager.tryBuyUpgrade(selectedUpgradeIndex);

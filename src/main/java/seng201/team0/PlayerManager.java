@@ -250,12 +250,16 @@ public class PlayerManager {
     public void setEarnedMoney(int currentRoundNumber){
         this.earnedMoney = (currentRoundNumber+1) *12;
     }
-    public String getWinOrLose(){
+    private String winOrLoseGameText;
+    public void setWinOrLoseGameText(){
         if (numRoundsWon >= numRoundsLost){
-            return "CONGRATULATIONS YOU WON!";
+            this.winOrLoseGameText =  "CONGRATULATIONS YOU WON!";
         } else {
-            return "SORRY YOU LOST";
+            this.winOrLoseGameText = "SORRY YOU LOST";
         }
+    }
+    public String getWinOrLose(){
+        return winOrLoseGameText;
     }
     public void evaluateRoundSuccess(){
         if (roundSuccess == true){
@@ -282,6 +286,7 @@ public class PlayerManager {
 
         List<Integer> randomEventRounds = randomEventManager.getRandomEventRounds();
         if ((currentRoundNumber+1) > numGameRounds){
+            setWinOrLoseGameText();
             System.out.println("Here! compelte game");
             launchGameCompletionScreen();
         }
@@ -321,7 +326,7 @@ public class PlayerManager {
         return mainGameScreenRoundText;
     }
     public void runRound(int trackDistance) {
-        mainGameScreenRoundText = "";
+        mainGameScreenRoundText = " ";
         mainGameScreenRoundText += "------- Running Round " + currentRoundNumber +  " ------";
 
         List<Integer> successfullyFilledCarts = new ArrayList<Integer>();
@@ -410,6 +415,10 @@ public class PlayerManager {
     }
     public void setRandomEventText(String text){
         randomEventController.setRandomEventText(text);
+    }
+
+    public void resetMainGameText() {
+        this.mainGameScreenRoundText = " ";
     }
 }
 

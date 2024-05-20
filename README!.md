@@ -98,15 +98,27 @@ Submission:
 
 # DOING NOW
 
-implement functionality for:
-
 - levels
-  - cant go below 0
+  - start at 1
+  - tower level number +=1 for upgrades, random events, if upgrade of res amount applied, and goes above level res amount
+
+  - decrease only in random events, get set back to level -1( res amt and stuff)
+      - cant go below 0
 - upgrades
   - tower resource amnt/reload speed/both -- levels
+  - when tower res amount bought, assessTowerLevel()
+    - if tower res amnt > tower levelREsAMountBOundary. level + 1
+  - if level up bought - increases level to set next level. (expensive)
 - tower cost
   - make them more expensive / scale to initial money 
 - starting money in game
 
 # Done
 - track distance doesnt go belwo 0, related to numgamerounds
+
+implement functionality for:
+- only 10 towers in total
+- buying a tower. if ingame towers list size <5 and inventory size < 10. add to in games, set to in game status
+- otherwise (ingame >=5), add to reserve list, add to inventory, status reserve.
+- if invenotry size>10: cant buy tower, inventory full
+- 
