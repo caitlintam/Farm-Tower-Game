@@ -45,7 +45,7 @@ public class RandomEventManager {
         if (tower != null) {
             tower.increaseTowerLevel(tower);
             System.out.println("Random Event: Tower " + tower.getTowerName() + "increased levels");
-            String levelIncreaseText = "Tower " + tower.getTowerName() + "has increased levels to level: " + tower.getTowerLevel();
+            String levelIncreaseText = tower.getTowerName() + "has increased levels to level: " + tower.getTowerLevel();
             this.randomEventText = levelIncreaseText;
   //          playerManager.setRandomEventText(levelIncreaseText);
         }
