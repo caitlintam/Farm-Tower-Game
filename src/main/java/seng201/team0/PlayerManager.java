@@ -46,6 +46,7 @@ public class PlayerManager {
     private RandomEventManager randomEventManager;
     private RandomEventController randomEventController;
     private List<Integer> randomEventRoundsList;
+    private String winOrLose;
 
     public PlayerManager(Consumer<PlayerManager> setupScreenLauncher, Consumer<PlayerManager> towerSetUpScreenLauncher, Runnable clearScreen, Consumer<PlayerManager> homeScreenLauncher, Consumer<PlayerManager> shopScreenLauncher, Consumer<PlayerManager> inventoryScreenLauncher, Consumer<PlayerManager> applyUpgradeScreenLauncher, Consumer<PlayerManager> chooseRoundDifficultyScreenLauncher, Consumer<PlayerManager> mainGameScreenLauncher, Consumer<PlayerManager> wonRoundScreenLauncher, Consumer<PlayerManager> lostRoundScreenLauncher, Consumer<PlayerManager> gameCompletionScreenLauncher, Consumer<PlayerManager> randomEventScreenLauncher) {
         this.setupScreenLauncher = setupScreenLauncher;
@@ -74,6 +75,7 @@ public class PlayerManager {
         this.cartsInRound = cartManager.getCartsInRound();
         this.randomEventScreenLauncher = randomEventScreenLauncher;
         this.randomEventManager = new RandomEventManager(this);
+        this.winOrLose = winOrLose;
 
 
         launchSetupScreen();
@@ -239,6 +241,13 @@ public class PlayerManager {
     public void setEarnedMoney(int currentRoundNumber){
         this.earnedMoney = (currentRoundNumber+1) *12;
     }
+    public String getWinOrLose(){
+        if (numRoundsWon >= numRoundsLost){
+            return "CONGRATULATIONS YOU WON!";
+        } else {
+            return "SORRY YOU LOST";
+        }
+    }
     public void evaluateRoundSuccess(){
         if (roundSuccess == true){
             setEarnedMoney(currentRoundNumber);
@@ -254,6 +263,8 @@ public class PlayerManager {
             launchLostRoundScreen();
         }
     }
+    public int getNumRoundsWon(){return numRoundsWon;}
+    public int getNumRoundsLost(){return numRoundsLost;}
     public void setCartsInRound() {
         this.cartsInRound = cartManager.getCartsInRound();
     }
@@ -287,6 +298,11 @@ public class PlayerManager {
 
     }
     private int currentCartSize;
+    private int numCartsFilled;
+    public int getNumCartsFilled(){
+        return numCartsFilled;
+    }
+
     // since each round has different track distance
 
     public void runRound(int trackDistance) {
@@ -336,6 +352,7 @@ public class PlayerManager {
             failedFilledCarts.add(cart.getCartID());
             //launch round lose screen
         }
+        this.numCartsFilled = successfullyFilledCarts.size();
 
         System.out.println("---------------------------------------------");
 
