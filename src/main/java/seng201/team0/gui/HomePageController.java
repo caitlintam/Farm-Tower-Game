@@ -1,5 +1,7 @@
 package seng201.team0.gui;
 
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -76,5 +78,10 @@ public class HomePageController {
 
         // link to inventory screen
     }
+
+    public void onGiveUpClicked(ActionEvent actionEvent) {
+        Platform.exit();
+    }
+
 
 }

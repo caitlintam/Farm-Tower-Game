@@ -110,6 +110,8 @@ public class ApplyUpgradeScreenController {
     }
 
     public void onNextClicked(ActionEvent event) {
+        playerManager.setInitialTrackDistance();
+        System.out.println("Curent trakc idst" + playerManager.getCurrentTrackDistance());
         System.out.println("Next Button Clicked");
         playerManager.closeApplyUpgradeScreen();
         playerManager.launchChooseRoundDifficultyScreen();

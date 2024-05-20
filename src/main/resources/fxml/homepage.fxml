@@ -86,7 +86,7 @@
                </GridPane.margin>
             </Label>
             <Label fx:id="errorNoTowersInGameLabel" text="Error: Must have at least 3 Towers In-Game" textFill="#fb0505" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
-            <Button fx:id="giveUpButton" mnemonicParsing="false" prefHeight="59.0" prefWidth="118.0" text="Give Up" textFill="#eb0707" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Button fx:id="giveUpButton" mnemonicParsing="false" onAction="#onGiveUpClicked" prefHeight="59.0" prefWidth="118.0" text="Give Up" textFill="#eb0707" GridPane.columnIndex="3" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </children>

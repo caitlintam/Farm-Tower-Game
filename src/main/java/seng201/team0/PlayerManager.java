@@ -37,7 +37,7 @@ public class PlayerManager {
     private List<Tower> initialTowerList;
     private int timeOnTrack;
     //private DoubleProperty numRounds;
-    private int currentTrackDistance = 15;
+    private int currentTrackDistance;
     private List<Integer> trackDistanceOptionsList;
 
     private List<Cart> newCartsInRound;
@@ -215,7 +215,14 @@ public class PlayerManager {
         trackDistanceOptionsList.set(2,currentTrackDistance - 8);
     }
     // sets the current Track Distance after 'difficulty' selected
-    public void setCurrentTrackDistance(int selectedDistanceIndex){currentTrackDistance = trackDistanceOptionsList.get(selectedDistanceIndex);}
+    public void setInitialTrackDistance(){
+        if (currentRoundNumber == 0){
+            currentTrackDistance = numGameRounds * 8 + 10;
+        }
+
+    }
+    public void setCurrentTrackDistance(int selectedDistanceIndex){
+        currentTrackDistance = trackDistanceOptionsList.get(selectedDistanceIndex);}
     public int getCurrentTrackDistance(){return currentTrackDistance;}
 
 
@@ -327,7 +334,7 @@ public class PlayerManager {
             // adds succesfully filled cart to list
             successfullyFilledCarts.add(cart.getCartID());
             // increase money
-  //          setMoney(money *= numReloads);
+  // ////////////////////////////////////////////////// DOTHIS          setMoney(money *= numReloads);///////////////////////////////////////////////////////
             // launch round win screen
             // playerManager.setNumRoundsWon(getNumRoundsWon + 1));
         } else if (currentCartSize < cart.getCartSize()) {

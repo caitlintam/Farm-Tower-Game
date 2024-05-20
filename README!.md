@@ -95,3 +95,18 @@ Submission:
 - Report(PDF)
 - README file
 - program as a jar ( runs on lab machines)
+
+# DOING NOW
+
+implement functionality for:
+
+- levels
+  - cant go below 0
+- upgrades
+  - tower resource amnt/reload speed/both -- levels
+- tower cost
+  - make them more expensive / scale to initial money 
+- starting money in game
+
+# Done
+- track distance doesnt go belwo 0, related to numgamerounds

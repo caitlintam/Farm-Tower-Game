@@ -1,5 +1,8 @@
 package seng201.team0.gui;
 
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import seng201.team0.App;
 import seng201.team0.PlayerManager;
 
 public class GameCompletionScreenController {
@@ -9,4 +12,8 @@ public class GameCompletionScreenController {
         this.playerManager = playerManager;
     }
 
+
+    public void onPlayAgainClicked(ActionEvent actionEvent) {
+
+    }
 }

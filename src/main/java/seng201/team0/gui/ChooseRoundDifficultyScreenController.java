@@ -14,6 +14,7 @@ public class ChooseRoundDifficultyScreenController {
     public Button hardDifficultyButton;
     public Button nextButton;
     public Label errorNoDiffSelected;
+    public Label currentTrackDistLabel;
     private int selectedDifficultyIndex = -1;
     public ChooseRoundDifficultyScreenController(PlayerManager playerManager) {
         this.playerManager = playerManager;
@@ -21,6 +22,7 @@ public class ChooseRoundDifficultyScreenController {
     public void initialize() {
         playerManager.updateTrackDistanceOptionsList();
         errorNoDiffSelected.setVisible(false);
+        currentTrackDistLabel.setText("Current Track Distance: "+playerManager.getCurrentTrackDistance());
         List<Button> difficultyButtons = List.of(easyDifficultyButton, medDifficultyButton, hardDifficultyButton);
         for (int i = 0; i < difficultyButtons.size(); i++) {
             int finalI = i;
@@ -52,6 +54,7 @@ public class ChooseRoundDifficultyScreenController {
             System.out.println(playerManager.getCurrentTrackDistance());
             //sets track distance
             playerManager.setCurrentTrackDistance(selectedDifficultyIndex);
+            playerManager.getCurrentTrackDistance();
    //         playerManager.runGame();
             playerManager.closeChooseRoundDifficultyScreen();
             //playerManager.launchMainGameScreen();
