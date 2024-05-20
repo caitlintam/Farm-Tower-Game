@@ -88,16 +88,25 @@ public class ApplyUpgradeScreenController {
     private void applyUpgrade(Tower selectedTower, Upgrade selectedUpgrade) {
         System.out.println(selectedTower.getTowerName() + " stats before upgrade: \n Reload Speed: "+ selectedTower.getTowerReloadSpeed());
         System.out.println("Level: "+ selectedTower.getTowerLevel() + "\nResource Amount: "+selectedTower.getTowerResourceAmount());
+
         if (Objects.equals(selectedUpgrade.getUpgradeName(), "Tower Reload Speed Boost!")){
-            selectedTower.updateTowerReloadSpeed(selectedTower);
+            selectedTower.upgradeReloadSpeed(selectedTower);
+            selectedTower.assessTowerLevel(selectedTower);
+
+      //      selectedTower.updateTowerReloadSpeed(selectedTower);
             System.out.println("New Reload Speed: "+selectedTower.getTowerReloadSpeed());
         }else if (Objects.equals(selectedUpgrade.getUpgradeName(), "Tower Resource Amount Boost!")){
-            selectedTower.updateTowerResourceAmount(selectedTower);
+            selectedTower.upgradeTowerResourceAmount(selectedTower);
+            selectedTower.assessTowerLevel(selectedTower);
+
             System.out.println("New Resource Amount: "+selectedTower.getTowerResourceAmount());
         } else{ // upgrade is a level upgrade
-            selectedTower.updateTowerLevel(selectedTower);
+            selectedTower.increaseTowerLevel(selectedTower);
             System.out.println("New Level: "+selectedTower.getTowerLevel());
         }
+        System.out.println("stats after upgrade: \n Reload Speed: "+ selectedTower.getTowerReloadSpeed());
+        System.out.println("Level: "+ selectedTower.getTowerLevel() + "\nResource Amount: "+selectedTower.getTowerResourceAmount());
+
         //remove upgrade from upgrade Inventory
         playerManager.removeUpgradeFromInventory(selectedUpgrade);
         // reinitialise upgrade tbale

@@ -101,7 +101,26 @@ Submission:
 - levels
   - start at 1
   - tower level number +=1 for upgrades, random events, if upgrade of res amount applied, and goes above level res amount
-
+  - 
+- 
+- tower level numnbeR: 
+- 
+- methods in tower class?
+  - increase level (random event, level upgrade APPLIED 
+  - ) - changes res amt (+6)and reload speed (-4), +1 to level
+  - assess level ( used after res upgrade bought).
+    - if res amount >(6*current level), increase level(+1) and decrease reload speed (-4)
+    - print tower level up
+    - 
+    - do nothign otherwise
+  - decrease level ( random event()) - cannot go below 0, decrease rest amt, inc reload speed
+- 
+UpGrades:
+- level:(+6 to res, -4 off reload speed). call increase level method
+- res amnt (+2).
+- reload speed (-1). call assess level method.
+- 
+- 
   - decrease only in random events, get set back to level -1( res amt and stuff)
       - cant go below 0
 - upgrades

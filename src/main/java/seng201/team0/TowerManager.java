@@ -61,11 +61,6 @@ public class TowerManager {
             tower.setTowerStatus("Reserve");
         }
     }
-//    public void updateTowerStatus(Tower selectedTower) {
-//        if (Objects.equals(selectedTower.getTowerStatus(), "In-Game")) {
-//            selectedTower.setTowerStatus("Reserve"); // Assuming setTowerStatus() method exists
-//        } else {
-//            selectedTower.setTowerStatus("In-Game"); // Assuming setTowerStatus() method exists
-//        }
-//    }
+
+
 }

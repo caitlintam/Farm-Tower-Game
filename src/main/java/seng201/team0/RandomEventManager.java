@@ -43,7 +43,7 @@ public class RandomEventManager {
     private void executeLevelIncrease() {
         Tower tower = getRandomTower();
         if (tower != null) {
-            tower.setTowerLevel(tower.getTowerLevel() + 1);
+            tower.increaseTowerLevel(tower);
             System.out.println("Random Event: Tower " + tower.getTowerName() + "increased levels");
             String levelIncreaseText = "Tower " + tower.getTowerName() + "has increased levels to level: " + tower.getTowerLevel();
             this.randomEventText = levelIncreaseText;
@@ -54,7 +54,7 @@ public class RandomEventManager {
     private void executeLevelDecrease() {
         Tower tower = getRandomTower();
         if (tower != null) {
-            tower.setTowerLevel(tower.getTowerLevel() - 1);
+            tower.decreaseTowerLevel(tower);
             System.out.println("Random Event: Tower " + tower.getTowerName() + " decreased levels");
             String levelDecreaseText = tower.getTowerName() + " has decreased levels to level: " + tower.getTowerLevel();
             this.randomEventText = levelDecreaseText;
