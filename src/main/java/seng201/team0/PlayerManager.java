@@ -34,9 +34,6 @@ public class PlayerManager {
     private List<Upgrade> upgradeInventory;
     private List<Tower> towersInGame;
     private List<Tower> reserveTowers;
-    private List<Tower> initialTowerList;
-    private int timeOnTrack;
-    //private DoubleProperty numRounds;
     private int currentTrackDistance;
     private List<Integer> trackDistanceOptionsList;
 
@@ -47,6 +44,15 @@ public class PlayerManager {
     private RandomEventController randomEventController;
     private List<Integer> randomEventRoundsList;
     private String winOrLose;
+    private int numRoundsWon = 0;
+    private int numRoundsLost = 0;
+    private boolean roundSuccess = false; // removed private boolean gameSuccess = false;
+    private int earnedMoney;
+    private int currentCartSize;
+    private int numCartsFilled;
+    private String mainGameScreenRoundText;
+    private String winOrLoseGameText;
+    private String randomText;
 
     public PlayerManager(Consumer<PlayerManager> setupScreenLauncher, Consumer<PlayerManager> towerSetUpScreenLauncher, Runnable clearScreen, Consumer<PlayerManager> homeScreenLauncher, Consumer<PlayerManager> shopScreenLauncher, Consumer<PlayerManager> inventoryScreenLauncher, Consumer<PlayerManager> applyUpgradeScreenLauncher, Consumer<PlayerManager> chooseRoundDifficultyScreenLauncher, Consumer<PlayerManager> mainGameScreenLauncher, Consumer<PlayerManager> wonRoundScreenLauncher, Consumer<PlayerManager> lostRoundScreenLauncher, Consumer<PlayerManager> gameCompletionScreenLauncher, Consumer<PlayerManager> randomEventScreenLauncher) {
         this.setupScreenLauncher = setupScreenLauncher;
@@ -106,16 +112,12 @@ public class PlayerManager {
     public int getNumGameRounds(){ return numGameRounds;}
     public void setNumGameRounds(int gameRounds){ this.numGameRounds = gameRounds;}
     public int getCurrentRoundNumber(){ return currentRoundNumber;}
-    public void setCurrentRoundNumber(int currentRoundNumber){ this.currentRoundNumber = currentRoundNumber;}
     public int getGameDifficulty(){ return gameDifficulty;}
     public void setGameDifficulty(int gameDifficulty){
         this.gameDifficulty = gameDifficulty;
-        // easier (smaller) gamedifficulty = more initialmoney
         setMoney((4-gameDifficulty) * 500);
     }
     public List<Tower> getTowersInGame(){return towersInGame;}
-    //public List<Tower> getInitialTowerList(){return initialTowerList;}
-  //  public List<Tower> setInitialTowerList(List<Tower> towers){this.initialTowerList = towers;}
     public void launchSetupScreen() {
         setupScreenLauncher.accept(this);
     }
@@ -226,31 +228,21 @@ public class PlayerManager {
     public void setCurrentTrackDistance(int selectedDistanceIndex){
         currentTrackDistance = trackDistanceOptionsList.get(selectedDistanceIndex);}
     public int getCurrentTrackDistance(){return currentTrackDistance;}
-
-
-    // cbb putting at top now
-    private int numRoundsWon = 0;
-    private int numRoundsLost = 0;
-    private boolean roundSuccess = false;
-    private boolean gameSuccess = false;
     public void startRound(){
         launchMainGameScreen();
         runRound(currentTrackDistance);
         launchMainGameScreen();
 
     }
-
     public List<Integer> getRandomEventsRoundList(){
         return randomEventRoundsList;
     }
-    private int earnedMoney;
     public int getEarnedMoney(){
         return earnedMoney;
     }
     public void setEarnedMoney(int currentRoundNumber){
         this.earnedMoney = (currentRoundNumber+1) *12;
     }
-    private String winOrLoseGameText;
     public void setWinOrLoseGameText(){
         if (numRoundsWon >= numRoundsLost){
             this.winOrLoseGameText =  "CONGRATULATIONS YOU WON!";
@@ -281,7 +273,6 @@ public class PlayerManager {
     public void setCartsInRound() {
         this.cartsInRound = cartManager.getCartsInRound();
     }
-    private String randomText;
     public void toHomeOrRandomEventOrGameFinish() {
 
         List<Integer> randomEventRounds = randomEventManager.getRandomEventRounds();
@@ -305,20 +296,9 @@ public class PlayerManager {
     public String getRandomText(){
         return randomText;
     }
-
-
-
-    private void evaluateGameProgress(){
-
-    }
-    private int currentCartSize;
-    private int numCartsFilled;
     public int getNumCartsFilled(){
         return numCartsFilled;
     }
-
-    // since each round has different track distance
-    private String mainGameScreenRoundText;
     public void setMainGameScreenRoundText(String text){
         this.mainGameScreenRoundText = text;
     }
@@ -390,38 +370,18 @@ public class PlayerManager {
         System.out.println("---------------------------------------------");
 
             }
-
-        // once all carts have been through round
-        // if all carts filled ( failed is empty == true ) won, otherwise false, have a cart not filled
         int numCartsFilled = successfullyFilledCarts.size();
-        int numCartsNotFilled = failedFilledCarts.size();
         int numCarts = cartsInRound.size();
         if (numCartsFilled >= ((numCarts/2 ))){
             roundSuccess = true;
         }else{
             roundSuccess = false;
         }
-
-    }
-    public void setReserveTowers() {
-        for (Tower tower : towersInGame) {
-            if (tower.getTowerStatus().equals("Reserve")) { // corrected tower status comparison
-                reserveTowers.add(tower);
-            }
-        }
     }
     public List<Tower> getReserveTowers() {
         return reserveTowers;
     }
-    public void setRandomEventText(String text){
-        randomEventController.setRandomEventText(text);
-    }
-
     public void resetMainGameText() {
         this.mainGameScreenRoundText = " ";
     }
 }
-
-
-// need to make round difficulty related to winning money amt.
-// harder diff when button clicked, set index to something, times that um by money.
