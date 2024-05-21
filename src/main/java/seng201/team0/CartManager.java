@@ -16,18 +16,11 @@ public class CartManager {
     private List<String> cartsInRoundResourceTypes;
     private Random random;
     private int numberOfCarts;
-    // private int currentCartSize;
-    //privcate int num_reloads = 0;
-
 
     public List<Cart> getCartsInRound() {
         return cartsInRound;
     }
-//    public CartManager(List<Cart> cartsInRound){
-//        this.random = new Random(201);
-//        generateNewCartsInGame();
-//        this.cartsInRound = cartsInRound;
-//    }
+
     public CartManager(PlayerManager playerManager, TowerManager towerManager) {
         this.playerManager = playerManager;
         this.towerManager = towerManager;
@@ -35,16 +28,6 @@ public class CartManager {
         this.cartsInRound = new ArrayList<Cart>();
         this.potentialCartResourceTypes = new ArrayList<String>();
         this.random = new Random(201);
-//        carts.addAll(List.of(
-//                new Cart(100, "Pigs", 20),
-//                new Cart(70, "Cows", 10),
-//                new Cart(100, "Hay", 40),
-//                new Cart(90, "Timber", 10),
-//                new Cart(120, "Water", 5),
-//                new Cart(50, "Steel", 30),
-//                new Cart(60, "Corn", 10),
-//                new Cart(120, "Wheat", 5),
-//                new Cart(100, "Chickens", 40))))
         setPotentialCartResourceTypes();
 
     }
@@ -59,10 +42,6 @@ public class CartManager {
     public void setNumberOfCarts(){
         this.numberOfCarts = playerManager.getTowersInGame().size();
     }
-    public int getCartID(Cart cart) {
-        return cart.getCartID();
-    }
-
 
     // call this function when starting game, generates carts based on resource type
     public void generateNewCartsInGame() {

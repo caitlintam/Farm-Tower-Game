@@ -15,10 +15,7 @@ public class TowerManager {
 
 
     public TowerManager(){
-//        towerList.addAll(List.of(new Tower("Piglet Palace", 25, "Pigs", 15, 2, 45.00),
-//                new Tower("Cowtopia Castle", 10, "Cows", 30, 1,25.00),
-//                new Tower("Haybale Haven", 50, "Hay", 10, 1, 10.00),
-//                new Tower("Timber Turret", 20, "Timber", 60, 2, 50.00)));
+
 
         defaultTowers.addAll(List.of(
                 new Tower("Piglet Palace", 10, "Pigs", 30, 1, 45.00, "Reserve"),
@@ -32,9 +29,7 @@ public class TowerManager {
                 new Tower("Chicken Coop", 12, "Chickens", 27, 1, 40.00,"Reserve")));
 
     }
-    public void addTowerListToPlayer(PlayerManager playerManager){
-        //playerManager.addTowersToInventory(towerList); // adds tower list to inventory
-    }
+
     public List<Tower> getTowerList(){
         return towerList;
     }

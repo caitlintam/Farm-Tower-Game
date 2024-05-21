@@ -83,9 +83,6 @@ public class RandomEventManager {
         //    playerManager.setRandomEventText(brokenTowerText);
         }
     }
-    public void setRandomEventText(String randomEventText){
-        this.randomEventText = randomEventText;
-    }
     public String getRandomEventText(){
         return randomEventText;
     }

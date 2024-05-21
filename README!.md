@@ -167,4 +167,18 @@ MOO - License Agreement
 You must attribute the work in the manner specified by the author or licensor.
 - Author: manofham, Title: Moo 1 - Moo Moo the Cow
 - 
-- 
+
+
+void addUpgradesToInventory(Upgrade upgrade)
+
+removeTowerFromInventory(Tower selectedTower)
+
+removeUpgradeFromInventory(Upgrade selectedUpgrade) 
+
+
+List<Tower> getTowerInventory()
+List<Upgrade> getUpgradeInventory()
+void startRound()
+List<Integer> getRandomEventsRoundList()
+void evaluateRoundSuccess()
+void runRound(int trackDistance) 

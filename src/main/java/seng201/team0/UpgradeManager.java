@@ -7,19 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UpgradeManager {
-    private String upgradeName;
     private List<Upgrade> upgradeList = new ArrayList<>();
     public UpgradeManager(){
         upgradeList.addAll(List.of(new Upgrade("Tower Level Boost!", 600.00),
                 new Upgrade("Tower Resource Amount Boost!", 200.00),
                 new Upgrade("Tower Reload Speed Boost!", 200.00)));
-    }
-
-    public void setUpgradeList(List<Upgrade> upgradeList){
-        this.upgradeList = upgradeList;
-    }
-    public void setUpgradeName(String towerName){
-        this.upgradeName = upgradeName;
     }
     public List<Upgrade> getUpgradeList(){
         return upgradeList;
