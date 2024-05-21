@@ -8,8 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class TowerManager {
-    private double towerCost;
-    private String towerName;
+
     private List<Tower> towerList;
     private final List<Tower> defaultTowers = new ArrayList<>();
 
@@ -36,17 +35,9 @@ public class TowerManager {
     public void setTowerList(List<Tower> towerList){
         this.towerList = towerList;
     }
-    public String getTowerName(){
-        return towerName;
-    }
-    public void setTowerName(String towerName){
-        this.towerName = towerName;
-    }
+
     public List<Tower> getDefaultTowers(){
         return defaultTowers;
-    }
-    public double getTowerCost(){
-        return towerCost;
     }
 
     public void setTowerStatus(Tower tower) {

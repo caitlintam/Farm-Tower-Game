@@ -19,7 +19,7 @@ public class LostRoundScreenController {
 
     public void initialize(){
         DistanceTravelledLabel.setText("Distance Travelled: " + playerManager.getCurrentTrackDistance());
-        LosingRoundLabel.setText("Round: " + playerManager.getCurrentRoundNumber());
+        LosingRoundLabel.setText("Round: " + (playerManager.getCurrentRoundNumber()+1));
         cartsFilledLabel.setText("Carts Filled: " + playerManager.getNumCartsFilled() + " / " + playerManager.getTowersInGame().size());
         moneyEarnedLabel.setText("Money Earned: $ 0.00");
     }

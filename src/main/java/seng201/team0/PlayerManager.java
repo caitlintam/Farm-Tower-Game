@@ -6,10 +6,11 @@ import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
+import seng201.team0.gui.ChooseRoundDifficultyScreenController;
 import seng201.team0.gui.RandomEventController;
 import seng201.team0.models.*;
 
-public class PlayerManager implements Player, Round {
+public class PlayerManager implements Player {
     private String name;
     private int currentRoundNumber = 0;
     private int numGameRounds = 0;
@@ -32,9 +33,6 @@ public class PlayerManager implements Player, Round {
     private List<Upgrade> upgradeInventory;
     private List<Tower> towersInGame;
     private List<Tower> reserveTowers;
-    private List<Tower> initialTowerList;
-    private int timeOnTrack;
-    //private DoubleProperty numRounds;
     private int currentTrackDistance;
     private List<Integer> trackDistanceOptionsList;
 
@@ -42,9 +40,9 @@ public class PlayerManager implements Player, Round {
     private CartManager cartManager;
     private List<Cart> cartsInRound;
     private RandomEventManager randomEventManager;
-    private RandomEventController randomEventController;
     private List<Integer> randomEventRoundsList;
     private String winOrLose;
+    private RoundService roundService;
 
     public PlayerManager(Consumer<PlayerManager> setupScreenLauncher, Consumer<PlayerManager> towerSetUpScreenLauncher, Runnable clearScreen, Consumer<PlayerManager> homeScreenLauncher, Consumer<PlayerManager> shopScreenLauncher, Consumer<PlayerManager> inventoryScreenLauncher, Consumer<PlayerManager> applyUpgradeScreenLauncher, Consumer<PlayerManager> chooseRoundDifficultyScreenLauncher, Consumer<PlayerManager> mainGameScreenLauncher, Consumer<PlayerManager> wonRoundScreenLauncher, Consumer<PlayerManager> lostRoundScreenLauncher, Consumer<PlayerManager> gameCompletionScreenLauncher, Consumer<PlayerManager> randomEventScreenLauncher) {
         this.setupScreenLauncher = setupScreenLauncher;
@@ -73,16 +71,11 @@ public class PlayerManager implements Player, Round {
         this.cartsInRound = cartManager.getCartsInRound();
         this.randomEventScreenLauncher = randomEventScreenLauncher;
         this.randomEventManager = new RandomEventManager(this);
-        this.winOrLose = winOrLose;
-
+        this.roundService = new RoundService(this,new CartManager(this, new TowerManager()));
 
         launchSetupScreen();
     }
-    public void setRandomEventRoundsList(){
-        randomEventManager.setRandomEventRounds();
-        this.randomEventRoundsList = randomEventManager.getRandomEventRounds();
-        System.out.println(randomEventRoundsList);
-    }
+
     public String getName(){
         return name;
     }
@@ -104,7 +97,6 @@ public class PlayerManager implements Player, Round {
     public int getNumGameRounds(){ return numGameRounds;}
     public void setNumGameRounds(int gameRounds){ this.numGameRounds = gameRounds;}
     public int getCurrentRoundNumber(){ return currentRoundNumber;}
-    public void setCurrentRoundNumber(int currentRoundNumber){ this.currentRoundNumber = currentRoundNumber;}
     public int getGameDifficulty(){ return gameDifficulty;}
     public void setGameDifficulty(int gameDifficulty){
         this.gameDifficulty = gameDifficulty;
@@ -112,26 +104,36 @@ public class PlayerManager implements Player, Round {
         setMoney((4-gameDifficulty) * 500);
     }
     public List<Tower> getTowersInGame(){return towersInGame;}
-    //public List<Tower> getInitialTowerList(){return initialTowerList;}
-  //  public List<Tower> setInitialTowerList(List<Tower> towers){this.initialTowerList = towers;}
+
+    public void setRandomEventRoundsList(){
+        randomEventManager.setRandomEventRounds();
+        this.randomEventRoundsList = randomEventManager.getRandomEventRounds();
+        System.out.println(randomEventRoundsList);
+    }
+
+    //////////////////////////////////////////// launching screens ///////////////////////////////////////////////////////
     public void launchSetupScreen() {
         setupScreenLauncher.accept(this);
-    }
-    public void closeSetupScreen(){
-        clearScreen.run();
     }
     public void launchTowerSetUpScreen(){
         towerSetUpScreenLauncher.accept(this);
     }
-    public void closeTowerSetUpScreen(){
-        clearScreen.run();
-    }
-    public void closeMainScreen() {
-        clearScreen.run();
-    }
     public void launchHomeScreen(){
         homeScreenLauncher.accept(this);
         // catch if rounds exceeded
+    }
+    public void launchMainGameScreen() {
+        mainGameScreenLauncher.accept(this);
+    }
+    public void launchRandomEventScreen() {
+        randomEventScreenLauncher.accept(this);
+    }
+    public void launchWonRoundScreen(){
+        wonRoundScreenLauncher.accept(this);
+    }
+    public void launchLostRoundScreen(){lostRoundScreenLauncher.accept(this);
+    }
+    private void launchGameCompletionScreen() {gameCompletionScreenLauncher.accept(this);
     }
     public void launchShopScreen() {
         shopScreenLauncher.accept(this);
@@ -142,21 +144,17 @@ public class PlayerManager implements Player, Round {
     public void launchApplyUpgradeScreen(){applyUpgradeScreenLauncher.accept(this);}
     public void launchChooseRoundDifficultyScreen(){chooseRoundDifficultyScreenLauncher.accept(this);
     }
-
-    public void launchMainGameScreen() {
-        mainGameScreenLauncher.accept(this);
-    }
-    public void launchRandomEventScreen() {
-       randomEventScreenLauncher.accept(this);
-    }
-    public void launchWonRoundScreen(){
-        wonRoundScreenLauncher.accept(this);
-    }
-    public void launchLostRoundScreen(){lostRoundScreenLauncher.accept(this);
-    }
-    private void launchGameCompletionScreen() {gameCompletionScreenLauncher.accept(this);
+//////////////////////// Closing Screens ////////////////////////////
+    public void closeSetupScreen(){
+        clearScreen.run();
     }
 
+    public void closeTowerSetUpScreen(){
+        clearScreen.run();
+    }
+    public void closeMainScreen() {
+        clearScreen.run();
+    }
     public void closeChooseRoundDifficultyScreen(){clearScreen.run();}
     public void closeShopScreen(){
         clearScreen.run();
@@ -168,15 +166,12 @@ public class PlayerManager implements Player, Round {
         clearScreen.run();
     }
 
-
     public void addTowersToInventory(Tower tower) {
         Tower newTower = new Tower(tower.getTowerName(), tower.getTowerResourceAmount(), tower.getTowerResourceType(),
                 tower.getTowerReloadSpeed(), tower.getTowerLevel(), tower.getTowerCost(),
                 tower.getTowerStatus());
         // Add the new tower object to the inventory
         towerInventory.add(newTower);
-
-        //towerInventory.add(tower);
     }
     public void addUpgradesToInventory(Upgrade upgrade){
         Upgrade newUpgrade = new Upgrade(upgrade.getUpgradeName(), upgrade.getUpgradeCost());
@@ -219,25 +214,18 @@ public class PlayerManager implements Player, Round {
         if (currentRoundNumber == 0){
             currentTrackDistance = numGameRounds * 8 + 10;
         }
-
     }
     public void setCurrentTrackDistance(int selectedDistanceIndex){
         currentTrackDistance = trackDistanceOptionsList.get(selectedDistanceIndex);}
     public int getCurrentTrackDistance(){return currentTrackDistance;}
-
-
     // cbb putting at top now
     private int numRoundsWon = 0;
     private int numRoundsLost = 0;
     private boolean roundSuccess = false;
-    private boolean gameSuccess = false;
     public void startRound(){
+        roundService.runRound(currentTrackDistance);
         launchMainGameScreen();
-        runRound(currentTrackDistance);
-        launchMainGameScreen();
-
     }
-
     public List<Integer> getRandomEventsRoundList(){
         return randomEventRoundsList;
     }
@@ -265,25 +253,19 @@ public class PlayerManager implements Player, Round {
             System.out.println("money before " + money);
             setMoney(money + earnedMoney);
             System.out.println("money after " + money);
-//            setMoney(money+=);
-
-
-         //   numRoundsWon += 1;
             launchWonRoundScreen();
         }else{
             System.out.println("No Money eared");
-         //   numRoundsLost += 1;
             launchLostRoundScreen();
         }
     }
     public int getNumRoundsWon(){return numRoundsWon;}
     public int getNumRoundsLost(){return numRoundsLost;}
-    public void setCartsInRound() {
-        this.cartsInRound = cartManager.getCartsInRound();
+    public List<Cart> getCartsInRound(){
+        return cartsInRound;
     }
     private String randomText;
     public void toHomeOrRandomEventOrGameFinish() {
-
         List<Integer> randomEventRounds = randomEventManager.getRandomEventRounds();
         if ((currentRoundNumber+1) >= numGameRounds){
             setWinOrLoseGameText();
@@ -306,123 +288,38 @@ public class PlayerManager implements Player, Round {
         return randomText;
     }
 
-
-
-    private void evaluateGameProgress(){
-
+    public void setNumCartsFilled(int numCartsFilled){
+        this.numCartsFilled = numCartsFilled;
     }
-    private int currentCartSize;
+    public void increaseNumRoundsWon(){
+        numRoundsWon +=1;
+    }
+    public void increaseNumRoundsLost(){
+        numRoundsLost +=1;
+    }
+
+    public void setRoundSuccess(boolean bool){
+        roundSuccess = bool;
+    }
     private int numCartsFilled;
     public int getNumCartsFilled(){
         return numCartsFilled;
     }
 
-    // since each round has different track distance
-    private String mainGameScreenRoundText;
-    public void setMainGameScreenRoundText(String text){
-        this.mainGameScreenRoundText = text;
-    }
+    private String mainGameScreenText;
     public String getMainGameScreenRoundText(){
-        return mainGameScreenRoundText;
-    }
-    public void runRound(int trackDistance) {
-        mainGameScreenRoundText = " ";
-        mainGameScreenRoundText += "------- Running Round " + (currentRoundNumber+1) +  " ------";
-
-        List<Integer> successfullyFilledCarts = new ArrayList<Integer>();
-        List<Integer> failedFilledCarts = new ArrayList<Integer>();
-        cartManager.generateNewCartsInGame();
-        setCartsInRound();
-        mainGameScreenRoundText += "\n num of carts in round" + cartsInRound.size();
-        // for each cart;
-        for (Cart cart : cartsInRound) {
-            currentCartSize = 0;
-            mainGameScreenRoundText += "\n\n----------------------------------------------------------- Cart " + (cart.getCartID()+1) + " -----------------------------------------------------------\n Resource Type 1: "+ cart.getPrimaryCartResourceType() + " ------- Resource Type 2: " + cart.getSecondaryCartResourceType() + " ------- Size: "+ cart.getCartSize() + cart.getCartSpeed()+  "  ............is going round the track ";
-       //     System.out.println("--- Cart " + cart.getCartID() + " -- Primary Resource Type: "+ cart.getPrimaryCartResourceType() + " -- Secondary Resource Type: " + cart.getSecondaryCartResourceType() + " -- Size: "+ cart.getCartSize() + cart.getCartSpeed()+  "  ...is going round the track ---");
-            // for each tower
-            boolean isMatched = false;
-            for (Tower tower : towersInGame) {
-                // if the resources types match
-                if (!isMatched&&(Objects.equals(cart.getPrimaryCartResourceType() , tower.getTowerResourceType())) | (Objects.equals(cart.getSecondaryCartResourceType() , tower.getTowerResourceType()))) {
-
-   //                 System.out.println("Tower: " + tower.getTowerName() + " -- Resource type: " + tower.getTowerResourceType() + " -- Matches with cart: " + cart.getCartID());
-                    // calculate the carts time on the track..  turn time to integer
-                    int cartTimeOnTrack = (int) (trackDistance / cart.getCartSpeed());
-                    mainGameScreenRoundText+= "\n"+ tower.getTowerName()+ " tower with reload speed of " + tower.getTowerReloadSpeed() + "m/s ------- Matches with cart: " + cart.getCartID() +"! The cart is on the track for " + cartTimeOnTrack+"s";
-     //               System.out.println("cartTimeOnTrack: "+ cartTimeOnTrack);
-      //              System.out.println("tower relaod speed: "+ tower.getTowerReloadSpeed());
-                    int numTowerReloads = (int) (Math.floorDiv(cartTimeOnTrack, tower.getTowerReloadSpeed()));
-                    // for each reload of cart
-                    mainGameScreenRoundText += "\nCart is being filled: " + currentCartSize + "kg " ;
-        //            System.out.println("Cart is being filled from current size: " + currentCartSize);
-         //           System.out.println("Num tower reloads " + numTowerReloads);
-                    for (int i = 0; i <= numTowerReloads; i++) {
-                        currentCartSize += tower.getTowerResourceAmount();
-                        mainGameScreenRoundText += "--------> " + currentCartSize + "kg ";
-         //               System.out.println("To current size after fill: " + currentCartSize);
-                    }
-                    mainGameScreenRoundText += ". Cart is filled to "+ currentCartSize + "kgs after " + numTowerReloads + " reload/s";
-                    isMatched = true;
-                } else {
-
-      //              System.out.println("Oh no, none of your towers matched cart " + cart.getCartID() + " resource type.");
-                }
-            }
-                    // once done all possible tower reloads, check if filled capacity (>=size) or not ( <size)
-        if (currentCartSize >= cart.getCartSize()) {
-            mainGameScreenRoundText += " You successfully filled Cart " + (cart.getCartID()+1) + "!";
-            System.out.println("You successfully filled cart " + cart.getCartID()  );
-            // adds succesfully filled cart to list
-            successfullyFilledCarts.add(cart.getCartID());
-            // increase money
-  // ////////////////////////////////////////////////// DOTHIS          setMoney(money *= numReloads);///////////////////////////////////////////////////////
-            // launch round win screen
-            // playerManager.setNumRoundsWon(getNumRoundsWon + 1));
-        } else if (currentCartSize < cart.getCartSize()) {
-            mainGameScreenRoundText += "\nOh no, none of your towers matched cart " + cart.getCartID() + " resource type.";
-            mainGameScreenRoundText += " You didn't manage to fill cart " + cart.getCartID();
-            System.out.println("Uh Oh, you didn't manage to fill cart " + cart.getCartID() );
-            // adds unsucesfily filled cart to list
-            failedFilledCarts.add(cart.getCartID());
-            //launch round lose screen
-        }
-        this.numCartsFilled = successfullyFilledCarts.size();
-        setMainGameScreenRoundText(mainGameScreenRoundText);
-
-        System.out.println("---------------------------------------------");
-
-            }
-
-        // once all carts have been through round
-        // if all carts filled ( failed is empty == true ) won, otherwise false, have a cart not filled
-        int numCartsFilled = successfullyFilledCarts.size();
-        int numCartsNotFilled = failedFilledCarts.size();
-        int numCarts = cartsInRound.size();
-        if (numCartsFilled >= ((numCarts/2 ))){
-            numRoundsWon += 1;
-            roundSuccess = true;
-        }else{
-            numRoundsLost += 1;
-            roundSuccess = false;
-        }
-
-    }
-    public void setReserveTowers() {
-        for (Tower tower : towersInGame) {
-            if (tower.getTowerStatus().equals("Reserve")) { // corrected tower status comparison
-                reserveTowers.add(tower);
-            }
-        }
+        return mainGameScreenText;
     }
     public List<Tower> getReserveTowers() {
         return reserveTowers;
     }
-    public void setRandomEventText(String text){
-        randomEventController.setRandomEventText(text);
-    }
 
     public void resetMainGameText() {
-        this.mainGameScreenRoundText = " ";
+        this.mainGameScreenText = " ";
+    }
+
+    public void setMainGameScreenText(String mainGameScreenRoundText) {
+        this.mainGameScreenText = mainGameScreenRoundText;
     }
 }
 

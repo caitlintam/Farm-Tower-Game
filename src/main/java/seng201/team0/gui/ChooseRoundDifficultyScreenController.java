@@ -7,8 +7,6 @@ import javafx.scene.control.Label;
 import seng201.team0.PlayerManager;
 
 import java.util.List;
-//import javafx.scene.media.AudioClip;
-
 public class ChooseRoundDifficultyScreenController {
     private final PlayerManager playerManager;
     public Button easyDifficultyButton;
@@ -16,7 +14,6 @@ public class ChooseRoundDifficultyScreenController {
     public Button hardDifficultyButton;
     public Button nextButton;
     public Label errorNoDiffSelected;
- //   public Label currentTrackDistLabel;
     private int selectedDifficultyIndex = -1;
     public ChooseRoundDifficultyScreenController(PlayerManager playerManager) {
         this.playerManager = playerManager;
@@ -57,29 +54,17 @@ public class ChooseRoundDifficultyScreenController {
             playerManager.resetMainGameText();
             errorNoDiffSelected.setVisible(false);
             System.out.println("Difficulty selected:" + (selectedDifficultyIndex));
-            System.out.println(playerManager.getCurrentTrackDistance());
             //sets track distance
             playerManager.setCurrentTrackDistance(selectedDifficultyIndex);
-            playerManager.getCurrentTrackDistance();
-   //         playerManager.runGame();
             playerManager.closeChooseRoundDifficultyScreen();
-            //playerManager.launchMainGameScreen();
+
             // launches main screen to start round
             playerManager.startRound();
 
 
 
 
-
-            //show error
-
-        // if the
-        //playerManager. close this screen
-        // playerManager.launch next screen
     }
 }
 
-    // on button clicked{
-    // determine what track distance
-    // call method setInitialTrackDistance();
 }

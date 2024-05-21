@@ -17,7 +17,7 @@ public class WonRoundScreenController {
     private  Label YouWonRoundLabel;
     public void initialize(){
         distanceTravelledLabel.setText("Distance Travelled: " + playerManager.getCurrentTrackDistance());
-        YouWonRoundLabel.setText("Round: " + playerManager.getCurrentRoundNumber());
+        YouWonRoundLabel.setText("Round: " + (playerManager.getCurrentRoundNumber()+1));
         cartsFilledLabel.setText("Carts Filled: " + playerManager.getNumCartsFilled() + " / " + playerManager.getTowersInGame().size());
         MoneyEarnedLabel.setText("Money Earned: $ " + playerManager.getEarnedMoney());
     }

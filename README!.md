@@ -182,3 +182,8 @@ void startRound()
 List<Integer> getRandomEventsRoundList()
 void evaluateRoundSuccess()
 void runRound(int trackDistance) 
+
+
+
+---- DO SERVICE CLASS / READ THROUGH CODE, BREAK IT UP
+- THEN DO EXCEPTIONS, THEN DO TESTING

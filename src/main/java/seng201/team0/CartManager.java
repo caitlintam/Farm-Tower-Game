@@ -24,7 +24,6 @@ public class CartManager {
     public CartManager(PlayerManager playerManager, TowerManager towerManager) {
         this.playerManager = playerManager;
         this.towerManager = towerManager;
-        // this.carts = new ArrayList<>();
         this.cartsInRound = new ArrayList<Cart>();
         this.potentialCartResourceTypes = new ArrayList<String>();
         this.random = new Random(201);
