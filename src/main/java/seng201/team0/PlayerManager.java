@@ -269,11 +269,12 @@ public class PlayerManager {
             System.out.println("money after " + money);
 //            setMoney(money+=);
 
-            numRoundsWon += 1;
+
+         //   numRoundsWon += 1;
             launchWonRoundScreen();
         }else{
             System.out.println("No Money eared");
-            numRoundsLost += 1;
+         //   numRoundsLost += 1;
             launchLostRoundScreen();
         }
     }
@@ -286,7 +287,7 @@ public class PlayerManager {
     public void toHomeOrRandomEventOrGameFinish() {
 
         List<Integer> randomEventRounds = randomEventManager.getRandomEventRounds();
-        if ((currentRoundNumber+1) > numGameRounds){
+        if ((currentRoundNumber+1) >= numGameRounds){
             setWinOrLoseGameText();
             System.out.println("Here! compelte game");
             launchGameCompletionScreen();
@@ -328,7 +329,7 @@ public class PlayerManager {
     }
     public void runRound(int trackDistance) {
         mainGameScreenRoundText = " ";
-        mainGameScreenRoundText += "------- Running Round " + currentRoundNumber +  " ------";
+        mainGameScreenRoundText += "------- Running Round " + (currentRoundNumber+1) +  " ------";
 
         List<Integer> successfullyFilledCarts = new ArrayList<Integer>();
         List<Integer> failedFilledCarts = new ArrayList<Integer>();
@@ -338,7 +339,7 @@ public class PlayerManager {
         // for each cart;
         for (Cart cart : cartsInRound) {
             currentCartSize = 0;
-            mainGameScreenRoundText += "\n\n\n--- Cart " + cart.getCartID() + " -- Primary Resource Type: "+ cart.getPrimaryCartResourceType() + " -- Secondary Resource Type: " + cart.getSecondaryCartResourceType() + " -- Size: "+ cart.getCartSize() + cart.getCartSpeed()+  "  ...is going round the track ---";
+            mainGameScreenRoundText += "\n\n\n----------------------------- Cart " + (cart.getCartID()+1) + " -----------------------------\n Primary Resource Type: "+ cart.getPrimaryCartResourceType() + " -- Secondary Resource Type: " + cart.getSecondaryCartResourceType() + " -- Size: "+ cart.getCartSize() + cart.getCartSpeed()+  "  ...is going round the track ---";
        //     System.out.println("--- Cart " + cart.getCartID() + " -- Primary Resource Type: "+ cart.getPrimaryCartResourceType() + " -- Secondary Resource Type: " + cart.getSecondaryCartResourceType() + " -- Size: "+ cart.getCartSize() + cart.getCartSpeed()+  "  ...is going round the track ---");
             // for each tower
             for (Tower tower : towersInGame) {
@@ -398,8 +399,10 @@ public class PlayerManager {
         int numCartsNotFilled = failedFilledCarts.size();
         int numCarts = cartsInRound.size();
         if (numCartsFilled >= ((numCarts/2 ))){
+            numRoundsWon += 1;
             roundSuccess = true;
         }else{
+            numRoundsLost += 1;
             roundSuccess = false;
         }
 
