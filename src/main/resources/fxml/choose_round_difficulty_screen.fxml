@@ -56,7 +56,7 @@
             <Insets top="95.0" />
          </GridPane.margin>
          <image>
-            <Image url="@easyImage.jpg" />
+            <Image url="@../Images/easyImage.jpg" />
          </image>
       </ImageView>
       <ImageView fx:id="mediumImageView" fitHeight="150.0" fitWidth="195.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
@@ -64,7 +64,7 @@
             <Insets top="75.0" />
          </GridPane.margin>
          <image>
-            <Image url="@mediumImage.png" />
+            <Image url="@../Images/mediumImage.png" />
          </image>
       </ImageView>
       <ImageView fx:id="hardImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
@@ -72,7 +72,7 @@
             <Insets top="50.0" />
          </GridPane.margin>
          <image>
-            <Image url="@hardImage.png" />
+            <Image url="@../Images/hardImage.png" />
          </image>
       </ImageView>
    </children>
