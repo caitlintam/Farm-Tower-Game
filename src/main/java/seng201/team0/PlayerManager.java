@@ -268,6 +268,7 @@ public class PlayerManager {
             setMoney(money + earnedMoney);
             System.out.println("money after " + money);
 //            setMoney(money+=);
+
             numRoundsWon += 1;
             launchWonRoundScreen();
         }else{

@@ -152,4 +152,19 @@ implement functionality for:
 - buying a tower. if ingame towers list size <5 and inventory size < 10. add to in games, set to in game status
 - otherwise (ingame >=5), add to reserve list, add to inventory, status reserve.
 - if invenotry size>10: cant buy tower, inventory full
+
+
+
+
+-- audio
+from choose difficulty, on next button clicked
+
+
+
+
+CREDIT AUDO
+MOO - License Agreement
+You must attribute the work in the manner specified by the author or licensor.
+- Author: manofham, Title: Moo 1 - Moo Moo the Cow
+- 
 - 

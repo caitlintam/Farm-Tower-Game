@@ -15,7 +15,7 @@
     <RowConstraints maxHeight="193.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label fx:id="mainGameTextLabel" prefHeight="334.0" prefWidth="856.0" text="Label" wrapText="true" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+      <Label fx:id="mainGameTextLabel" prefHeight="334.0" prefWidth="856.0" text="Label" textAlignment="CENTER" wrapText="true" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
       <ProgressBar fx:id="progressBar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="200.0" progress="0.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets left="30.0" right="30.0" top="40.0" />
