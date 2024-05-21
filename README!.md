@@ -1,6 +1,18 @@
 # Team 115 SENG Project
 
 ## Farm Resource Game
+
+## Licensing
+All images are attributed to Freepik
+Following Freepiks license, You are free to use this image:
+- For both personal and commercial projects and to modify it.
+- In a website or presentation template or application or as part of your design.
+
+You are not allowed to:
+- Sub-license, resell or rent it.
+- Include it in any online or offline archive or database.
+As this project is for personal use, and I have credited Freepik I am following their license
+
 # TO DO
 
 - add more prints to show what happening when buttons are clicked ( shop/ buy )

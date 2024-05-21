@@ -3,6 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -21,9 +23,18 @@
     <RowConstraints maxHeight="319.0" minHeight="10.0" prefHeight="186.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button fx:id="easyDifficultyButton" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" text="Easy" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-      <Button fx:id="medDifficultyButton" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" text="Medium" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-      <Button fx:id="hardDifficultyButton" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" text="Hard" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+      <Button fx:id="easyDifficultyButton" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" text="Easy" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets bottom="140.0" top="10.0" />
+         </GridPane.margin></Button>
+      <Button fx:id="medDifficultyButton" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" text="Medium" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets bottom="140.0" top="10.0" />
+         </GridPane.margin></Button>
+      <Button fx:id="hardDifficultyButton" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" text="Hard" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets bottom="140.0" top="10.0" />
+         </GridPane.margin></Button>
       <Button fx:id="nextButton" mnemonicParsing="false" onAction="#onNextButtonClicked" prefHeight="51.0" prefWidth="110.0" text="Next" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
       <Label fx:id="errorNoDiffSelected" text="Erorr: No Difficulty Selected" textFill="#ef0707" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
          <GridPane.margin>
@@ -38,5 +49,29 @@
       <Label text="Track Distance -5m !" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
       <Label text="Track Distance -8m !" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
       <Label fx:id="currentTrackDistLabel" text="Current Track Distance: " GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+      <ImageView fx:id="easyImageView" fitHeight="189.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets top="95.0" />
+         </GridPane.margin>
+         <image>
+            <Image url="@easyImage.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="mediumImageView" fitHeight="150.0" fitWidth="195.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets top="75.0" />
+         </GridPane.margin>
+         <image>
+            <Image url="@mediumImage.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="hardImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets top="50.0" />
+         </GridPane.margin>
+         <image>
+            <Image url="@hardImage.png" />
+         </image>
+      </ImageView>
    </children>
 </GridPane>
