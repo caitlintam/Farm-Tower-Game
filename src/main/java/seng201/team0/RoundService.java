@@ -16,9 +16,7 @@ public class RoundService {
         this.cartManager = cartManager;
     }
     private String mainGameScreenRoundText;
-//    public void setMainGameScreenRoundText(String text){
-//        this.mainGameScreenRoundText = text;
-//    }
+
     public void runRound(int trackDistance) {
         mainGameScreenRoundText = " ";
         mainGameScreenRoundText += "------- Running Round " + (playerManager.getCurrentRoundNumber()+1) +  " ------";
@@ -79,8 +77,8 @@ public class RoundService {
         // once all carts have been through round
         // if all carts filled ( failed is empty == true ) won, otherwise false, have a cart not filled
 
-        int numCarts = playerManager.getCartsInRound().size();
-        if (playerManager.getNumCartsFilled() >= ((numCarts/2 ))){
+        int numCarts = cartManager.getCartsInRound().size();
+        if (successfullyFilledCarts.size() >= ((numCarts/2 ))){
             playerManager.increaseNumRoundsWon();
             playerManager.setRoundSuccess(true);
         }else{

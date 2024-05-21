@@ -24,7 +24,7 @@ public class PlayerManager implements Player {
     private final Consumer<PlayerManager> chooseRoundDifficultyScreenLauncher;
     private final Consumer<PlayerManager> mainGameScreenLauncher;
     private final Consumer<PlayerManager> wonRoundScreenLauncher;
-    private final Consumer<PlayerManager> lostRoundScreenLauncher;
+ //   private final Consumer<PlayerManager> lostRoundScreenLauncher;
     private final Consumer<PlayerManager> gameCompletionScreenLauncher;
     private final Consumer<PlayerManager> randomEventScreenLauncher;
     private final Runnable clearScreen;
@@ -44,7 +44,7 @@ public class PlayerManager implements Player {
     private String winOrLose;
     private RoundService roundService;
 
-    public PlayerManager(Consumer<PlayerManager> setupScreenLauncher, Consumer<PlayerManager> towerSetUpScreenLauncher, Runnable clearScreen, Consumer<PlayerManager> homeScreenLauncher, Consumer<PlayerManager> shopScreenLauncher, Consumer<PlayerManager> inventoryScreenLauncher, Consumer<PlayerManager> applyUpgradeScreenLauncher, Consumer<PlayerManager> chooseRoundDifficultyScreenLauncher, Consumer<PlayerManager> mainGameScreenLauncher, Consumer<PlayerManager> wonRoundScreenLauncher, Consumer<PlayerManager> lostRoundScreenLauncher, Consumer<PlayerManager> gameCompletionScreenLauncher, Consumer<PlayerManager> randomEventScreenLauncher) {
+    public PlayerManager(Consumer<PlayerManager> setupScreenLauncher, Consumer<PlayerManager> towerSetUpScreenLauncher, Runnable clearScreen, Consumer<PlayerManager> homeScreenLauncher, Consumer<PlayerManager> shopScreenLauncher, Consumer<PlayerManager> inventoryScreenLauncher, Consumer<PlayerManager> applyUpgradeScreenLauncher, Consumer<PlayerManager> chooseRoundDifficultyScreenLauncher, Consumer<PlayerManager> mainGameScreenLauncher, Consumer<PlayerManager> wonRoundScreenLauncher, Consumer<PlayerManager> gameCompletionScreenLauncher, Consumer<PlayerManager> randomEventScreenLauncher) {
         this.setupScreenLauncher = setupScreenLauncher;
         this.towerSetUpScreenLauncher = towerSetUpScreenLauncher;
         this.homeScreenLauncher = homeScreenLauncher;
@@ -54,7 +54,7 @@ public class PlayerManager implements Player {
         this.applyUpgradeScreenLauncher = applyUpgradeScreenLauncher;
         this.chooseRoundDifficultyScreenLauncher = chooseRoundDifficultyScreenLauncher;
         this.mainGameScreenLauncher = mainGameScreenLauncher;
-        this.lostRoundScreenLauncher = lostRoundScreenLauncher;
+       // this.lostRoundScreenLauncher = lostRoundScreenLauncher;
         this.wonRoundScreenLauncher = wonRoundScreenLauncher;
         this.gameCompletionScreenLauncher = gameCompletionScreenLauncher;
         this.towerInventory = new ArrayList<Tower>();
@@ -131,8 +131,8 @@ public class PlayerManager implements Player {
     public void launchWonRoundScreen(){
         wonRoundScreenLauncher.accept(this);
     }
-    public void launchLostRoundScreen(){lostRoundScreenLauncher.accept(this);
-    }
+ //   public void launchLostRoundScreen(){lostRoundScreenLauncher.accept(this);
+   // }
     private void launchGameCompletionScreen() {gameCompletionScreenLauncher.accept(this);
     }
     public void launchShopScreen() {
@@ -161,7 +161,7 @@ public class PlayerManager implements Player {
     }
     public void closeApplyUpgradeScreen(){clearScreen.run();}
     public void closeWonRoundScreen(){ clearScreen.run();}
-    public void closeLostRoundScreen(){clearScreen.run();}
+   // public void closeLostRoundScreen(){clearScreen.run();}
     public void closeRandomEventScreen(){
         clearScreen.run();
     }
@@ -247,23 +247,20 @@ public class PlayerManager implements Player {
     public String getWinOrLose(){
         return winOrLoseGameText;
     }
+
     public void evaluateRoundSuccess(){
         if (roundSuccess == true){
             setEarnedMoney(currentRoundNumber);
             System.out.println("money before " + money);
             setMoney(money + earnedMoney);
             System.out.println("money after " + money);
-            launchWonRoundScreen();
         }else{
             System.out.println("No Money eared");
-            launchLostRoundScreen();
         }
+        launchWonRoundScreen();
     }
     public int getNumRoundsWon(){return numRoundsWon;}
     public int getNumRoundsLost(){return numRoundsLost;}
-    public List<Cart> getCartsInRound(){
-        return cartsInRound;
-    }
     private String randomText;
     public void toHomeOrRandomEventOrGameFinish() {
         List<Integer> randomEventRounds = randomEventManager.getRandomEventRounds();
@@ -300,6 +297,9 @@ public class PlayerManager implements Player {
 
     public void setRoundSuccess(boolean bool){
         roundSuccess = bool;
+    }
+    public boolean getRoundSuccess(){
+        return roundSuccess;
     }
     private int numCartsFilled;
     public int getNumCartsFilled(){
