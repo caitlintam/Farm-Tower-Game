@@ -19,8 +19,8 @@ public class GameCompletionScreenController {
 
     public void initialize(){
         System.out.println(playerManager.getWinOrLose());
-        roundsLostLabel.setText("You Lost " + playerManager.getNumRoundsLost() + " / " + playerManager.getNumGameRounds());
-        roundsWonLabel.setText("You Won " + playerManager.getNumRoundsWon() + " / " + playerManager.getNumGameRounds());
+        roundsLostLabel.setText("You Lost " + playerManager.getNumRoundsLost() + " / " + playerManager.getNumGameRounds() + "Rounds");
+        roundsWonLabel.setText("You Won " + playerManager.getNumRoundsWon() + " / " + playerManager.getNumGameRounds() + " Rounds");
         this.WinOrLOseLabel.setText(playerManager.getWinOrLose());
     }
 
