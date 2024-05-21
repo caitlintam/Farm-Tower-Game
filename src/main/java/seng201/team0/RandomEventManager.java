@@ -54,10 +54,17 @@ public class RandomEventManager {
     private void executeLevelDecrease() {
         Tower tower = getRandomTower();
         if (tower != null) {
-            tower.setTowerLevel(tower.getTowerLevel() - 1);
-            System.out.println("Random Event: Tower " + tower.getTowerName() + " decreased levels");
-            String levelDecreaseText = tower.getTowerName() + " has decreased levels to level: " + tower.getTowerLevel();
-            this.randomEventText = levelDecreaseText;
+            if (tower.getTowerLevel() > 1){
+                tower.setTowerLevel(tower.getTowerLevel() - 1);
+                System.out.println("Random Event: Tower " + tower.getTowerName() + " decreased levels");
+                String levelDecreaseText = "Random Event: " +tower.getTowerName() + " has decreased levels to level: " + tower.getTowerLevel();
+                this.randomEventText = levelDecreaseText;
+            }else{
+                System.out.println("Random Event: Tower can't be decreased below level 1");
+                String levelDecreaseText = "Random Event: Tower can't be decreased below level 1";
+                this.randomEventText = levelDecreaseText;
+            }
+
        //     playerManager.setRandomEventText(levelDecreaseText);
         }
     }
