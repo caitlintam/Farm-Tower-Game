@@ -58,6 +58,7 @@ public class MainGameScreenController {
         }
     }
     public void endRound(){
+
         playerManager.closeMainScreen();
         playerManager.evaluateRoundSuccess();
 

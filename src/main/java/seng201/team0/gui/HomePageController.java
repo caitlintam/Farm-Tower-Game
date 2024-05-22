@@ -34,7 +34,7 @@ public class HomePageController {
     public void initialize() {
         System.out.println("---------- Home Page ---------");
         System.out.println("Current Money: " + playerManager.getMoney());
-        System.out.println("Round Number: " + playerManager.getCurrentRoundNumber() +" / " + playerManager.getNumGameRounds());
+        System.out.println("Rounds Completed: " + playerManager.getCurrentRoundNumber() +" / " + playerManager.getNumGameRounds());
         errorNoTowersInGameLabel.setVisible(false);
         playerNameLabel.setText("Hello: " + playerManager.getName());
         homepageMoney.setText("Money: $ " + playerManager.getMoney()); // need to find a way get money from player class

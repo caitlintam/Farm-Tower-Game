@@ -60,6 +60,7 @@ public class ShopController {
 
     public void initialize() {
         updateMoneyLabel();
+        itemBoughtLabel.setVisible(false);
         errorInventoryFullLabel.setVisible(false);
         errorNoMoneyLabel.setVisible(false);
         List<Button> buyUpgradeButtons = List.of(upgradeButton1, upgradeButton2, upgradeButton3);
@@ -114,13 +115,17 @@ public class ShopController {
                 /// otherwise return false, change visible labels
 
                 if (canBuy){
+                    itemBoughtLabel.setText("Tower Bought! Added to Inventory as " + playerManager.getTowerInventory().get(playerManager.getTowerInventory().size()-1).getTowerStatus() + " status");
+                    itemBoughtLabel.setVisible(true);
                     updateMoneyLabel();
                 } else {
                     if (playerManager.getTowerInventory().size() ==10){
+                        itemBoughtLabel.setVisible(false);
                         errorNoMoneyLabel.setVisible(false);
                         errorInventoryFullLabel.setVisible(true);
                         System.out.println("Your Tower Inventory is Full");
                     }else{
+                        itemBoughtLabel.setVisible(false);
                         errorInventoryFullLabel.setVisible(false);
                         errorNoMoneyLabel.setVisible(true);
                         System.out.println("You don't have enough money");
@@ -129,14 +134,18 @@ public class ShopController {
 
                 // Perform operations with selected tower
             } else if (selectedButton == upgradeButton1 || selectedButton == upgradeButton2 || selectedButton == upgradeButton3) {
+
                 errorNoMoneyLabel.setVisible(false);
                 errorInventoryFullLabel.setVisible(false);
                 //////////  Access UpgradeManager///////////////
                 /// do same boolean method above, move code of attributes into manager, not fxml class
                 boolean hasEnoughMoney = shopManager.tryBuyUpgrade(selectedUpgradeIndex);
                 if (hasEnoughMoney){
+                    itemBoughtLabel.setText("Upgrade Bought! Added to Inventory");
+                    itemBoughtLabel.setVisible(true);
                     updateMoneyLabel();
                 } else {
+                    itemBoughtLabel.setVisible(false);
                     errorNoMoneyLabel.setVisible(true);
                     System.out.println("You don't have enough money");
                 }

@@ -57,13 +57,42 @@ public class Tower {
         }
     }
 
-    public void updateTowerReloadSpeed(Tower selectedTower) {
-        selectedTower.setTowerReloadSpeed(towerReloadSpeed+1);
+    public void upgradeReloadSpeed(Tower selectedTower) {
+        if (selectedTower.getTowerReloadSpeed()>1){
+            selectedTower.setTowerReloadSpeed(selectedTower.getTowerReloadSpeed()-1);
+        }else{
+            System.out.println("Tower Reload Speed is 1, can't decrease lower");
+        }
+
     }
-    public void updateTowerResourceAmount(Tower selectedTower){
-        selectedTower.setTowerResourceAmount(towerResourceAmount+1);
+    public void upgradeTowerResourceAmount(Tower selectedTower){
+        selectedTower.setTowerResourceAmount(towerResourceAmount+2);
     }
-    public void updateTowerLevel(Tower selectedTower){
-        selectedTower.setTowerLevel(towerLevel+1);
+    //////////////CHANGE THIS, TO INCREASE TOWER LEVEL//////////
+    //// add 6 to res amt, -4 off reload speed //// , level +1
+    public void increaseTowerLevel(Tower selectedTower){
+        selectedTower.setTowerResourceAmount(selectedTower.getTowerLevel()*6);
+        selectedTower.setTowerReloadSpeed(30 - ((selectedTower.getTowerLevel()+1)*2));
+        selectedTower.setTowerLevel(selectedTower.getTowerLevel()+1);
+        //////// increases res amount and
+    }
+    public void assessTowerLevel(Tower towerToAssess){
+        if (towerToAssess.getTowerResourceAmount() > (6*towerToAssess.getTowerLevel())){ //  if res amt above given level threshold,
+            towerToAssess.setTowerReloadSpeed(towerToAssess.getTowerReloadSpeed() - ((towerToAssess.getTowerLevel()-1)*2));
+            towerToAssess.setTowerLevel(towerToAssess.getTowerLevel()+1);
+            // set reload speed to level specified
+            System.out.println("Tower Stats Assessed, leveled up");
+        }
+    }
+    public void decreaseTowerLevel(Tower selectedTower){
+        if (selectedTower.getTowerLevel() >1){
+            selectedTower.setTowerResourceAmount((selectedTower.getTowerLevel()-1)*6);
+            selectedTower.setTowerReloadSpeed(30 - ((selectedTower.getTowerLevel()-1)*2));
+            selectedTower.setTowerLevel(selectedTower.getTowerLevel()-1);
+            System.out.println("Tower Level Decreased");
+        }else{
+            System.out.println("Tower Level = 1, cannot decrease");
+        }
+
     }
 }

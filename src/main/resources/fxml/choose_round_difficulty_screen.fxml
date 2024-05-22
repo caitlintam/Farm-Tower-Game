@@ -47,10 +47,6 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Label text="Track Distance -2m !" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-      <Label text="Track Distance -5m !" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-      <Label text="Track Distance -8m !" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-      <Label fx:id="currentTrackDistLabel" text="Current Track Distance: " GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
       <ImageView fx:id="easyImageView" fitHeight="189.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets top="95.0" />

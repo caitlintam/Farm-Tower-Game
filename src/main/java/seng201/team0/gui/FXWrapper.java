@@ -18,7 +18,7 @@ public class FXWrapper {
 
     public void init(Stage stage) {
         this.stage = stage;
-        new PlayerManager(this::launchSetupScreen, this::launchTowerSetupScreen, this::clearPane, this::launchHomeScreen, this::launchShopScreen, this::launchInventoryScreen, this::launchApplyUpgradeScreen, this::launchChooseRoundDifficultyScreen, this::launchMainGameScreen, this::launchWonRoundScreen, this::launchLostRoundScreen, this::launchGameCompletionScreen, this::launchRandomEventScreen);
+        new PlayerManager(this::launchSetupScreen, this::launchTowerSetupScreen, this::clearPane, this::launchHomeScreen, this::launchShopScreen, this::launchInventoryScreen, this::launchApplyUpgradeScreen, this::launchChooseRoundDifficultyScreen, this::launchMainGameScreen, this::launchWonRoundScreen, this::launchGameCompletionScreen, this::launchRandomEventScreen);
     }
 
 
@@ -128,25 +128,13 @@ public class FXWrapper {
             e.printStackTrace();
         }
     }
-    private void launchLostRoundScreen(PlayerManager playerManager) {
-        try {
-            FXMLLoader lostRoundScreenLoader = new FXMLLoader(getClass().getResource("/fxml/round_lost_screen.fxml"));
-            lostRoundScreenLoader.setControllerFactory(param -> new LostRoundScreenController(playerManager));
-            Parent setupParent = lostRoundScreenLoader.load();
-            pane.getChildren().add(setupParent);
-            stage.setTitle("Round Lost Screen");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     private void launchWonRoundScreen(PlayerManager playerManager) {
         try {
-            FXMLLoader wonRoundScreenLoader = new FXMLLoader(getClass().getResource("/fxml/round_won_screen.fxml"));
-            wonRoundScreenLoader.setControllerFactory(param -> new WonRoundScreenController(playerManager));
+            FXMLLoader wonRoundScreenLoader = new FXMLLoader(getClass().getResource("/fxml/round_results_screen.fxml"));
+            wonRoundScreenLoader.setControllerFactory(param -> new RoundResultsController(playerManager));
             Parent setupParent = wonRoundScreenLoader.load();
             pane.getChildren().add(setupParent);
-            stage.setTitle("Round Won Screen");
+            stage.setTitle("Round Results Screen");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 public class CartManager {
+    private List<Cart> carts;
     private List<Cart> cartsInRound;
     private List<String> potentialCartResourceTypes;
     private PlayerManager playerManager;
@@ -19,10 +20,10 @@ public class CartManager {
     public List<Cart> getCartsInRound() {
         return cartsInRound;
     }
+
     public CartManager(PlayerManager playerManager, TowerManager towerManager) {
         this.playerManager = playerManager;
         this.towerManager = towerManager;
-        // this.carts = new ArrayList<>();
         this.cartsInRound = new ArrayList<Cart>();
         this.potentialCartResourceTypes = new ArrayList<String>();
         this.random = new Random(201);
@@ -40,10 +41,6 @@ public class CartManager {
     public void setNumberOfCarts(){
         this.numberOfCarts = playerManager.getTowersInGame().size();
     }
-    public int getCartID(Cart cart) {
-        return cart.getCartID();
-    }
-
 
     // call this function when starting game, generates carts based on resource type
     public void generateNewCartsInGame() {

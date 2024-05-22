@@ -113,7 +113,26 @@ Submission:
 - levels
   - start at 1
   - tower level number +=1 for upgrades, random events, if upgrade of res amount applied, and goes above level res amount
-
+  - 
+- 
+- tower level numnbeR: 
+- 
+- methods in tower class?
+  - increase level (random event, level upgrade APPLIED 
+  - ) - changes res amt (+6)and reload speed (-4), +1 to level
+  - assess level ( used after res upgrade bought).
+    - if res amount >(6*current level), increase level(+1) and decrease reload speed (-4)
+    - print tower level up
+    - 
+    - do nothign otherwise
+  - decrease level ( random event()) - cannot go below 0, decrease rest amt, inc reload speed
+- 
+UpGrades:
+- level:(+6 to res, -4 off reload speed). call increase level method
+- res amnt (+2).
+- reload speed (-1). call assess level method.
+- 
+- 
   - decrease only in random events, get set back to level -1( res amt and stuff)
       - cant go below 0
 - upgrades
@@ -133,4 +152,38 @@ implement functionality for:
 - buying a tower. if ingame towers list size <5 and inventory size < 10. add to in games, set to in game status
 - otherwise (ingame >=5), add to reserve list, add to inventory, status reserve.
 - if invenotry size>10: cant buy tower, inventory full
+
+
+
+
+-- audio
+from choose difficulty, on next button clicked
+
+
+
+
+CREDIT AUDO
+MOO - License Agreement
+You must attribute the work in the manner specified by the author or licensor.
+- Author: manofham, Title: Moo 1 - Moo Moo the Cow
 - 
+
+
+void addUpgradesToInventory(Upgrade upgrade)
+
+removeTowerFromInventory(Tower selectedTower)
+
+removeUpgradeFromInventory(Upgrade selectedUpgrade) 
+
+
+List<Tower> getTowerInventory()
+List<Upgrade> getUpgradeInventory()
+void startRound()
+List<Integer> getRandomEventsRoundList()
+void evaluateRoundSuccess()
+void runRound(int trackDistance) 
+
+
+
+---- DO SERVICE CLASS / READ THROUGH CODE, BREAK IT UP
+- THEN DO EXCEPTIONS, THEN DO TESTING
