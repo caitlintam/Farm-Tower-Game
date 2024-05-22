@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 public class TowersTest {
     private TowerManager towerManager;
-    List<Tower> testTowerList = new ArrayList<Tower>();
+     List<Tower> testTowerList = new ArrayList<Tower>();
     @BeforeEach
     /*
     instantiates 3 new towers of boundary attributes
@@ -36,7 +36,7 @@ public class TowersTest {
     @Test
         // tests if new tower added to tower list is set as in-game status. Tests status updates from Tower Class
     void towerStatusTest(){
-        Tower tower0 = new Tower("TowerTest0", 0, "Test1", 0, 0, 0,"Reserve");
+        Tower tower0 = testTowerList.get(0);
         towerManager.setTowerStatus(tower0);
         assertEquals("In-Game", tower0.getTowerStatus());
         tower0.updateTowerStatus(tower0);
@@ -53,29 +53,29 @@ public class TowersTest {
     }
     @Test
     /* tests upgrade of resource amount +2
-        and assess's level upgrade as res amount above threshold
+        and assess's level upgrade as res amount above threshold, increase from level 0 to 1
      */
     void towerResAmountTest(){
         Tower tower0 = testTowerList.get(0);
         tower0.upgradeTowerResourceAmount(tower0);
         assertEquals(2, tower0.getTowerResourceAmount());
         tower0.assessTowerLevel(tower0);
-        assertEquals(2, tower0.getTowerLevel());
+        assertEquals(1, tower0.getTowerLevel());
     }
     @Test
-    /* tests increase of tower1 from level 1 changes res amount +6, reload speed -4, level +1,
-        then reverse changes with decrease level method
+    /* tests increase of tower1 from level 1 changes res amount = (1*6), reload speed = (30-(4))=26, level = 2
+        then reverse changes with decrease level method : res amount = (1*6), reload speed = (30-(2))=28, level = 1
      */
     void towerIncreaseLevelTest(){
         Tower tower1 = testTowerList.get(1);
         tower1.increaseTowerLevel(tower1);
         assertEquals(6,tower1.getTowerResourceAmount());
-        assertEquals(21, tower1.getTowerReloadSpeed());
-        assertEquals(2, tower1.getTowerCost());
+        assertEquals(26, tower1.getTowerReloadSpeed());
+        assertEquals(2, tower1.getTowerLevel());
         tower1.decreaseTowerLevel(tower1);
-        assertEquals(10,tower1.getTowerResourceAmount());
-        assertEquals(25, tower1.getTowerReloadSpeed());
-        assertEquals(1, tower1.getTowerCost());
+        assertEquals(6,tower1.getTowerResourceAmount());
+        assertEquals(28, tower1.getTowerReloadSpeed());
+        assertEquals(1, tower1.getTowerLevel());
     }
 
 }
