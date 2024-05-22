@@ -108,7 +108,7 @@ public class PlayerManager implements Player {
     public void setGameDifficulty(int gameDifficulty){
         this.gameDifficulty = gameDifficulty;
         // easier (smaller) gamedifficulty = more initialmoney
-        setMoney((4-gameDifficulty) * 500);
+        setMoney((4-gameDifficulty) * 80);
     }
     public List<Tower> getTowersInGame(){return towersInGame;}
 

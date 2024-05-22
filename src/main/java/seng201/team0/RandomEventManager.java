@@ -104,39 +104,39 @@ public class RandomEventManager {
         return randomEventRounds;
     }
 
-    private Tower getRandomTower() {
-        try {
-            double usedTowerProbability = 0.8;
-            double regTowerProbability = 0.2;
-            if (random.nextDouble() < usedTowerProbability) {
-                return playerManager.getTowersInGame().get(random.nextInt(playerManager.getTowersInGame().size()));
-            } else {
-                return playerManager.getReserveTowers().get(random.nextInt(playerManager.getReserveTowers().size()));
-            }
-        } catch (NullPointerException e) {
-            if (playerManager.getReserveTowers().isEmpty()) { //  to stop invocation error or non postiive bound
-                System.out.println("Uh Oh, reserve towers empty");
-                return playerManager.getTowersInGame().get(random.nextInt(playerManager.getTowersInGame().size()));
-            }return playerManager.getTowersInGame().get(random.nextInt(playerManager.getTowersInGame().size()));
-        }
-    }
 //    private Tower getRandomTower() {
-//        if (playerManager.getTowerInventory().isEmpty()) {
-//            return null;
-//        } else {
+//        try {
 //            double usedTowerProbability = 0.8;
 //            double regTowerProbability = 0.2;
 //            if (random.nextDouble() < usedTowerProbability) {
 //                return playerManager.getTowersInGame().get(random.nextInt(playerManager.getTowersInGame().size()));
 //            } else {
-//                if (playerManager.getReserveTowers().isEmpty()){ //  to stop invocation error or non postiive bound
-//                    return playerManager.getTowersInGame().get(random.nextInt(playerManager.getTowersInGame().size()));
-//                }else{
-//                    return playerManager.getReserveTowers().get(random.nextInt(playerManager.getReserveTowers().size()));
-//                }
+//                return playerManager.getReserveTowers().get(random.nextInt(playerManager.getReserveTowers().size()));
 //            }
+//        } catch (NullPointerException e) {
+//            if (playerManager.getReserveTowers().isEmpty()) { //  to stop invocation error or non postiive bound
+//                System.out.println("Uh Oh, reserve towers empty");
+//                return playerManager.getTowersInGame().get(random.nextInt(playerManager.getTowersInGame().size()));
+//            }return playerManager.getTowersInGame().get(random.nextInt(playerManager.getTowersInGame().size()));
 //        }
 //    }
+    private Tower getRandomTower() {
+        if (playerManager.getTowerInventory().isEmpty()) {
+            return null;
+        } else {
+            double usedTowerProbability = 0.8;
+            double regTowerProbability = 0.2;
+            if (random.nextDouble() < usedTowerProbability) {
+                return playerManager.getTowersInGame().get(random.nextInt(playerManager.getTowersInGame().size()));
+            } else {
+                if (playerManager.getReserveTowers().isEmpty()){ //  to stop invocation error or non postiive bound
+                    return playerManager.getTowersInGame().get(random.nextInt(playerManager.getTowersInGame().size()));
+                }else{
+                    return playerManager.getReserveTowers().get(random.nextInt(playerManager.getReserveTowers().size()));
+                }
+            }
+        }
+    }
 
     public void setRandomEventRounds(){
         List<Integer> randomEventRoundsList = new ArrayList<Integer>();

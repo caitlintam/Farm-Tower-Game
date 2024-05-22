@@ -25,12 +25,12 @@ public class RoundService {
         List<Integer> failedFilledCarts = new ArrayList<Integer>();
         cartManager.generateNewCartsInGame();
         mainGameScreenRoundText += "\n num of carts in round" + cartManager.getCartsInRound().size();
-        System.out.println("cartsinRound" + cartManager.getCartsInRound());
+ //       System.out.println("cartsinRound" + cartManager.getCartsInRound());
         // for each cart;
 
         for (Cart cart : cartManager.getCartsInRound()) {
             currentCartSize = 0;
-            mainGameScreenRoundText += "\n\n----------------------------------------------------------- Cart " + (cart.getCartID()+1) + " -----------------------------------------------------------\n Resource Type 1: "+ cart.getPrimaryCartResourceType() + " ------- Resource Type 2: " + cart.getSecondaryCartResourceType() + " ------- Size: "+ cart.getCartSize() + cart.getCartSpeed()+  "  ............is going round the track ";
+            mainGameScreenRoundText += "\n\n----------------------------------------------------------- Cart " + (cart.getCartID()+1) + " -----------------------------------------------------------\n Resource Type 1: "+ cart.getPrimaryCartResourceType() + " ------- Resource Type 2: " + cart.getSecondaryCartResourceType() + " ------- Size: "+ cart.getCartSize() + " ------- Cart Speed: " + cart.getCartSpeed()+  "  ............is going round the track ";
             // for each tower
             boolean isMatched = false;
             for (Tower tower : playerManager.getTowersInGame()) {
@@ -47,14 +47,14 @@ public class RoundService {
                         currentCartSize += tower.getTowerResourceAmount();
                         mainGameScreenRoundText += "--------> " + currentCartSize + "kg ";
                     }
-                    mainGameScreenRoundText += ". Cart is filled to "+ currentCartSize + "kgs after " + numTowerReloads + " reload/s";
+                    mainGameScreenRoundText += ". Cart is filled to "+ currentCartSize + "kgs after " + (numTowerReloads+1) + " reload/s";
                     isMatched = true;
                 }
             }
             // once done all possible tower reloads, check if filled capacity (>=size) or not ( <size)
             if (currentCartSize >= cart.getCartSize()) {
                 mainGameScreenRoundText += " You successfully filled Cart " + (cart.getCartID()+1) + "!";
-                System.out.println("You successfully filled cart " + cart.getCartID()  );
+             //   System.out.println("You successfully filled cart " + cart.getCartID()  );
                 // adds succesfully filled cart to list
                 successfullyFilledCarts.add(cart.getCartID());
                 // increase money
@@ -62,16 +62,16 @@ public class RoundService {
                 // launch round win screen
 
             } else if (currentCartSize < cart.getCartSize()) {
-                mainGameScreenRoundText += "\nOh no, none of your towers matched cart " + cart.getCartID() + " resource type.";
-                mainGameScreenRoundText += " You didn't manage to fill cart " + cart.getCartID();
-                System.out.println("Uh Oh, you didn't manage to fill cart " + cart.getCartID() );
+                mainGameScreenRoundText += "\nOh no, none of your towers matched cart " + (cart.getCartID()+1) + " resource type.";
+                mainGameScreenRoundText += " You didn't manage to fill cart " + (cart.getCartID()+1);
+      //          System.out.println("Uh Oh, you didn't manage to fill cart " + cart.getCartID() );
                 // adds unsucesfily filled cart to list
                 failedFilledCarts.add(cart.getCartID());
                 //launch round lose screen
             }
             playerManager.setNumCartsFilled( successfullyFilledCarts.size() );
             playerManager.setMainGameScreenText(mainGameScreenRoundText);
-            System.out.println("---------------------------------------------");
+      //      System.out.println("---------------------------------------------");
 
         }
         // once all carts have been through round

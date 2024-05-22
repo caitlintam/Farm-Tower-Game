@@ -56,10 +56,10 @@ public class CartManager {
             String resourceType = cartsInRoundResourceTypes.get(i);
             String primaryResourceType = cartsInRoundResourceTypes.get(i);
             String secondaryResourceType = getRandomResTypeDiffFromPrimary(primaryResourceType);
-            int cartSize = generateRandomCartSize(towersInGame.get(i).getTowerResourceAmount()); // Assume the cart size is based on the tower resource amount
+            int cartSize = generateRandomCartSize(towersInGame.get(i).getTowerResourceAmount()) ; // Assume the cart size is based on the tower resource amount
             int cartSpeed = generateRandomCartSpeed(towersInGame.get(i).getTowerReloadSpeed());
             int cartID = i;
-            System.out.println("Cart "+cartID + " -- Size: " + cartSize + " -- Primary Res Type: " + primaryResourceType + " -- Secondary Res Type: " + secondaryResourceType + cartSpeed);
+            System.out.println("Cart "+cartID + " -- Size: " + cartSize + " -- Primary Res Type: " + primaryResourceType + " -- Secondary Res Type: " + secondaryResourceType + " -- Cart Speed: "+cartSpeed);
             cartsInRound.add(new Cart(cartID, cartSize, primaryResourceType, secondaryResourceType, cartSpeed));
 
         }
