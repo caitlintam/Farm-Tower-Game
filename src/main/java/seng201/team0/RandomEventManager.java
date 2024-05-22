@@ -42,20 +42,31 @@ public class RandomEventManager {
 
     private void executeLevelIncrease() {
         Tower tower = getRandomTower();
-        if (tower != null) {
+        try{
             tower.setTowerLevel(tower.getTowerLevel() + 1);
             System.out.println("Random Event: Tower " + tower.getTowerName() + "increased levels");
             String levelIncreaseText = tower.getTowerName() + "has increased levels to level: " + tower.getTowerLevel();
             this.randomEventText = levelIncreaseText;
-  //          playerManager.setRandomEventText(levelIncreaseText);
+        }catch(NullPointerException e){
+            System.out.println("Uh Oh, error, no random tower generated");
         }
     }
 
+//    private void executeLevelIncrease() {
+//        Tower tower = getRandomTower();
+//        if (tower != null) {
+//            tower.setTowerLevel(tower.getTowerLevel() + 1);
+//            System.out.println("Random Event: Tower " + tower.getTowerName() + "increased levels");
+//            String levelIncreaseText = tower.getTowerName() + "has increased levels to level: " + tower.getTowerLevel();
+//            this.randomEventText = levelIncreaseText;
+//        }
+//    }
+
     private void executeLevelDecrease() {
         Tower tower = getRandomTower();
-        if (tower != null) {
+        try{
             if (tower.getTowerLevel() > 1){
-                tower.setTowerLevel(tower.getTowerLevel() - 1);
+                tower.decreaseTowerLevel(tower);
                 System.out.println("Random Event: Tower " + tower.getTowerName() + " decreased levels");
                 String levelDecreaseText = "Random Event: " +tower.getTowerName() + " has decreased levels to level: " + tower.getTowerLevel();
                 this.randomEventText = levelDecreaseText;
@@ -64,14 +75,16 @@ public class RandomEventManager {
                 String levelDecreaseText = "Random Event: Tower can't be decreased below level 1";
                 this.randomEventText = levelDecreaseText;
             }
-
+        }catch(NullPointerException e){
+            System.out.println("Uh Oh, error, no random tower generated");
+        }
        //     playerManager.setRandomEventText(levelDecreaseText);
         }
-    }
+
 
     private void executeBreakTower() {
         Tower tower = getRandomTower();
-        if (tower != null) {
+        try{
             System.out.println("invent size before"+ playerManager.getTowerInventory().size());
             playerManager.removeTowerFromInventory(tower);
             System.out.println("invent size after"+ playerManager.getTowerInventory().size());
@@ -79,8 +92,8 @@ public class RandomEventManager {
             // set text for random event fxml
             String brokenTowerText = tower.getTowerName() + " broke! it has now been removed from your inventory";
             this.randomEventText = brokenTowerText;
-
-        //    playerManager.setRandomEventText(brokenTowerText);
+        }catch(NullPointerException e){
+            System.out.println("Uh Oh, error, no random tower generated");
         }
     }
     public String getRandomEventText(){
@@ -96,7 +109,6 @@ public class RandomEventManager {
             return null;
         } else {
             double usedTowerProbability = 0.8;
-            double regTowerProbability = 0.2;
             if (random.nextDouble() < usedTowerProbability) {
                 return playerManager.getTowersInGame().get(random.nextInt(playerManager.getTowersInGame().size()));
             } else {
@@ -108,6 +120,7 @@ public class RandomEventManager {
             }
         }
     }
+
     public void setRandomEventRounds(){
         List<Integer> randomEventRoundsList = new ArrayList<Integer>();
         List<Integer> potentialRoundsList = new ArrayList<Integer>();

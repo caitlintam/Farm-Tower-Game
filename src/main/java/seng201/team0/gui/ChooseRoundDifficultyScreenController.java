@@ -47,24 +47,28 @@ public class ChooseRoundDifficultyScreenController {
     }
 
     public void onNextButtonClicked() {
-        if (selectedDifficultyIndex == -1) { // no difficulty selected, error
-            errorNoDiffSelected.setVisible(true);
-            System.out.println("Error: No difficulty selected");
-        }else{
-            playerManager.resetMainGameText();
-            errorNoDiffSelected.setVisible(false);
-            System.out.println("Difficulty selected:" + (selectedDifficultyIndex));
-            //sets track distance
-            playerManager.setCurrentTrackDistance(selectedDifficultyIndex);
-            playerManager.closeChooseRoundDifficultyScreen();
+        try {
+            if (selectedDifficultyIndex == -1) { // no difficulty selected, error
+                errorNoDiffSelected.setVisible(true);
+         //       System.out.println("Error: No difficulty selected");
+            } else {
+                playerManager.resetMainGameText();
+                errorNoDiffSelected.setVisible(false);
+                System.out.println("Difficulty selected:" + (selectedDifficultyIndex));
+                //sets track distance
+                playerManager.setCurrentTrackDistance(selectedDifficultyIndex);
+                playerManager.closeChooseRoundDifficultyScreen();
 
-            // launches main screen to start round
-            playerManager.startRound();
-
-
+                // launches main screen to start round
+                playerManager.startRound();
+            }
+        }catch (Exception e) {
+            System.out.println("An error occurred: " + e.getMessage());
+            e.printStackTrace(); // Print stack trace for debugging purposes
+        }
 
 
     }
 }
 
-}
+

@@ -17,16 +17,15 @@ public class TowerManager {
 
 
         defaultTowers.addAll(List.of(
-                new Tower("Piglet Palace", 10, "Pigs", 30, 1, 45.00, "Reserve"),
-                new Tower("Cowtopia Castle", 8, "Cows", 25, 1,25.00, "Reserve"),
-                new Tower("Haybale Haven", 12, "Hay", 27, 1, 10.00,"Reserve"),
-                new Tower("Timber Turret", 7, "Timber", 24, 1, 50.00,"Reserve"),
-                new Tower("Water Tower ", 6, "Water", 25, 1, 48.00,"Reserve"),
-                new Tower("Steel Steeple", 11, "Steel", 32, 1, 40.00,"Reserve"),
-                new Tower("Corn Castle", 7, "Corn", 29, 1, 20.00,"Reserve"),
-                new Tower("Wheat Tower", 9, "Wheat", 28, 1, 30.00,"Reserve"),
-                new Tower("Chicken Coop", 12, "Chickens", 27, 1, 40.00,"Reserve")));
-
+                new Tower("Piglet Palace", 10, "Pigs", 30, 1, 120.00, "Reserve"),
+                new Tower("Cowtopia Castle", 8, "Cows", 25, 1,140.00, "Reserve"),
+                new Tower("Haybale Haven", 12, "Hay", 27, 1, 135.00,"Reserve"),
+                new Tower("Timber Turret", 7, "Timber", 24, 1, 140.00,"Reserve"),
+                new Tower("Water Tower ", 6, "Water", 25, 1, 130.00,"Reserve"),
+                new Tower("Steel Steeple", 11, "Steel", 32, 1, 125.00,"Reserve"),
+                new Tower("Corn Castle", 7, "Corn", 29, 1, 150.00,"Reserve"),
+                new Tower("Wheat Tower", 9, "Wheat", 28, 1, 130.00,"Reserve"),
+                new Tower("Chicken Coop", 12, "Chickens", 27, 1, 130.00,"Reserve")));
     }
 
     public List<Tower> getTowerList(){

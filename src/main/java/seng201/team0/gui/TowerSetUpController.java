@@ -82,7 +82,7 @@ public class TowerSetUpController {
         System.out.println("Next Clicked! ");
         towerManager.setTowerList(Arrays.stream(selectedTowers).filter((Objects::nonNull)).toList());
         if (towerManager.getTowerList().size() < 3){
-            System.out.println("Error: not enough towers selected");
+          //  System.out.println("Error: not enough towers selected");
             errorTowerNumLabel.setVisible(true);
         }else{
             System.out.println("Towers Added to Inventory: ");

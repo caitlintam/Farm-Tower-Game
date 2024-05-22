@@ -166,7 +166,7 @@ public class ShopController {
         ShopCostLabel.setText("Cost: $" + tower.getTowerCost());
         ShopInfoLabel.setText("Level: " + tower.getTowerLevel());
         LoadLabel.setText("Load: " + tower.getTowerResourceAmount());
-        SpeedLabel.setText("Load: " + tower.getTowerReloadSpeed());
+        SpeedLabel.setText("Reload Speed: " + tower.getTowerReloadSpeed());
         TypeLabel.setText("Type: " + tower.getTowerResourceType());
     }
     private void updateMoneyLabel(){
