@@ -37,5 +37,10 @@
          <font>
             <Font name="Berenis ADF Pro Math Regular" size="35.0" />
          </font></Button>
+      <Label fx:id="moneyGainedLabel" text="Money Gained: $" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+         <font>
+            <Font name="Berenis ADF Pro Math Regular" size="13.0" />
+         </font>
+      </Label>
    </children>
 </GridPane>
