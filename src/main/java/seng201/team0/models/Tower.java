@@ -26,9 +26,6 @@ public class Tower {
     public String getTowerName(){
         return towerName;
     }
-    public void setTowerName(String towerName){
-        this.towerName = towerName;
-    }
     public int getTowerResourceAmount(){
         return towerResourceAmount;
     }

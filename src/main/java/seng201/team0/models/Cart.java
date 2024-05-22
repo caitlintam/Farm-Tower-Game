@@ -6,7 +6,6 @@ public class Cart {
     private String secondaryCartResourceType;
 
     private float cartSpeed;
-    private int numReloads;
     private int cartNumber;
 
     public Cart(int cartNumber, int cartSize, String primaryCartResourceType, String secondaryCartResourceType, float cartSpeed){
