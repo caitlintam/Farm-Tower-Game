@@ -66,7 +66,7 @@ public class RandomEventManager {
         Tower tower = getRandomTower();
         try{
             if (tower.getTowerLevel() > 1){
-                tower.setTowerLevel(tower.getTowerLevel() - 1);
+                tower.decreaseTowerLevel(tower);
                 System.out.println("Random Event: Tower " + tower.getTowerName() + " decreased levels");
                 String levelDecreaseText = "Random Event: " +tower.getTowerName() + " has decreased levels to level: " + tower.getTowerLevel();
                 this.randomEventText = levelDecreaseText;
@@ -104,28 +104,11 @@ public class RandomEventManager {
         return randomEventRounds;
     }
 
-//    private Tower getRandomTower() {
-//        try {
-//            double usedTowerProbability = 0.8;
-//            double regTowerProbability = 0.2;
-//            if (random.nextDouble() < usedTowerProbability) {
-//                return playerManager.getTowersInGame().get(random.nextInt(playerManager.getTowersInGame().size()));
-//            } else {
-//                return playerManager.getReserveTowers().get(random.nextInt(playerManager.getReserveTowers().size()));
-//            }
-//        } catch (NullPointerException e) {
-//            if (playerManager.getReserveTowers().isEmpty()) { //  to stop invocation error or non postiive bound
-//                System.out.println("Uh Oh, reserve towers empty");
-//                return playerManager.getTowersInGame().get(random.nextInt(playerManager.getTowersInGame().size()));
-//            }return playerManager.getTowersInGame().get(random.nextInt(playerManager.getTowersInGame().size()));
-//        }
-//    }
     private Tower getRandomTower() {
         if (playerManager.getTowerInventory().isEmpty()) {
             return null;
         } else {
             double usedTowerProbability = 0.8;
-            double regTowerProbability = 0.2;
             if (random.nextDouble() < usedTowerProbability) {
                 return playerManager.getTowersInGame().get(random.nextInt(playerManager.getTowersInGame().size()));
             } else {
