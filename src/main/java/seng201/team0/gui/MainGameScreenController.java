@@ -5,8 +5,6 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.util.Duration;
@@ -15,8 +13,6 @@ import javafx.fxml.FXML;
 
 public class MainGameScreenController {
     private final PlayerManager playerManager;
-    @FXML
-    public Button seeResultsScreenButton;
     @FXML
     public Label mainGameTextLabel;
     @FXML
@@ -51,14 +47,7 @@ public class MainGameScreenController {
         double progress = (double) playerManager.getCurrentRoundNumber()/playerManager.getNumGameRounds();
         progressBar.setProgress(progress);
     }
-    public void updateProgressBar(double progress){
-        progressBar.setProgress(progress);
-        if (progress >= 1.0) {
-            endRound();
-        }
-    }
     public void endRound(){
-
         playerManager.closeMainScreen();
         playerManager.evaluateRoundSuccess();
 

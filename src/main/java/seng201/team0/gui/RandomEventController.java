@@ -6,7 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 
-public class RandomEventController {
+public class
+RandomEventController {
     @FXML
     public Button NextButtonRandomEventPage;
     @FXML
