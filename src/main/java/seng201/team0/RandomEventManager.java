@@ -11,17 +11,12 @@ public class RandomEventManager {
     private PlayerManager playerManager;
     private List<Integer> randomEventRounds;
     private Random random;
-    private List<Tower> reserveTowers;
     private String randomEventText;
 
     public RandomEventManager(PlayerManager playerManager) {
         this.random = new Random();
         this.randomEventRounds = new ArrayList<Integer>();
         this.playerManager = playerManager;
-    }
-
-    public boolean isRandomEvent(int currentRound) {
-        return randomEventRounds.contains(currentRound);
     }
 
     public void generateRandomEvent() {
@@ -39,7 +34,6 @@ public class RandomEventManager {
                 break;
         }
     }
-
     private void executeLevelIncrease() {
         Tower tower = getRandomTower();
         try{
@@ -51,17 +45,6 @@ public class RandomEventManager {
             System.out.println("Uh Oh, error, no random tower generated");
         }
     }
-
-//    private void executeLevelIncrease() {
-//        Tower tower = getRandomTower();
-//        if (tower != null) {
-//            tower.setTowerLevel(tower.getTowerLevel() + 1);
-//            System.out.println("Random Event: Tower " + tower.getTowerName() + "increased levels");
-//            String levelIncreaseText = tower.getTowerName() + "has increased levels to level: " + tower.getTowerLevel();
-//            this.randomEventText = levelIncreaseText;
-//        }
-//    }
-
     private void executeLevelDecrease() {
         Tower tower = getRandomTower();
         try{
@@ -78,10 +61,7 @@ public class RandomEventManager {
         }catch(NullPointerException e){
             System.out.println("Uh Oh, error, no random tower generated");
         }
-       //     playerManager.setRandomEventText(levelDecreaseText);
-        }
-
-
+    }
     private void executeBreakTower() {
         Tower tower = getRandomTower();
         try{
@@ -120,7 +100,6 @@ public class RandomEventManager {
             }
         }
     }
-
     public void setRandomEventRounds(){
         List<Integer> randomEventRoundsList = new ArrayList<Integer>();
         List<Integer> potentialRoundsList = new ArrayList<Integer>();
@@ -133,7 +112,6 @@ public class RandomEventManager {
         }
         this.randomEventRounds = randomEventRoundsList;
     }
-
 }
 
 
