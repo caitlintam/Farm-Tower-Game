@@ -44,6 +44,13 @@ public class PlayerManager implements Player {
     private String winOrLose;
     private RoundService roundService;
 
+    private int numRoundsWon = 0;
+    private int numRoundsLost = 0;
+    private boolean roundSuccess = false;
+    private int earnedMoney;
+    private int numCartsFilled;
+    private String mainGameScreenText;
+
     public PlayerManager(Consumer<PlayerManager> setupScreenLauncher, Consumer<PlayerManager> towerSetUpScreenLauncher, Runnable clearScreen, Consumer<PlayerManager> homeScreenLauncher, Consumer<PlayerManager> shopScreenLauncher, Consumer<PlayerManager> inventoryScreenLauncher, Consumer<PlayerManager> applyUpgradeScreenLauncher, Consumer<PlayerManager> chooseRoundDifficultyScreenLauncher, Consumer<PlayerManager> mainGameScreenLauncher, Consumer<PlayerManager> wonRoundScreenLauncher, Consumer<PlayerManager> gameCompletionScreenLauncher, Consumer<PlayerManager> randomEventScreenLauncher) {
         this.setupScreenLauncher = setupScreenLauncher;
         this.towerSetUpScreenLauncher = towerSetUpScreenLauncher;
@@ -219,9 +226,7 @@ public class PlayerManager implements Player {
         currentTrackDistance = trackDistanceOptionsList.get(selectedDistanceIndex);}
     public int getCurrentTrackDistance(){return currentTrackDistance;}
     // cbb putting at top now
-    private int numRoundsWon = 0;
-    private int numRoundsLost = 0;
-    private boolean roundSuccess = false;
+
     public void startRound(){
         roundService.runRound(currentTrackDistance);
         launchMainGameScreen();
@@ -229,7 +234,7 @@ public class PlayerManager implements Player {
     public List<Integer> getRandomEventsRoundList(){
         return randomEventRoundsList;
     }
-    private int earnedMoney;
+
     public int getEarnedMoney(){
         return earnedMoney;
     }
@@ -255,7 +260,7 @@ public class PlayerManager implements Player {
             setMoney(money + earnedMoney);
             System.out.println("money after " + money);
         }else{
-            System.out.println("No Money eared");
+            System.out.println("No Money earned");
         }
         launchWonRoundScreen();
     }
@@ -301,12 +306,12 @@ public class PlayerManager implements Player {
     public boolean getRoundSuccess(){
         return roundSuccess;
     }
-    private int numCartsFilled;
+
     public int getNumCartsFilled(){
         return numCartsFilled;
     }
 
-    private String mainGameScreenText;
+
     public String getMainGameScreenRoundText(){
         return mainGameScreenText;
     }
