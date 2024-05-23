@@ -64,17 +64,12 @@ public class RoundService {
                     mainGameScreenRoundText += " Cart is filled to "+ currentCartSize + " kgs after " + (numTowerReloads+1) + " reload/s";
                 }
             }
-            System.out.println("csize" + currentCartSize + "sf" + cart.getCartSize());
             if (currentCartSize >= cart.getCartSize()) {
                 mainGameScreenRoundText += " You successfully filled Cart " + (cart.getCartID()+1) + "!";
                 successfullyFilledCarts.add(cart.getCartID());
-                System.out.print("hehjbre"+successfullyFilledCarts.size());
             } else{
                 mainGameScreenRoundText += "\nOh no, You didn't manage to fill cart " + (cart.getCartID()+1);
             }
-            System.out.print("here"+successfullyFilledCarts.size());
-
-
         }
         round.setMainGameScreenText(mainGameScreenRoundText);
         round.setNumCartsFilled( successfullyFilledCarts.size() );
@@ -88,6 +83,10 @@ public class RoundService {
             isSuccess = false;
         }
     }
+    /**
+     * stores boolean of round success
+     * @return boolean true if sucess
+     */
     public boolean isSuccess() {
         return isSuccess;
     }
