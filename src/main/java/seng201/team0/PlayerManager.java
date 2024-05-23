@@ -275,7 +275,7 @@ public class PlayerManager implements Player {
             launchGameCompletionScreen();
         }
         // if current round is a round of a random event, generate the random event
-        else if (randomEventRounds.contains(currentRoundNumber)) {
+        else if (randomEventRounds.contains((currentRoundNumber+1))) {
             randomEventManager.generateRandomEvent();
 
             this.randomText = randomEventManager.getRandomEventText();
