@@ -1,7 +1,6 @@
 package seng201.team0.models;
 
 import seng201.team0.PlayerManager;
-import seng201.team0.TowerManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,12 +8,12 @@ import java.util.List;
 
 public class Shop {
     private PlayerManager playerManager;
-    private TowerManager towerManager;
+    private Tower towerManager;
     private List<Tower> newPurchasableTowers;
     private Upgrade upgrade;
     private Player player;
 
-    public Shop(PlayerManager playerManager, TowerManager towerManager, Upgrade upgrade){
+    public Shop(PlayerManager playerManager, Tower towerManager, Upgrade upgrade){
         this.playerManager = playerManager;
         this.towerManager = towerManager;
         this.upgrade = upgrade;

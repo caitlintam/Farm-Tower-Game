@@ -29,7 +29,7 @@
 //     * Should decrease level from 0 to 0
 //     * As you can't decrease level below 0*/
 //    public void executeLeveldecreaseTest(){
-//        tower2.rexecuteLeveldecrease;
+//        tower2.executeLeveldecrease;
 //        assertEquals(0, tower2.executeLevelIncrease());
 //    }
 //    @Test
