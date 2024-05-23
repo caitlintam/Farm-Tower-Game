@@ -1,7 +1,5 @@
 package seng201.team0.models;
 
-import seng201.team0.PlayerManager;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;

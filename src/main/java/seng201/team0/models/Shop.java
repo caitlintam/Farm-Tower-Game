@@ -2,7 +2,6 @@ package seng201.team0.models;
 
 import seng201.team0.PlayerManager;
 import seng201.team0.TowerManager;
-import seng201.team0.UpgradeManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,13 +11,13 @@ public class Shop {
     private PlayerManager playerManager;
     private TowerManager towerManager;
     private List<Tower> newPurchasableTowers;
-    private UpgradeManager upgradeManager;
+    private Upgrade upgrade;
     private Player player;
 
-    public Shop(PlayerManager playerManager, TowerManager towerManager, UpgradeManager upgradeManager){
+    public Shop(PlayerManager playerManager, TowerManager towerManager, Upgrade upgrade){
         this.playerManager = playerManager;
         this.towerManager = towerManager;
-        this.upgradeManager = upgradeManager;
+        this.upgrade = upgrade;
         this.player = playerManager.getPlayer();
     }
     public List<Tower> generateNewPurchasableTowers() {
@@ -52,7 +51,7 @@ public class Shop {
     }
 
     public boolean tryBuyUpgrade(int selectedUpgradeIndex) {
-        Upgrade selectedUpgrade = upgradeManager.getUpgradeList().get(selectedUpgradeIndex);
+        Upgrade selectedUpgrade = upgrade.getUpgradeList().get(selectedUpgradeIndex);
         double cost = selectedUpgrade.getUpgradeCost();
         if (cost <= playerManager.getMoney()){
             System.out.println(selectedUpgrade.getUpgradeName() + " Bought");
