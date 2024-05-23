@@ -1,7 +1,6 @@
 package seng201.team0.models;
 
-import seng201.team0.PlayerManager;
-import seng201.team0.gui.service.CartService;
+import seng201.team0.service.CartService;
 
 import java.util.List;
 
@@ -72,6 +71,10 @@ public class Round {
     }
     public List<Cart> getCartsInRound(){
         return cartsInRound;
+    }
+    // for testing
+    public void  setCartsInRound(List<Cart> carts){
+        this.cartsInRound = carts;
     }
 
 

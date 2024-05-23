@@ -1,4 +1,4 @@
-package seng201.team0.gui.service;
+package seng201.team0.service;
 import java.util.ArrayList;
 
 import seng201.team0.PlayerManager;

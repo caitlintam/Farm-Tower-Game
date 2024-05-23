@@ -76,6 +76,10 @@ public class Player {
                 .filter(tower -> tower.getTowerStatus().equals("In-Game"))
                 .collect(Collectors.toList());
     }
+    // for testing
+    public void setTowersInGame(List<Tower> towersInGame){
+        this.towersInGame = towersInGame;
+    }
     public void setReserveTowers() {
         // Filter towerInventory to get only the towers that are in-game
         reserveTowers = towerInventory.stream()
