@@ -13,6 +13,11 @@ You are not allowed to:
 - Include it in any online or offline archive or database.
 As this project is for personal use, and I have credited Freepik I am following their license
 
+
+- sign Image - Pixabay
+- https://pixabay.com/vectors/sign-caution-warning-danger-safety-304093/
+
+
 # TO DO
 
 - add more prints to show what happening when buttons are clicked ( shop/ buy )
@@ -169,21 +174,7 @@ You must attribute the work in the manner specified by the author or licensor.
 - 
 
 
-void addUpgradesToInventory(Upgrade upgrade)
-
-removeTowerFromInventory(Tower selectedTower)
-
-removeUpgradeFromInventory(Upgrade selectedUpgrade) 
-
-
-List<Tower> getTowerInventory()
-List<Upgrade> getUpgradeInventory()
-void startRound()
-List<Integer> getRandomEventsRoundList()
-void evaluateRoundSuccess()
-void runRound(int trackDistance) 
-
-
-
 ---- DO SERVICE CLASS / READ THROUGH CODE, BREAK IT UP
 - THEN DO EXCEPTIONS, THEN DO TESTING
+
+
