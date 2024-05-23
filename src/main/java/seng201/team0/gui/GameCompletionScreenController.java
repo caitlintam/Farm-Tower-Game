@@ -18,7 +18,9 @@ public class GameCompletionScreenController {
     private Label roundsLostLabel;
 
     /**
-     * Initializes the controller, setting up UI elements with appropriate values and handling interactions with the UI elements.
+     * Initializes the game completion screen with relevant information.
+     * This method sets the text of labels to display the win or lose status, the number of rounds won and lost,
+     * and updates the win or lose label accordingly based on information retrieved from the PlayerManager.
      */
     public void initialize(){
         System.out.println(playerManager.getWinOrLose());
@@ -27,8 +29,9 @@ public class GameCompletionScreenController {
         this.WinOrLOseLabel.setText(playerManager.getWinOrLose());
     }
     /**
-     * Constructor for GameCompletionScreenController.
-     * @param playerManager The PlayerManager instance associated with the game.
+     * Constructs a new instance of GameCompletionScreenController with the specified PlayerManager.
+     * This constructor initializes the GameCompletionScreenController with the given PlayerManager instance.
+     * @param playerManager The PlayerManager instance associated with the game completion screen controller.
      */
     public GameCompletionScreenController(PlayerManager playerManager) {
         this.playerManager = playerManager;

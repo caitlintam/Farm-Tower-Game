@@ -62,14 +62,15 @@ public class InventoryController {
         errorNoUpgradeSelectedLabel.setVisible(false);
         initializeUpgradeTable();
     }
-
+    /**
+     * Initializes the tower inventory table with data.
+     * Retrieves tower inventory data from the PlayerManager, converts it into ObservableList,
+     * and binds the data to table columns. Finally, sets the tower inventory data to the table.
+     */
     private void initializeTowerTable() {
         ArrayList<Tower> towerInventory = (ArrayList<Tower>) playerManager.getTowerInventory();
         System.out.println("here" + towerInventory.toString());
-
-        // Convert ArrayList to ObservableList
         ObservableList<Tower> towerData = FXCollections.observableArrayList(towerInventory);
-// Bind tower inventory data to table columns
         towerNameColumn.setCellValueFactory(new PropertyValueFactory<Tower, String>("towerName"));
         towerResTypeColumn.setCellValueFactory(new PropertyValueFactory<Tower, String>("towerResourceType"));
         towerResAmountColumn.setCellValueFactory(new PropertyValueFactory<Tower, Integer>("towerResourceAmount"));
@@ -77,40 +78,43 @@ public class InventoryController {
         towerLevelColumn.setCellValueFactory(new PropertyValueFactory<Tower, Integer>("towerLevel"));
         towerCostColumn.setCellValueFactory(new PropertyValueFactory<Tower, Integer>("towerCost"));
         towerStatusColumn.setCellValueFactory(new PropertyValueFactory<Tower, String>("towerStatus"));
-
-        // Set tower inventory data to the table
         towerTable.setItems(towerData);
     }
-
+    /**
+     * Handles the action when the "Sell Selected Tower" button is clicked.
+     * Removes the selected tower from the tower inventory, updates the tower table view,
+     * adds the tower's cost back to the player's money, and updates the money label in the UI.
+     * If no tower is selected, displays an error message.
+     */
     @FXML
     private void onSellSelectedTowerButtonClicked(){
         System.out.println("Sell Tower Button Clicked");
-        // get selected tower, remove from tableview, remove cost
-    Tower selectedTower = towerTable.getSelectionModel().getSelectedItem();
-    if (selectedTower == null){
-        errorNoTowerSelectedLabel.setVisible(true);
-    }else{
-        errorNoTowerSelectedLabel.setVisible(false);
-        // remove from towerInventory
-        System.out.println("Tower Inventory before" + playerManager.getTowerInventory().size());
-        playerManager.removeTowerFromInventory(selectedTower);
-        System.out.println("Tower removed from Inventory :" + playerManager.getTowerInventory().size());
-        // update fxml - remove from tableview( initialise tower method)
-        initializeTowerTable();
-        // remove from cost of player
-        double cost = selectedTower.getTowerCost();
-        playerManager.setMoney(playerManager.getMoney() + cost);
-        // update fxml money label
-        updateMoneyLabel();
+        Tower selectedTower = towerTable.getSelectionModel().getSelectedItem();
+        if (selectedTower == null){
+            errorNoTowerSelectedLabel.setVisible(true);
+        }else{
+            errorNoTowerSelectedLabel.setVisible(false);
+            System.out.println("Tower Inventory before" + playerManager.getTowerInventory().size());
+            playerManager.removeTowerFromInventory(selectedTower);
+            System.out.println("Tower removed from Inventory :" + playerManager.getTowerInventory().size());
+            initializeTowerTable();
+            double cost = selectedTower.getTowerCost();
+            playerManager.setMoney(playerManager.getMoney() + cost);
+            updateMoneyLabel();
+        }
     }
-    }
-
+    /**
+     * Handles the action when the "Change Tower Status" button is clicked.
+     * Changes the status of the selected tower, updates the tower table view, and refreshes the tower table.
+     * If no tower is selected, displays an error message.
+     * If the selected tower's status is "Reserve" and there are already 5 towers in-game, displays an error message.
+     * Uses streams to filter the tower inventory list to get in-game towers
+     */
     @FXML
     public void onChangeTowerStatusButtonClicked() {
         System.out.println("Change Tower Status Clicked");
         Tower selectedTower = towerTable.getSelectionModel().getSelectedItem();
         List<Tower> towerInventory = playerManager.getTowerInventory();
-        // use of streams, to filter by status = In-Game
         long countInGame = towerInventory.stream()
                 .filter(tower -> tower.getTowerStatus().equals("In-Game"))
                 .count();
@@ -126,27 +130,33 @@ public class InventoryController {
                 selectedTower.updateTowerStatus(selectedTower);
                 System.out.println(selectedTower.getTowerName() + " status changed to " + selectedTower.getTowerStatus());
                 playerManager.setTowersInGame();
-                //refresh tower table
                 clearTowerTable();
                 initializeTowerTable();
             }
         }
     }
+    /**
+     * Initializes the upgrade inventory table with data.
+     * Retrieves upgrade inventory data from the PlayerManager, converts it into ObservableList,
+     * and binds the data to table columns. Finally, sets the upgrade inventory data to the table.
+     */
     private void initializeUpgradeTable() {
         ArrayList<Upgrade> upgradeInventory = (ArrayList<Upgrade>) playerManager.getUpgradeInventory();
         System.out.println(upgradeInventory);
-
-        // Convert ArrayList to ObservableList
         ObservableList<Upgrade> upgradeData = FXCollections.observableArrayList(upgradeInventory);
-
         upgradeNameColumn.setCellValueFactory(new PropertyValueFactory<Upgrade, String>("upgradeName"));
         upgradeCostColumn.setCellValueFactory(new PropertyValueFactory<Upgrade, Double>("upgradeCost"));
         upgradeTable.setItems(upgradeData);
     }
+    /**
+     * Handles the action when the "Sell Selected Upgrade" button is clicked.
+     * Removes the selected upgrade from the upgrade inventory, updates the upgrade table view,
+     * adds the upgrade's cost back to the player's money, and updates the money label in the UI.
+     * If no upgrade is selected, displays an error message.
+     */
     @FXML
     private void onSellSelectedUpgradeButtonClicked() {
         System.out.println("Sell Upgrade Button Clicked");
-        // get selected tower, remove from tableview, remove cost
         Upgrade selectedUpgrade = upgradeTable.getSelectionModel().getSelectedItem();
         if (selectedUpgrade == null) {
             errorNoUpgradeSelectedLabel.setVisible(true);
@@ -161,16 +171,23 @@ public class InventoryController {
             updateMoneyLabel();
         }
     }
-
+    /**
+     * Clears the tower table by removing all items from it.
+     * This method removes all items from the ObservableList associated with the tower table.
+     */
     public void clearTowerTable(){
         ObservableList<Tower> items = towerTable.getItems();
-
-    // Clear the items list
         items.clear();
     }
+    /**
+     * Updates the money label in the UI with the current amount of money the player has.
+     * This method retrieves the current amount of money from the PlayerManager and sets it as the text of the money label.
+     */
     public void updateMoneyLabel(){
         moneyLabel.setText("Money: $"+playerManager.getMoney());
     }
+    /** Handles the action of "Home" button being clicked
+     * closes the inventory screen and launches the home page screen*/
     @FXML
     private void onInventoryHomeButtonClicked() {
         System.out.println("Home Button Clicked");

@@ -23,7 +23,8 @@ public class HomePageController {
     @FXML
     private Label homepageCurrentRoundLabel;
     /**
-     * Initializes the controller, setting up UI elements with appropriate values and handling interactions with the UI elements.
+     * Initializes the home page UI with player information.
+     * This method prints information about the player's current money, rounds completed, and sets labels accordingly.
      */
     public void initialize() {
         System.out.println("---------- Home Page ---------");
@@ -35,8 +36,9 @@ public class HomePageController {
         homepageCurrentRoundLabel.setText("Round: " + playerManager.getCurrentRoundNumber() + " / " + playerManager.getNumGameRounds()); // need to get current round from player class
     }
     /**
-     * Constructor for HomePageController.
-     * @param playerManager The PlayerManager instance associated with the game.
+     * Constructs a new instance of HomePageController with the specified PlayerManager.
+     * This constructor initializes the HomePageController with the given PlayerManager instance.
+     * @param playerManager The PlayerManager instance associated with the home page controller.
      */
     public HomePageController(PlayerManager playerManager) {
         this.playerManager = playerManager;

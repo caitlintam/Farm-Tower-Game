@@ -24,15 +24,19 @@ public class ChooseRoundDifficultyScreenController {
     private int selectedDifficultyIndex = -1;
 
     /**
-     * Constructor for ChooseRoundDifficultyScreenController.
-     * @param playerManager The PlayerManager instance associated with the game.
+     * Constructs a new instance of ChooseRoundDifficultyScreenController with the specified PlayerManager.
+     * This constructor initializes the ChooseRoundDifficultyScreenController with the given PlayerManager instance.
+     * @param playerManager The PlayerManager instance associated with the choose round difficulty screen controller.
      */
     public ChooseRoundDifficultyScreenController(PlayerManager playerManager) {
         this.playerManager = playerManager;
     }
     /**
-     * Initializes the controller, setting up UI elements and hiding error labels.
-     * highlights which difficulty level was selected
+     * Initializes the choose round difficulty screen with UI elements and interactions.
+     * This method updates the track distance options list in the PlayerManager,
+     * hides the error label for no difficulty selected, and sets actions for difficulty buttons.
+     * When a difficulty button is clicked, it sets the selected difficulty index, updates the current track distance,
+     * and changes the style of the clicked button to indicate selection.
      */
     public void initialize() {
         playerManager.updateTrackDistanceOptionsList();

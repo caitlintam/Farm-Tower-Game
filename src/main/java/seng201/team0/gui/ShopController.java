@@ -14,14 +14,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShopController {
+    @FXML
     public Button upgradeButton3;
+    @FXML
     public Button upgradeButton2;
+    @FXML
     public Button upgradeButton1;
+    @FXML
     public Button buyTowerbutton3;
+    @FXML
     public Button buyTowerButton2;
+    @FXML
     public Button buyTowerButton1;
-    public Label noMoneyLabel;
+    @FXML
     public Label errorNoMoneyLabel;
+    @FXML
     public Label errorInventoryFullLabel;
     public Label itemBoughtLabel;
     @FXML
@@ -50,14 +57,26 @@ public class ShopController {
     private Button selectedButton = null;
     private ShopManager shopManager;
 
-
+    /**
+     * Constructs a new ShopController.
+     *
+     * @param playerManager  The PlayerManager instance responsible for managing player-related operations.
+     * @param towerManager   The TowerManager instance responsible for managing tower-related operations.
+     * @param upgradeManager The UpgradeManager instance responsible for managing upgrade-related operations.
+     * @param shopManager    The ShopManager instance responsible for managing shop-related operations.
+     */
     public ShopController(PlayerManager playerManager, TowerManager towerManager, UpgradeManager upgradeManager, ShopManager shopManager){
         this.playerManager = playerManager;
         this.towerManager = towerManager;
         this.upgradeManager = upgradeManager;
         this.shopManager = shopManager;
     }
-
+    /**
+     * Initializes the shop interface by updating the money label, hiding certain labels, and setting up event handlers
+     * for buy buttons associated with upgrades and towers.
+     * The method populates the buy buttons with the names of upgrades and towers available for purchase,
+     * sets up event handlers to update information labels when a button is clicked, and highlights the selected button.
+     */
     public void initialize() {
         updateMoneyLabel();
         itemBoughtLabel.setVisible(false);
@@ -68,22 +87,16 @@ public class ShopController {
         List<Button> allButtons = new ArrayList<>();
         allButtons.addAll(buyTowerButtons);
         allButtons.addAll(buyUpgradeButtons);
-
-        // makes list of new purchasable towers
         List<Tower> newPurchasableTowers = shopManager.generateNewPurchasableTowers();
-
         for (int i = 0; i < buyUpgradeButtons.size(); i++) {
-            // change this to label purchasbel i //////////////////////
             buyUpgradeButtons.get(i).setText(upgradeManager.getUpgradeList().get(i).getUpgradeName());
             buyTowerButtons.get(i).setText(newPurchasableTowers.get(i).getTowerName());
-
             int finalI = i;
             buyTowerButtons.get(i).setOnAction(actionEvent -> {
                 if (selectedButton != null) {
                     selectedButton.setStyle("");
                 }
                 updateTowerInfo(newPurchasableTowers.get(finalI));
-
                 selectedTowerIndex = finalI ;
                 selectedButton = buyTowerButtons.get(finalI);
                 selectedButton.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
@@ -99,21 +112,21 @@ public class ShopController {
             });
         }
     }
+    /**
+     * Handles the event when the buy button is clicked.
+     * This method checks if a button is selected, and then performs appropriate actions based on the selected button.
+     * If a tower buy button is clicked, it attempts to buy the tower using the TowerManager.
+     * If an upgrade buy button is clicked, it attempts to buy the upgrade using the UpgradeManager.
+     * Depending on the success or failure of the purchase, it updates visibility of labels and the money label accordingly.
+     */
     @FXML
     private void onBuyButtonClicked() {
         System.out.println("Buy Button Clicked");
         if (selectedButton != null) {
-            // Check which manager to access based on the selected button's properties
             if (selectedButton == buyTowerButton1 || selectedButton == buyTowerButton2 || selectedButton == buyTowerbutton3) {
                 errorNoMoneyLabel.setVisible(false);
                 errorInventoryFullLabel.setVisible(false);
-                // Access TowerManager
                 boolean canBuy = shopManager.tryBuyTower(selectedTowerIndex);
-                //////////////////////////// do this all in shop manager ///////////
-                // call new boolean method tryBuyTower();
-                /// if can buy tower, change attributes, return true
-                /// otherwise return false, change visible labels
-
                 if (canBuy){
                     itemBoughtLabel.setText("Tower Bought! Added to Inventory as " + playerManager.getTowerInventory().get(playerManager.getTowerInventory().size()-1).getTowerStatus() + " status");
                     itemBoughtLabel.setVisible(true);
@@ -131,14 +144,9 @@ public class ShopController {
                         System.out.println("You don't have enough money");
                     }
                 }
-
-                // Perform operations with selected tower
             } else if (selectedButton == upgradeButton1 || selectedButton == upgradeButton2 || selectedButton == upgradeButton3) {
-
                 errorNoMoneyLabel.setVisible(false);
                 errorInventoryFullLabel.setVisible(false);
-                //////////  Access UpgradeManager///////////////
-                /// do same boolean method above, move code of attributes into manager, not fxml class
                 boolean hasEnoughMoney = shopManager.tryBuyUpgrade(selectedUpgradeIndex);
                 if (hasEnoughMoney){
                     itemBoughtLabel.setText("Upgrade Bought! Added to Inventory");
@@ -149,18 +157,25 @@ public class ShopController {
                     errorNoMoneyLabel.setVisible(true);
                     System.out.println("You don't have enough money");
                 }
-                // Perform operations with selected upgrade
             }
         } else {
-            // No button is selected
         }
     }
+    /**
+     * Handles the event when the home button in the shop screen is clicked.
+     * Closes the current shop screen and launches the home screen.
+     */
     @FXML
     private void onShopHomeButtonClicked() {
         System.out.println("Home Button Clicked");
         playerManager.closeShopScreen();
         playerManager.launchHomeScreen();
     }
+    /**
+     * Updates the information displayed in the shop UI based on the selected tower.
+     * Sets the name, cost, level, load, reload speed, and type of the tower.
+     * @param tower The tower whose information is to be displayed.
+     */
     private void updateTowerInfo(Tower tower) {
         ShopNameLabel.setText("Name: " + tower.getTowerName());
         ShopCostLabel.setText("Cost: $" + tower.getTowerCost());
@@ -169,9 +184,17 @@ public class ShopController {
         SpeedLabel.setText("Reload Speed: " + tower.getTowerReloadSpeed());
         TypeLabel.setText("Type: " + tower.getTowerResourceType());
     }
+    /**
+     * Updates the money label in the shop UI with the current amount of money owned by the player.
+     */
     private void updateMoneyLabel(){
         ShopMoneyLabel.setText("Money: $"+ playerManager.getMoney());
     }
+    /**
+     * Updates the information displayed in the shop UI based on the selected upgrade.
+     * Sets the name and cost of the upgrade.
+     * @param upgrade The upgrade whose information is to be displayed.
+     */
     private void updateUpgradeInfo(Upgrade upgrade) {
         ShopNameLabel.setText("Upgrade: " + upgrade.getUpgradeName());
         ShopCostLabel.setText("Cost: $" + upgrade.getUpgradeCost());
@@ -179,6 +202,5 @@ public class ShopController {
         LoadLabel.setText("");
         SpeedLabel.setText("");
         TypeLabel.setText("");
-        // You can similarly update other labels with upgrade information
     }
 }

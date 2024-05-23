@@ -32,14 +32,17 @@ public class ApplyUpgradeScreenController {
     public Label errorNoUpgradeSelectedLabel;
 
     /**
-     * Constructor for ApplyUpgradeScreenController.
-     * @param playerManager The PlayerManager instance associated with the game.
+     * Constructs a new instance of ApplyUpgradeScreenController with the specified PlayerManager.
+     * This constructor initializes the ApplyUpgradeScreenController with the given PlayerManager instance.
+     * @param playerManager The PlayerManager instance associated with the apply upgrade screen controller.
      */
     public ApplyUpgradeScreenController(PlayerManager playerManager){
         this.playerManager = playerManager;
     }
     /**
-     * Initializes the controller, setting up table views and hiding error labels.
+     * Initializes the apply upgrade screen by initializing tables and hiding error labels.
+     * This method calls the initializeTables method to initialize the tables displaying towers and upgrades,
+     * and hides the error labels for no upgrade or tower selected initially.
      */
     public void initialize(){
         initializeTables();
@@ -47,7 +50,10 @@ public class ApplyUpgradeScreenController {
         errorNoTowerSelectedLabel.setVisible(false);
     }
     /**
-     * Initializes tower and upgrade tables with data.
+     * Initializes the tables displaying towers and upgrades.
+     * This method populates the tower table with data of towers currently in game
+     * and the upgrade table with data of upgrades available in the player's inventory.
+     * It also binds the tower inventory data to table columns and sets the data to the tables.
      */
     private void initializeTables() {
         System.out.println();
@@ -89,38 +95,43 @@ public class ApplyUpgradeScreenController {
         } else {
             errorNoTowerSelectedLabel.setVisible(false);
             errorNoUpgradeSelectedLabel.setVisible(false);
-            // upgrade the tower level?
             applyUpgrade(selectedTower,selectedUpgrade);
 
         }
     }
     /**
      * Applies the selected upgrade to the selected tower.
+     * This method upgrades the selected tower based on the selected upgrade.
+     * It first prints the tower's stats before the upgrade, then applies the upgrade,
+     * and prints the tower's stats after the upgrade.
+     * If the upgrade is "Tower Reload Speed Boost!", it upgrades the tower's reload speed,
+     * assesses the tower's level, and prints the new reload speed.
+     * If the upgrade is "Tower Resource Amount Boost!", it upgrades the tower's resource amount,
+     * assesses the tower's level, and prints the new resource amount.
+     * If the upgrade is a level upgrade, it increases the tower's level and prints the new level.
+     * After applying the upgrade, it removes the upgrade from the player's inventory
+     * and reinitializes the tables displaying towers and upgrades.
      * @param selectedTower The tower to which the upgrade is applied.
      * @param selectedUpgrade The upgrade to be applied.
      */
     private void applyUpgrade(Tower selectedTower, Upgrade selectedUpgrade) {
         System.out.println(selectedTower.getTowerName() + " stats before upgrade: \n Reload Speed: "+ selectedTower.getTowerReloadSpeed());
         System.out.println("Level: "+ selectedTower.getTowerLevel() + "\nResource Amount: "+selectedTower.getTowerResourceAmount());
-
         if (Objects.equals(selectedUpgrade.getUpgradeName(), "Tower Reload Speed Boost!")){
             selectedTower.upgradeReloadSpeed(selectedTower);
             selectedTower.assessTowerLevel(selectedTower);
-      //      selectedTower.updateTowerReloadSpeed(selectedTower);
             System.out.println("New Reload Speed: "+selectedTower.getTowerReloadSpeed());
         }else if (Objects.equals(selectedUpgrade.getUpgradeName(), "Tower Resource Amount Boost!")){
             selectedTower.upgradeTowerResourceAmount(selectedTower);
             selectedTower.assessTowerLevel(selectedTower);
             System.out.println("New Resource Amount: "+selectedTower.getTowerResourceAmount());
-        } else{ // upgrade is a level upgrade
+        } else{
             selectedTower.increaseTowerLevel(selectedTower);
             System.out.println("New Level: "+selectedTower.getTowerLevel());
         }
         System.out.println("stats after upgrade: \n Reload Speed: "+ selectedTower.getTowerReloadSpeed());
         System.out.println("Level: "+ selectedTower.getTowerLevel() + "\nResource Amount: "+selectedTower.getTowerResourceAmount());
-        //remove upgrade from upgrade Inventory
         playerManager.removeUpgradeFromInventory(selectedUpgrade);
-        // reinitialise upgrade tbale
         initializeTables();
     }
     /**
@@ -133,13 +144,15 @@ public class ApplyUpgradeScreenController {
         playerManager.launchHomeScreen();
     }
     /**
-     * Handles the action when the "Next" button is clicked.
-     * Sets initial track distance and navigates to the round difficulty selection screen.
-     * @param event The action event triggered by the button click.
+     * Handles the event when the "Next" button is clicked.
+     * This method sets the initial track distance in the PlayerManager,
+     * prints the current track distance for debugging purposes,
+     * closes the apply upgrade screen, and launches the choose round difficulty screen.
+     * @param event The ActionEvent representing the button click event.
      */
     public void onNextClicked(ActionEvent event) {
         playerManager.setInitialTrackDistance();
-        System.out.println("Curent trakc idst" + playerManager.getCurrentTrackDistance());
+        System.out.println("Curent track dist" + playerManager.getCurrentTrackDistance());
         System.out.println("Next Button Clicked");
         playerManager.closeApplyUpgradeScreen();
         playerManager.launchChooseRoundDifficultyScreen();
