@@ -33,14 +33,9 @@
          <font>
             <Font name="Berenis ADF Pro Math Regular" size="30.0" />
          </font></Label>
-      <Button fx:id="playAgainButton" mnemonicParsing="false" onAction="#onPlayAgainClicked" prefHeight="97.0" prefWidth="277.0" text="Play Again" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+      <Button fx:id="exitButton" mnemonicParsing="false" onAction="#onExitClicked" prefHeight="97.0" prefWidth="277.0" text="Exit" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
          <font>
             <Font name="Berenis ADF Pro Math Regular" size="35.0" />
          </font></Button>
-      <Label fx:id="moneyGainedLabel" text="Money Gained: $" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
-         <font>
-            <Font name="Berenis ADF Pro Math Regular" size="13.0" />
-         </font>
-      </Label>
    </children>
 </GridPane>

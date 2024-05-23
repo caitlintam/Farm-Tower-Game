@@ -26,15 +26,15 @@
          <children>
             <Label fx:id="HomeLabel" alignment="CENTER" contentDisplay="CENTER" text="Home" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER">
                <font>
-                  <Font name="Cabin-Bold" size="53.0" />
+                  <Font name="Berenis ADF Pro Math Regular" size="53.0" />
                </font>
                <GridPane.margin>
-                  <Insets />
+                  <Insets top="20.0" />
                </GridPane.margin>
             </Label>
             <Label fx:id="playerNameLabel" text="Hello" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
-                  <Font size="25.0" />
+                  <Font name="Berenis ADF Pro Math Regular" size="30.0" />
                </font>
                <GridPane.margin>
                   <Insets left="15.0" />
@@ -52,20 +52,29 @@
                <GridPane.margin>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </GridPane.margin>
+               <font>
+                  <Font name="Berenis ADF Pro Math Regular" size="20.0" />
+               </font>
             </Button>
             <Button fx:id="playRoundButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPlayRoundButtonClicked" text="Play Round" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </GridPane.margin>
+               <font>
+                  <Font name="Berenis ADF Pro Math Regular" size="20.0" />
+               </font>
             </Button>
             <Button fx:id="viewInventoryButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onViewInventoryButtonClicked" text="View/Edit Inventory" GridPane.columnIndex="3" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </GridPane.margin>
+               <font>
+                  <Font name="Berenis ADF Pro Math Regular" size="20.0" />
+               </font>
             </Button>
             <Label fx:id="homepageMoney" text="Money:" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
-                  <Font size="22.0" />
+                  <Font name="Berenis ADF Pro Math Regular" size="30.0" />
                </font>
                <GridPane.margin>
                   <Insets left="15.0" />
@@ -79,14 +88,20 @@
                   <Insets left="40.0" />
                </GridPane.margin>
                <font>
-                  <Font size="22.0" />
+                  <Font name="Berenis ADF Pro Math Regular" size="30.0" />
                </font>
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </Label>
             <Label fx:id="errorNoTowersInGameLabel" text="Error: Must have at least 3 Towers In-Game" textFill="#fb0505" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
-            <Button fx:id="giveUpButton" mnemonicParsing="false" onAction="#onGiveUpClicked" prefHeight="59.0" prefWidth="118.0" text="Give Up" textFill="#eb0707" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Button fx:id="giveUpButton" mnemonicParsing="false" onAction="#onGiveUpClicked" prefHeight="59.0" prefWidth="118.0" text="Give Up" textFill="#eb0707" GridPane.columnIndex="3" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="50.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="Berenis ADF Pro Math Regular" size="20.0" />
+               </font></Button>
          </children>
       </GridPane>
    </children>
