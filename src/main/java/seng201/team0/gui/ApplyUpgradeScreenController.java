@@ -62,16 +62,13 @@ public class ApplyUpgradeScreenController {
         System.out.println();
 
         ArrayList<Upgrade> upgradeInventory = (ArrayList<Upgrade>) player.getUpgradeInventory();
-        ArrayList<Tower> towerInventory = (ArrayList<Tower>) player.getTowerInventory();
         System.out.println(upgradeInventory);
-
         // Convert ArrayList to ObservableList
         ObservableList<Tower> inGameTowersData = FXCollections.observableArrayList(player.getTowersInGame());
         ObservableList<Upgrade> upgradeData = FXCollections.observableArrayList(upgradeInventory);
         // Bind tower inventory data to table columns
         prepTowerColumn.setCellValueFactory(new PropertyValueFactory<Tower, String>("towerName"));
         prepUpgradeColumn.setCellValueFactory(new PropertyValueFactory<Upgrade, String>("upgradeName"));
-
         // Set tower inventory data to the table
         prepTowerTable.setItems(inGameTowersData);
         prepUpgradeTable.setItems(upgradeData);

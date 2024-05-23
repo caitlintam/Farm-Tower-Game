@@ -12,7 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+/**
+ * Unit tests for the RoundService class.
+ */
 public class RoundServiceTest {
 
     private List<Cart> cartsInRound;
@@ -20,6 +22,9 @@ public class RoundServiceTest {
     private Player player;
     private Round round;
     private RoundService roundService;
+    /**
+     * initialises the objects required for testing before each test case.
+     */
     @BeforeEach
     void init(){
         player = new Player("testPlayer",0);
@@ -30,7 +35,9 @@ public class RoundServiceTest {
         player.setTowersInGame(towersInGame);
         roundService = new RoundService(round);
     }
-
+    /**
+     * Tests the runRound method of the RoundService class.
+     */
     @Test
     void testRunRound(){
         Cart cart0 = new Cart(1,100,"resType1","resType2",5);
