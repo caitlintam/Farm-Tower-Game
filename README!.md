@@ -165,7 +165,7 @@ from choose difficulty, on next button clicked
 CREDIT AUDO
 MOO - License Agreement
 You must attribute the work in the manner specified by the author or licensor.
-- Author: manofham, Title: Moo 1 - Moo Moo the Cow
+- Author: manofham, Title: Moo 1 - Moo Moo the C[PlayerManager.java](src%2Fmain%2Fjava%2Fseng201%2Fteam0%2FPlayerManager.java)ow
 - 
 
 

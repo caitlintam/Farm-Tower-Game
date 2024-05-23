@@ -9,6 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import seng201.team0.PlayerManager;
+import seng201.team0.models.Player;
 import seng201.team0.models.Tower;
 import seng201.team0.models.Upgrade;
 
@@ -22,6 +23,7 @@ import java.util.Objects;
  */
 public class InventoryController {
     private final PlayerManager playerManager;
+    private final Player player;
     @FXML
     public TableView<Tower> towerTable;
     @FXML
@@ -46,6 +48,7 @@ public class InventoryController {
 
     InventoryController(PlayerManager playerManager) {
         this.playerManager = playerManager;
+        this.player = playerManager.getPlayer();
     }
     /**
      * Initializes the controller,
@@ -68,7 +71,7 @@ public class InventoryController {
      * and binds the data to table columns. Finally, sets the tower inventory data to the table.
      */
     private void initializeTowerTable() {
-        ArrayList<Tower> towerInventory = (ArrayList<Tower>) playerManager.getTowerInventory();
+        ArrayList<Tower> towerInventory = (ArrayList<Tower>) player.getTowerInventory();
         System.out.println("here" + towerInventory.toString());
         ObservableList<Tower> towerData = FXCollections.observableArrayList(towerInventory);
         towerNameColumn.setCellValueFactory(new PropertyValueFactory<Tower, String>("towerName"));
@@ -95,7 +98,7 @@ public class InventoryController {
         }else{
             errorNoTowerSelectedLabel.setVisible(false);
             System.out.println("Tower Inventory before" + playerManager.getTowerInventory().size());
-            playerManager.removeTowerFromInventory(selectedTower);
+            player.removeTowerFromInventory(selectedTower);
             System.out.println("Tower removed from Inventory :" + playerManager.getTowerInventory().size());
             initializeTowerTable();
             double cost = selectedTower.getTowerCost();
@@ -129,7 +132,7 @@ public class InventoryController {
                 errorChangeStatusLabel.setVisible(false);
                 selectedTower.updateTowerStatus(selectedTower);
                 System.out.println(selectedTower.getTowerName() + " status changed to " + selectedTower.getTowerStatus());
-                playerManager.setTowersInGame();
+                player.setTowersInGame();
                 clearTowerTable();
                 initializeTowerTable();
             }
@@ -141,7 +144,7 @@ public class InventoryController {
      * and binds the data to table columns. Finally, sets the upgrade inventory data to the table.
      */
     private void initializeUpgradeTable() {
-        ArrayList<Upgrade> upgradeInventory = (ArrayList<Upgrade>) playerManager.getUpgradeInventory();
+        ArrayList<Upgrade> upgradeInventory = (ArrayList<Upgrade>) player.getUpgradeInventory();
         System.out.println(upgradeInventory);
         ObservableList<Upgrade> upgradeData = FXCollections.observableArrayList(upgradeInventory);
         upgradeNameColumn.setCellValueFactory(new PropertyValueFactory<Upgrade, String>("upgradeName"));
@@ -163,7 +166,7 @@ public class InventoryController {
         } else {
             errorNoUpgradeSelectedLabel.setVisible(false);
             System.out.println("Upgrade Inventory before" + playerManager.getUpgradeInventory().size());
-            playerManager.removeUpgradeFromInventory(selectedUpgrade);
+            player.removeUpgradeFromInventory(selectedUpgrade);
             System.out.println("Upgrade removed from Inventory :" + playerManager.getUpgradeInventory().size());
             initializeUpgradeTable();
             double cost = selectedUpgrade.getUpgradeCost();

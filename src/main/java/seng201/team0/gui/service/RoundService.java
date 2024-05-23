@@ -1,6 +1,8 @@
-package seng201.team0;
+package seng201.team0.gui.service;
 
 import seng201.team0.models.Cart;
+import seng201.team0.models.Player;
+import seng201.team0.models.Round;
 import seng201.team0.models.Tower;
 
 import java.util.ArrayList;
@@ -8,34 +10,38 @@ import java.util.List;
 import java.util.Objects;
 
 public class RoundService {
-    private final CartManager cartManager;
-    private final PlayerManager playerManager;
+ //   private final CartService cartService;
+
+
+    private final Round round;
+    private final List<Cart> cartsInRound;
     private int currentCartSize;
-    public RoundService(PlayerManager playerManager, CartManager cartManager){
-        this.playerManager = playerManager;
-        this.cartManager = cartManager;
+    public RoundService(Round round){
+        this.round = round;
+        this.cartsInRound = round.getCartsInRound();
     }
     private String mainGameScreenRoundText;
 
-    public void runRound(int trackDistance) {
+    public void runRound(Round round, Player player) {
+
         mainGameScreenRoundText = " ";
-        mainGameScreenRoundText += "------- Running Round " + (playerManager.getCurrentRoundNumber()+1) +  " ------";
+        mainGameScreenRoundText += "------- Running Round " + (round.getRoundNumber()+1) +  " ------";
 
         List<Integer> successfullyFilledCarts = new ArrayList<Integer>();
         List<Integer> failedFilledCarts = new ArrayList<Integer>();
-        cartManager.generateNewCartsInGame();
-        System.out.println("Track Distance: " + trackDistance);
-        mainGameScreenRoundText += "\n Number of carts in round: " + cartManager.getCartsInRound().size();
- //       System.out.println("cartsinRound" + cartManager.getCartsInRound());
+
+        System.out.println("Track Distance: " + round.getTrackDistance());
+        mainGameScreenRoundText += "\n Number of carts in round: " + cartsInRound.size();
+ //       System.out.println("cartsinRound" + cartService.getCartsInRound());
         // for each cart;
 
-        for (Cart cart : cartManager.getCartsInRound()) {
-            int cartTimeOnTrack = (int) (trackDistance / cart.getCartSpeed());
+        for (Cart cart : cartsInRound) {
+            int cartTimeOnTrack = (int) (round.getRoundNumber() / cart.getCartSpeed());
             currentCartSize = 0;
             mainGameScreenRoundText += "\n\n----------------------------------------------------------- Cart " + (cart.getCartID()+1) + " -----------------------------------------------------------\n Resource Type 1: "+ cart.getPrimaryCartResourceType() + " ------- Resource Type 2: " + cart.getSecondaryCartResourceType() + " ------- Size: "+ cart.getCartSize() + " ------- Cart Speed: " + cart.getCartSpeed()+  "m/s  ............is going round the track";
             // for each tower
             boolean isMatched = false;
-            for (Tower tower : playerManager.getTowersInGame()) {
+            for (Tower tower : player.getTowersInGame()) {
                 // if the resources types match
                 if (!isMatched&&(Objects.equals(cart.getPrimaryCartResourceType() , tower.getTowerResourceType())) | (Objects.equals(cart.getSecondaryCartResourceType() , tower.getTowerResourceType()))) {
                     // calculate the carts time on the track..  turn time to integer
@@ -70,23 +76,26 @@ public class RoundService {
                 failedFilledCarts.add(cart.getCartID());
                 //launch round lose screen
             }
-            playerManager.setNumCartsFilled( successfullyFilledCarts.size() );
-            playerManager.setMainGameScreenText(mainGameScreenRoundText);
+            round.setNumCartsFilled( successfullyFilledCarts.size() );
+            System.out.println("num cartss fielld " + round.getNumCartsFilled());
+            round.setMainGameScreenText(mainGameScreenRoundText);
       //      System.out.println("---------------------------------------------");
 
         }
         // once all carts have been through round
         // if all carts filled ( failed is empty == true ) won, otherwise false, have a cart not filled
 
-        int numCarts = cartManager.getCartsInRound().size();
+        int numCarts = cartsInRound.size();
+        System.out.println(numCarts);
         if (successfullyFilledCarts.size() >= ((numCarts/2 ))){
-            playerManager.increaseNumRoundsWon();
-            playerManager.setRoundSuccess(true);
+            player.increaseNumRoundsWon();
+            round.setRoundSuccess(true);
         }else{
-            playerManager.increaseNumRoundsLost();
-            playerManager.setRoundSuccess(false);
+            player.increaseNumRoundsLost();
+            round.setRoundSuccess(false);
          
         }
+
 
     }
 }

@@ -4,7 +4,8 @@ import javafx.scene.control.Label;
 import seng201.team0.PlayerManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import seng201.team0.ShopManager;
+import seng201.team0.models.Player;
+import seng201.team0.models.Shop;
 import seng201.team0.TowerManager;
 import seng201.team0.UpgradeManager;
 import seng201.team0.models.Tower;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShopController {
+    private final Player player;
     @FXML
     public Button upgradeButton3;
     @FXML
@@ -55,21 +57,20 @@ public class ShopController {
     private int selectedUpgradeIndex = -1;
     private int selectedTowerIndex = -1;
     private Button selectedButton = null;
-    private ShopManager shopManager;
+    private Shop shop;
 
     /**
      * Constructs a new ShopController.
      *
      * @param playerManager  The PlayerManager instance responsible for managing player-related operations.
-     * @param towerManager   The TowerManager instance responsible for managing tower-related operations.
-     * @param upgradeManager The UpgradeManager instance responsible for managing upgrade-related operations.
-     * @param shopManager    The ShopManager instance responsible for managing shop-related operations.
+     *
      */
-    public ShopController(PlayerManager playerManager, TowerManager towerManager, UpgradeManager upgradeManager, ShopManager shopManager){
+    public ShopController(PlayerManager playerManager){
         this.playerManager = playerManager;
-        this.towerManager = towerManager;
-        this.upgradeManager = upgradeManager;
-        this.shopManager = shopManager;
+        this.towerManager = playerManager.getTowerManager();
+        this.upgradeManager = playerManager.getUpgradeManager();
+        this.shop = playerManager.getShopManager();
+        this.player = playerManager.getPlayer();
     }
     /**
      * Initializes the shop interface by updating the money label, hiding certain labels, and setting up event handlers
@@ -87,7 +88,9 @@ public class ShopController {
         List<Button> allButtons = new ArrayList<>();
         allButtons.addAll(buyTowerButtons);
         allButtons.addAll(buyUpgradeButtons);
-        List<Tower> newPurchasableTowers = shopManager.generateNewPurchasableTowers();
+
+        List<Tower> newPurchasableTowers = shop.generateNewPurchasableTowers();
+
         for (int i = 0; i < buyUpgradeButtons.size(); i++) {
             buyUpgradeButtons.get(i).setText(upgradeManager.getUpgradeList().get(i).getUpgradeName());
             buyTowerButtons.get(i).setText(newPurchasableTowers.get(i).getTowerName());
@@ -126,13 +129,13 @@ public class ShopController {
             if (selectedButton == buyTowerButton1 || selectedButton == buyTowerButton2 || selectedButton == buyTowerbutton3) {
                 errorNoMoneyLabel.setVisible(false);
                 errorInventoryFullLabel.setVisible(false);
-                boolean canBuy = shopManager.tryBuyTower(selectedTowerIndex);
+                boolean canBuy = shop.tryBuyTower(selectedTowerIndex);
                 if (canBuy){
-                    itemBoughtLabel.setText("Tower Bought! Added to Inventory as " + playerManager.getTowerInventory().get(playerManager.getTowerInventory().size()-1).getTowerStatus() + " status");
+                    itemBoughtLabel.setText("Tower Bought! Added to Inventory as " + player.getTowerInventory().get(player.getTowerInventory().size()-1).getTowerStatus() + " status");
                     itemBoughtLabel.setVisible(true);
                     updateMoneyLabel();
                 } else {
-                    if (playerManager.getTowerInventory().size() ==10){
+                    if (player.getTowerInventory().size() ==10){
                         itemBoughtLabel.setVisible(false);
                         errorNoMoneyLabel.setVisible(false);
                         errorInventoryFullLabel.setVisible(true);
@@ -147,7 +150,7 @@ public class ShopController {
             } else if (selectedButton == upgradeButton1 || selectedButton == upgradeButton2 || selectedButton == upgradeButton3) {
                 errorNoMoneyLabel.setVisible(false);
                 errorInventoryFullLabel.setVisible(false);
-                boolean hasEnoughMoney = shopManager.tryBuyUpgrade(selectedUpgradeIndex);
+                boolean hasEnoughMoney = shop.tryBuyUpgrade(selectedUpgradeIndex);
                 if (hasEnoughMoney){
                     itemBoughtLabel.setText("Upgrade Bought! Added to Inventory");
                     itemBoughtLabel.setVisible(true);

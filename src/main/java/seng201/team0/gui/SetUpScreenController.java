@@ -29,11 +29,11 @@ public class SetUpScreenController {
      */
     public SetUpScreenController(PlayerManager playerManager) {
         this.playerManager = playerManager;
+        /**
+         * Initializes the setup screen.
+         * Prints a setup screen message to the console and hides error labels.
+         */
     }
-    /**
-     * Initializes the setup screen.
-     * Prints a setup screen message to the console and hides error labels.
-     */
     public void initialize() {
         System.out.println("----- Set Up Screen ----");
         invalidLengthNameLabel.setVisible(false);
@@ -53,7 +53,6 @@ public class SetUpScreenController {
      * If the input name is invalid or if there's an error during the process, an error message is printed.
      */
     public void onBeginClicked() {
-        try {
             System.out.println("Begin Clicked!");
             String name = nameInputTextField.getText();
             invalidCharsNameLabel.setVisible(false);
@@ -77,8 +76,6 @@ public class SetUpScreenController {
                 playerManager.closeSetupScreen();
                 playerManager.launchTowerSetUpScreen();
             }
-        } catch (Exception e) {
-            System.err.println("Error: Please Input a Valid Name");
         }
-    }
 }
+

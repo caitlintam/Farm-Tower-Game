@@ -2,13 +2,13 @@
 //
 //import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.Test;
-//import seng201.team0.RandomEventManager;
+//import seng201.team0.models.RandomEvent;
 //import seng201.team0.models.Tower;
 //
 //import static org.junit.jupiter.api.Assertions.assertEquals;
 //
 //public class RandomEventManagerTest {
-//    private RandomEventManager randomEventManager;
+//    private RandomEvent randomEventManager;
 //    private Tower tower1;
 //    private Tower tower2;
 //    @BeforeEach

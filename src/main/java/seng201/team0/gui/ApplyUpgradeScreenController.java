@@ -9,11 +9,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import seng201.team0.PlayerManager;
+import seng201.team0.models.Player;
 import seng201.team0.models.Tower;
 import seng201.team0.models.Upgrade;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Controller class for the Apply Upgrade Screen.
@@ -21,6 +24,7 @@ import java.util.Objects;
  */
 public class ApplyUpgradeScreenController {
     private final PlayerManager playerManager;
+    private final Player player;
     public TableView<Tower> prepTowerTable;
     public TableView<Upgrade> prepUpgradeTable;
     public Button applyUpgradeTowerButton;
@@ -38,6 +42,7 @@ public class ApplyUpgradeScreenController {
      */
     public ApplyUpgradeScreenController(PlayerManager playerManager){
         this.playerManager = playerManager;
+        this.player = playerManager.getPlayer();
     }
     /**
      * Initializes the apply upgrade screen by initializing tables and hiding error labels.
@@ -58,15 +63,17 @@ public class ApplyUpgradeScreenController {
     private void initializeTables() {
         System.out.println();
 
-        ArrayList<Upgrade> upgradeInventory = (ArrayList<Upgrade>) playerManager.getUpgradeInventory();
+        ArrayList<Upgrade> upgradeInventory = (ArrayList<Upgrade>) player.getUpgradeInventory();
+        ArrayList<Tower> towerInventory = (ArrayList<Tower>) player.getTowerInventory();
         System.out.println(upgradeInventory);
 
         // Convert ArrayList to ObservableList
-        ObservableList<Tower> inGameTowersData = FXCollections.observableArrayList(playerManager.getTowersInGame());
+        ObservableList<Tower> inGameTowersData = FXCollections.observableArrayList(player.getTowersInGame());
         ObservableList<Upgrade> upgradeData = FXCollections.observableArrayList(upgradeInventory);
         // Bind tower inventory data to table columns
         prepTowerColumn.setCellValueFactory(new PropertyValueFactory<Tower, String>("towerName"));
         prepUpgradeColumn.setCellValueFactory(new PropertyValueFactory<Upgrade, String>("upgradeName"));
+
         // Set tower inventory data to the table
         prepTowerTable.setItems(inGameTowersData);
         prepUpgradeTable.setItems(upgradeData);
@@ -96,7 +103,6 @@ public class ApplyUpgradeScreenController {
             errorNoTowerSelectedLabel.setVisible(false);
             errorNoUpgradeSelectedLabel.setVisible(false);
             applyUpgrade(selectedTower,selectedUpgrade);
-
         }
     }
     /**
@@ -131,7 +137,7 @@ public class ApplyUpgradeScreenController {
         }
         System.out.println("stats after upgrade: \n Reload Speed: "+ selectedTower.getTowerReloadSpeed());
         System.out.println("Level: "+ selectedTower.getTowerLevel() + "\nResource Amount: "+selectedTower.getTowerResourceAmount());
-        playerManager.removeUpgradeFromInventory(selectedUpgrade);
+        player.removeUpgradeFromInventory(selectedUpgrade);
         initializeTables();
     }
     /**
@@ -156,7 +162,6 @@ public class ApplyUpgradeScreenController {
         System.out.println("Next Button Clicked");
         playerManager.closeApplyUpgradeScreen();
         playerManager.launchChooseRoundDifficultyScreen();
-
     }
 }
 

@@ -1,13 +1,18 @@
-package seng201.team0;
+package seng201.team0.gui.service;
 import java.util.ArrayList;
+
+import seng201.team0.PlayerManager;
+import seng201.team0.TowerManager;
 import seng201.team0.models.Cart;
+import seng201.team0.models.Player;
 import seng201.team0.models.Tower;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class CartManager {
+public class CartService {
+    private final Player player;
     private List<Cart> carts;
     private List<Cart> cartsInRound;
     private List<String> potentialCartResourceTypes;
@@ -21,12 +26,14 @@ public class CartManager {
         return cartsInRound;
     }
 
-    public CartManager(PlayerManager playerManager, TowerManager towerManager) {
-        this.playerManager = playerManager;
-        this.towerManager = towerManager;
+
+    public CartService(Player player) {
+   //     this.playerManager = p;
+        this.towerManager = new TowerManager();
         this.cartsInRound = new ArrayList<Cart>();
         this.potentialCartResourceTypes = new ArrayList<String>();
         this.random = new Random(201);
+        this.player = player;
         setPotentialCartResourceTypes();
 
     }
@@ -39,7 +46,7 @@ public class CartManager {
         }
     }
     public void setNumberOfCarts(){
-        this.numberOfCarts = playerManager.getTowersInGame().size();
+        this.numberOfCarts = player.getTowersInGame().size();
     }
 
     // call this function when starting game, generates carts based on resource type
@@ -48,7 +55,7 @@ public class CartManager {
         // Clear existing carts
         setNumberOfCarts();
         shuffleCartsInGameResourceTypes();
-        List<Tower> towersInGame = playerManager.getTowersInGame();
+        List<Tower> towersInGame = player.getTowersInGame();
         //
         cartsInRound.clear();
 
@@ -63,7 +70,7 @@ public class CartManager {
             cartsInRound.add(new Cart(cartID, cartSize, primaryResourceType, secondaryResourceType, cartSpeed));
 
         }
-        System.out.println("My Towers: " + playerManager.getTowersResTypeInGame());
+        System.out.println("My Towers: " + player.getTowersResTypeInGame());
         System.out.println("-------------------");
 
     }

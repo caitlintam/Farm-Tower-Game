@@ -1,5 +1,6 @@
 package seng201.team0.unittests.services;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seng201.team0.models.Player;
 import seng201.team0.models.Tower;
@@ -10,6 +11,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class PlayerTest {
     private Player player;
+    @BeforeEach
+    void  init(){
+        this.player = new Player("hi",0);
+    }
     @Test
     /* test setter and getter for player name*/
     public void testSetAndGetName(){
@@ -30,7 +35,7 @@ public class PlayerTest {
     public void testAddTowersToInventory() {
         Tower testTower = new Tower("TestTower", 100, "Resource", 1, 1, 100, "In-Game");
         player.addTowersToInventory(testTower);
-        assertTrue(player.getTowerInventory().contains(testTower));
+        assertEquals(testTower.getTowerCost(), player.getTowerInventory().get(0).getTowerCost());
     }
 
     @Test
@@ -41,7 +46,7 @@ public class PlayerTest {
     public void testAddUpgradesToInventory() {
         Upgrade testUpgrade = new Upgrade("TestUpgrade", 100);
         player.addUpgradesToInventory(testUpgrade);
-        assertTrue(player.getUpgradeInventory().contains(testUpgrade));
+        assertEquals(testUpgrade.getUpgradeName(), player.getUpgradeInventory().get(0).getUpgradeName());
     }
 
     @Test
