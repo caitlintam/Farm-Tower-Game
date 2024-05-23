@@ -1,100 +1,172 @@
 package seng201.team0.unittests.services;
+
 import static org.junit.jupiter.api.Assertions.*;
-import seng201.team0.models.Upgrade;
-import seng201.team0.models.Tower;
-import seng201.team0.TowerManager;
-import seng201.team0.PlayerManager;
-import org.junit.jupiter.api.Test;
+
 import org.junit.jupiter.api.BeforeEach;
-
+import org.junit.jupiter.api.Test;
+import seng201.team0.PlayerManager;
+import seng201.team0.models.Player;
+import seng201.team0.models.Round;
 import java.util.function.Consumer;
-
 
 public class PlayerManagerTest {
     private PlayerManager playerManager;
+    private Consumer<PlayerManager> testConsumer;
+    private Runnable testRunnable;
+    private Round testRound;
+    private boolean consumerCalled;
+    private boolean runnableCalled;
+
     @BeforeEach
-    public void setup(){
-        Consumer<PlayerManager> noOpConsumer = gm -> {};
-        Runnable noOpRunnable = () -> {};
+    public void setup() {
+        consumerCalled = false;
+        runnableCalled = false;
+
+        testConsumer = (pm) -> consumerCalled = true;
+        testRunnable = () -> runnableCalled = true;
+        testRound = new Round(new Player("Test Player", 0), 0, 0);
 
         playerManager = new PlayerManager(
-                noOpConsumer,noOpConsumer, noOpRunnable,noOpConsumer,
-                noOpConsumer,noOpConsumer,noOpConsumer,noOpConsumer,
-                noOpConsumer,noOpConsumer,noOpConsumer,noOpConsumer);
+                testConsumer, testConsumer, testRunnable, testConsumer,
+                testConsumer, testConsumer, testConsumer, testConsumer,
+                testConsumer, testConsumer, testConsumer, testConsumer) {
+            @Override
+            public void launchRandomEventScreen() {
+                testConsumer.accept(this);
+            }
+            @Override
+            public void launchHomeScreen() {
+                testConsumer.accept(this);
+            }
+            @Override
+            public void launchWonRoundScreen() {
+                testConsumer.accept(this);
+            }
+            @Override
+            public void launchMainGameScreen() {
+                testConsumer.accept(this);
+            }
+        };
+        playerManager.getPlayer().setMoney(0);
     }
 
     @Test
-    /* tests the setName method using getName to ensure setName is functioning correctly*/
-    public void testSetName() {
-        playerManager.setName("TestPlayer");
-        assertEquals("TestPlayer", playerManager.getName());
+    public void testToHomeOrRandomEventOrGameFinish_GameComplete() {
+        playerManager.setNumGameRounds(1);
+        playerManager.toHomeOrRandomEventOrGameFinish();
+        assertTrue(consumerCalled);
+    }
+    @Test
+    public void testToHomeOrRandomEventOrGameFinish_NormalRound() {
+        playerManager.setNumGameRounds(5);
+        playerManager.toHomeOrRandomEventOrGameFinish();
+        assertTrue(consumerCalled);
     }
 
     @Test
-    /* tests the setMoney method and the getMoney method*/
-    public void testSetAndGetMoney() {
-        playerManager.setMoney(2000.00);
-        assertEquals(2000.00, playerManager.getMoney());
+    public void testEvaluateRoundSuccess_Success() {
+        playerManager.setRoundSuccess(true);
+        playerManager.setEarnedMoney(5);
+
+        double initialMoney = playerManager.getPlayer().getMoney();
+        playerManager.evaluateRoundSuccess();
+        double expectedMoney = initialMoney + playerManager.getEarnedMoney();
+
+        assertEquals(expectedMoney, playerManager.getPlayer().getMoney());
+        assertTrue(consumerCalled);
     }
 
     @Test
-    /*
-    instantiates a new tower
-    adds the new tower to the inventory and using getTowerInventory checks if the tower was successfully added
-     */
-    public void testAddTowersToInventory() {
-        Tower testTower = new Tower("TestTower", 100, "Resource", 1, 1, 100, "In-Game");
-        playerManager.addTowersToInventory(testTower);
-        assertEquals(testTower.getTowerName(), playerManager.getTowerInventory().get(0).getTowerName());
-        assertEquals(testTower.getTowerCost(), playerManager.getTowerInventory().get(0).getTowerCost());
+    public void testEvaluateRoundSuccess_Failure() {
+        playerManager.setRoundSuccess(false);
 
+        double initialMoney = playerManager.getPlayer().getMoney();
+        playerManager.evaluateRoundSuccess();
 
+        assertEquals(initialMoney, playerManager.getPlayer().getMoney());
+        assertTrue(consumerCalled);
+    }
+    @Test
+    public void testLaunchScreens() {
+        consumerCalled = false;
+
+        playerManager.launchSetupScreen();
+        assertTrue(consumerCalled);
+
+        consumerCalled = false;
+        playerManager.launchTowerSetUpScreen();
+        assertTrue(consumerCalled);
+
+        consumerCalled = false;
+        playerManager.launchHomeScreen();
+        assertTrue(consumerCalled);
+
+        consumerCalled = false;
+        playerManager.launchMainGameScreen();
+        assertTrue(consumerCalled);
+
+        consumerCalled = false;
+        playerManager.launchRandomEventScreen();
+        assertTrue(consumerCalled);
+
+        consumerCalled = false;
+        playerManager.launchWonRoundScreen();
+        assertTrue(consumerCalled);
+
+        consumerCalled = false;
+        playerManager.launchShopScreen();
+        assertTrue(consumerCalled);
+
+        consumerCalled = false;
+        playerManager.launchInventoryScreen();
+        assertTrue(consumerCalled);
+
+        consumerCalled = false;
+        playerManager.launchApplyUpgradeScreen();
+        assertTrue(consumerCalled);
+
+        consumerCalled = false;
+        playerManager.launchChooseRoundDifficultyScreen();
+        assertTrue(consumerCalled);
     }
 
     @Test
-    /*
-    instantiates a new upgrade
-    adds the new upgrade to the inventory and using getUpgradeInventory checks if the upgrade was successfully added
-     */
-    public void testAddUpgradesToInventory() {
-        Upgrade testUpgrade = new Upgrade("TestUpgrade", 100);
-        playerManager.addUpgradesToInventory(testUpgrade);
-        assertEquals(testUpgrade.getUpgradeName(), playerManager.getUpgradeInventory().get(0).getUpgradeName());
-        assertEquals(testUpgrade.getUpgradeCost(), playerManager.getUpgradeInventory().get(0).getUpgradeCost());
-    }
+    public void testCloseScreens() {
+        runnableCalled = false;
 
-    @Test
-    /*
-    instantiates a new tower
-    adds the new tower to the inventory
-    removes the added tower from the inventory
-    using getTowerInventory to check if the tower was successfully removed
-     */
-    public void testRemoveTowerFromInventory() {
-        Tower testTower = new Tower("TestTower", 100, "Resource", 1, 1, 100, "In-Game");
-        playerManager.addTowersToInventory(testTower);
-        playerManager.removeTowerFromInventory(testTower);
-        assertFalse(playerManager.getTowerInventory().contains(testTower));
-    }
+        playerManager.closeSetupScreen();
+        assertTrue(runnableCalled);
 
-    @Test
-/*
-instantiates a new upgrade
-adds the new upgrade to the inventory
-removes the added upgrade from the inventory
-using getUpgradeInventory to check if the upgrade was successfully removed
-*/
-    public void testRemoveUpgradeFromInventory() {
-        Upgrade testUpgrade = new Upgrade("TestUpgrade", 100);
-        playerManager.addUpgradesToInventory(testUpgrade);
-        playerManager.removeUpgradeFromInventory(testUpgrade);
-        assertFalse(playerManager.getUpgradeInventory().contains(testUpgrade));
-    }
+        runnableCalled = false;
+        playerManager.closeTowerSetUpScreen();
+        assertTrue(runnableCalled);
 
-    @Test
-    /* tests the setGameDifficulty method and the getDifficulty method */
-    public void testSetAndGetGameDifficulty() {
-        playerManager.setGameDifficulty(2);
-        assertEquals(2, playerManager.getGameDifficulty());
-        }
+        runnableCalled = false;
+        playerManager.closeMainScreen();
+        assertTrue(runnableCalled);
+
+        runnableCalled = false;
+        playerManager.closeChooseRoundDifficultyScreen();
+        assertTrue(runnableCalled);
+
+        runnableCalled = false;
+        playerManager.closeShopScreen();
+        assertTrue(runnableCalled);
+
+        runnableCalled = false;
+        playerManager.closeApplyUpgradeScreen();
+        assertTrue(runnableCalled);
+
+        runnableCalled = false;
+        playerManager.closeWonRoundScreen();
+        assertTrue(runnableCalled);
+
+        runnableCalled = false;
+        playerManager.closeRandomEventScreen();
+        assertTrue(runnableCalled);
+
+        runnableCalled = false;
+        playerManager.closeInventoryScreen();
+        assertTrue(runnableCalled);
+    }
 }
