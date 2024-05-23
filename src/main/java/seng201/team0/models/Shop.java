@@ -48,7 +48,6 @@ public class Shop {
         }return false;
 
     }
-
     public boolean tryBuyUpgrade(int selectedUpgradeIndex) {
         Upgrade selectedUpgrade = upgrade.getUpgradeList().get(selectedUpgradeIndex);
         double cost = selectedUpgrade.getUpgradeCost();
