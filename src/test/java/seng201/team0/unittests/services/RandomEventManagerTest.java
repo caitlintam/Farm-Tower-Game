@@ -15,6 +15,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 public class RandomEventManagerTest {
     private PlayerManager playerManager;
     private Player player;
+    /**
+     * Initializes the test environment before each test method.
+     * Creates a PlayerManager instance with no-op consumers and a no-op runnable.
+     * Creates a Player instance with a name "test" and an initial balance of 1000.
+     */
     @BeforeEach
     public void init(){
         Consumer<PlayerManager> noOpConsumer = gm -> {};
@@ -22,9 +27,9 @@ public class RandomEventManagerTest {
         playerManager = new PlayerManager(noOpConsumer,noOpConsumer,noOpRunnable,noOpConsumer,noOpConsumer,noOpConsumer,noOpConsumer,noOpConsumer,noOpConsumer,noOpConsumer,noOpConsumer,noOpConsumer);
         player = new Player("test", 1000);
     }
+    /** Testing Blue Sky Level Increase
+     * Should increase level from 1 to 2 */
     @Test
-    /* Testing Blue Sky Level Increase
-     * Should increase level from 1 to 2*/
      void executeLevelIncreaseTest(){
         Tower tower = new Tower("testTower",2,"testResource",1,1,100,"In-Game");
         player.addTowersToInventory(tower);
@@ -32,10 +37,10 @@ public class RandomEventManagerTest {
         randomEvent.executeLevelIncrease(tower);
         assertEquals(2, tower.getTowerLevel());
     }
-    @Test
-    /* Testing Error Scenario for Level decrease
+    /** Testing Error Scenario for Level decrease
      * Should decrease level from 0 to 0
      * As you can't decrease level below 0*/
+    @Test
      void executeLevelDecreaseTest(){
         Tower tower = new Tower("testTower",2,"testResource",1,0,100,"Reserve");
         player.addTowersToInventory(tower);
@@ -43,9 +48,9 @@ public class RandomEventManagerTest {
         randomEvent.executeLevelDecrease(tower);
         assertEquals(0, tower.getTowerLevel());
     }
-    @Test
-    /* Testing Blue Sky Scenario for Level decrease
+    /** Testing Blue Sky Scenario for Level decrease
      * Should decrease level from 1 to 0*/
+    @Test
      void testExecuteLevelDecreaseTest(){
         Tower tower = new Tower("testTower",2,"testResource",1,2,100,"Reserve");
         player.addTowersToInventory(tower);
@@ -53,10 +58,10 @@ public class RandomEventManagerTest {
         randomEvent.executeLevelDecrease(tower);
         assertEquals(1, tower.getTowerLevel());
     }
-    @Test
-    /*
-        simulates tower breaking event
+    /**
+     * simulates tower breaking event
     */
+    @Test
     void executeBreakTowerTest(){
         Tower tower = new Tower("testTower",2,"testResource",1,2,100,"Reserve");
         Tower tower1 = new Tower("testTower",2,"testResource",1,2,100,"In-Game");

@@ -78,13 +78,13 @@ public class TowerSetUpController {
         for (int i =0; i< towerButtons.size(); i++){
             int finalI = i;
             towerButtons.get(i).setOnAction(actionEvent -> {
-                updateStats(towerManager.getDefaultTowers().get(finalI)); // updates text of my selected rockets
+                updateStats(towerManager.getDefaultTowers().get(finalI));
                 selectedTowerIndex = finalI;
-                towerButtons.forEach(button -> { // when button selected, change border to highlight selected
+                towerButtons.forEach(button -> {
                     if (button == towerButtons.get(finalI)){
                         button.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
                     } else{
-                        button.setStyle(""); // if not selected, remove highlight
+                        button.setStyle("");
                     }
                 });
             });
@@ -119,13 +119,11 @@ public class TowerSetUpController {
         System.out.println("Next Clicked! ");
         towerManager.setTowerList(Arrays.stream(selectedTowers).filter((Objects::nonNull)).toList());
         if (towerManager.getTowerList().size() < 3){
-          //  System.out.println("Error: not enough towers selected");
             errorTowerNumLabel.setVisible(true);
         }else{
             System.out.println("Towers Added to Inventory: ");
             int i = 1;
             for(Tower tower: selectedTowers){
-                // HERE NEED TO UPDATE STATUS TO INGAME
                 tower.setTowerStatus("In-Game");
                 player.addTowersToInventory(tower);
                 System.out.println("      Tower " + (i)+ " " + tower.getTowerName());

@@ -1,7 +1,5 @@
 package seng201.team0.models;
 
-
-
 import seng201.team0.service.CartService;
 import java.util.List;
 /**
@@ -12,12 +10,8 @@ public class Round {
     private int trackDistance;
     private boolean success;
     private int earnedMoney;
-    private List<Integer> trackDistanceOptionsList;
     private int numCartsFilled;
     private String mainGameScreenText;
-
-    private int currentCartSize;
-
     private List<Cart> cartsInRound;
     private Player player;
     /**
@@ -35,7 +29,6 @@ public class Round {
         cartService.generateNewCartsInGame();
         this.cartsInRound = cartService.getCartsInRound();
         this.player = player;
-    //    this.cartService = cartService;
     }
     /**
      * Gets the player participating in the round.
@@ -121,7 +114,10 @@ public class Round {
     public List<Cart> getCartsInRound(){
         return cartsInRound;
     }
-    // for testing
+    /**
+     * Sets the list of carts in the round.
+     * @param carts the carts used in the round
+     */
     public void  setCartsInRound(List<Cart> carts){
         this.cartsInRound = carts;
     }

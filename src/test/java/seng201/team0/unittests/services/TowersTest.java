@@ -11,15 +11,16 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-/* Tests tower functionality
+/**
+ * Tests tower functionality
  */
 public class TowersTest {
     private Tower towerManager;
      List<Tower> testTowerList = new ArrayList<Tower>();
-    @BeforeEach
-    /*
-    instantiates 3 new towers of boundary attributes
+    /**
+     * instantiates 3 new towers of boundary attributes
      */
+    @BeforeEach
     void init(){
         towerManager = new Tower();
         Tower tower0 = new Tower("TowerTest0", 0, "Test1", 0, 0, 0,"Reserve");
@@ -28,13 +29,15 @@ public class TowersTest {
         testTowerList.addAll(List.of(tower0,tower1,tower2));
         towerManager.setTowerList(testTowerList);
     }
+    /** tests if tower list is size 3 */
     @Test
-        // tests if tower list is size 3
     void towerListTest(){
         assertEquals(3, towerManager.getTowerList().size());
     }
+    /** tests if the new tower added to tower list is set as in-game status.
+     * Tests status updates from Tower Class
+     * */
     @Test
-        // tests if new tower added to tower list is set as in-game status. Tests status updates from Tower Class
     void towerStatusTest(){
         Tower tower0 = testTowerList.get(0);
         towerManager.setTowerStatus(tower0);
@@ -43,7 +46,7 @@ public class TowersTest {
         assertEquals("Reserve", tower0.getTowerStatus());
     }
     @Test
-    /*
+    /**
     upgrades reload speed if greater than 1 ( cant decrease reload speed <= 0)
      */
     void towerReloadTest(){
@@ -52,8 +55,13 @@ public class TowersTest {
         assertEquals(0,tower0.getTowerReloadSpeed());
     }
     @Test
-    /* tests upgrade of resource amount +2
-        and assess's level upgrade as res amount above threshold, increase from level 0 to 1
+    /**
+     * Tests upgrading tower resource amount and assessing tower level.
+     * Upgrades tower resource amount.
+     * Checks if resource amount increased to 2.
+     * Assesses tower level.
+     * Verifies tower level is now 1.
+     * @throws AssertionError if test conditions fail.
      */
     void towerResAmountTest(){
         Tower tower0 = testTowerList.get(0);
@@ -63,7 +71,7 @@ public class TowersTest {
         assertEquals(1, tower0.getTowerLevel());
     }
     @Test
-    /* tests increase of tower1 from level 1 changes res amount = (1*6), reload speed = (30-(4))=26, level = 2
+    /** tests increase of tower1 from level 1 changes res amount = (1*6), reload speed = (30-(4))=26, level = 2
         then reverse changes with decrease level method : res amount = (1*6), reload speed = (30-(2))=28, level = 1
      */
     void towerIncreaseLevelTest(){

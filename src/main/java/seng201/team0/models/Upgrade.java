@@ -10,7 +10,6 @@ public class Upgrade {
     public Upgrade(String upgradeName, double upgradeCost){
         this.upgradeName = upgradeName;
         this.upgradeCost = upgradeCost;
-
     }
     public Upgrade(){
         this.upgradeList = new ArrayList<>();
