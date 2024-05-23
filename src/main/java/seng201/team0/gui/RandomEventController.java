@@ -1,7 +1,7 @@
 package seng201.team0.gui;
 import javafx.fxml.FXML;
 import seng201.team0.PlayerManager;
-import seng201.team0.RandomEventManager;
+import seng201.team0.models.RandomEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
@@ -16,10 +16,10 @@ RandomEventController {
     @FXML
     public Label RandomEventLabel;
     private final PlayerManager playerManager;
-    private RandomEventManager randomEventManager;
+    private RandomEvent randomEvent;
     public RandomEventController(PlayerManager playerManager) {
         this.playerManager = playerManager;
-        this.randomEventManager = playerManager.getRandomEventManager();
+        this.randomEvent = playerManager.getRandomEventManager();
     }
     /**
      * Initializes the random event screen.

@@ -29,10 +29,11 @@ public class SetUpScreenController {
      */
     public SetUpScreenController(PlayerManager playerManager) {
         this.playerManager = playerManager;
-    /**
-     * Initializes the setup screen.
-     * Prints a setup screen message to the console and hides error labels.
-     */
+        /**
+         * Initializes the setup screen.
+         * Prints a setup screen message to the console and hides error labels.
+         */
+    }
     public void initialize() {
         System.out.println("----- Set Up Screen ----");
         invalidLengthNameLabel.setVisible(false);
@@ -76,5 +77,5 @@ public class SetUpScreenController {
                 playerManager.launchTowerSetUpScreen();
             }
         }
-        }
 }
+

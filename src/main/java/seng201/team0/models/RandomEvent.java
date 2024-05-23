@@ -1,22 +1,22 @@
-package seng201.team0;
+package seng201.team0.models;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import seng201.team0.PlayerManager;
 import seng201.team0.models.Player;
 import seng201.team0.models.Tower;
-import seng201.team0.PlayerManager;
 
-public class RandomEventManager {
+public class RandomEvent {
     private PlayerManager playerManager;
     private List<Integer> randomEventRounds;
     private Random random;
     private String randomEventText;
     private Player player;
 
-    public RandomEventManager(PlayerManager playerManager, Player player) {
+    public RandomEvent(PlayerManager playerManager, Player player) {
         this.playerManager = playerManager;
         this.random = new Random();
         this.randomEventRounds = new ArrayList<Integer>();

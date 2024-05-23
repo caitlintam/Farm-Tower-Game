@@ -37,7 +37,7 @@ public class PlayerManager {
     private List<Cart> newCartsInRound;
     private CartService cartService;
     private List<Cart> cartsInRound;
-    private RandomEventManager randomEventManager;
+    private RandomEvent randomEvent;
     private List<Integer> randomEventRoundsList;
     private String winOrLose;
     private RoundService roundService;
@@ -84,7 +84,7 @@ public class PlayerManager {
         this.shop = new Shop(this, new TowerManager(), new UpgradeManager());
         this.towerManager = new TowerManager();
         this.upgradeManager = new UpgradeManager();
-        this.randomEventManager = new RandomEventManager(this, player);
+        this.randomEvent = new RandomEvent(this, player);
         launchSetupScreen();
     }
 
@@ -126,8 +126,8 @@ public class PlayerManager {
 //    public List<Tower> getTowersInGame(){return towersInGame;}
 
     public void setRandomEventRoundsList(){
-        randomEventManager.setRandomEventRounds();
-        this.randomEventRoundsList = randomEventManager.getRandomEventRounds();
+        randomEvent.setRandomEventRounds();
+        this.randomEventRoundsList = randomEvent.getRandomEventRounds();
         System.out.println(randomEventRoundsList);
     }
 
@@ -261,7 +261,7 @@ public class PlayerManager {
 
     private String randomText;
     public void toHomeOrRandomEventOrGameFinish() {
-        List<Integer> randomEventRounds = randomEventManager.getRandomEventRounds();
+        List<Integer> randomEventRounds = randomEvent.getRandomEventRounds();
         if ((currentRoundNumber+1) >= numGameRounds){
             setWinOrLoseGameText();
             System.out.println("Here! compelte game");
@@ -269,9 +269,9 @@ public class PlayerManager {
         }
         // if current round is a round of a random event, generate the random event
         else if (randomEventRounds.contains((currentRoundNumber+1))) {
-            randomEventManager.generateRandomEvent();
+            randomEvent.generateRandomEvent();
 
-            this.randomText = randomEventManager.getRandomEventText();
+            this.randomText = randomEvent.getRandomEventText();
             launchRandomEventScreen();
             currentRoundNumber += 1;
         } else {
@@ -290,8 +290,8 @@ public class PlayerManager {
     public Player getPlayer(){
         return player;
     }
-    public RandomEventManager getRandomEventManager(){
-        return randomEventManager;
+    public RandomEvent getRandomEventManager(){
+        return randomEvent;
     }
     public UpgradeManager getUpgradeManager(){
         return upgradeManager;
@@ -342,6 +342,3 @@ public class PlayerManager {
 
 }
 
-
-// need to make round difficulty related to winning money amt.
-// harder diff when button clicked, set index to something, times that um by money.

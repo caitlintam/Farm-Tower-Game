@@ -91,7 +91,7 @@ public class InventoryController {
      */
     @FXML
     private void onSellSelectedTowerButtonClicked(){
-        System.out.println("Sell Tower Button Clicked")
+        System.out.println("Sell Tower Button Clicked");
         Tower selectedTower = towerTable.getSelectionModel().getSelectedItem();
         if (selectedTower == null){
             errorNoTowerSelectedLabel.setVisible(true);

@@ -63,11 +63,9 @@ public class ShopController {
      * Constructs a new ShopController.
      *
      * @param playerManager  The PlayerManager instance responsible for managing player-related operations.
-     * @param towerManager   The TowerManager instance responsible for managing tower-related operations.
-     * @param upgradeManager The UpgradeManager instance responsible for managing upgrade-related operations.
-     * @param shopManager    The ShopManager instance responsible for managing shop-related operations.
+     *
      */
-    public ShopController(PlayerManager playerManager, TowerManager towerManager, UpgradeManager upgradeManager, ShopManager shopManager){
+    public ShopController(PlayerManager playerManager){
         this.playerManager = playerManager;
         this.towerManager = playerManager.getTowerManager();
         this.upgradeManager = playerManager.getUpgradeManager();
