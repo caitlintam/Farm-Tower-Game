@@ -23,7 +23,7 @@ public class RandomEvent {
     public RandomEvent(PlayerManager playerManager, Player player) {
         this.playerManager = playerManager;
         this.random = new Random();
-        this.randomEventRounds = new ArrayList<Integer>();
+        this.randomEventRounds = new ArrayList<>();
         this.player = player;
 
     }
@@ -36,14 +36,13 @@ public class RandomEvent {
         Tower tower = getRandomTower();
         switch (eventType) {
             case 0:
-                executeLevelIncrease(tower); //method for increasing tower level
+                executeLevelIncrease(tower);
                 break;
             case 1:
-                executeLevelDecrease(tower); // method for decreasing tower level
+                executeLevelDecrease(tower);
                 break;
             case 2:
-                executeBreakTower(tower); // method to break a tower
-                // set text in round controller to " tower name has broken "
+                executeBreakTower(tower);
 
                 break;
         }
@@ -56,8 +55,7 @@ public class RandomEvent {
         try{
             tower.setTowerLevel(tower.getTowerLevel() + 1);
             System.out.println("Random Event: Tower " + tower.getTowerName() + "increased levels");
-            String levelIncreaseText = tower.getTowerName() + " has increased levels to level: " + tower.getTowerLevel();
-            this.randomEventText = levelIncreaseText;
+            this.randomEventText = tower.getTowerName() + " has increased levels to level: " + tower.getTowerLevel();
         }catch(NullPointerException e){
             System.out.println("Uh Oh, error, no random tower generated");
         }
@@ -67,18 +65,15 @@ public class RandomEvent {
      * If the tower's level is already at the minimum level (1), no action is taken.
      * If no tower is available, a NullPointerException is caught and an error message is displayed.
      */
-    // made void, not priv or pub, so package level classes (test)  can access
      public void executeLevelDecrease(Tower tower) {
         try{
             if (tower.getTowerLevel() > 1){
                 tower.decreaseTowerLevel(tower);
                 System.out.println("Random Event: Tower " + tower.getTowerName() + " decreased levels");
-                String levelDecreaseText = "Random Event: " +tower.getTowerName() + " has decreased levels to level: " + tower.getTowerLevel();
-                this.randomEventText = levelDecreaseText;
+                this.randomEventText = "Random Event: " +tower.getTowerName() + " has decreased levels to level: " + tower.getTowerLevel();
             }else{
                 System.out.println("Random Event: Tower can't be decreased below level 1");
-                String levelDecreaseText = "Random Event: Tower can't be decreased below level 1";
-                this.randomEventText = levelDecreaseText;
+                this.randomEventText = "Random Event: Tower can't be decreased below level 1";
             }
         }catch(NullPointerException e){
             System.out.println("Uh Oh, error, no random tower generated");
@@ -94,9 +89,7 @@ public class RandomEvent {
             player.removeTowerFromInventory(tower);
             System.out.println("invent size after"+ player.getTowerInventory().size());
             System.out.println("Random Event: " + tower.getTowerName() + " broke and was removed.");
-            // set text for random event fxml
-            String brokenTowerText = tower.getTowerName() + " broke! it has now been removed from your inventory";
-            this.randomEventText = brokenTowerText;
+            this.randomEventText = tower.getTowerName() + " broke! it has now been removed from your inventory";
         }catch(NullPointerException e){
             System.out.println("Uh Oh, error, no random tower generated");
         }
@@ -146,8 +139,8 @@ public class RandomEvent {
      * Randomly selects rounds based on the total number of game rounds.
      */
     public void setRandomEventRounds(){
-        List<Integer> randomEventRoundsList = new ArrayList<Integer>();
-        List<Integer> potentialRoundsList = new ArrayList<Integer>();
+        List<Integer> randomEventRoundsList = new ArrayList<>();
+        List<Integer> potentialRoundsList = new ArrayList<>();
         for (int i=1; i <= playerManager.getNumGameRounds();i++){
             potentialRoundsList.add(i);
         }

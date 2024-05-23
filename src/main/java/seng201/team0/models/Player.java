@@ -8,13 +8,12 @@ import java.util.stream.Collectors;
  * as well as statistics on rounds won and lost.
  */
 public class Player {
-    // inventory, getts and setters
     private String name;
     private double money;
     private final List<Tower> towerInventory;
     private final List<Upgrade> upgradeInventory;
     private List<Tower> towersInGame;
-    private List<Tower> reserveTowers;
+    private final List<Tower> reserveTowers;
     private int numRoundsWon;
     private int numRoundsLost;
     /**
@@ -26,10 +25,10 @@ public class Player {
     public Player(String name, double initialMoney){
         this.name = name;
         this.money = initialMoney;
-        this.towerInventory = new ArrayList<Tower>();
-        this.upgradeInventory = new ArrayList<Upgrade>();
-        this.towersInGame = new ArrayList<Tower>();
-        this.reserveTowers = new ArrayList<Tower>();
+        this.towerInventory = new ArrayList<>();
+        this.upgradeInventory = new ArrayList<>();
+        this.towersInGame = new ArrayList<>();
+        this.reserveTowers = new ArrayList<>();
         this.numRoundsLost = 0;
         this.numRoundsWon = 0;
     }
@@ -100,7 +99,6 @@ public class Player {
         Tower newTower = new Tower(tower.getTowerName(), tower.getTowerResourceAmount(), tower.getTowerResourceType(),
                 tower.getTowerReloadSpeed(), tower.getTowerLevel(), tower.getTowerCost(),
                 tower.getTowerStatus());
-        // Add the new tower object to the inventory
         towerInventory.add(newTower);
     }
     /**
@@ -142,19 +140,8 @@ public class Player {
      * Retrieves towers from the player's tower inventory based on their status and updates the list of towers in-game.
      */
     public void setTowersInGame() {
-        // Filter towerInventory to get only the towers that are in-game
         towersInGame = towerInventory.stream()
                 .filter(tower -> tower.getTowerStatus().equals("In-Game"))
-                .collect(Collectors.toList());
-    }
-    // for testing
-    public void setTowersInGame(List<Tower> towersInGame){
-        this.towersInGame = towersInGame;
-    }
-    public void setReserveTowers() {
-        // Filter towerInventory to get only the towers that are in-game
-        reserveTowers = towerInventory.stream()
-                .filter(tower -> tower.getTowerStatus().equals("Reserve"))
                 .collect(Collectors.toList());
     }
     /**

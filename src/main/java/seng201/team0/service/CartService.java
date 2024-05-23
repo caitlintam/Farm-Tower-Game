@@ -32,7 +32,7 @@ public class CartService {
     public CartService(Player player) {
         this.towerManager = new Tower();
         this.cartsInRound = new ArrayList<Cart>();
-        this.potentialCartResourceTypes = new ArrayList<String>();
+        this.potentialCartResourceTypes = new ArrayList<>();
         this.random = new Random(201);
         this.player = player;
         setPotentialCartResourceTypes();

@@ -11,7 +11,6 @@ import java.util.List;
 public class Shop {
     private final PlayerManager playerManager;
     private final Tower towerManager;
-    private List<Tower> newPurchasableTowers;
     private final Upgrade upgrade;
     private final Player player;
 
@@ -36,7 +35,7 @@ public class Shop {
         System.out.println("------ Shuffling and Generating New Purchasable Towers-------");
         List<Tower> allTowers = towerManager.getDefaultTowers();
         Collections.shuffle(allTowers);
-        newPurchasableTowers = new ArrayList<Tower>(allTowers.subList(0,3));
+        List<Tower> newPurchasableTowers = new ArrayList<>(allTowers.subList(0,3));
         System.out.println("New Purchasable Towers: " + newPurchasableTowers);
         return newPurchasableTowers;
     }

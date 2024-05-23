@@ -29,17 +29,17 @@ public class PlayerManager {
     private final Consumer<PlayerManager> randomEventScreenLauncher;
     private final Runnable clearScreen;
     private int currentTrackDistance;
-    private List<Integer> trackDistanceOptionsList;
-    private RandomEvent randomEvent;
+    private final List<Integer> trackDistanceOptionsList;
+    private final RandomEvent randomEvent;
     private List<Integer> randomEventRoundsList;
     private boolean roundSuccess = false;
     private int earnedMoney;
     private int numCartsFilled;
     private String mainGameScreenText;
     private final Player player;
-    private Shop shop;
-    private Tower towerManager;
-    private Upgrade upgrade;
+    private final Shop shop;
+    private final Tower towerManager;
+    private final Upgrade upgrade;
     private String winOrLoseGameText;
     private String randomText;
     /**
@@ -70,7 +70,7 @@ public class PlayerManager {
         this.mainGameScreenLauncher = mainGameScreenLauncher;
         this.wonRoundScreenLauncher = wonRoundScreenLauncher;
         this.gameCompletionScreenLauncher = gameCompletionScreenLauncher;
-        trackDistanceOptionsList = new ArrayList<Integer>();
+        trackDistanceOptionsList = new ArrayList<>();
             trackDistanceOptionsList.add(170);
             trackDistanceOptionsList.add(150);
             trackDistanceOptionsList.add(130);
