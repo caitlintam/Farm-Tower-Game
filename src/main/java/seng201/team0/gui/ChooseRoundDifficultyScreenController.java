@@ -70,7 +70,7 @@ public class ChooseRoundDifficultyScreenController {
             } else {
                 playerManager.resetMainGameText();
                 errorNoDiffSelected.setVisible(false);
-                System.out.println("Difficulty selected:" + (selectedDifficultyIndex));
+                System.out.println("Difficulty selected: " + (selectedDifficultyIndex));
                 playerManager.setCurrentTrackDistance(selectedDifficultyIndex);
                 playerManager.closeChooseRoundDifficultyScreen();
                 playerManager.startRound();

@@ -47,7 +47,7 @@ public class HomePageController {
      * it closes the home screen and opens/launches the shop screen*/
     public void onGoToShopButtonClicked() {
         // link to shop screen
-        System.out.println("Shop clicked");
+        System.out.println("Shop Clicked");
         playerManager.closeMainScreen();
         playerManager.launchShopScreen();
     }

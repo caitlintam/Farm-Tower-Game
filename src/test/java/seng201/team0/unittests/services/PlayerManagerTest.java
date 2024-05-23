@@ -8,7 +8,9 @@ import seng201.team0.PlayerManager;
 import seng201.team0.models.Player;
 import seng201.team0.models.Round;
 import java.util.function.Consumer;
-
+/**
+ * Unit tests for the PlayerManager class.
+ */
 public class PlayerManagerTest {
     private PlayerManager playerManager;
     private Consumer<PlayerManager> testConsumer;
@@ -16,7 +18,10 @@ public class PlayerManagerTest {
     private Round testRound;
     private boolean consumerCalled;
     private boolean runnableCalled;
-
+    /**
+     * Sets up the test environment before each test. Creates new PlayerManager instances with empty consumers, for simulation
+     * which allows us to only tests relevant methods of the game logic.
+     */
     @BeforeEach
     public void setup() {
         consumerCalled = false;
@@ -49,22 +54,29 @@ public class PlayerManagerTest {
         };
         playerManager.getPlayer().setMoney(0);
     }
-
+    /**
+     * Tests the behavior of method toHomeOrRandomEventOrGameFinish() when the game is complete.
+     */
     @Test
-    public void testToHomeOrRandomEventOrGameFinish_GameComplete() {
+    public void testToHomeOrRandomEventOrGameFinishGameComplete() {
         playerManager.setNumGameRounds(1);
         playerManager.toHomeOrRandomEventOrGameFinish();
         assertTrue(consumerCalled);
     }
+    /**
+     * Tests the behavior of the method toHomeOrRandomEventOrGameFinish() in a blue sky round scenario.
+     */
     @Test
-    public void testToHomeOrRandomEventOrGameFinish_NormalRound() {
+    public void testToHomeOrRandomEventOrGameFinishNormalRound() {
         playerManager.setNumGameRounds(5);
         playerManager.toHomeOrRandomEventOrGameFinish();
         assertTrue(consumerCalled);
     }
-
+    /**
+     * Tests the evaluation of round success when the round is successful.
+     */
     @Test
-    public void testEvaluateRoundSuccess_Success() {
+    public void testEvaluateRoundSuccessSuccess() {
         playerManager.setRoundSuccess(true);
         playerManager.setEarnedMoney(5);
 
@@ -75,9 +87,11 @@ public class PlayerManagerTest {
         assertEquals(expectedMoney, playerManager.getPlayer().getMoney());
         assertTrue(consumerCalled);
     }
-
+    /**
+     * Tests the evaluation of round success when the round is unsuccessful.
+     */
     @Test
-    public void testEvaluateRoundSuccess_Failure() {
+    public void testEvaluateRoundFailure() {
         playerManager.setRoundSuccess(false);
 
         double initialMoney = playerManager.getPlayer().getMoney();
@@ -86,6 +100,9 @@ public class PlayerManagerTest {
         assertEquals(initialMoney, playerManager.getPlayer().getMoney());
         assertTrue(consumerCalled);
     }
+    /**
+     * Tests the launching of screens to ensure Consumers are called for each launcher of the screens
+     */
     @Test
     public void testLaunchScreens() {
         consumerCalled = false;
@@ -129,6 +146,9 @@ public class PlayerManagerTest {
         playerManager.launchChooseRoundDifficultyScreen();
         assertTrue(consumerCalled);
     }
+    /**
+     * Tests the closing of screens to ensure runnables are called for each closing of the screens
+     */
 
     @Test
     public void testCloseScreens() {
