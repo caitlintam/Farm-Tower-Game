@@ -103,7 +103,6 @@ public class ApplyUpgradeScreenController {
             errorNoTowerSelectedLabel.setVisible(false);
             errorNoUpgradeSelectedLabel.setVisible(false);
             applyUpgrade(selectedTower,selectedUpgrade);
-
         }
     }
     /**
@@ -163,7 +162,6 @@ public class ApplyUpgradeScreenController {
         System.out.println("Next Button Clicked");
         playerManager.closeApplyUpgradeScreen();
         playerManager.launchChooseRoundDifficultyScreen();
-
     }
 }
 
