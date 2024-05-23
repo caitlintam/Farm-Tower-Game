@@ -4,7 +4,8 @@ import javafx.scene.control.Label;
 import seng201.team0.PlayerManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import seng201.team0.ShopManager;
+import seng201.team0.models.Player;
+import seng201.team0.models.Shop;
 import seng201.team0.TowerManager;
 import seng201.team0.UpgradeManager;
 import seng201.team0.models.Tower;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShopController {
+    private final Player player;
     public Button upgradeButton3;
     public Button upgradeButton2;
     public Button upgradeButton1;
@@ -48,14 +50,15 @@ public class ShopController {
     private int selectedUpgradeIndex = -1;
     private int selectedTowerIndex = -1;
     private Button selectedButton = null;
-    private ShopManager shopManager;
+    private Shop shop;
 
 
-    public ShopController(PlayerManager playerManager, TowerManager towerManager, UpgradeManager upgradeManager, ShopManager shopManager){
+    public ShopController(PlayerManager playerManager){
         this.playerManager = playerManager;
-        this.towerManager = towerManager;
-        this.upgradeManager = upgradeManager;
-        this.shopManager = shopManager;
+        this.towerManager = playerManager.getTowerManager();
+        this.upgradeManager = playerManager.getUpgradeManager();
+        this.shop = playerManager.getShopManager();
+        this.player = playerManager.getPlayer();
     }
 
     public void initialize() {
@@ -70,7 +73,7 @@ public class ShopController {
         allButtons.addAll(buyUpgradeButtons);
 
         // makes list of new purchasable towers
-        List<Tower> newPurchasableTowers = shopManager.generateNewPurchasableTowers();
+        List<Tower> newPurchasableTowers = shop.generateNewPurchasableTowers();
 
         for (int i = 0; i < buyUpgradeButtons.size(); i++) {
             // change this to label purchasbel i //////////////////////
@@ -108,18 +111,18 @@ public class ShopController {
                 errorNoMoneyLabel.setVisible(false);
                 errorInventoryFullLabel.setVisible(false);
                 // Access TowerManager
-                boolean canBuy = shopManager.tryBuyTower(selectedTowerIndex);
+                boolean canBuy = shop.tryBuyTower(selectedTowerIndex);
                 //////////////////////////// do this all in shop manager ///////////
                 // call new boolean method tryBuyTower();
                 /// if can buy tower, change attributes, return true
                 /// otherwise return false, change visible labels
 
                 if (canBuy){
-                    itemBoughtLabel.setText("Tower Bought! Added to Inventory as " + playerManager.getTowerInventory().get(playerManager.getTowerInventory().size()-1).getTowerStatus() + " status");
+                    itemBoughtLabel.setText("Tower Bought! Added to Inventory as " + player.getTowerInventory().get(player.getTowerInventory().size()-1).getTowerStatus() + " status");
                     itemBoughtLabel.setVisible(true);
                     updateMoneyLabel();
                 } else {
-                    if (playerManager.getTowerInventory().size() ==10){
+                    if (player.getTowerInventory().size() ==10){
                         itemBoughtLabel.setVisible(false);
                         errorNoMoneyLabel.setVisible(false);
                         errorInventoryFullLabel.setVisible(true);
@@ -139,7 +142,7 @@ public class ShopController {
                 errorInventoryFullLabel.setVisible(false);
                 //////////  Access UpgradeManager///////////////
                 /// do same boolean method above, move code of attributes into manager, not fxml class
-                boolean hasEnoughMoney = shopManager.tryBuyUpgrade(selectedUpgradeIndex);
+                boolean hasEnoughMoney = shop.tryBuyUpgrade(selectedUpgradeIndex);
                 if (hasEnoughMoney){
                     itemBoughtLabel.setText("Upgrade Bought! Added to Inventory");
                     itemBoughtLabel.setVisible(true);

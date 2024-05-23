@@ -51,7 +51,7 @@ public class FXWrapper {
     public void launchShopScreen(PlayerManager playerManager) {
         try {
             FXMLLoader shopScreenLoader = new FXMLLoader(getClass().getResource("/fxml/shop.fxml"));
-            shopScreenLoader.setControllerFactory(param -> new ShopController(playerManager, new TowerManager(), new UpgradeManager(), new ShopManager(playerManager, new TowerManager(), new UpgradeManager())));
+            shopScreenLoader.setControllerFactory(param -> new ShopController(playerManager));
             Parent setupParent  = shopScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Shop Screen");
@@ -62,7 +62,7 @@ public class FXWrapper {
     public void launchRandomEventScreen(PlayerManager playerManager) {
         try {
             FXMLLoader randomEventScreenLoader = new FXMLLoader(getClass().getResource("/fxml/random_event.fxml"));
-            randomEventScreenLoader.setControllerFactory(param -> new RandomEventController(playerManager, new RandomEventManager(playerManager)));
+            randomEventScreenLoader.setControllerFactory(param -> new RandomEventController(playerManager));
             Parent setupParent = randomEventScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Random Event Screen");
@@ -75,7 +75,7 @@ public class FXWrapper {
     public void launchTowerSetupScreen(PlayerManager playerManager) {
         try {
             FXMLLoader towerSetupScreenLoader = new FXMLLoader(getClass().getResource("/fxml/tower_setup_screen.fxml"));
-            towerSetupScreenLoader.setControllerFactory(param -> new TowerSetUpController(playerManager, new TowerManager()));
+            towerSetupScreenLoader.setControllerFactory(param -> new TowerSetUpController(playerManager));
             Parent setupParent = towerSetupScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Tower Setup Screen");

@@ -11,6 +11,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import seng201.team0.PlayerManager;
 import seng201.team0.UpgradeManager;
+import seng201.team0.models.Player;
 import seng201.team0.models.Tower;
 import seng201.team0.models.Upgrade;
 
@@ -21,6 +22,7 @@ import java.util.Objects;
 
 public class InventoryController {
     private final PlayerManager playerManager;
+    private final Player player;
     //private final UpgradeManager upgradeManager;
     @FXML
     public TableView<Tower> towerTable;
@@ -54,6 +56,7 @@ public class InventoryController {
     // method for tableview. On selected, set selected tower to ..
     InventoryController(PlayerManager playerManager) {
         this.playerManager = playerManager;
+        this.player = playerManager.getPlayer();
     }
     public void initialize() {
         // Populate tower inventory table
@@ -67,7 +70,7 @@ public class InventoryController {
     }
 
     private void initializeTowerTable() {
-        ArrayList<Tower> towerInventory = (ArrayList<Tower>) playerManager.getTowerInventory();
+        ArrayList<Tower> towerInventory = (ArrayList<Tower>) player.getTowerInventory();
         System.out.println("here" + towerInventory.toString());
 
         // Convert ArrayList to ObservableList
@@ -96,7 +99,7 @@ public class InventoryController {
         errorNoTowerSelectedLabel.setVisible(false);
         // remove from towerInventory
         System.out.println("Tower Inventory before" + playerManager.getTowerInventory().size());
-        playerManager.removeTowerFromInventory(selectedTower);
+        player.removeTowerFromInventory(selectedTower);
         System.out.println("Tower removed from Inventory :" + playerManager.getTowerInventory().size());
         // update fxml - remove from tableview( initialise tower method)
         initializeTowerTable();
@@ -128,7 +131,7 @@ public class InventoryController {
                 errorChangeStatusLabel.setVisible(false);
                 selectedTower.updateTowerStatus(selectedTower);
                 System.out.println(selectedTower.getTowerName() + " status changed to " + selectedTower.getTowerStatus());
-                playerManager.setTowersInGame();
+                player.setTowersInGame();
                 //refresh tower table
                 clearTowerTable();
                 initializeTowerTable();
@@ -136,7 +139,7 @@ public class InventoryController {
         }
     }
     private void initializeUpgradeTable() {
-        ArrayList<Upgrade> upgradeInventory = (ArrayList<Upgrade>) playerManager.getUpgradeInventory();
+        ArrayList<Upgrade> upgradeInventory = (ArrayList<Upgrade>) player.getUpgradeInventory();
         System.out.println(upgradeInventory);
 
         // Convert ArrayList to ObservableList
@@ -156,7 +159,7 @@ public class InventoryController {
         } else {
             errorNoUpgradeSelectedLabel.setVisible(false);
             System.out.println("Upgrade Inventory before" + playerManager.getUpgradeInventory().size());
-            playerManager.removeUpgradeFromInventory(selectedUpgrade);
+            player.removeUpgradeFromInventory(selectedUpgrade);
             System.out.println("Upgrade removed from Inventory :" + playerManager.getUpgradeInventory().size());
             initializeUpgradeTable();
             double cost = selectedUpgrade.getUpgradeCost();

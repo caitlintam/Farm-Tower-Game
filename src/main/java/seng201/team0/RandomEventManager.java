@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+
+import seng201.team0.models.Player;
 import seng201.team0.models.Tower;
 import seng201.team0.PlayerManager;
 
@@ -12,11 +14,14 @@ public class RandomEventManager {
     private List<Integer> randomEventRounds;
     private Random random;
     private String randomEventText;
+    private Player player;
 
-    public RandomEventManager(PlayerManager playerManager) {
+    public RandomEventManager(PlayerManager playerManager, Player player) {
+        this.playerManager = playerManager;
         this.random = new Random();
         this.randomEventRounds = new ArrayList<Integer>();
-        this.playerManager = playerManager;
+        this.player = player;
+
     }
 
     public void generateRandomEvent() {
@@ -65,9 +70,9 @@ public class RandomEventManager {
     private void executeBreakTower() {
         Tower tower = getRandomTower();
         try{
-            System.out.println("invent size before"+ playerManager.getTowerInventory().size());
-            playerManager.removeTowerFromInventory(tower);
-            System.out.println("invent size after"+ playerManager.getTowerInventory().size());
+            System.out.println("invent size before"+ player.getTowerInventory().size());
+            player.removeTowerFromInventory(tower);
+            System.out.println("invent size after"+ player.getTowerInventory().size());
             System.out.println("Random Event: " + tower.getTowerName() + " broke and was removed.");
             // set text for random event fxml
             String brokenTowerText = tower.getTowerName() + " broke! it has now been removed from your inventory";
@@ -85,17 +90,17 @@ public class RandomEventManager {
     }
 
     private Tower getRandomTower() {
-        if (playerManager.getTowerInventory().isEmpty()) {
+        if (player.getTowerInventory().isEmpty()) {
             return null;
         } else {
             double usedTowerProbability = 0.8;
             if (random.nextDouble() < usedTowerProbability) {
-                return playerManager.getTowersInGame().get(random.nextInt(playerManager.getTowersInGame().size()));
+                return player.getTowersInGame().get(random.nextInt(player.getTowersInGame().size()));
             } else {
-                if (playerManager.getReserveTowers().isEmpty()){ //  to stop invocation error or non postiive bound
-                    return playerManager.getTowersInGame().get(random.nextInt(playerManager.getTowersInGame().size()));
+                if (player.getReserveTowers().isEmpty()){ //  to stop invocation error or non postiive bound
+                    return player.getTowersInGame().get(random.nextInt(player.getTowersInGame().size()));
                 }else{
-                    return playerManager.getReserveTowers().get(random.nextInt(playerManager.getReserveTowers().size()));
+                    return player.getReserveTowers().get(random.nextInt(player.getReserveTowers().size()));
                 }
             }
         }

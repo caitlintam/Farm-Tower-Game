@@ -1,18 +1,17 @@
 package seng201.team0.unittests.services;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seng201.team0.CartManager;
+import seng201.team0.gui.service.CartService;
 import seng201.team0.PlayerManager;
 import seng201.team0.TowerManager;
 import seng201.team0.models.Cart;
-import seng201.team0.models.Player;
 import seng201.team0.models.Tower;
 
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 public class CartsTest {
-    private CartManager cartManager;
+    private CartService cartService;
     private TowerManager towerManager;
 
     private PlayerManager playerManager;
@@ -26,7 +25,7 @@ public class CartsTest {
         Cart cart2 = new Cart( 10, 200, "type5", "type6", 200);
         towerManager = new TowerManager();
         playerManager = new PlayerManager(null,null,null,null,null,null,null,null,null,null,null,null);
-        cartManager = new CartManager(playerManager,new TowerManager());
+        cartService = new CartService(playerManager,new TowerManager());
     }
     @Test
     /*
@@ -37,8 +36,8 @@ public class CartsTest {
         Tower tower1 = new Tower("TowerTest2", 10, "Test1", 25, 1, 100,"In-Game");
         playerManager.addTowersToInventory(tower0);
         playerManager.addTowersToInventory(tower1);
-        cartManager.generateNewCartsInGame();
-        assertEquals(2, cartManager.getCartsInRound().size());
+        cartService.generateNewCartsInGame();
+        assertEquals(2, cartService.getCartsInRound().size());
     }
 
 //    @Test
@@ -46,14 +45,14 @@ public class CartsTest {
 //    test that random cart size and speed are within given range of 0.8-12 and 0.7-1.3 respecticely
 //     */
 //    void testGenerateRandomCartSizeSpeed(){
-//        int testResAmount = cartManager.generateRan
+//        int testResAmount = cartService.generateRan
 //        int testReloadSpeed = 1;
 //        assertThat(g).isBetween(min, max);;
 //    }
 //    void testShuffleCarts(){
-//        cartManager.setPotentialCartResourceTypes();
+//        cartService.setPotentialCartResourceTypes();
 //        List<Cart> resTypes;
-//        cartManager.shuffleCartsInGameResourceTypes();
+//        cartService.shuffleCartsInGameResourceTypes();
 //
 //    }
 

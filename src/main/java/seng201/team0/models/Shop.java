@@ -1,24 +1,25 @@
-package seng201.team0;
+package seng201.team0.models;
 
-import seng201.team0.models.Tower;
-import seng201.team0.models.Upgrade;
+import seng201.team0.PlayerManager;
+import seng201.team0.TowerManager;
+import seng201.team0.UpgradeManager;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class ShopManager {
+public class Shop {
     private PlayerManager playerManager;
     private TowerManager towerManager;
     private List<Tower> newPurchasableTowers;
     private UpgradeManager upgradeManager;
+    private Player player;
 
-    public ShopManager(PlayerManager playerManager, TowerManager towerManager, UpgradeManager upgradeManager){
+    public Shop(PlayerManager playerManager, TowerManager towerManager, UpgradeManager upgradeManager){
         this.playerManager = playerManager;
         this.towerManager = towerManager;
         this.upgradeManager = upgradeManager;
+        this.player = playerManager.getPlayer();
     }
     public List<Tower> generateNewPurchasableTowers() {
         System.out.println("------ Shuffling and Generating New Purchasable Towers-------");
@@ -35,15 +36,15 @@ public class ShopManager {
         if (cost <= playerManager.getMoney()){
             // if inventory size <10
             if (playerManager.getTowerInventory().size() < 10){ // can buy, add to inventory with certain status
-                if (playerManager.getTowersInGame().size() < 5){
+                if (player.getTowersInGame().size() < 5){
                     selectedTower.setTowerStatus("In-Game");
                 }else{
                     selectedTower.setTowerStatus("Reserve");
                 }
                 System.out.println(selectedTower.getTowerName() + " Bought, Set to Status " + selectedTower.getTowerStatus());
                 playerManager.setMoney(playerManager.getMoney() - cost);
-                playerManager.addTowersToInventory(selectedTower);
-                playerManager.setTowersInGame();
+                player.addTowersToInventory(selectedTower);
+                player.setTowersInGame();
                 return true;
             }
         }return false;
@@ -56,7 +57,7 @@ public class ShopManager {
         if (cost <= playerManager.getMoney()){
             System.out.println(selectedUpgrade.getUpgradeName() + " Bought");
             playerManager.setMoney(playerManager.getMoney() - cost);
-            playerManager.addUpgradesToInventory(selectedUpgrade);
+            player.addUpgradesToInventory(selectedUpgrade);
             return true;
         } else {
             return false;

@@ -10,9 +10,11 @@ import javafx.scene.control.ProgressBar;
 import javafx.util.Duration;
 import seng201.team0.PlayerManager;
 import javafx.fxml.FXML;
+import seng201.team0.models.Player;
 
 public class MainGameScreenController {
     private final PlayerManager playerManager;
+    private final Player player;
     @FXML
     public Label mainGameTextLabel;
     @FXML
@@ -21,6 +23,7 @@ public class MainGameScreenController {
 
     public MainGameScreenController(PlayerManager playerManager){
         this.playerManager = playerManager;
+        this.player = playerManager.getPlayer();
     }
 
     public void initialize(){

@@ -9,6 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import seng201.team0.PlayerManager;
+import seng201.team0.models.Player;
 import seng201.team0.models.Tower;
 import seng201.team0.models.Upgrade;
 
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 
 public class ApplyUpgradeScreenController {
     private final PlayerManager playerManager;
+    private final Player player;
     public TableView<Tower> prepTowerTable;
     public TableView<Upgrade> prepUpgradeTable;
     public Button applyUpgradeTowerButton;
@@ -29,7 +31,10 @@ public class ApplyUpgradeScreenController {
     public Label errorNoTowerSelectedLabel;
     public Label errorNoUpgradeSelectedLabel;
 
-    public ApplyUpgradeScreenController(PlayerManager playerManager){this.playerManager = playerManager;}
+    public ApplyUpgradeScreenController(PlayerManager playerManager){
+        this.playerManager = playerManager;
+        this.player = playerManager.getPlayer();
+    }
     public void initialize(){
         initializeTables();
         errorNoUpgradeSelectedLabel.setVisible(false);
@@ -39,11 +44,12 @@ public class ApplyUpgradeScreenController {
     private void initializeTables() {
         System.out.println();
 
-        ArrayList<Upgrade> upgradeInventory = (ArrayList<Upgrade>) playerManager.getUpgradeInventory();
+        ArrayList<Upgrade> upgradeInventory = (ArrayList<Upgrade>) player.getUpgradeInventory();
+        ArrayList<Tower> towerInventory = (ArrayList<Tower>) player.getTowerInventory();
         System.out.println(upgradeInventory);
 
         // Convert ArrayList to ObservableList
-        ObservableList<Tower> inGameTowersData = FXCollections.observableArrayList(playerManager.getTowersInGame());
+        ObservableList<Tower> inGameTowersData = FXCollections.observableArrayList(player.getTowersInGame());
         ObservableList<Upgrade> upgradeData = FXCollections.observableArrayList(upgradeInventory);
 // Bind tower inventory data to table columns
         prepTowerColumn.setCellValueFactory(new PropertyValueFactory<Tower, String>("towerName"));
@@ -103,7 +109,7 @@ public class ApplyUpgradeScreenController {
         System.out.println("Level: "+ selectedTower.getTowerLevel() + "\nResource Amount: "+selectedTower.getTowerResourceAmount());
 
         //remove upgrade from upgrade Inventory
-        playerManager.removeUpgradeFromInventory(selectedUpgrade);
+        player.removeUpgradeFromInventory(selectedUpgrade);
         // reinitialise upgrade tbale
         initializeTables();
     }

@@ -7,6 +7,7 @@ import seng201.team0.PlayerManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
+import seng201.team0.models.Player;
 
 public class GameCompletionScreenController {
     private final PlayerManager playerManager;
@@ -15,25 +16,22 @@ public class GameCompletionScreenController {
     private Label roundsWonLabel;
     @FXML
     private Label roundsLostLabel;
+    private final Player player;
 
 
     public void initialize(){
         System.out.println(playerManager.getWinOrLose());
-        roundsLostLabel.setText("You Lost " + playerManager.getNumRoundsLost() + " / " + playerManager.getNumGameRounds() + "Rounds");
-        roundsWonLabel.setText("You Won " + playerManager.getNumRoundsWon() + " / " + playerManager.getNumGameRounds() + " Rounds");
+        roundsLostLabel.setText("You Lost " + player.getNumRoundsLost() + " / " + playerManager.getNumGameRounds() + "Rounds");
+        roundsWonLabel.setText("You Won " + player.getNumRoundsWon() + " / " + playerManager.getNumGameRounds() + " Rounds");
         this.WinOrLOseLabel.setText(playerManager.getWinOrLose());
     }
 
     public GameCompletionScreenController(PlayerManager playerManager) {
         this.playerManager = playerManager;
+        this.player = playerManager.getPlayer();
     }
     public void onPlayAgainClicked(){
         Platform.exit();
-
-    }
-
-
-    public void onPlayAgainClicked(ActionEvent actionEvent) {
 
     }
 }

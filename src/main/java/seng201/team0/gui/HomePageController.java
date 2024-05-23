@@ -61,7 +61,7 @@ public class HomePageController {
                 .toList();
         if (towersInGame.size() < 3){
             errorNoTowersInGameLabel.setVisible(true);
-            System.out.println("Error: Must have 3-5 towers in-game"); // relabel this better
+           // System.out.println("Error: Must have 3-5 towers in-game"); // relabel this better
         }else{
             errorNoTowersInGameLabel.setVisible(false);
             System.out.println("Play Round Button Clicked");

@@ -14,9 +14,9 @@ RandomEventController {
     public Label RandomEventLabel;
     private final PlayerManager playerManager;
     private RandomEventManager randomEventManager;
-    public RandomEventController(PlayerManager playerManager, RandomEventManager randomEventManager) {
+    public RandomEventController(PlayerManager playerManager) {
         this.playerManager = playerManager;
-        this.randomEventManager = randomEventManager;
+        this.randomEventManager = playerManager.getRandomEventManager();
     }
     public void initialize(){
         System.out.println("rtest" + playerManager.getRandomText());

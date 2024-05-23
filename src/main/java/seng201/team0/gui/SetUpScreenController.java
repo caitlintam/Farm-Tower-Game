@@ -23,64 +23,58 @@ public class SetUpScreenController {
     public Label invalidCharsNameLabel;
     private PlayerManager playerManager;
 
-    public SetUpScreenController(PlayerManager playerManager){
+    public SetUpScreenController(PlayerManager playerManager) {
         this.playerManager = playerManager;
-
     }
-    public void initialize(){
+
+    public void initialize() {
         System.out.println("----- Set Up Screen ----");
         invalidLengthNameLabel.setVisible(false);
         invalidCharsNameLabel.setVisible(false);
 
 
     }
-    public boolean validNameInput(String name){
+
+    public boolean validNameInput(String name) {
         return name.matches("^[a-zA-Z0-9]{3,15}$");
     }
-    public void onBeginClicked(){
-        try {
-            System.out.println("Begin Clicked!");
+
+    public void onBeginClicked() {
+        System.out.println("Begin Clicked!");
 //            if (nameInputTextField == null || playerManager == null) {
 //                throw new IllegalStateException("UI components are not properly initialized.");
 //            }
-            String name = nameInputTextField.getText();
-            invalidCharsNameLabel.setVisible(false);
-            invalidLengthNameLabel.setVisible(false);
+        String name = nameInputTextField.getText();
+        invalidCharsNameLabel.setVisible(false);
+        invalidLengthNameLabel.setVisible(false);
 //            if (name == null || name.isEmpty()) {
 //                throw new IllegalArgumentException("Name input cannot be null or empty.");
 //            }
 
-            if (!validNameInput(nameInputTextField.getText())) {
-                if (!nameInputTextField.getText().matches("^.{3,15}$")) {
-                    invalidLengthNameLabel.setVisible(true);
-                    //throw new Exception("Name must be between 3 and 15 characters long");
-                    //System.out.println("Error: Name must be between 3 and 15 chgvjharacters long");
-
-
-                } else {
-                   // System.out.println("Error: Name must not contain special characters");
-                    invalidCharsNameLabel.setVisible(true);
-                }
+        if (!validNameInput(nameInputTextField.getText())) {
+            if (!nameInputTextField.getText().matches("^.{3,15}$")) {
+                invalidLengthNameLabel.setVisible(true);
+                //throw new Exception("Name must be between 3 and 15 characters long");
+                //System.out.println("Error: Name must be between 3 and 15 chgvjharacters long");
             } else {
-                System.out.println("valid input");
-                playerManager.setName(nameInputTextField.getText());
-                playerManager.setNumGameRounds((int) numRoundsSlider.getValue());
-                playerManager.setGameDifficulty((int) gameDifficultySlider.getValue());
-                System.out.println("Player Name: " + playerManager.getName());
-                System.out.println("Number of Game Rounds: " + playerManager.getNumGameRounds());
-                System.out.println("Game Difficulty: " + playerManager.getGameDifficulty());
-                playerManager.setRandomEventRoundsList();
-                System.out.println("random " + playerManager.getRandomEventsRoundList());
-                playerManager.closeSetupScreen();
-                playerManager.launchTowerSetUpScreen();
-
-
+                // System.out.println("Error: Name must not contain special characters");
+                invalidCharsNameLabel.setVisible(true);
             }
-        }catch(Exception e){
-            System.err.println("Error: Please Input a Valid Name");
+        } else {
+            System.out.println("valid input");
+            playerManager.setName(nameInputTextField.getText());
+            playerManager.setNumGameRounds((int) numRoundsSlider.getValue());
+            playerManager.setGameDifficulty((int) gameDifficultySlider.getValue());
 
-            }
-      //
+            System.out.println("Player Name: " + playerManager.getName());
+            System.out.println("Number of Game Rounds: " + playerManager.getNumGameRounds());
+            System.out.println("Game Difficulty: " + playerManager.getGameDifficulty());
+            playerManager.setRandomEventRoundsList();
+            System.out.println("random " + playerManager.getRandomEventsRoundList());
+            playerManager.closeSetupScreen();
+            playerManager.launchTowerSetUpScreen();
 
 
-    }}
+        }
+    }
+}

@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import seng201.team0.PlayerManager;
 import seng201.team0.TowerManager;
+import seng201.team0.models.Player;
 import seng201.team0.models.Tower;
 
 import java.util.Arrays;
@@ -31,10 +32,12 @@ public class TowerSetUpController {
     private TowerManager towerManager;
     private int selectedTowerIndex = -1;
     private final Tower[] selectedTowers = new Tower[3];
+    private Player player;
     private Button selectedButton;
-    public TowerSetUpController(PlayerManager playerManager, TowerManager towerManager){
+    public TowerSetUpController(PlayerManager playerManager){
         this.playerManager = playerManager;
-        this.towerManager = towerManager;
+        this.towerManager = playerManager.getTowerManager();
+        this.player = playerManager.getPlayer();
 
     }
 
@@ -90,12 +93,12 @@ public class TowerSetUpController {
             for(Tower tower: selectedTowers){
                 // HERE NEED TO UPDATE STATUS TO INGAME
                 tower.setTowerStatus("In-Game");
-                playerManager.addTowersToInventory(tower);
+                player.addTowersToInventory(tower);
                 System.out.println("      Tower " + (i)+ " " + tower.getTowerName());
                 towerManager.setTowerStatus(tower);
                 i+=1;
             }
-            playerManager.setTowersInGame();
+            player.setTowersInGame();
             playerManager.closeTowerSetUpScreen();
             playerManager.launchHomeScreen();
 
