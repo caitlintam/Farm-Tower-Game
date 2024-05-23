@@ -14,6 +14,7 @@ public class Round {
     private String mainGameScreenText;
     private List<Cart> cartsInRound;
     private final Player player;
+
     /**
      * Constructs a new round with the specified player, round number, and track distance.
      * @param player the player participating in the round
@@ -29,6 +30,7 @@ public class Round {
         cartService.generateNewCartsInGame();
         this.cartsInRound = cartService.getCartsInRound();
         this.player = player;
+        this.numCartsFilled = 0;
     }
     /**
      * Gets the player participating in the round.
