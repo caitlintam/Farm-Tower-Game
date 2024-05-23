@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import seng201.team0.PlayerManager;
-import seng201.team0.TowerManager;
 import seng201.team0.models.Player;
 import seng201.team0.models.Tower;
 
@@ -29,7 +28,7 @@ public class TowerSetUpController {
     public Button selectedTower1;
     public Label errorTowerNumLabel;
     private PlayerManager playerManager;
-    private TowerManager towerManager;
+    private Tower towerManager;
     private int selectedTowerIndex = -1;
     private final Tower[] selectedTowers = new Tower[3];
     private Player player;

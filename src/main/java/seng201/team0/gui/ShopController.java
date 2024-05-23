@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import seng201.team0.models.Player;
 import seng201.team0.models.Shop;
-import seng201.team0.TowerManager;
+
 import seng201.team0.models.Upgrade;
 import seng201.team0.models.Tower;
 
@@ -52,7 +52,7 @@ public class ShopController {
     @FXML
     private Button BuyButton;
     private PlayerManager playerManager;
-    private TowerManager towerManager;
+    private Tower towerManager;
     private Upgrade upgrade;
     private int selectedUpgradeIndex = -1;
     private int selectedTowerIndex = -1;
