@@ -103,7 +103,7 @@ public class RandomEventManager {
     public void setRandomEventRounds(){
         List<Integer> randomEventRoundsList = new ArrayList<Integer>();
         List<Integer> potentialRoundsList = new ArrayList<Integer>();
-        for (int i=0; i <= playerManager.getNumGameRounds();i++){
+        for (int i=1; i <= playerManager.getNumGameRounds();i++){
             potentialRoundsList.add(i);
         }
         Collections.shuffle(potentialRoundsList);
