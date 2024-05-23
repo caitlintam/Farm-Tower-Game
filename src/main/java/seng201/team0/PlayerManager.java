@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-import seng201.team0.service.CartService;
 import seng201.team0.service.RoundService;
 import seng201.team0.models.*;
 
@@ -31,11 +30,8 @@ public class PlayerManager {
     private final Runnable clearScreen;
     private int currentTrackDistance;
     private List<Integer> trackDistanceOptionsList;
-    private List<Cart> newCartsInRound;
-    private CartService cartService;
     private RandomEvent randomEvent;
     private List<Integer> randomEventRoundsList;
-    private RoundService roundService;
     private boolean roundSuccess = false;
     private int earnedMoney;
     private int numCartsFilled;
@@ -78,7 +74,6 @@ public class PlayerManager {
             trackDistanceOptionsList.add(170);
             trackDistanceOptionsList.add(150);
             trackDistanceOptionsList.add(130);
-        this.newCartsInRound = new ArrayList<Cart>();
         this.randomEventScreenLauncher = randomEventScreenLauncher;
         this.player = new Player("PlayerName", 0.00);
         this.shop = new Shop(this, new Tower(), new Upgrade());
@@ -335,7 +330,7 @@ public class PlayerManager {
      */
     public void startRound() {
         Round currentRound = new Round(player, currentRoundNumber, currentTrackDistance);
-        this.roundService = new RoundService(currentRound);
+        RoundService roundService= new RoundService(currentRound);
         roundService.runRound(currentRound, player);
         mainGameScreenText = currentRound.getMainGameScreenText();
         this.numCartsFilled = currentRound.getNumCartsFilled();
@@ -403,7 +398,7 @@ public class PlayerManager {
         List<Integer> randomEventRounds = randomEvent.getRandomEventRounds();
         if ((currentRoundNumber+1) >= numGameRounds){
             setWinOrLoseGameText();
-            System.out.println("Here! compelte game");
+            System.out.println("Here! Game Complete");
             launchGameCompletionScreen();
         }
         else if (randomEventRounds.contains((currentRoundNumber+1))) {
@@ -430,13 +425,6 @@ public class PlayerManager {
      */
     public Player getPlayer(){
         return player;
-    }
-    /**
-     * Retrieves the random event manager.
-     * @return The random event manager.
-     */
-    public RandomEvent getRandomEventManager(){
-        return randomEvent;
     }
     /**
      * Retrieves the upgrade manager.
