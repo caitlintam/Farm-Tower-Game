@@ -475,7 +475,7 @@
        </UML:GeneralizableElement.generalization>
        <UML:Classifier.feature>
         <UML:Attribute isSpecification="false" xmi.id="uWnLIcpyTQZiC" name="upgradeList" visibility="private" type="ul8UlKjj8fctJ"/>
-        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="u3f429GkOwArb" name="upgradeManager" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false"/>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="u3f429GkOwArb" name="upgrade" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false"/>
         <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uInPqqJZhClTT" name="getUpgradeList" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
          <UML:BehavioralFeature.parameter>
           <UML:Parameter xmi.id="uRICEWpKAHAkP" type="ul8UlKjj8fctJ" kind="return"/>
@@ -496,8 +496,8 @@
         <UML:Attribute isSpecification="false" xmi.id="uVGNqk7bAhh1F" name="playerManager" visibility="private" type="u0F9hrma1JrPE"/>
         <UML:Attribute isSpecification="false" xmi.id="unjLkB2g50PTh" name="towerManager" visibility="private" type="uKxkeEy019aLK"/>
         <UML:Attribute isSpecification="false" xmi.id="u6LaFVRDjglX5" name="newPurchasableTowers" visibility="private" type="uRuLtJ9taPbU4"/>
-        <UML:Attribute isSpecification="false" xmi.id="uSJKHOKIcWYvO" name="upgradeManager" visibility="private" type="u2ej4UgSYGAWs"/>
-        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uHiZevwjnyvOm" name="ShopManager(playerManager: PlayerManager, towerManager: TowerManager, upgradeManager: UpgradeManager)" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false"/>
+        <UML:Attribute isSpecification="false" xmi.id="uSJKHOKIcWYvO" name="upgrade" visibility="private" type="u2ej4UgSYGAWs"/>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uHiZevwjnyvOm" name="ShopManager(playerManager: PlayerManager, towerManager: TowerManager, upgrade: UpgradeManager)" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false"/>
         <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uKs6RD2kKcLn5" name="generateNewPurchasableTowers" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
          <UML:BehavioralFeature.parameter>
           <UML:Parameter xmi.id="uCSb8d63le9T6" type="uRuLtJ9taPbU4" kind="return"/>
@@ -787,12 +787,12 @@
        <UML:Classifier.feature>
         <UML:Attribute isSpecification="false" xmi.id="ucuqMVaheTA3N" name="playerManager" visibility="private" type="u0F9hrma1JrPE"/>
         <UML:Attribute isSpecification="false" xmi.id="uFSfovIMsmXGr" name="towerManager" visibility="private" type="uKxkeEy019aLK"/>
-        <UML:Attribute isSpecification="false" xmi.id="uUPadK4nncEhV" name="upgradeManager" visibility="private" type="u2ej4UgSYGAWs"/>
+        <UML:Attribute isSpecification="false" xmi.id="uUPadK4nncEhV" name="upgrade" visibility="private" type="u2ej4UgSYGAWs"/>
         <UML:Attribute isSpecification="false" xmi.id="uQbtWHvSxJ4rT" name="selectedUpgradeIndex" visibility="private" type="ubNr9pXAWWVG9" initialValue="-1"/>
         <UML:Attribute isSpecification="false" xmi.id="u7rDgFxVAO01C" name="selectedTowerIndex" visibility="private" type="ubNr9pXAWWVG9" initialValue="-1"/>
         <UML:Attribute isSpecification="false" xmi.id="uZ2s7SEb8S3Zd" name="shopManager" visibility="private" type="uiscBbLDDY0wn"/>
         <UML:Attribute isSpecification="false" xmi.id="utAPBkJ5bf6Rd" name="new_attribute" visibility="private" type="u2ej4UgSYGAWs"/>
-        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uPKpv9PHmojfu" name="ShopController(PlayerManager playerManager, TowerManager towerManager, UpgradeManager upgradeManager, ShopManager shopManager)" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false"/>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uPKpv9PHmojfu" name="ShopController(PlayerManager playerManager, TowerManager towerManager, UpgradeManager upgrade, ShopManager shopManager)" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false"/>
         <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uYYJm1SHcUt3K" name="initialize" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false"/>
         <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uxfJZM8wPVBqo" name="onBuyButtonClicked" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false"/>
         <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="urS9oovs0c1iL" name="onHomeButtonClicked" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false"/>
@@ -1169,7 +1169,7 @@
           </linepath>
          </assocwidget>
          <assocwidget xmi.id="uUPadK4nncEhV" localid="uLjivEz6GgrCz" textcolor="none" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="1" usesdiagramusefillcolor="1" fillcolor="none" font="Sans Serif,12,-1,5,50,0,0,0,0,0" autoresize="1" seqnum="" xmi.id="uUPadK4nncEhV" type="510" visibilityA="1" visibilityB="1" changeabilityA="900" changeabilityB="900" widgetaid="uPqWWdvglmDL7" widgetbid="u2ej4UgSYGAWs" indexa="1" totalcounta="2" indexb="1" totalcountb="2">
-          <floatingtext xmi.id="uMGUaWJmwvSkZ" localid="uKELmwxaelyYQ" textcolor="none" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="1" usesdiagramusefillcolor="1" fillcolor="none" font="DejaVu LGC Sans,12,-1,5,50,0,0,0,0,0" autoresize="1" x="-93.4317" y="-1924.51" width="151" height="23" isinstance="0" showstereotype="2" text="upgradeManager" pretext="-" posttext="" role="710"/>
+          <floatingtext xmi.id="uMGUaWJmwvSkZ" localid="uKELmwxaelyYQ" textcolor="none" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="1" usesdiagramusefillcolor="1" fillcolor="none" font="DejaVu LGC Sans,12,-1,5,50,0,0,0,0,0" autoresize="1" x="-93.4317" y="-1924.51" width="151" height="23" isinstance="0" showstereotype="2" text="upgrade" pretext="-" posttext="" role="710"/>
           <linepath layout="Direct">
            <startpoint startx="-43.4397" starty="-2102.98"/>
            <endpoint endx="27.0606" endy="-1965.34"/>
@@ -1366,7 +1366,7 @@
           </linepath>
          </assocwidget>
          <assocwidget xmi.id="uSJKHOKIcWYvO" localid="uBU8BogSzEQin" textcolor="none" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="1" usesdiagramusefillcolor="1" fillcolor="none" font="Sans Serif,12,-1,5,50,0,0,0,0,0" autoresize="1" seqnum="" xmi.id="uSJKHOKIcWYvO" type="510" visibilityA="1" visibilityB="1" changeabilityA="900" changeabilityB="900" widgetaid="uiscBbLDDY0wn" widgetbid="u2ej4UgSYGAWs" indexa="1" totalcounta="2" indexb="1" totalcountb="2">
-          <floatingtext xmi.id="uEg7oSh1psFUB" localid="u5bAZVpDMMeiD" textcolor="none" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="1" usesdiagramusefillcolor="1" fillcolor="none" font="DejaVu LGC Sans,12,-1,5,50,0,0,0,0,0" autoresize="1" x="-119.939" y="-1887.34" width="151" height="23" isinstance="0" showstereotype="2" text="upgradeManager" pretext="-" posttext="" role="710"/>
+          <floatingtext xmi.id="uEg7oSh1psFUB" localid="u5bAZVpDMMeiD" textcolor="none" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="1" usesdiagramusefillcolor="1" fillcolor="none" font="DejaVu LGC Sans,12,-1,5,50,0,0,0,0,0" autoresize="1" x="-119.939" y="-1887.34" width="151" height="23" isinstance="0" showstereotype="2" text="upgrade" pretext="-" posttext="" role="710"/>
           <linepath layout="Direct">
            <startpoint startx="-165.508" starty="-1889.34"/>
            <endpoint endx="27.0606" endy="-1889.34"/>

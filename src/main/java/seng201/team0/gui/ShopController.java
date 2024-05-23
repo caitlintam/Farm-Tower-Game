@@ -7,9 +7,9 @@ import javafx.scene.control.Button;
 import seng201.team0.models.Player;
 import seng201.team0.models.Shop;
 import seng201.team0.TowerManager;
-import seng201.team0.UpgradeManager;
-import seng201.team0.models.Tower;
 import seng201.team0.models.Upgrade;
+import seng201.team0.models.Tower;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +53,7 @@ public class ShopController {
     private Button BuyButton;
     private PlayerManager playerManager;
     private TowerManager towerManager;
-    private UpgradeManager upgradeManager;
+    private Upgrade upgrade;
     private int selectedUpgradeIndex = -1;
     private int selectedTowerIndex = -1;
     private Button selectedButton = null;
@@ -68,7 +68,7 @@ public class ShopController {
     public ShopController(PlayerManager playerManager){
         this.playerManager = playerManager;
         this.towerManager = playerManager.getTowerManager();
-        this.upgradeManager = playerManager.getUpgradeManager();
+        this.upgrade = playerManager.getUpgradeManager();
         this.shop = playerManager.getShopManager();
         this.player = playerManager.getPlayer();
     }
@@ -92,7 +92,7 @@ public class ShopController {
         List<Tower> newPurchasableTowers = shop.generateNewPurchasableTowers();
 
         for (int i = 0; i < buyUpgradeButtons.size(); i++) {
-            buyUpgradeButtons.get(i).setText(upgradeManager.getUpgradeList().get(i).getUpgradeName());
+            buyUpgradeButtons.get(i).setText(upgrade.getUpgradeList().get(i).getUpgradeName());
             buyTowerButtons.get(i).setText(newPurchasableTowers.get(i).getTowerName());
             int finalI = i;
             buyTowerButtons.get(i).setOnAction(actionEvent -> {
@@ -108,7 +108,7 @@ public class ShopController {
                 if (selectedButton != null) {
                     selectedButton.setStyle("");
                 }
-                updateUpgradeInfo(upgradeManager.getUpgradeList().get(finalI));
+                updateUpgradeInfo(upgrade.getUpgradeList().get(finalI));
                 selectedUpgradeIndex = finalI;
                 selectedButton = buyUpgradeButtons.get(finalI);
                 selectedButton.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
@@ -119,7 +119,7 @@ public class ShopController {
      * Handles the event when the buy button is clicked.
      * This method checks if a button is selected, and then performs appropriate actions based on the selected button.
      * If a tower buy button is clicked, it attempts to buy the tower using the TowerManager.
-     * If an upgrade buy button is clicked, it attempts to buy the upgrade using the UpgradeManager.
+     * If an upgrade buy button is clicked, it attempts to buy the upgrade using the Upgrade.
      * Depending on the success or failure of the purchase, it updates visibility of labels and the money label accordingly.
      */
     @FXML
