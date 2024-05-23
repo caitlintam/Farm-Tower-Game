@@ -13,6 +13,8 @@ IntelliJ can help with this using `ctrl+shift+f` to find all instances of a stri
 
 ## Authors
 - SENG201 Teaching team
+- Caitlin Tam 88675910
+- Sophie Moller 68087975
 
 ## Prerequisites
 - JDK >= 17 [click here to get the latest stable OpenJDK release (as of writing this README)](https://jdk.java.net/18/)

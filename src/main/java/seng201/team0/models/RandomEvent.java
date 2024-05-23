@@ -5,9 +5,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import javafx.beans.value.ObservableBooleanValue;
 import seng201.team0.PlayerManager;
-import seng201.team0.models.Player;
-import seng201.team0.models.Tower;
 
 public class RandomEvent {
     private PlayerManager playerManager;
