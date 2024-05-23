@@ -2,7 +2,7 @@ package seng201.team0.gui.service;
 import java.util.ArrayList;
 
 import seng201.team0.PlayerManager;
-import seng201.team0.TowerManager;
+
 import seng201.team0.models.Cart;
 import seng201.team0.models.Player;
 import seng201.team0.models.Tower;
@@ -17,7 +17,7 @@ public class CartService {
     private List<Cart> cartsInRound;
     private List<String> potentialCartResourceTypes;
     private PlayerManager playerManager;
-    private TowerManager towerManager;
+    private Tower towerManager;
     private List<String> cartsInRoundResourceTypes;
     private Random random;
     private int numberOfCarts;
@@ -29,7 +29,7 @@ public class CartService {
 
     public CartService(Player player) {
    //     this.playerManager = p;
-        this.towerManager = new TowerManager();
+        this.towerManager = new Tower();
         this.cartsInRound = new ArrayList<Cart>();
         this.potentialCartResourceTypes = new ArrayList<String>();
         this.random = new Random(201);

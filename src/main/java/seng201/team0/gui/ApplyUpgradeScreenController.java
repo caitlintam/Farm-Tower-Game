@@ -9,14 +9,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import seng201.team0.PlayerManager;
+import seng201.team0.models.Upgrade;
 import seng201.team0.models.Player;
 import seng201.team0.models.Tower;
-import seng201.team0.models.Upgrade;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 /**
  * Controller class for the Apply Upgrade Screen.

@@ -2,7 +2,7 @@ package seng201.team0.unittests.services;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seng201.team0.TowerManager;
+
 import seng201.team0.models.Tower;
 
 import java.util.ArrayList;
@@ -14,14 +14,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /* Tests tower functionality
  */
 public class TowersTest {
-    private TowerManager towerManager;
+    private Tower towerManager;
      List<Tower> testTowerList = new ArrayList<Tower>();
     @BeforeEach
     /*
     instantiates 3 new towers of boundary attributes
      */
     void init(){
-        towerManager = new TowerManager();
+        towerManager = new Tower();
         Tower tower0 = new Tower("TowerTest0", 0, "Test1", 0, 0, 0,"Reserve");
         Tower tower1 = new Tower("TowerTest2", 10, "Test1", 25, 1, 100,"In-Game");
         Tower tower2 = new Tower("TowerTest2", 100, "Test1", 100, 100, 100,"Reserve");

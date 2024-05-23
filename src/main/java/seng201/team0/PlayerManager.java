@@ -81,9 +81,9 @@ public class PlayerManager {
 
         //this.roundService = new RoundService(player, cartService, );
         this.player = new Player("PlayerName", 0.00);
-        this.shop = new Shop(this, new TowerManager(), new UpgradeManager());
-        this.towerManager = new TowerManager();
-        this.upgradeManager = new UpgradeManager();
+        this.shop = new Shop(this, new Tower(), new Upgrade());
+        this.towerManager = new Tower();
+        this.upgrade = new Upgrade();
         this.randomEvent = new RandomEvent(this, player);
         launchSetupScreen();
     }
@@ -280,8 +280,8 @@ public class PlayerManager {
         }
     }
     private Shop shop;
-    private TowerManager towerManager;
-    private UpgradeManager upgradeManager;
+    private Tower towerManager;
+    private Upgrade upgrade;
 
     //getting other classes from playermanager
     public Shop getShopManager(){
@@ -293,10 +293,10 @@ public class PlayerManager {
     public RandomEvent getRandomEventManager(){
         return randomEvent;
     }
-    public UpgradeManager getUpgradeManager(){
-        return upgradeManager;
+    public Upgrade getUpgradeManager(){
+        return upgrade;
     }
-    public TowerManager getTowerManager(){
+    public Tower getTowerManager(){
         return towerManager;
     }
     public CartService getCartManager(){
