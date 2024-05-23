@@ -99,7 +99,7 @@ public class CartManager {
         // gets sublist of potential carts == size of towers/carts in game
         System.out.println("Number of carts:  " + numberOfCarts);
         cartsInRoundResourceTypes = new ArrayList<String>(potentialCartResourceTypes.subList(0, numberOfCarts));
-        System.out.println("New Carts in Round Resource Types: " + cartsInRoundResourceTypes);
+        System.out.println("New  Carts in Round Resource Types: " + cartsInRoundResourceTypes);
     }
 
 }

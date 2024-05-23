@@ -66,8 +66,6 @@ public class ChooseRoundDifficultyScreenController {
             System.out.println("An error occurred: " + e.getMessage());
             e.printStackTrace(); // Print stack trace for debugging purposes
         }
-
-
     }
 }
 

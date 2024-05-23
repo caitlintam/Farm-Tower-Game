@@ -10,7 +10,7 @@ import seng201.team0.gui.ChooseRoundDifficultyScreenController;
 import seng201.team0.gui.RandomEventController;
 import seng201.team0.models.*;
 
-public class PlayerManager implements Player {
+public class PlayerManager {
     private String name;
     private int currentRoundNumber = 0;
     private int numGameRounds = 0;
