@@ -4,10 +4,8 @@ import seng201.team0.models.Tower;
 import seng201.team0.models.Upgrade;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ShopManager {
     private PlayerManager playerManager;
