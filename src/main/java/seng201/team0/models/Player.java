@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
  * as well as statistics on rounds won and lost.
  */
 public class Player {
+    // inventory, getts and setters
     private String name;
     private double money;
     private List<Tower> towerInventory;
@@ -141,8 +142,19 @@ public class Player {
      * Retrieves towers from the player's tower inventory based on their status and updates the list of towers in-game.
      */
     public void setTowersInGame() {
+        // Filter towerInventory to get only the towers that are in-game
         towersInGame = towerInventory.stream()
                 .filter(tower -> tower.getTowerStatus().equals("In-Game"))
+                .collect(Collectors.toList());
+    }
+    // for testing
+    public void setTowersInGame(List<Tower> towersInGame){
+        this.towersInGame = towersInGame;
+    }
+    public void setReserveTowers() {
+        // Filter towerInventory to get only the towers that are in-game
+        reserveTowers = towerInventory.stream()
+                .filter(tower -> tower.getTowerStatus().equals("Reserve"))
                 .collect(Collectors.toList());
     }
     /**

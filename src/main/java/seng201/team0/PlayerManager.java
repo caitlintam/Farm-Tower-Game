@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-import seng201.team0.gui.service.CartService;
-import seng201.team0.gui.service.RoundService;
+import seng201.team0.service.CartService;
+import seng201.team0.service.RoundService;
 import seng201.team0.models.*;
 
 public class PlayerManager {

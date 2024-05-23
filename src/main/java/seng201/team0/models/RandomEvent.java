@@ -33,18 +33,22 @@ public class RandomEvent {
      */
     public void generateRandomEvent() {
         int eventType = random.nextInt(3);
+        Tower tower = getRandomTower();
         switch (eventType) {
             case 0:
-                executeLevelIncrease(); //method for increasing tower level
+                executeLevelIncrease(tower); //method for increasing tower level
                 break;
             case 1:
-                executeLevelDecrease(); // method for decreasing tower level
+                executeLevelDecrease(tower); // method for decreasing tower level
                 break;
             case 2:
+                executeBreakTower(tower); // method to break a tower
+                // set text in round controller to " tower name has broken "
                 executeBreakTower(); // method to break a tower
                 break;
         }
     }
+     public void executeLevelIncrease(Tower tower) {
     /**
      * Executes a random event where the level of a randomly selected tower is increased.
      * If no tower is available, a NullPointerException is caught and an error message is displayed.
@@ -54,7 +58,7 @@ public class RandomEvent {
         try{
             tower.setTowerLevel(tower.getTowerLevel() + 1);
             System.out.println("Random Event: Tower " + tower.getTowerName() + "increased levels");
-            String levelIncreaseText = tower.getTowerName() + "has increased levels to level: " + tower.getTowerLevel();
+            String levelIncreaseText = tower.getTowerName() + " has increased levels to level: " + tower.getTowerLevel();
             this.randomEventText = levelIncreaseText;
         }catch(NullPointerException e){
             System.out.println("Uh Oh, error, no random tower generated");
@@ -67,6 +71,9 @@ public class RandomEvent {
      */
     private void executeLevelDecrease() {
         Tower tower = getRandomTower();
+
+    // made void, not priv or pub, so package level classes (test)  can access
+     public void executeLevelDecrease(Tower tower) {
         try{
             if (tower.getTowerLevel() > 1){
                 tower.decreaseTowerLevel(tower);
@@ -82,6 +89,7 @@ public class RandomEvent {
             System.out.println("Uh Oh, error, no random tower generated");
         }
     }
+     public void executeBreakTower(Tower tower) {
     /**
      * Executes a random event where a randomly selected tower is broken and removed from the player's inventory.
      * If no tower is available, a NullPointerException is caught and an error message is displayed.
@@ -89,7 +97,11 @@ public class RandomEvent {
     private void executeBreakTower() {
         Tower tower = getRandomTower();
         try{
+            System.out.println("invent size before"+ player.getTowerInventory().size());
             player.removeTowerFromInventory(tower);
+            System.out.println("invent size after"+ player.getTowerInventory().size());
+            System.out.println("Random Event: " + tower.getTowerName() + " broke and was removed.");
+            // set text for random event fxml
             String brokenTowerText = tower.getTowerName() + " broke! it has now been removed from your inventory";
             this.randomEventText = brokenTowerText;
         }catch(NullPointerException e){
@@ -122,7 +134,11 @@ public class RandomEvent {
         } else {
             double usedTowerProbability = 0.8;
             if (random.nextDouble() < usedTowerProbability) {
-                return player.getTowersInGame().get(random.nextInt(player.getTowersInGame().size()));
+                if (player.getReserveTowers().isEmpty()) {
+                    return player.getTowersInGame().get(random.nextInt(player.getTowersInGame().size()));
+                }else {
+                    return player.getReserveTowers().get(random.nextInt(player.getReserveTowers().size()));
+                }
             } else {
                 if (player.getReserveTowers().isEmpty()){ //  to stop invocation error or non postiive bound
                     return player.getTowersInGame().get(random.nextInt(player.getTowersInGame().size()));
@@ -136,6 +152,7 @@ public class RandomEvent {
      * Sets the rounds when random events will occur during the game.
      * Randomly selects rounds based on the total number of game rounds.
      */
+        }}
     public void setRandomEventRounds(){
         List<Integer> randomEventRoundsList = new ArrayList<Integer>();
         List<Integer> potentialRoundsList = new ArrayList<Integer>();

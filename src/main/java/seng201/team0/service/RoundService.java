@@ -1,4 +1,4 @@
-package seng201.team0.gui.service;
+package seng201.team0.service;
 
 import seng201.team0.models.Cart;
 import seng201.team0.models.Player;
@@ -16,6 +16,7 @@ public class RoundService {
     private final Round round;
     private final List<Cart> cartsInRound;
     private int currentCartSize;
+    private boolean isSuccess;
     public RoundService(Round round){
         this.round = round;
         this.cartsInRound = round.getCartsInRound();
@@ -36,7 +37,7 @@ public class RoundService {
         // for each cart;
 
         for (Cart cart : cartsInRound) {
-            int cartTimeOnTrack = (int) (round.getRoundNumber() / cart.getCartSpeed());
+            int cartTimeOnTrack = (int) (round.getTrackDistance() / cart.getCartSpeed());
             currentCartSize = 0;
             mainGameScreenRoundText += "\n\n----------------------------------------------------------- Cart " + (cart.getCartID()+1) + " -----------------------------------------------------------\n Resource Type 1: "+ cart.getPrimaryCartResourceType() + " ------- Resource Type 2: " + cart.getSecondaryCartResourceType() + " ------- Size: "+ cart.getCartSize() + " ------- Cart Speed: " + cart.getCartSpeed()+  "m/s  ............is going round the track";
             // for each tower
@@ -82,20 +83,23 @@ public class RoundService {
       //      System.out.println("---------------------------------------------");
 
         }
-        // once all carts have been through round
-        // if all carts filled ( failed is empty == true ) won, otherwise false, have a cart not filled
-
         int numCarts = cartsInRound.size();
         System.out.println(numCarts);
+        round.setNumCartsFilled(successfullyFilledCarts.size());
         if (successfullyFilledCarts.size() >= ((numCarts/2 ))){
+            isSuccess  = true;
             player.increaseNumRoundsWon();
             round.setRoundSuccess(true);
         }else{
+            isSuccess = false;
             player.increaseNumRoundsLost();
             round.setRoundSuccess(false);
          
         }
 
 
+    }
+    public boolean isSuccess(){
+        return isSuccess;
     }
 }
