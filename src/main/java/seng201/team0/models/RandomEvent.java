@@ -26,32 +26,33 @@ public class RandomEvent {
 
     public void generateRandomEvent() {
         int eventType = random.nextInt(3);
+        Tower tower = getRandomTower();
         switch (eventType) {
             case 0:
-                executeLevelIncrease(); //method for increasing tower level
+                executeLevelIncrease(tower); //method for increasing tower level
                 break;
             case 1:
-                executeLevelDecrease(); // method for decreasing tower level
+                executeLevelDecrease(tower); // method for decreasing tower level
                 break;
             case 2:
-                executeBreakTower(); // method to break a tower
+                executeBreakTower(tower); // method to break a tower
                 // set text in round controller to " tower name has broken "
                 break;
         }
     }
-    private void executeLevelIncrease() {
-        Tower tower = getRandomTower();
+     public void executeLevelIncrease(Tower tower) {
         try{
             tower.setTowerLevel(tower.getTowerLevel() + 1);
             System.out.println("Random Event: Tower " + tower.getTowerName() + "increased levels");
-            String levelIncreaseText = tower.getTowerName() + "has increased levels to level: " + tower.getTowerLevel();
+            String levelIncreaseText = tower.getTowerName() + " has increased levels to level: " + tower.getTowerLevel();
             this.randomEventText = levelIncreaseText;
         }catch(NullPointerException e){
             System.out.println("Uh Oh, error, no random tower generated");
         }
     }
-    private void executeLevelDecrease() {
-        Tower tower = getRandomTower();
+
+    // made void, not priv or pub, so package level classes (test)  can access
+     public void executeLevelDecrease(Tower tower) {
         try{
             if (tower.getTowerLevel() > 1){
                 tower.decreaseTowerLevel(tower);
@@ -67,8 +68,7 @@ public class RandomEvent {
             System.out.println("Uh Oh, error, no random tower generated");
         }
     }
-    private void executeBreakTower() {
-        Tower tower = getRandomTower();
+     public void executeBreakTower(Tower tower) {
         try{
             System.out.println("invent size before"+ player.getTowerInventory().size());
             player.removeTowerFromInventory(tower);
@@ -95,7 +95,11 @@ public class RandomEvent {
         } else {
             double usedTowerProbability = 0.8;
             if (random.nextDouble() < usedTowerProbability) {
-                return player.getTowersInGame().get(random.nextInt(player.getTowersInGame().size()));
+                if (player.getReserveTowers().isEmpty()) {
+                    return player.getTowersInGame().get(random.nextInt(player.getTowersInGame().size()));
+                }else {
+                    return player.getReserveTowers().get(random.nextInt(player.getReserveTowers().size()));
+                }
             } else {
                 if (player.getReserveTowers().isEmpty()){ //  to stop invocation error or non postiive bound
                     return player.getTowersInGame().get(random.nextInt(player.getTowersInGame().size()));
@@ -103,8 +107,7 @@ public class RandomEvent {
                     return player.getReserveTowers().get(random.nextInt(player.getReserveTowers().size()));
                 }
             }
-        }
-    }
+        }}
     public void setRandomEventRounds(){
         List<Integer> randomEventRoundsList = new ArrayList<Integer>();
         List<Integer> potentialRoundsList = new ArrayList<Integer>();
