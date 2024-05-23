@@ -21,6 +21,7 @@ public class RoundService {
      */
     public RoundService(Round round){
         this.cartsInRound = round.getCartsInRound();
+        this.mainGameScreenRoundText = "";
     }
     /**
      * Runs a round of the game by executing game logic.
@@ -44,33 +45,34 @@ public class RoundService {
         for (Cart cart : cartsInRound) {
             int cartTimeOnTrack = (int) (round.getTrackDistance() / cart.getCartSpeed());
             int currentCartSize = 0;
+            boolean isMatched = false;
             mainGameScreenRoundText += "\n\n----------------------------------------------------------- Cart " + (cart.getCartID()+1) + " -----------------------------------------------------------\n Resource Type 1: "+ cart.getPrimaryCartResourceType() + " ------- Resource Type 2: " + cart.getSecondaryCartResourceType() + " ------- Size: "+ cart.getCartSize() + " ------- Cart Speed: " + cart.getCartSpeed()+  "m/s  ............is going round the track";
 
-            boolean isMatched = false;
             for (Tower tower : player.getTowersInGame()) {
-                if (!isMatched&&(Objects.equals(cart.getPrimaryCartResourceType() , tower.getTowerResourceType())) | (Objects.equals(cart.getSecondaryCartResourceType() , tower.getTowerResourceType()))) {
-                    mainGameScreenRoundText+= "\n"+ tower.getTowerName()+ " tower with reload speed of " + tower.getTowerReloadSpeed() + "m/s ------- Matches with cart " + cart.getCartID() +"! The cart is on the track for " + cartTimeOnTrack+"s";
+                if (!isMatched&&(Objects.equals(cart.getPrimaryCartResourceType() , tower.getTowerResourceType())) || (Objects.equals(cart.getSecondaryCartResourceType() , tower.getTowerResourceType()))) {
                     int numTowerReloads = Math.floorDiv(cartTimeOnTrack, tower.getTowerReloadSpeed());
+                    mainGameScreenRoundText+= "\n"+ tower.getTowerName()+ " tower with reload speed of " + tower.getTowerReloadSpeed() + "m/s ------- Matches with cart " + cart.getCartID() +"! The cart is on the track for " + cartTimeOnTrack+"s";
                     mainGameScreenRoundText += "\nCart is being filled: " + currentCartSize + "kg " ;
                     for (int i = 0; i <= numTowerReloads; i++) {
                         currentCartSize += tower.getTowerResourceAmount();
                         mainGameScreenRoundText += "--------> " + currentCartSize + "kg. ";
                     }
-                    mainGameScreenRoundText += " Cart is filled to "+ currentCartSize + " kgs after " + (numTowerReloads+1) + " reload/s";
                     isMatched = true;
+                    mainGameScreenRoundText += " Cart is filled to "+ currentCartSize + " kgs after " + (numTowerReloads+1) + " reload/s";
                 }
             }
             if (currentCartSize >= cart.getCartSize()) {
                 mainGameScreenRoundText += " You successfully filled Cart " + (cart.getCartID()+1) + "!";
                 successfullyFilledCarts.add(cart.getCartID());
-            } else if (currentCartSize < cart.getCartSize()) {
+            } else{
                 mainGameScreenRoundText += "\nOh no, You didn't manage to fill cart " + (cart.getCartID()+1);
             }
-            round.setNumCartsFilled( successfullyFilledCarts.size() );
-            round.setMainGameScreenText(mainGameScreenRoundText);
+
+
         }
-        int numCarts = cartsInRound.size();
-        if (successfullyFilledCarts.size() >= ((numCarts/2 ))){
+        round.setMainGameScreenText(mainGameScreenRoundText);
+        round.setNumCartsFilled( successfullyFilledCarts.size() );
+        if (successfullyFilledCarts.size() >= ((cartsInRound.size() /2 ))){
             player.increaseNumRoundsWon();
             round.setRoundSuccess(true);
         }else{
