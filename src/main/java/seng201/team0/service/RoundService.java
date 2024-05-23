@@ -14,6 +14,7 @@ import java.util.Objects;
 public class RoundService {
     private final List<Cart> cartsInRound;
     private String mainGameScreenRoundText;
+    private boolean isSuccess;
 
     /**
      * constructs a RoundService with a given Round.
@@ -22,6 +23,7 @@ public class RoundService {
     public RoundService(Round round){
         this.cartsInRound = round.getCartsInRound();
         this.mainGameScreenRoundText = "";
+        this.isSuccess = false;
     }
     /**
      * Runs a round of the game by executing game logic.
@@ -75,9 +77,14 @@ public class RoundService {
         if (successfullyFilledCarts.size() >= ((cartsInRound.size() /2 ))){
             player.increaseNumRoundsWon();
             round.setRoundSuccess(true);
+            isSuccess = true;
         }else{
             player.increaseNumRoundsLost();
             round.setRoundSuccess(false);
+            isSuccess = false;
         }
+    }
+    public boolean isSuccess() {
+        return isSuccess;
     }
 }
