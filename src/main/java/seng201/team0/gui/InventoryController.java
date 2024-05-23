@@ -2,7 +2,6 @@ package seng201.team0.gui;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,18 +9,19 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import seng201.team0.PlayerManager;
-import seng201.team0.UpgradeManager;
 import seng201.team0.models.Tower;
 import seng201.team0.models.Upgrade;
 
-import javax.sound.midi.SysexMessage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Controller class for the Inventory Screen.
+ * Manages the UI elements and interactions related to buying, selling and editing the inventory.
+ */
 public class InventoryController {
     private final PlayerManager playerManager;
-    //private final UpgradeManager upgradeManager;
     @FXML
     public TableView<Tower> towerTable;
     @FXML
@@ -40,21 +40,19 @@ public class InventoryController {
     public Label errorChangeStatusLabel;
     public Label errorNoTowerSelectedLabel;
     public Button sellSelectedUpgradeButton;
-    //public Label errornoUpgradeSelectedLabel;
     public Label errorNoUpgradeSelectedLabel;
     public TableColumn<Upgrade,Double> upgradeCostColumn;
-    //public TableColumn<Upgrade, String> upgradeDescriptionColumn;
     public TableColumn<Upgrade,String> upgradeNameColumn;
 
-
-    // public TableColumn<PlayerManager, String>
-    //''private
-
-    //private TowerManager myTowers;
-    // method for tableview. On selected, set selected tower to ..
     InventoryController(PlayerManager playerManager) {
         this.playerManager = playerManager;
     }
+    /**
+     * Initializes the controller,
+     * populates the inventory tables
+     * updates the players money
+     * sets error checking labels to not visible
+     */
     public void initialize() {
         // Populate tower inventory table
         updateMoneyLabel();
@@ -63,7 +61,6 @@ public class InventoryController {
         errorNoTowerSelectedLabel.setVisible(false);
         errorNoUpgradeSelectedLabel.setVisible(false);
         initializeUpgradeTable();
-
     }
 
     private void initializeTowerTable() {
@@ -174,7 +171,6 @@ public class InventoryController {
     public void updateMoneyLabel(){
         moneyLabel.setText("Money: $"+playerManager.getMoney());
     }
-
     @FXML
     private void onInventoryHomeButtonClicked() {
         System.out.println("Home Button Clicked");

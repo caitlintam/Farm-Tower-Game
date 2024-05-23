@@ -13,10 +13,12 @@ import seng201.team0.models.Tower;
 import seng201.team0.models.Upgrade;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
+/**
+ * Controller class for the Apply Upgrade Screen.
+ * Manages the UI elements and interactions on the screen related to applying upgrades to towers.
+ */
 public class ApplyUpgradeScreenController {
     private final PlayerManager playerManager;
     public TableView<Tower> prepTowerTable;
@@ -29,13 +31,24 @@ public class ApplyUpgradeScreenController {
     public Label errorNoTowerSelectedLabel;
     public Label errorNoUpgradeSelectedLabel;
 
-    public ApplyUpgradeScreenController(PlayerManager playerManager){this.playerManager = playerManager;}
+    /**
+     * Constructor for ApplyUpgradeScreenController.
+     * @param playerManager The PlayerManager instance associated with the game.
+     */
+    public ApplyUpgradeScreenController(PlayerManager playerManager){
+        this.playerManager = playerManager;
+    }
+    /**
+     * Initializes the controller, setting up table views and hiding error labels.
+     */
     public void initialize(){
         initializeTables();
         errorNoUpgradeSelectedLabel.setVisible(false);
         errorNoTowerSelectedLabel.setVisible(false);
     }
-
+    /**
+     * Initializes tower and upgrade tables with data.
+     */
     private void initializeTables() {
         System.out.println();
 
@@ -45,15 +58,17 @@ public class ApplyUpgradeScreenController {
         // Convert ArrayList to ObservableList
         ObservableList<Tower> inGameTowersData = FXCollections.observableArrayList(playerManager.getTowersInGame());
         ObservableList<Upgrade> upgradeData = FXCollections.observableArrayList(upgradeInventory);
-// Bind tower inventory data to table columns
+        // Bind tower inventory data to table columns
         prepTowerColumn.setCellValueFactory(new PropertyValueFactory<Tower, String>("towerName"));
         prepUpgradeColumn.setCellValueFactory(new PropertyValueFactory<Upgrade, String>("upgradeName"));
-
         // Set tower inventory data to the table
         prepTowerTable.setItems(inGameTowersData);
         prepUpgradeTable.setItems(upgradeData);
     }
-
+    /**
+     * Handles the action when the "Apply Upgrade" button is clicked.
+     * Checks for selected tower and upgrade, then applies the upgrade to the tower.
+     */
     public void onApplyUpgradeButtonClicked() {
         System.out.println("Apply Upgrade Button Clicked");
 
@@ -79,7 +94,11 @@ public class ApplyUpgradeScreenController {
 
         }
     }
-
+    /**
+     * Applies the selected upgrade to the selected tower.
+     * @param selectedTower The tower to which the upgrade is applied.
+     * @param selectedUpgrade The upgrade to be applied.
+     */
     private void applyUpgrade(Tower selectedTower, Upgrade selectedUpgrade) {
         System.out.println(selectedTower.getTowerName() + " stats before upgrade: \n Reload Speed: "+ selectedTower.getTowerReloadSpeed());
         System.out.println("Level: "+ selectedTower.getTowerLevel() + "\nResource Amount: "+selectedTower.getTowerResourceAmount());
@@ -87,13 +106,11 @@ public class ApplyUpgradeScreenController {
         if (Objects.equals(selectedUpgrade.getUpgradeName(), "Tower Reload Speed Boost!")){
             selectedTower.upgradeReloadSpeed(selectedTower);
             selectedTower.assessTowerLevel(selectedTower);
-
       //      selectedTower.updateTowerReloadSpeed(selectedTower);
             System.out.println("New Reload Speed: "+selectedTower.getTowerReloadSpeed());
         }else if (Objects.equals(selectedUpgrade.getUpgradeName(), "Tower Resource Amount Boost!")){
             selectedTower.upgradeTowerResourceAmount(selectedTower);
             selectedTower.assessTowerLevel(selectedTower);
-
             System.out.println("New Resource Amount: "+selectedTower.getTowerResourceAmount());
         } else{ // upgrade is a level upgrade
             selectedTower.increaseTowerLevel(selectedTower);
@@ -101,18 +118,25 @@ public class ApplyUpgradeScreenController {
         }
         System.out.println("stats after upgrade: \n Reload Speed: "+ selectedTower.getTowerReloadSpeed());
         System.out.println("Level: "+ selectedTower.getTowerLevel() + "\nResource Amount: "+selectedTower.getTowerResourceAmount());
-
         //remove upgrade from upgrade Inventory
         playerManager.removeUpgradeFromInventory(selectedUpgrade);
         // reinitialise upgrade tbale
         initializeTables();
     }
+    /**
+     * Handles the action when the "Home" button is clicked.
+     * Closes the current screen and returns to the home screen.
+     */
     public void onHomeButtonClicked() {
         System.out.println("Home Button Clicked");
         playerManager.closeApplyUpgradeScreen();
         playerManager.launchHomeScreen();
     }
-
+    /**
+     * Handles the action when the "Next" button is clicked.
+     * Sets initial track distance and navigates to the round difficulty selection screen.
+     * @param event The action event triggered by the button click.
+     */
     public void onNextClicked(ActionEvent event) {
         playerManager.setInitialTrackDistance();
         System.out.println("Curent trakc idst" + playerManager.getCurrentTrackDistance());
