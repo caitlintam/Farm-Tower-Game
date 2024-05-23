@@ -19,12 +19,11 @@ import seng201.team0.models.Player;
 
 public class MainGameScreenController {
     private final PlayerManager playerManager;
-    private final Player player;
     @FXML
     public Label mainGameTextLabel;
     @FXML
     public ProgressBar progressBar;
-    private DoubleProperty progressProperty = new SimpleDoubleProperty();
+    private final DoubleProperty progressProperty = new SimpleDoubleProperty();
     /**
      * Constructs a new instance of MainGameScreenController with the specified PlayerManager.
      * This constructor initializes the MainGameScreenController with the given PlayerManager instance.
@@ -32,7 +31,6 @@ public class MainGameScreenController {
      */
     public MainGameScreenController(PlayerManager playerManager){
         this.playerManager = playerManager;
-        this.player = playerManager.getPlayer();
     }
     /**
      * Initializes the main game screen.

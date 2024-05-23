@@ -9,11 +9,11 @@ import java.util.List;
  * Constructs a shop where players can buy towers and upgrades
  */
 public class Shop {
-    private PlayerManager playerManager;
-    private Tower towerManager;
+    private final PlayerManager playerManager;
+    private final Tower towerManager;
     private List<Tower> newPurchasableTowers;
-    private Upgrade upgrade;
-    private Player player;
+    private final Upgrade upgrade;
+    private final Player player;
 
     /**
      * creates a shop with the specified player manager, tower manager, and upgrade

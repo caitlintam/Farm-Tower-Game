@@ -21,7 +21,7 @@ public class SetUpScreenController {
     public Label invalidLengthNameLabel;
     @FXML
     public Label invalidCharsNameLabel;
-    private PlayerManager playerManager;
+    private final PlayerManager playerManager;
     /**
      * Constructs a new instance of SetUpScreenController with the specified PlayerManager.
      * Initializes the SetUpScreenController with the given PlayerManager instance.
@@ -29,11 +29,11 @@ public class SetUpScreenController {
      */
     public SetUpScreenController(PlayerManager playerManager) {
         this.playerManager = playerManager;
-        /**
-         * Initializes the setup screen.
-         * Prints a setup screen message to the console and hides error labels.
-         */
     }
+    /**
+     * Initializes the setup screen.
+     * Prints a setup screen message to the console and hides error labels.
+     */
     public void initialize() {
         System.out.println("----- Set Up Screen ----");
         invalidLengthNameLabel.setVisible(false);
@@ -76,6 +76,6 @@ public class SetUpScreenController {
                 playerManager.closeSetupScreen();
                 playerManager.launchTowerSetUpScreen();
             }
-        }
+    }
 }
 

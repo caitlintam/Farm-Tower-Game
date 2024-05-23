@@ -11,8 +11,8 @@ public class Player {
     // inventory, getts and setters
     private String name;
     private double money;
-    private List<Tower> towerInventory;
-    private List<Upgrade> upgradeInventory;
+    private final List<Tower> towerInventory;
+    private final List<Upgrade> upgradeInventory;
     private List<Tower> towersInGame;
     private List<Tower> reserveTowers;
     private int numRoundsWon;

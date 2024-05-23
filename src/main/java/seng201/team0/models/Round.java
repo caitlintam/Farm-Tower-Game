@@ -6,14 +6,14 @@ import java.util.List;
  * Represents a round in the game.
  */
 public class Round {
-    private int roundNumber;
-    private int trackDistance;
+    private final int roundNumber;
+    private final int trackDistance;
     private boolean success;
-    private int earnedMoney;
+    private final int earnedMoney;
     private int numCartsFilled;
     private String mainGameScreenText;
     private List<Cart> cartsInRound;
-    private Player player;
+    private final Player player;
     /**
      * Constructs a new round with the specified player, round number, and track distance.
      * @param player the player participating in the round

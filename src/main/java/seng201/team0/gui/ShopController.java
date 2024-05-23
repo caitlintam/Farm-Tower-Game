@@ -10,8 +10,6 @@ import seng201.team0.models.Shop;
 import seng201.team0.models.Upgrade;
 import seng201.team0.models.Tower;
 
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class ShopController {
@@ -47,17 +45,12 @@ public class ShopController {
     private Label SpeedLabel;
     @FXML
     private Label TypeLabel;
-    @FXML
-    private Button ShopHomeButton;
-    @FXML
-    private Button BuyButton;
-    private PlayerManager playerManager;
-    private Tower towerManager;
-    private Upgrade upgrade;
+    private final PlayerManager playerManager;
+    private final Upgrade upgrade;
     private int selectedUpgradeIndex = -1;
     private int selectedTowerIndex = -1;
     private Button selectedButton = null;
-    private Shop shop;
+    private final Shop shop;
 
     /**
      * Constructs a new ShopController.
@@ -67,7 +60,6 @@ public class ShopController {
      */
     public ShopController(PlayerManager playerManager){
         this.playerManager = playerManager;
-        this.towerManager = playerManager.getTowerManager();
         this.upgrade = playerManager.getUpgradeManager();
         this.shop = playerManager.getShopManager();
         this.player = playerManager.getPlayer();
@@ -85,10 +77,6 @@ public class ShopController {
         errorNoMoneyLabel.setVisible(false);
         List<Button> buyUpgradeButtons = List.of(upgradeButton1, upgradeButton2, upgradeButton3);
         List<Button> buyTowerButtons = List.of(buyTowerButton1, buyTowerButton2, buyTowerbutton3);
-        List<Button> allButtons = new ArrayList<>();
-        allButtons.addAll(buyTowerButtons);
-        allButtons.addAll(buyUpgradeButtons);
-
         List<Tower> newPurchasableTowers = shop.generateNewPurchasableTowers();
 
         for (int i = 0; i < buyUpgradeButtons.size(); i++) {
@@ -131,7 +119,7 @@ public class ShopController {
                 errorInventoryFullLabel.setVisible(false);
                 boolean canBuy = shop.tryBuyTower(selectedTowerIndex);
                 if (canBuy){
-                    itemBoughtLabel.setText("Tower Bought! Added to Inventory as " + player.getTowerInventory().get(player.getTowerInventory().size()-1).getTowerStatus() + " status");
+                    itemBoughtLabel.setText("Tower Bought! Added to Inventory as " + player.getTowerInventory().getLast() + " status");
                     itemBoughtLabel.setVisible(true);
                     updateMoneyLabel();
                 } else {
@@ -161,7 +149,6 @@ public class ShopController {
                     System.out.println("You don't have enough money");
                 }
             }
-        } else {
         }
     }
     /**

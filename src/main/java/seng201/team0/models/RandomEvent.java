@@ -9,11 +9,11 @@ import seng201.team0.PlayerManager;
  * Represents a random event in the game that affects the player.
  */
 public class RandomEvent {
-    private PlayerManager playerManager;
+    private final PlayerManager playerManager;
     private List<Integer> randomEventRounds;
-    private Random random;
+    private final Random random;
     private String randomEventText;
-    private Player player;
+    private final Player player;
     /**
      * Constructs a new random event with the specified player manager and player.
      *
@@ -139,7 +139,8 @@ public class RandomEvent {
                     return player.getReserveTowers().get(random.nextInt(player.getReserveTowers().size()));
                 }
             }
-        }}
+        }
+    }
     /**
      * Sets the rounds when random events will occur during the game.
      * Randomly selects rounds based on the total number of game rounds.
@@ -147,17 +148,13 @@ public class RandomEvent {
     public void setRandomEventRounds(){
         List<Integer> randomEventRoundsList = new ArrayList<Integer>();
         List<Integer> potentialRoundsList = new ArrayList<Integer>();
-        // Populate a list with potential round numbers
         for (int i=1; i <= playerManager.getNumGameRounds();i++){
             potentialRoundsList.add(i);
         }
-        // Shuffle the list of potential rounds
         Collections.shuffle(potentialRoundsList);
-        // Select a subset of potential rounds for random events
         for (int i=0; i <= playerManager.getNumGameRounds()/3; i++){
             randomEventRoundsList.add(potentialRoundsList.get(i));
         }
-        // Set the random event rounds
         this.randomEventRounds = randomEventRoundsList;
     }
 }

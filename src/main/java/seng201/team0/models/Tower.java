@@ -15,8 +15,6 @@ public class Tower {
     private int towerLevel;
     private double towerCost;
     private String towerStatus;
-
-    private static final String[] RESOURCE_TYPES = {"Hay", "Water", "Cows", "Pigs", "Timber", "Chickens"};
     private List<Tower> towerList;
     private final List<Tower> defaultTowers = new ArrayList<>();
     /**
@@ -225,6 +223,5 @@ public class Tower {
         }else{
             System.out.println("Tower Level = 1, cannot decrease");
         }
-
     }
 }

@@ -8,14 +8,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-
+/**
+ * Service class to generate random carts for a round.
+ */
 public class CartService {
     private final Player player;
-    private List<Cart> cartsInRound;
+    private final List<Cart> cartsInRound;
     private List<String> potentialCartResourceTypes;
-    private Tower towerManager;
+    private final Tower towerManager;
     private List<String> cartsInRoundResourceTypes;
-    private Random random;
+    private final Random random;
     private int numberOfCarts;
     public List<Cart> getCartsInRound() {
         return cartsInRound;
@@ -74,9 +76,8 @@ public class CartService {
             String secondaryResourceType = getRandomResTypeDiffFromPrimary(primaryResourceType);
             int cartSize = generateRandomCartSize(towersInGame.get(i).getTowerResourceAmount()) ;
             int cartSpeed = generateRandomCartSpeed(towersInGame.get(i).getTowerReloadSpeed());
-            int cartID = i;
-            System.out.println("Cart "+cartID + " -- Size: " + cartSize + " -- Primary Res Type: " + primaryResourceType + " -- Secondary Res Type: " + secondaryResourceType + " -- Cart Speed: "+cartSpeed);
-            cartsInRound.add(new Cart(cartID, cartSize, primaryResourceType, secondaryResourceType, cartSpeed));
+            System.out.println("Cart "+i + " -- Size: " + cartSize + " -- Primary Res Type: " + primaryResourceType + " -- Secondary Res Type: " + secondaryResourceType + " -- Cart Speed: "+cartSpeed);
+            cartsInRound.add(new Cart(i, cartSize, primaryResourceType, secondaryResourceType, cartSpeed));
         }
         System.out.println("My Towers: " + player.getTowersResTypeInGame());
         System.out.println("-------------------");
@@ -124,6 +125,5 @@ public class CartService {
         cartsInRoundResourceTypes = new ArrayList<String>(potentialCartResourceTypes.subList(0, numberOfCarts));
         System.out.println("New  Carts in Round Resource Types: " + cartsInRoundResourceTypes);
     }
-
 }
 

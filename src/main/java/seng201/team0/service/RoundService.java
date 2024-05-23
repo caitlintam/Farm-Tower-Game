@@ -12,9 +12,7 @@ import java.util.Objects;
  * Service class to run a round of the game. Handles calculation of round success.
  */
 public class RoundService {
-    private final Round round;
     private final List<Cart> cartsInRound;
-    private int currentCartSize;
     private String mainGameScreenRoundText;
 
     /**
@@ -22,7 +20,6 @@ public class RoundService {
      * @param round the round
      */
     public RoundService(Round round){
-        this.round = round;
         this.cartsInRound = round.getCartsInRound();
     }
     /**
@@ -41,21 +38,19 @@ public class RoundService {
         mainGameScreenRoundText += "------- Running Round " + (round.getRoundNumber()+1) +  " ------";
 
         List<Integer> successfullyFilledCarts = new ArrayList<Integer>();
-        List<Integer> failedFilledCarts = new ArrayList<Integer>();
-
         System.out.println("Track Distance: " + round.getTrackDistance());
         mainGameScreenRoundText += "\n Number of carts in round: " + cartsInRound.size();
 
         for (Cart cart : cartsInRound) {
             int cartTimeOnTrack = (int) (round.getTrackDistance() / cart.getCartSpeed());
-            currentCartSize = 0;
+            int currentCartSize = 0;
             mainGameScreenRoundText += "\n\n----------------------------------------------------------- Cart " + (cart.getCartID()+1) + " -----------------------------------------------------------\n Resource Type 1: "+ cart.getPrimaryCartResourceType() + " ------- Resource Type 2: " + cart.getSecondaryCartResourceType() + " ------- Size: "+ cart.getCartSize() + " ------- Cart Speed: " + cart.getCartSpeed()+  "m/s  ............is going round the track";
 
             boolean isMatched = false;
             for (Tower tower : player.getTowersInGame()) {
                 if (!isMatched&&(Objects.equals(cart.getPrimaryCartResourceType() , tower.getTowerResourceType())) | (Objects.equals(cart.getSecondaryCartResourceType() , tower.getTowerResourceType()))) {
                     mainGameScreenRoundText+= "\n"+ tower.getTowerName()+ " tower with reload speed of " + tower.getTowerReloadSpeed() + "m/s ------- Matches with cart " + cart.getCartID() +"! The cart is on the track for " + cartTimeOnTrack+"s";
-                    int numTowerReloads = (int) (Math.floorDiv(cartTimeOnTrack, tower.getTowerReloadSpeed()));
+                    int numTowerReloads = Math.floorDiv(cartTimeOnTrack, tower.getTowerReloadSpeed());
                     mainGameScreenRoundText += "\nCart is being filled: " + currentCartSize + "kg " ;
                     for (int i = 0; i <= numTowerReloads; i++) {
                         currentCartSize += tower.getTowerResourceAmount();
@@ -70,7 +65,6 @@ public class RoundService {
                 successfullyFilledCarts.add(cart.getCartID());
             } else if (currentCartSize < cart.getCartSize()) {
                 mainGameScreenRoundText += "\nOh no, You didn't manage to fill cart " + (cart.getCartID()+1);
-                failedFilledCarts.add(cart.getCartID());
             }
             round.setNumCartsFilled( successfullyFilledCarts.size() );
             round.setMainGameScreenText(mainGameScreenRoundText);
@@ -83,6 +77,5 @@ public class RoundService {
             player.increaseNumRoundsLost();
             round.setRoundSuccess(false);
         }
-
     }
 }

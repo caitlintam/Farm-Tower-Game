@@ -21,13 +21,13 @@ public class RoundResultsController {
     private Label MoneyEarnedLabel;
     @FXML
     private  Label roundSuccessLabel;
-    private Player player;
+    private final Player player;
     /**
      * Initializes the round results screen with the appropriate data for labels
      */
     public void initialize(){
         System.out.println(playerManager.getRoundSuccess());
-        if (playerManager.getRoundSuccess() == true){
+        if (playerManager.getRoundSuccess()){
             roundResultTitleLabel.setText("You Won This Round!");
             distanceTravelledLabel.setText("Distance Travelled: " + playerManager.getCurrentTrackDistance());
             roundSuccessLabel.setText("Round: " + (playerManager.getCurrentRoundNumber()+1));
@@ -40,7 +40,6 @@ public class RoundResultsController {
             cartsFilledLabel.setText("Carts Filled: " + playerManager.getNumCartsFilled() + " / " + player.getTowersInGame().size());
             MoneyEarnedLabel.setText("Money Earned: $ 0.00");
         }
-
     }
     /**
      * Constructs a RoundResultsController with the given PlayerManager

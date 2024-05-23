@@ -3,12 +3,11 @@ package seng201.team0.models;
  * Represents a cart in the game with various properties such as size, resource types, speed, and number.
  */
 public class Cart {
-    private int cartSize;
-    private String primaryCartResourceType;
-    private String secondaryCartResourceType;
-
-    private float cartSpeed;
-    private int cartNumber;
+    private final int cartSize;
+    private final String primaryCartResourceType;
+    private final String secondaryCartResourceType;
+    private final float cartSpeed;
+    private final int cartNumber;
 
     /**
      * Constructs a new Cart with the specified properties.
@@ -66,8 +65,4 @@ public class Cart {
     public int getCartID(){
         return cartNumber;
     }
-
-
-
-
 }

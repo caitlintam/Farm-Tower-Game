@@ -111,7 +111,7 @@ public class ApplyUpgradeScreenController {
      * assesses the tower's level, and prints the new resource amount.
      * If the upgrade is a level upgrade, it increases the tower's level and prints the new level.
      * After applying the upgrade, it removes the upgrade from the player's inventory
-     * and reinitializes the tables displaying towers and upgrades.
+     * and re-initialises the tables displaying towers and upgrades.
      * @param selectedTower The tower to which the upgrade is applied.
      * @param selectedUpgrade The upgrade to be applied.
      */
@@ -149,11 +149,10 @@ public class ApplyUpgradeScreenController {
      * This method sets the initial track distance in the PlayerManager,
      * prints the current track distance for debugging purposes,
      * closes the apply upgrade screen, and launches the choose round difficulty screen.
-     * @param event The ActionEvent representing the button click event.
      */
-    public void onNextClicked(ActionEvent event) {
+    public void onNextClicked() {
         playerManager.setInitialTrackDistance();
-        System.out.println("Curent track dist" + playerManager.getCurrentTrackDistance());
+        System.out.println("Current track dist" + playerManager.getCurrentTrackDistance());
         System.out.println("Next Button Clicked");
         playerManager.closeApplyUpgradeScreen();
         playerManager.launchChooseRoundDifficultyScreen();

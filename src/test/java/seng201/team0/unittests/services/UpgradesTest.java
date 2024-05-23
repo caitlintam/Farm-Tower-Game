@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UpgradesTest {
     private Upgrade upgrade;
-    private List<Upgrade> testUpgradesList = new ArrayList<>();
+    private final List<Upgrade> testUpgradesList = new ArrayList<>();
     /**
      * instantiates 2 new upgrades
      */

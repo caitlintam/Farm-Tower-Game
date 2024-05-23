@@ -48,12 +48,12 @@ public class TowerSetUpController {
     @FXML
     public Label errorTowerNumLabel;
     @FXML
-    private PlayerManager playerManager;
+    private final PlayerManager playerManager;
     @FXML
-    private Tower towerManager;
+    private final Tower towerManager;
     private int selectedTowerIndex = -1;
     private final Tower[] selectedTowers = new Tower[3];
-    private Player player;
+    private final Player player;
     /**
      * Constructor for the TowerSetUpController.
      * Initializes the controller with a PlayerManager instance.
@@ -133,8 +133,6 @@ public class TowerSetUpController {
             player.setTowersInGame();
             playerManager.closeTowerSetUpScreen();
             playerManager.launchHomeScreen();
-
         }
-
     }
 }

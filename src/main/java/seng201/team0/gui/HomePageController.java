@@ -1,7 +1,6 @@
 package seng201.team0.gui;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import seng201.team0.PlayerManager;
@@ -15,7 +14,7 @@ import java.util.List;
 public class HomePageController {
     @FXML
     public Label errorNoTowersInGameLabel;
-    private PlayerManager playerManager;
+    private final PlayerManager playerManager;
     @FXML
     private Label playerNameLabel;
     @FXML
@@ -32,8 +31,8 @@ public class HomePageController {
         System.out.println("Rounds Completed: " + playerManager.getCurrentRoundNumber() +" / " + playerManager.getNumGameRounds());
         errorNoTowersInGameLabel.setVisible(false);
         playerNameLabel.setText("Hello: " + playerManager.getName());
-        homepageMoney.setText("Money: $ " + playerManager.getMoney()); // need to find a way get money from player class
-        homepageCurrentRoundLabel.setText("Round: " + playerManager.getCurrentRoundNumber() + " / " + playerManager.getNumGameRounds()); // need to get current round from player class
+        homepageMoney.setText("Money: $ " + playerManager.getMoney());
+        homepageCurrentRoundLabel.setText("Round: " + playerManager.getCurrentRoundNumber() + " / " + playerManager.getNumGameRounds());
     }
     /**
      * Constructs a new instance of HomePageController with the specified PlayerManager.
@@ -43,10 +42,10 @@ public class HomePageController {
     public HomePageController(PlayerManager playerManager) {
         this.playerManager = playerManager;
     }
+
     /** handles the action when the "Shop" button is clicked
      * it closes the home screen and opens/launches the shop screen*/
     public void onGoToShopButtonClicked() {
-        // link to shop screen
         System.out.println("Shop Clicked");
         playerManager.closeMainScreen();
         playerManager.launchShopScreen();
@@ -62,14 +61,12 @@ public class HomePageController {
                 .toList();
         if (towersInGame.size() < 3){
             errorNoTowersInGameLabel.setVisible(true);
-           // System.out.println("Error: Must have 3-5 towers in-game"); // relabel this better
         }else{
             errorNoTowersInGameLabel.setVisible(false);
             System.out.println("Play Round Button Clicked");
             playerManager.closeMainScreen();
             playerManager.launchApplyUpgradeScreen();
         }
-
     }
     /** handles the action when the "Inventory" button is clicked
      * it closes the home screen and opens/launches the Inventory screen*/
@@ -77,14 +74,10 @@ public class HomePageController {
         System.out.println("Inventory Clicked");
         playerManager.closeMainScreen();
         playerManager.launchInventoryScreen();
-
-        // link to inventory screen
     }
     /** handles the action when the "Give up" button is clicked
      * exiting the platform*/
-    public void onGiveUpClicked(ActionEvent actionEvent) {
+    public void onGiveUpClicked() {
         Platform.exit();
     }
-
-
 }

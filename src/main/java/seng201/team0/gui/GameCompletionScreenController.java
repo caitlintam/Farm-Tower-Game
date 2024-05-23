@@ -1,12 +1,9 @@
 package seng201.team0.gui;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import seng201.team0.App;
 import seng201.team0.PlayerManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.Button;
 import seng201.team0.models.Player;
 /**
  * Controller class for the Game Completion Screen.

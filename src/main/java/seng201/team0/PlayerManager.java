@@ -32,23 +32,23 @@ public class PlayerManager {
 //    private List<Tower> towersInGame;
 //    private List<Tower> reserveTowers;
     private int currentTrackDistance;
-    private List<Integer> trackDistanceOptionsList;
+    private final List<Integer> trackDistanceOptionsList;
 
-    private List<Cart> newCartsInRound;
+    private final List<Cart> newCartsInRound;
     private CartService cartService;
     private List<Cart> cartsInRound;
-    private RandomEvent randomEvent;
+    private final RandomEvent randomEvent;
     private List<Integer> randomEventRoundsList;
     private String winOrLose;
     private RoundService roundService;
 
-    private int numRoundsWon = 0;
-    private int numRoundsLost = 0;
+    private final int numRoundsWon = 0;
+    private final int numRoundsLost = 0;
     private boolean roundSuccess = false;
     private int earnedMoney;
     private int numCartsFilled;
     private String mainGameScreenText;
-    private Player player;
+    private final Player player;
 
 
 
@@ -248,7 +248,7 @@ public class PlayerManager {
     }
 
     public void evaluateRoundSuccess(){
-        if (roundSuccess == true){
+        if (roundSuccess){
             setEarnedMoney(currentRoundNumber);
             System.out.println("money before " + player.getMoney());
             setMoney((player.getMoney()) + earnedMoney);
@@ -279,11 +279,10 @@ public class PlayerManager {
             launchHomeScreen();
         }
     }
-    private Shop shop;
-    private Tower towerManager;
-    private Upgrade upgrade;
+    private final Shop shop;
+    private final Tower towerManager;
+    private final Upgrade upgrade;
 
-    //getting other classes from playermanager
     public Shop getShopManager(){
         return shop;
     }
