@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 import seng201.team0.PlayerManager;
 import seng201.team0.models.Player;
 import seng201.team0.models.Round;
+import seng201.team0.models.Tower;
+import seng201.team0.models.Upgrade;
+
 import java.util.function.Consumer;
 /**
  * Unit tests for the PlayerManager class.
@@ -51,8 +54,26 @@ public class PlayerManagerTest {
             public void launchMainGameScreen() {
                 testConsumer.accept(this);
             }
+
+
+
         };
+
+    }
+    /**
+     * Tests the applying of an upgrade to a tower. This example is of a level up, which increases the tower level by 1
+     */
+    @Test
+    public void testApplyUpgrade(){
+        Tower tower = new Tower("TowerTest0", 0, "Test1", 0, 1, 0,"Reserve");
+        playerManager.getPlayer().getTowerInventory().add(tower);
+
+        Upgrade levelUpgrade = new Upgrade("Tower Level Boost!", 0.0);
+        playerManager.getPlayer().getUpgradeInventory().add(levelUpgrade);
         playerManager.getPlayer().setMoney(0);
+        assertEquals(1, tower.getTowerLevel());
+        playerManager.applyUpgrade(tower, levelUpgrade);
+        assertEquals(2, tower.getTowerLevel());
     }
     /**
      * Tests the behavior of method toHomeOrRandomEventOrGameFinish() when the game is complete.
