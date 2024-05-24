@@ -13,14 +13,13 @@ import seng201.team0.models.Player;
 
 public class GameCompletionScreenController {
     private final PlayerManager playerManager;
+    private final Player player;
     @FXML
     public Label WinOrLOseLabel;
     @FXML
     private Label roundsWonLabel;
     @FXML
     private Label roundsLostLabel;
-
-    private final Player player;
 
     /**
      * Initializes the game completion screen with relevant information.

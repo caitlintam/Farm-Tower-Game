@@ -2,6 +2,7 @@ package seng201.team0;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 import seng201.team0.service.RoundService;
@@ -482,6 +483,29 @@ public class PlayerManager {
         this.mainGameScreenText = " ";
     }
 
-
+    /**
+     * Applies the selected upgrade to the selected tower.
+     * This method upgrades the selected tower based on the selected upgrade.
+     * It first prints the tower's stats before the upgrade, then applies the upgrade.
+     * If the upgrade is "Tower Reload Speed Boost!", it upgrades the tower's reload speed,
+     * assesses the tower's level, and prints the new reload speed.
+     * If the upgrade is "Tower Resource Amount Boost!", it upgrades the tower's resource amount,
+     * assesses the tower's level, and prints the new resource amount.
+     * If the upgrade is a level upgrade, it increases the tower's level.
+     * @param selectedTower The tower to which the upgrade is applied.
+     * @param selectedUpgrade The upgrade to be applied.
+     */
+    public void applyUpgrade(Tower selectedTower, Upgrade selectedUpgrade) {
+            if (Objects.equals(selectedUpgrade.getUpgradeName(), "Tower Reload Speed Boost!")){
+                selectedTower.upgradeReloadSpeed(selectedTower);
+                selectedTower.assessTowerLevel(selectedTower);
+            }else if (Objects.equals(selectedUpgrade.getUpgradeName(), "Tower Resource Amount Boost!")){
+                selectedTower.upgradeTowerResourceAmount(selectedTower);
+                selectedTower.assessTowerLevel(selectedTower);
+            } else{
+                selectedTower.increaseTowerLevel(selectedTower);
+            }
+            player.removeUpgradeFromInventory(selectedUpgrade);
+    }
 }
 

@@ -2,7 +2,7 @@ package seng201.team0.gui;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -23,14 +23,23 @@ import java.util.Objects;
 public class ApplyUpgradeScreenController {
     private final PlayerManager playerManager;
     private final Player player;
+    @FXML
     public TableView<Tower> prepTowerTable;
+    @FXML
     public TableView<Upgrade> prepUpgradeTable;
+    @FXML
     public Button applyUpgradeTowerButton;
+    @FXML
     public Button nextScreenButton;
+    @FXML
     public Button toHomeButton;
+    @FXML
     public TableColumn<Upgrade, String> prepUpgradeColumn;
+    @FXML
     public TableColumn<Tower, String> prepTowerColumn;
+    @FXML
     public Label errorNoTowerSelectedLabel;
+    @FXML
     public Label errorNoUpgradeSelectedLabel;
 
     /**
@@ -63,20 +72,20 @@ public class ApplyUpgradeScreenController {
 
         ArrayList<Upgrade> upgradeInventory = (ArrayList<Upgrade>) player.getUpgradeInventory();
         System.out.println(upgradeInventory);
-        // Convert ArrayList to ObservableList
         ObservableList<Tower> inGameTowersData = FXCollections.observableArrayList(player.getTowersInGame());
         ObservableList<Upgrade> upgradeData = FXCollections.observableArrayList(upgradeInventory);
-        // Bind tower inventory data to table columns
-        prepTowerColumn.setCellValueFactory(new PropertyValueFactory<Tower, String>("towerName"));
-        prepUpgradeColumn.setCellValueFactory(new PropertyValueFactory<Upgrade, String>("upgradeName"));
-        // Set tower inventory data to the table
+        prepTowerColumn.setCellValueFactory(new PropertyValueFactory<>("towerName"));
+        prepUpgradeColumn.setCellValueFactory(new PropertyValueFactory<>("upgradeName"));
         prepTowerTable.setItems(inGameTowersData);
         prepUpgradeTable.setItems(upgradeData);
     }
     /**
      * Handles the action when the "Apply Upgrade" button is clicked.
      * Checks for selected tower and upgrade, then applies the upgrade to the tower.
+     *  After applying the upgrade, in PlayerManager class it removes the upgrade from the player's inventory
+     *  and re-initialises the tables displaying towers and upgrades.
      */
+    @FXML
     public void onApplyUpgradeButtonClicked() {
         System.out.println("Apply Upgrade Button Clicked");
 
@@ -97,48 +106,17 @@ public class ApplyUpgradeScreenController {
         } else {
             errorNoTowerSelectedLabel.setVisible(false);
             errorNoUpgradeSelectedLabel.setVisible(false);
-            applyUpgrade(selectedTower,selectedUpgrade);
+            playerManager.applyUpgrade(selectedTower,selectedUpgrade);
+
+            initializeTables();
         }
     }
-    /**
-     * Applies the selected upgrade to the selected tower.
-     * This method upgrades the selected tower based on the selected upgrade.
-     * It first prints the tower's stats before the upgrade, then applies the upgrade,
-     * and prints the tower's stats after the upgrade.
-     * If the upgrade is "Tower Reload Speed Boost!", it upgrades the tower's reload speed,
-     * assesses the tower's level, and prints the new reload speed.
-     * If the upgrade is "Tower Resource Amount Boost!", it upgrades the tower's resource amount,
-     * assesses the tower's level, and prints the new resource amount.
-     * If the upgrade is a level upgrade, it increases the tower's level and prints the new level.
-     * After applying the upgrade, it removes the upgrade from the player's inventory
-     * and re-initialises the tables displaying towers and upgrades.
-     * @param selectedTower The tower to which the upgrade is applied.
-     * @param selectedUpgrade The upgrade to be applied.
-     */
-    private void applyUpgrade(Tower selectedTower, Upgrade selectedUpgrade) {
-        System.out.println(selectedTower.getTowerName() + " stats before upgrade: \n Reload Speed: "+ selectedTower.getTowerReloadSpeed());
-        System.out.println("Level: "+ selectedTower.getTowerLevel() + "\nResource Amount: "+selectedTower.getTowerResourceAmount());
-        if (Objects.equals(selectedUpgrade.getUpgradeName(), "Tower Reload Speed Boost!")){
-            selectedTower.upgradeReloadSpeed(selectedTower);
-            selectedTower.assessTowerLevel(selectedTower);
-            System.out.println("New Reload Speed: "+selectedTower.getTowerReloadSpeed());
-        }else if (Objects.equals(selectedUpgrade.getUpgradeName(), "Tower Resource Amount Boost!")){
-            selectedTower.upgradeTowerResourceAmount(selectedTower);
-            selectedTower.assessTowerLevel(selectedTower);
-            System.out.println("New Resource Amount: "+selectedTower.getTowerResourceAmount());
-        } else{
-            selectedTower.increaseTowerLevel(selectedTower);
-            System.out.println("New Level: "+selectedTower.getTowerLevel());
-        }
-        System.out.println("stats after upgrade: \n Reload Speed: "+ selectedTower.getTowerReloadSpeed());
-        System.out.println("Level: "+ selectedTower.getTowerLevel() + "\nResource Amount: "+selectedTower.getTowerResourceAmount());
-        player.removeUpgradeFromInventory(selectedUpgrade);
-        initializeTables();
-    }
+
     /**
      * Handles the action when the "Home" button is clicked.
      * Closes the current screen and returns to the home screen.
      */
+    @FXML
     public void onHomeButtonClicked() {
         System.out.println("Home Button Clicked");
         playerManager.closeApplyUpgradeScreen();
@@ -150,6 +128,7 @@ public class ApplyUpgradeScreenController {
      * prints the current track distance for debugging purposes,
      * closes the apply upgrade screen, and launches the choose round difficulty screen.
      */
+    @FXML
     public void onNextClicked() {
         playerManager.setInitialTrackDistance();
         System.out.println("Current track dist" + playerManager.getCurrentTrackDistance());

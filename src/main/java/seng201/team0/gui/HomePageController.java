@@ -14,13 +14,13 @@ import java.util.List;
 public class HomePageController {
     @FXML
     public Label errorNoTowersInGameLabel;
-    private final PlayerManager playerManager;
     @FXML
     private Label playerNameLabel;
     @FXML
     private Label homepageMoney;
     @FXML
     private Label homepageCurrentRoundLabel;
+    private final PlayerManager playerManager;
     /**
      * Initializes the home page UI with player information.
      * This method prints information about the player's current money, rounds completed, and sets labels accordingly.
