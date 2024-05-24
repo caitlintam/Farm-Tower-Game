@@ -5,113 +5,150 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.InventoryController">
-  <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="568.6666463216146" minWidth="10.0" prefWidth="312.11109415690106" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="501.8888956705729" minWidth="0.0" prefWidth="307.33335367838544" />
-      <ColumnConstraints maxWidth="306.0" minWidth="0.0" prefWidth="280.33331298828125" />
-      <ColumnConstraints />
-      <ColumnConstraints />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints maxHeight="73.22222900390625" minHeight="10.0" prefHeight="65.22222900390625" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="196.88892618815103" minHeight="10.0" prefHeight="175.1111043294271" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="100.33332570393881" minHeight="10.0" prefHeight="12.444407145182282" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="117.22224934895831" minHeight="6.666661580403627" prefHeight="31.11113484700519" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="210.55553181966144" minHeight="10.0" prefHeight="202.55553181966144" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="46.999969482421875" minHeight="4.333363850911439" prefHeight="18.333333333333314" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="46.999969482421875" minHeight="4.333363850911439" prefHeight="18.333333333333314" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="46.999969482421875" minHeight="5.0" prefHeight="46.999969482421875" vgrow="SOMETIMES" />
-  </rowConstraints>
-   <children>
-      <TableView fx:id="towerTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="145.0" prefWidth="606.0" GridPane.columnSpan="3" GridPane.halignment="LEFT" GridPane.rowIndex="1">
-        <columns>
-          <TableColumn fx:id="towerNameColumn" prefWidth="100.0" text="Tower Name" />
-          <TableColumn fx:id="towerResTypeColumn" prefWidth="94.66671752929688" text="Resource Type" />
-            <TableColumn fx:id="towerResAmountColumn" prefWidth="114.6666259765625" text="Resource Amount" />
-            <TableColumn fx:id="towerReloadColumn" prefWidth="93.3333740234375" text="Reload Speed" />
-            <TableColumn fx:id="towerLevelColumn" minWidth="0.0" prefWidth="45.3333740234375" text="Level" />
-            <TableColumn fx:id="towerCostColumn" prefWidth="56.66668701171875" text="Cost" />
-            <TableColumn fx:id="towerStatusColumn" prefWidth="90.66664632161462" text="Status" />
-        </columns>
-         <GridPane.margin>
-            <Insets left="50.0" />
-         </GridPane.margin>
-      </TableView>
-      <TableView fx:id="upgradeTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="178.0" prefWidth="360.0" GridPane.columnSpan="3" GridPane.halignment="LEFT" GridPane.rowIndex="4">
-        <columns>
-          <TableColumn fx:id="upgradeNameColumn" prefWidth="178.0000203847885" text="Upgrade Name" />
-            <TableColumn fx:id="upgradeCostColumn" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="185.3333282470703" text="Cost" />
-        </columns>
-         <GridPane.margin>
-            <Insets left="50.0" />
-         </GridPane.margin>
-      </TableView>
-      <Label text="Tower Inventory" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
-         <font>
-            <Font name="Berenis ADF Pro Math Regular" size="42.0" />
-         </font>
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
-      </Label>
-      <Button fx:id="inventoryHomeButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onInventoryHomeButtonClicked" text="Home" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6">
-         <GridPane.margin>
-            <Insets bottom="10.0" left="30.0" right="30.0" />
-         </GridPane.margin>
-         <font>
-            <Font name="Berenis ADF Pro Math Regular" size="35.0" />
-         </font>
-         <padding>
-            <Insets bottom="10.0" />
-         </padding></Button>
-      <Label text="Upgrade Inventory" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BASELINE">
-         <font>
-            <Font name="Berenis ADF Pro Math Regular" size="35.0" />
-         </font>
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
-      </Label>
-      <Label fx:id="moneyLabel" text="Money: $" GridPane.columnIndex="2" GridPane.columnSpan="2">
-         <font>
-            <Font name="Berenis ADF Pro Math Regular" size="25.0" />
-         </font>
-         <GridPane.margin>
-            <Insets left="20.0" top="20.0" />
-         </GridPane.margin></Label>
-      <Button fx:id="sellSelectedTowerButton" mnemonicParsing="false" onAction="#onSellSelectedTowerButtonClicked" prefHeight="25.0" prefWidth="157.0" text="Sell Selected Tower" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets left="20.0" right="30.0" top="30.0" />
-         </GridPane.margin>
-         <font>
-            <Font name="Berenis ADF Pro Math Regular" size="20.0" />
-         </font></Button>
-      <Button fx:id="changeTowerStatusButton" mnemonicParsing="false" onAction="#onChangeTowerStatusButtonClicked" text="Change Tower Status" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
-         <GridPane.margin>
-            <Insets left="20.0" right="30.0" top="30.0" />
-         </GridPane.margin>
-         <font>
-            <Font name="Berenis ADF Pro Math Regular" size="20.0" />
-         </font></Button>
-      <Label fx:id="errorNoTowerSelectedLabel" text="No Tower Selected" textFill="#dd0505" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
-         <GridPane.margin>
-            <Insets bottom="20.0" left="70.0" />
-         </GridPane.margin></Label>
-      <Label fx:id="errorChangeStatusLabel" prefHeight="17.0" prefWidth="249.0" text="Cannot Change Status: 3 towers already in game" textFill="#ef0202" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
-         <GridPane.margin>
-            <Insets bottom="20.0" left="70.0" />
-         </GridPane.margin></Label>
-      <Button fx:id="sellSelectedUpgradeButton" mnemonicParsing="false" onAction="#onSellSelectedUpgradeButtonClicked" text="Sell Selected Upgrade" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="4">
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
-         <font>
-            <Font name="Berenis ADF Pro Math Regular" size="20.0" />
-         </font></Button>
-      <Label fx:id="errorNoUpgradeSelectedLabel" minHeight="-Infinity" minWidth="-Infinity" prefHeight="21.0" prefWidth="179.0" text="Error: No Upgrade Selected" textFill="#e90a0a" wrapText="true" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
-         <GridPane.margin>
-            <Insets bottom="60.0" />
-         </GridPane.margin></Label>
-   </children>
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+          prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="seng201.team0.gui.InventoryController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="568.6666463216146" minWidth="10.0"
+                           prefWidth="312.11109415690106"/>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="501.8888956705729" minWidth="0.0"
+                           prefWidth="307.33335367838544"/>
+        <ColumnConstraints maxWidth="306.0" minWidth="0.0" prefWidth="280.33331298828125"/>
+        <ColumnConstraints/>
+        <ColumnConstraints/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="73.22222900390625" minHeight="10.0" prefHeight="65.22222900390625"
+                        vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="196.88892618815103" minHeight="10.0" prefHeight="175.1111043294271"
+                        vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="100.33332570393881" minHeight="10.0" prefHeight="12.444407145182282"
+                        vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="117.22224934895831" minHeight="6.666661580403627" prefHeight="31.11113484700519"
+                        vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="210.55553181966144" minHeight="10.0" prefHeight="202.55553181966144"
+                        vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="46.999969482421875" minHeight="4.333363850911439" prefHeight="18.333333333333314"
+                        vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="46.999969482421875" minHeight="4.333363850911439" prefHeight="18.333333333333314"
+                        vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="46.999969482421875" minHeight="5.0" prefHeight="46.999969482421875"
+                        vgrow="SOMETIMES"/>
+    </rowConstraints>
+    <TableView fx:id="towerTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+               prefHeight="145.0" prefWidth="606.0" GridPane.columnSpan="3" GridPane.halignment="LEFT"
+               GridPane.rowIndex="1">
+      <columns>
+          <TableColumn fx:id="towerNameColumn" prefWidth="100.0" text="Tower Name"/>
+          <TableColumn fx:id="towerResTypeColumn" prefWidth="94.66671752929688" text="Resource Type"/>
+          <TableColumn fx:id="towerResAmountColumn" prefWidth="114.6666259765625" text="Resource Amount"/>
+          <TableColumn fx:id="towerReloadColumn" prefWidth="93.3333740234375" text="Reload Speed"/>
+          <TableColumn fx:id="towerLevelColumn" minWidth="0.0" prefWidth="45.3333740234375" text="Level"/>
+          <TableColumn fx:id="towerCostColumn" prefWidth="56.66668701171875" text="Cost"/>
+          <TableColumn fx:id="towerStatusColumn" prefWidth="90.66664632161462" text="Status"/>
+      </columns>
+        <GridPane.margin>
+          <Insets left="50.0"/>
+        </GridPane.margin>
+    </TableView>
+    <TableView fx:id="upgradeTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+               minWidth="-Infinity" prefHeight="178.0" prefWidth="360.0" GridPane.columnSpan="3"
+               GridPane.halignment="LEFT" GridPane.rowIndex="4">
+      <columns>
+          <TableColumn fx:id="upgradeNameColumn" prefWidth="178.0000203847885" text="Upgrade Name"/>
+          <TableColumn fx:id="upgradeCostColumn" maxWidth="1.7976931348623157E308" minWidth="0.0"
+                       prefWidth="185.3333282470703" text="Cost"/>
+      </columns>
+        <GridPane.margin>
+          <Insets left="50.0"/>
+        </GridPane.margin>
+    </TableView>
+    <Label text="Tower Inventory" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER"
+           GridPane.valignment="BOTTOM">
+        <font>
+          <Font name="Berenis ADF Pro Math Regular" size="42.0"/>
+        </font>
+        <GridPane.margin>
+          <Insets/>
+        </GridPane.margin>
+    </Label>
+    <Button fx:id="inventoryHomeButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+            mnemonicParsing="false" onAction="#onInventoryHomeButtonClicked" text="Home" GridPane.columnIndex="1"
+            GridPane.halignment="CENTER" GridPane.rowIndex="6">
+        <GridPane.margin>
+          <Insets bottom="10.0" left="30.0" right="30.0"/>
+        </GridPane.margin>
+        <font>
+          <Font name="Berenis ADF Pro Math Regular" size="35.0"/>
+        </font>
+        <padding>
+          <Insets bottom="10.0"/>
+        </padding>
+    </Button>
+    <Label text="Upgrade Inventory" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3"
+           GridPane.valignment="BASELINE">
+        <font>
+          <Font name="Berenis ADF Pro Math Regular" size="35.0"/>
+        </font>
+        <GridPane.margin>
+          <Insets/>
+        </GridPane.margin>
+    </Label>
+    <Label fx:id="moneyLabel" text="Money: $" GridPane.columnIndex="2" GridPane.columnSpan="2">
+        <font>
+          <Font name="Berenis ADF Pro Math Regular" size="25.0"/>
+        </font>
+        <GridPane.margin>
+          <Insets left="20.0" top="20.0"/>
+        </GridPane.margin>
+    </Label>
+    <Button fx:id="sellSelectedTowerButton" mnemonicParsing="false" onAction="#onSellSelectedTowerButtonClicked"
+            prefHeight="25.0" prefWidth="157.0" text="Sell Selected Tower" wrapText="true" GridPane.columnIndex="2"
+            GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+        <GridPane.margin>
+          <Insets left="20.0" right="30.0" top="30.0"/>
+        </GridPane.margin>
+        <font>
+          <Font name="Berenis ADF Pro Math Regular" size="20.0"/>
+        </font>
+    </Button>
+    <Button fx:id="changeTowerStatusButton" mnemonicParsing="false" onAction="#onChangeTowerStatusButtonClicked"
+            text="Change Tower Status" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1"
+            GridPane.valignment="TOP">
+        <GridPane.margin>
+          <Insets left="20.0" right="30.0" top="30.0"/>
+        </GridPane.margin>
+        <font>
+          <Font name="Berenis ADF Pro Math Regular" size="20.0"/>
+        </font>
+    </Button>
+    <Label fx:id="errorNoTowerSelectedLabel" text="No Tower Selected" textFill="#dd0505" GridPane.columnSpan="2"
+           GridPane.halignment="CENTER" GridPane.rowIndex="2">
+        <GridPane.margin>
+          <Insets bottom="20.0" left="70.0"/>
+        </GridPane.margin>
+    </Label>
+    <Label fx:id="errorChangeStatusLabel" prefHeight="17.0" prefWidth="249.0"
+           text="Cannot Change Status: 3 towers already in game" textFill="#ef0202" GridPane.columnSpan="2"
+           GridPane.halignment="CENTER" GridPane.rowIndex="2">
+        <GridPane.margin>
+          <Insets bottom="20.0" left="70.0"/>
+        </GridPane.margin>
+    </Label>
+    <Button fx:id="sellSelectedUpgradeButton" mnemonicParsing="false" onAction="#onSellSelectedUpgradeButtonClicked"
+            text="Sell Selected Upgrade" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="4">
+        <GridPane.margin>
+          <Insets/>
+        </GridPane.margin>
+        <font>
+          <Font name="Berenis ADF Pro Math Regular" size="20.0"/>
+        </font>
+    </Button>
+    <Label fx:id="errorNoUpgradeSelectedLabel" minHeight="-Infinity" minWidth="-Infinity" prefHeight="21.0"
+           prefWidth="179.0" text="Error: No Upgrade Selected" textFill="#e90a0a" wrapText="true"
+           GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+        <GridPane.margin>
+          <Insets bottom="60.0"/>
+        </GridPane.margin>
+    </Label>
 </GridPane>

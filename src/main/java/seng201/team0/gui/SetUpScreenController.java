@@ -34,6 +34,7 @@ public class SetUpScreenController {
      * Initializes the setup screen.
      * Prints a setup screen message to the console and hides error labels.
      */
+    @FXML
     public void initialize() {
         System.out.println("----- Set Up Screen ----");
         invalidLengthNameLabel.setVisible(false);
@@ -52,9 +53,9 @@ public class SetUpScreenController {
      * and game difficulty based on the input, and closes the setup screen.
      * If the input name is invalid or if there's an error during the process, an error message is printed.
      */
+    @FXML
     public void onBeginClicked() {
             System.out.println("Begin Clicked!");
-            String name = nameInputTextField.getText();
             invalidCharsNameLabel.setVisible(false);
             invalidLengthNameLabel.setVisible(false);
             if (!validNameInput(nameInputTextField.getText())) {
@@ -64,7 +65,6 @@ public class SetUpScreenController {
                     invalidCharsNameLabel.setVisible(true);
                 }
             } else {
-                System.out.println("valid input");
                 playerManager.setName(nameInputTextField.getText());
                 playerManager.setNumGameRounds((int) numRoundsSlider.getValue());
                 playerManager.setGameDifficulty((int) gameDifficultySlider.getValue());
@@ -72,7 +72,7 @@ public class SetUpScreenController {
                 System.out.println("Number of Game Rounds: " + playerManager.getNumGameRounds());
                 System.out.println("Game Difficulty: " + playerManager.getGameDifficulty());
                 playerManager.setRandomEventRoundsList();
-                System.out.println("random " + playerManager.getRandomEventsRoundList());
+                System.out.println("Random Event Rounds: " + playerManager.getRandomEventsRoundList());
                 playerManager.closeSetupScreen();
                 playerManager.launchTowerSetUpScreen();
             }

@@ -3,6 +3,7 @@ package seng201.team0.gui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import seng201.team0.PlayerManager;
 import java.util.List;
 
@@ -10,7 +11,6 @@ import java.util.List;
  * Manages the UI elements and interactions on the screen related to choosing a difficulty level before each round
  */
 public class ChooseRoundDifficultyScreenController {
-    private final PlayerManager playerManager;
     @FXML
     public Button easyDifficultyButton;
     @FXML
@@ -21,6 +21,13 @@ public class ChooseRoundDifficultyScreenController {
     public Button nextButton;
     @FXML
     public Label errorNoDiffSelected;
+    @FXML
+    public ImageView mediumImageView;
+    @FXML
+    public ImageView easyImageView;
+    @FXML
+    public ImageView hardImageView;
+    private final PlayerManager playerManager;
     private int selectedDifficultyIndex = -1;
 
     /**
@@ -38,6 +45,7 @@ public class ChooseRoundDifficultyScreenController {
      * When a difficulty button is clicked, it sets the selected difficulty index, updates the current track distance,
      * and changes the style of the clicked button to indicate selection.
      */
+    @FXML
     public void initialize() {
         playerManager.updateTrackDistanceOptionsList();
         errorNoDiffSelected.setVisible(false);
@@ -63,6 +71,7 @@ public class ChooseRoundDifficultyScreenController {
      * Validates if a difficulty level is selected, then proceeds to start the round.
      * Also catches the exception error when a user trys to start round without selecting a round difficulty
      */
+    @FXML
     public void onNextButtonClicked() {
         try {
             if (selectedDifficultyIndex == -1) {

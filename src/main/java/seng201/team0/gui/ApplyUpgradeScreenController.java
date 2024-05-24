@@ -14,15 +14,13 @@ import seng201.team0.models.Player;
 import seng201.team0.models.Tower;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * Controller class for the Apply Upgrade Screen.
  * Manages the UI elements and interactions on the screen related to applying upgrades to towers.
  */
 public class ApplyUpgradeScreenController {
-    private final PlayerManager playerManager;
-    private final Player player;
+
     @FXML
     public TableView<Tower> prepTowerTable;
     @FXML
@@ -41,7 +39,8 @@ public class ApplyUpgradeScreenController {
     public Label errorNoTowerSelectedLabel;
     @FXML
     public Label errorNoUpgradeSelectedLabel;
-
+    private final PlayerManager playerManager;
+    private final Player player;
     /**
      * Constructs a new instance of ApplyUpgradeScreenController with the specified PlayerManager.
      * This constructor initializes the ApplyUpgradeScreenController with the given PlayerManager instance.
@@ -56,6 +55,7 @@ public class ApplyUpgradeScreenController {
      * This method calls the initializeTables method to initialize the tables displaying towers and upgrades,
      * and hides the error labels for no upgrade or tower selected initially.
      */
+    @FXML
     public void initialize(){
         initializeTables();
         errorNoUpgradeSelectedLabel.setVisible(false);

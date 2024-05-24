@@ -5,184 +5,216 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.TowerSetUpController">
-  <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints />
-    <RowConstraints maxHeight="140.0" minHeight="10.0" prefHeight="75.66666793823242" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="345.111094156901" minHeight="10.0" prefHeight="333.5555521647135" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="321.33333714803064" minHeight="10.0" prefHeight="128.4444478352865" vgrow="SOMETIMES" />
-  </rowConstraints>
-   <children>
-      <Label text="Select your towers" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-         <font>
-            <Font name="Berenis ADF Pro Math Regular" size="51.0" />
-         </font>
-      </Label>
-      <GridPane prefHeight="256.0" prefWidth="453.0" GridPane.rowIndex="2">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+          prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="seng201.team0.gui.TowerSetUpController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+        <ColumnConstraints/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints/>
+        <RowConstraints maxHeight="140.0" minHeight="10.0" prefHeight="75.66666793823242" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="345.111094156901" minHeight="10.0" prefHeight="333.5555521647135" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="321.33333714803064" minHeight="10.0" prefHeight="128.4444478352865"
+                        vgrow="SOMETIMES"/>
+    </rowConstraints>
+    <Label text="Select your towers" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+        <font>
+          <Font name="Berenis ADF Pro Math Regular" size="51.0"/>
+        </font>
+    </Label>
+    <GridPane prefHeight="256.0" prefWidth="453.0" GridPane.rowIndex="2">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="650.888916015625" minWidth="10.0" prefWidth="514.888916015625" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="292.0" minWidth="10.0" prefWidth="155.111083984375" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="650.888916015625" minWidth="10.0"
+                               prefWidth="514.888916015625"/>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="292.0" minWidth="10.0" prefWidth="155.111083984375"/>
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
         </rowConstraints>
-         <children>
-            <GridPane>
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints maxHeight="89.66665267944336" minHeight="10.0" prefHeight="80.66665649414062" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="124.6666488647461" minHeight="10.0" prefHeight="77.33333333333333" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="128.0" minHeight="10.0" prefHeight="69.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="128.0" minHeight="9.0" prefHeight="9.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="128.0" minHeight="10.0" prefHeight="11.666656494140625" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="59.333343505859375" minHeight="0.0" prefHeight="13.666676839192718" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Button fx:id="towerOption1" layoutX="227.0" layoutY="27.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" text="Piglet Palace" GridPane.halignment="RIGHT">
-                     <font>
-                        <Font name="Berenis ADF Pro Math Regular" size="16.0" />
-                     </font></Button>
-                   <Button fx:id="towerOption2" mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" text="Cowtopia Castle" GridPane.columnIndex="1" GridPane.halignment="CENTER">
-                     <font>
-                        <Font name="Berenis ADF Pro Math Regular" size="16.0" />
-                     </font></Button>
-                   <Button fx:id="towerOption3" layoutX="227.0" layoutY="27.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" text="Haybale Haven" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="Berenis ADF Pro Math Regular" size="16.0" />
-                     </font></Button>
-                   <Button fx:id="towerOption4" layoutX="227.0" layoutY="27.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" text="Timber Turret" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="Berenis ADF Pro Math Regular" size="16.0" />
-                     </font></Button>
-                   <Button fx:id="towerOption5" layoutX="227.0" layoutY="27.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" text="Water Tower" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="Berenis ADF Pro Math Regular" size="16.0" />
-                     </font></Button>
-                   <Button fx:id="towerOption6" layoutX="227.0" layoutY="27.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" text="Steele Steeple" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="Berenis ADF Pro Math Regular" size="16.0" />
-                     </font></Button>
-                  <Label text="Selected Towers: " GridPane.rowIndex="4">
-                     <GridPane.margin>
-                        <Insets left="15.0" />
-                     </GridPane.margin>
-                     <font>
-                        <Font name="Berenis ADF Pro Math Regular" size="25.0" />
-                     </font>
-                  </Label>
-               </children>
-            </GridPane>
-            <GridPane GridPane.columnIndex="1">
-              <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.3333740234375" minWidth="10.0" prefWidth="113.3333740234375" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.33331298828125" minWidth="10.0" prefWidth="107.99995930989584" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="72.66668701171875" minWidth="10.0" prefWidth="18.66668701171875" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Label text="Tower Stats" GridPane.columnSpan="2" GridPane.halignment="CENTER">
-                     <font>
-                        <Font name="Berenis ADF Pro Math Regular" size="25.0" />
-                     </font>
-                  </Label>
-                  <Label text="Tower Name: " GridPane.rowIndex="1">
-                     <font>
-                        <Font name="Berenis ADF Pro Math Regular" size="16.0" />
-                     </font></Label>
-                  <Label layoutX="10.0" layoutY="79.0" text="Resource Type: " wrapText="true" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="Berenis ADF Pro Math Regular" size="16.0" />
-                     </font></Label>
-                  <Label layoutX="10.0" layoutY="130.0" text="Resource Amount: " wrapText="true" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="Berenis ADF Pro Math Regular" size="16.0" />
-                     </font></Label>
-                  <Label layoutX="10.0" layoutY="181.0" text="Reload Speed:" wrapText="true" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="Berenis ADF Pro Math Regular" size="16.0" />
-                     </font></Label>
-                  <Label fx:id="towerNameLabel" text="--" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label fx:id="resTypeLabel" text="--" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label fx:id="resAmountLabel" text="--" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label fx:id="reloadSpeedLabel" text="--" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-               </children>
-            </GridPane>
-         </children>
-      </GridPane>
-      <GridPane GridPane.rowIndex="3">
+        <GridPane>
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="89.66665267944336" minHeight="10.0" prefHeight="80.66665649414062"
+                                vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="124.6666488647461" minHeight="10.0" prefHeight="77.33333333333333"
+                                vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="128.0" minHeight="10.0" prefHeight="69.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="128.0" minHeight="9.0" prefHeight="9.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="128.0" minHeight="10.0" prefHeight="11.666656494140625"
+                                vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="59.333343505859375" minHeight="0.0" prefHeight="13.666676839192718"
+                                vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <Button fx:id="towerOption1" layoutX="227.0" layoutY="27.0" mnemonicParsing="false"
+                    prefHeight="80.0" prefWidth="200.0" text="Piglet Palace" GridPane.halignment="RIGHT">
+                <font>
+                    <Font name="Berenis ADF Pro Math Regular" size="16.0"/>
+                </font>
+            </Button>
+            <Button fx:id="towerOption2" mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0"
+                    text="Cowtopia Castle" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                <font>
+                    <Font name="Berenis ADF Pro Math Regular" size="16.0"/>
+                </font>
+            </Button>
+            <Button fx:id="towerOption3" layoutX="227.0" layoutY="27.0" mnemonicParsing="false"
+                    prefHeight="80.0" prefWidth="200.0" text="Haybale Haven" GridPane.halignment="RIGHT"
+                    GridPane.rowIndex="1">
+                <font>
+                    <Font name="Berenis ADF Pro Math Regular" size="16.0"/>
+                </font>
+            </Button>
+            <Button fx:id="towerOption4" layoutX="227.0" layoutY="27.0" mnemonicParsing="false"
+                    prefHeight="80.0" prefWidth="200.0" text="Timber Turret" GridPane.columnIndex="1"
+                    GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                <font>
+                    <Font name="Berenis ADF Pro Math Regular" size="16.0"/>
+                </font>
+            </Button>
+            <Button fx:id="towerOption5" layoutX="227.0" layoutY="27.0" mnemonicParsing="false"
+                    prefHeight="80.0" prefWidth="200.0" text="Water Tower" GridPane.halignment="RIGHT"
+                    GridPane.rowIndex="2">
+                <font>
+                    <Font name="Berenis ADF Pro Math Regular" size="16.0"/>
+                </font>
+            </Button>
+            <Button fx:id="towerOption6" layoutX="227.0" layoutY="27.0" mnemonicParsing="false"
+                    prefHeight="80.0" prefWidth="200.0" text="Steele Steeple" GridPane.columnIndex="1"
+                    GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                <font>
+                    <Font name="Berenis ADF Pro Math Regular" size="16.0"/>
+                </font>
+            </Button>
+            <Label text="Selected Towers: " GridPane.rowIndex="4">
+                <GridPane.margin>
+                    <Insets left="15.0"/>
+                </GridPane.margin>
+                <font>
+                    <Font name="Berenis ADF Pro Math Regular" size="25.0"/>
+                </font>
+            </Label>
+        </GridPane>
+        <GridPane GridPane.columnIndex="1">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.3333740234375" minWidth="10.0"
+                                   prefWidth="113.3333740234375"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.33331298828125" minWidth="10.0"
+                                   prefWidth="107.99995930989584"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="72.66668701171875" minWidth="10.0"
+                                   prefWidth="18.66668701171875"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <Label text="Tower Stats" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+                <font>
+                    <Font name="Berenis ADF Pro Math Regular" size="25.0"/>
+                </font>
+            </Label>
+            <Label text="Tower Name: " GridPane.rowIndex="1">
+                <font>
+                    <Font name="Berenis ADF Pro Math Regular" size="16.0"/>
+                </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="79.0" text="Resource Type: " wrapText="true" GridPane.rowIndex="2">
+                <font>
+                    <Font name="Berenis ADF Pro Math Regular" size="16.0"/>
+                </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="130.0" text="Resource Amount: " wrapText="true"
+                   GridPane.rowIndex="3">
+                <font>
+                    <Font name="Berenis ADF Pro Math Regular" size="16.0"/>
+                </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="181.0" text="Reload Speed:" wrapText="true" GridPane.rowIndex="4">
+                <font>
+                    <Font name="Berenis ADF Pro Math Regular" size="16.0"/>
+                </font>
+            </Label>
+            <Label fx:id="towerNameLabel" text="--" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <Label fx:id="resTypeLabel" text="--" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <Label fx:id="resAmountLabel" text="--" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+            <Label fx:id="reloadSpeedLabel" text="--" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+        </GridPane>
+    </GridPane>
+    <GridPane GridPane.rowIndex="3">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="698.0" minWidth="10.0" prefWidth="346.22222900390625" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="427.3333435058594" minWidth="0.0" prefWidth="351.77777099609375" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="698.0" minWidth="10.0" prefWidth="346.22222900390625"/>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="427.3333435058594" minWidth="0.0"
+                               prefWidth="351.77777099609375"/>
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
         </rowConstraints>
-         <children>
-            <GridPane>
-              <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints maxHeight="138.66666666666666" minHeight="10.0" prefHeight="122.66666666666666" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="47.0" minHeight="0.0" prefHeight="31.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Button fx:id="selectedTower3" mnemonicParsing="false" prefHeight="90.0" prefWidth="130.0" text="Select" GridPane.columnIndex="2" GridPane.halignment="CENTER">
-                     <font>
-                        <Font name="Berenis ADF Pro Math Regular" size="20.0" />
-                     </font></Button>
-                  <Button fx:id="selectedTower2" layoutX="217.0" layoutY="17.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="130.0" text="Select" GridPane.columnIndex="1" GridPane.halignment="CENTER">
-                     <font>
-                        <Font name="Berenis ADF Pro Math Regular" size="20.0" />
-                     </font></Button>
-                  <Button fx:id="selectedTower1" layoutX="117.0" layoutY="17.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="130.0" text="Select" GridPane.halignment="CENTER">
-                     <font>
-                        <Font name="Berenis ADF Pro Math Regular" size="20.0" />
-                     </font></Button>
-               </children>
-            </GridPane>
-            <GridPane GridPane.columnIndex="1">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints maxHeight="73.55560302734375" minHeight="10.0" prefHeight="73.55560302734375" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="33.999989827473954" minHeight="0.0" prefHeight="14.44439697265625" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="34.000024159749344" minHeight="10.0" prefHeight="34.000024159749344" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Button fx:id="nextButton" mnemonicParsing="false" onAction="#onNextClicked" prefHeight="66.0" prefWidth="148.0" text="Next" GridPane.halignment="CENTER">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                     <font>
-                        <Font name="Berenis ADF Pro Math Regular" size="25.0" />
-                     </font>
-                  </Button>
-                  <Label fx:id="errorTowerNumLabel" text="Error: Not enough towers selected " textFill="RED" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                  </Label>
-               </children>
-            </GridPane>
-         </children>
-      </GridPane>
-   </children>
+        <GridPane>
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="138.66666666666666" minHeight="10.0" prefHeight="122.66666666666666"
+                                vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="47.0" minHeight="0.0" prefHeight="31.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <Button fx:id="selectedTower3" mnemonicParsing="false" prefHeight="90.0" prefWidth="130.0"
+                    text="Select" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                <font>
+                    <Font name="Berenis ADF Pro Math Regular" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="selectedTower2" layoutX="217.0" layoutY="17.0" mnemonicParsing="false"
+                    prefHeight="90.0" prefWidth="130.0" text="Select" GridPane.columnIndex="1"
+                    GridPane.halignment="CENTER">
+                <font>
+                    <Font name="Berenis ADF Pro Math Regular" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="selectedTower1" layoutX="117.0" layoutY="17.0" mnemonicParsing="false"
+                    prefHeight="90.0" prefWidth="130.0" text="Select" GridPane.halignment="CENTER">
+                <font>
+                    <Font name="Berenis ADF Pro Math Regular" size="20.0"/>
+                </font>
+            </Button>
+        </GridPane>
+        <GridPane GridPane.columnIndex="1">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="73.55560302734375" minHeight="10.0" prefHeight="73.55560302734375"
+                                vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="33.999989827473954" minHeight="0.0" prefHeight="14.44439697265625"
+                                vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="34.000024159749344" minHeight="10.0" prefHeight="34.000024159749344"
+                                vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <Button fx:id="nextButton" mnemonicParsing="false" onAction="#onNextClicked" prefHeight="66.0"
+                    prefWidth="148.0" text="Next" GridPane.halignment="CENTER">
+                <GridPane.margin>
+                    <Insets/>
+                </GridPane.margin>
+                <font>
+                    <Font name="Berenis ADF Pro Math Regular" size="25.0"/>
+                </font>
+            </Button>
+            <Label fx:id="errorTowerNumLabel" text="Error: Not enough towers selected " textFill="RED"
+                   GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                <GridPane.margin>
+                    <Insets/>
+                </GridPane.margin>
+            </Label>
+        </GridPane>
+    </GridPane>
 </GridPane>

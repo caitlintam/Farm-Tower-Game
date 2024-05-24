@@ -2,6 +2,7 @@ package seng201.team0.gui;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import seng201.team0.PlayerManager;
 import seng201.team0.models.Tower;
@@ -15,25 +16,24 @@ public class HomePageController {
     @FXML
     public Label errorNoTowersInGameLabel;
     @FXML
+    public Label homepageNameLabel;
+    @FXML
+    public Label homeLabel;
+    @FXML
+    public Button goToShopButton;
+    @FXML
+    public Button playRoundButton;
+    @FXML
+    public Button viewInventoryButton;
+    @FXML
+    public Button giveUpButton;
+    @FXML
     private Label playerNameLabel;
     @FXML
     private Label homepageMoney;
     @FXML
     private Label homepageCurrentRoundLabel;
     private final PlayerManager playerManager;
-    /**
-     * Initializes the home page UI with player information.
-     * This method prints information about the player's current money, rounds completed, and sets labels accordingly.
-     */
-    public void initialize() {
-        System.out.println("---------- Home Page ---------");
-        System.out.println("Current Money: " + playerManager.getMoney());
-        System.out.println("Rounds Completed: " + playerManager.getCurrentRoundNumber() +" / " + playerManager.getNumGameRounds());
-        errorNoTowersInGameLabel.setVisible(false);
-        playerNameLabel.setText("Hello: " + playerManager.getName());
-        homepageMoney.setText("Money: $ " + playerManager.getMoney());
-        homepageCurrentRoundLabel.setText("Round: " + playerManager.getCurrentRoundNumber() + " / " + playerManager.getNumGameRounds());
-    }
     /**
      * Constructs a new instance of HomePageController with the specified PlayerManager.
      * This constructor initializes the HomePageController with the given PlayerManager instance.
@@ -43,8 +43,25 @@ public class HomePageController {
         this.playerManager = playerManager;
     }
 
+    /**
+     * Initializes the home page UI with player information.
+     * This method prints information about the player's current money, rounds completed, and sets labels accordingly.
+     */
+    @FXML
+    public void initialize() {
+        System.out.println("---------- Home Page ---------");
+        System.out.println("Current Money: " + playerManager.getMoney());
+        System.out.println("Rounds Completed: " + playerManager.getCurrentRoundNumber() +" / " + playerManager.getNumGameRounds());
+        errorNoTowersInGameLabel.setVisible(false);
+        playerNameLabel.setText("Hello: " + playerManager.getName());
+        homepageMoney.setText("Money: $ " + playerManager.getMoney());
+        homepageCurrentRoundLabel.setText("Round: " + playerManager.getCurrentRoundNumber() + " / " + playerManager.getNumGameRounds());
+    }
+
     /** handles the action when the "Shop" button is clicked
-     * it closes the home screen and opens/launches the shop screen*/
+     * it closes the home screen and opens/launches the shop screen
+     */
+    @FXML
     public void onGoToShopButtonClicked() {
         System.out.println("Shop Clicked");
         playerManager.closeMainScreen();
@@ -54,6 +71,7 @@ public class HomePageController {
      * it filters the tower inventory list, creating a new list of towers with status "In-Game"
      * it handles the potential error of if there are less than 2 towers with status "In-Game"
      * and loads the round screen*/
+    @FXML
     public void onPlayRoundButtonClicked() {
         System.out.println("Play Round Clicked!");
         List<Tower> towersInGame = playerManager.getTowerInventory().stream()
@@ -69,14 +87,18 @@ public class HomePageController {
         }
     }
     /** handles the action when the "Inventory" button is clicked
-     * it closes the home screen and opens/launches the Inventory screen*/
+     * it closes the home screen and opens/launches the Inventory screen
+     */
+    @FXML
     public void onViewInventoryButtonClicked() {
         System.out.println("Inventory Clicked");
         playerManager.closeMainScreen();
         playerManager.launchInventoryScreen();
     }
     /** handles the action when the "Give up" button is clicked
-     * exiting the platform*/
+     * exiting the platform
+     */
+    @FXML
     public void onGiveUpClicked() {
         Platform.exit();
     }

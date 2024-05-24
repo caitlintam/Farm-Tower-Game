@@ -10,19 +10,18 @@ import javafx.scene.control.ProgressBar;
 import javafx.util.Duration;
 import seng201.team0.PlayerManager;
 import javafx.fxml.FXML;
-import seng201.team0.models.Player;
+
 
 /**
  * Controller class for the Main Game Screen.
  * Manages the UI elements and interactions on the screen during the main game.
  */
-
 public class MainGameScreenController {
-    private final PlayerManager playerManager;
     @FXML
     public Label mainGameTextLabel;
     @FXML
     public ProgressBar progressBar;
+    private final PlayerManager playerManager;
     private final DoubleProperty progressProperty = new SimpleDoubleProperty();
     /**
      * Constructs a new instance of MainGameScreenController with the specified PlayerManager.
@@ -39,6 +38,7 @@ public class MainGameScreenController {
      * and starting a timeline animation to update the progress bar.
      * It also listens for changes in the progress property and stops the timeline when the progress reaches 100%.
      */
+    @FXML
     public void initialize(){
         mainGameTextLabel.setText(" ");
         System.out.println("Game Text " + playerManager.getMainGameScreenRoundText());
@@ -46,9 +46,7 @@ public class MainGameScreenController {
         updateUI();
         progressBar.progressProperty().bind(progressProperty);
         Timeline progressTimeLine = new Timeline(
-                new KeyFrame(Duration.seconds(0.04), event -> {
-                    progressProperty.setValue(progressProperty.getValue() + 0.01);
-                })
+                new KeyFrame(Duration.seconds(0.04), event -> progressProperty.setValue(progressProperty.getValue() + 0.01))
         );
         progressTimeLine.setCycleCount(Animation.INDEFINITE);
         progressTimeLine.play();
@@ -64,6 +62,7 @@ public class MainGameScreenController {
      * This method calculates the progress of the current round relative to the total number of rounds,
      * and updates the progress bar accordingly.
      */
+    @FXML
     public void updateUI(){
         double progress = (double) playerManager.getCurrentRoundNumber()/playerManager.getNumGameRounds();
         progressBar.setProgress(progress);
@@ -73,6 +72,7 @@ public class MainGameScreenController {
      * This method closes the main game screen and evaluates the success of the current round.
      * It is called when the progress reaches 100%.
      */
+    @FXML
     public void endRound(){
         playerManager.closeMainScreen();
         playerManager.evaluateRoundSuccess();

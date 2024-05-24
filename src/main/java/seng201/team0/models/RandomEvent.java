@@ -28,6 +28,63 @@ public class RandomEvent {
 
     }
     /**
+     * Gets the text describing the most recent random event.
+     * @return the text describing the random event
+     */
+    public String getRandomEventText(){
+        return randomEventText;
+    }
+    /**
+     * Gets the list of rounds when random events occur.
+     *
+     * @return the list of rounds when random events occur
+     */
+    public List<Integer> getRandomEventRounds() {
+        return randomEventRounds;
+    }
+    /**
+     * Retrieves a randomly selected tower from the player's tower inventory.
+     * If the player's tower inventory is empty, returns null.
+     * @return a randomly selected tower, or null if the inventory is empty
+     */
+    private Tower getRandomTower() {
+        List<Tower> towersInGame = player.getTowersInGame();
+        List<Tower> reserveTowers = player.getReserveTowers();
+        if (player.getTowerInventory().isEmpty()) {
+            return null;
+        } else {
+            double usedTowerProbability = 0.8;
+            boolean useInGameTower = random.nextDouble() < usedTowerProbability;
+            if (useInGameTower && !towersInGame.isEmpty()) {
+                return towersInGame.get(random.nextInt(towersInGame.size()));
+            }
+            if (!reserveTowers.isEmpty()) {
+                return reserveTowers.get(random.nextInt(reserveTowers.size()));
+            }
+            if (!towersInGame.isEmpty()) {
+                return towersInGame.get(random.nextInt(towersInGame.size()));
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Sets the rounds when random events will occur during the game.
+     * Randomly selects rounds based on the total number of game rounds.
+     */
+    public void setRandomEventRounds(){
+        List<Integer> randomEventRoundsList = new ArrayList<>();
+        List<Integer> potentialRoundsList = new ArrayList<>();
+        for (int i=1; i <= playerManager.getNumGameRounds();i++){
+            potentialRoundsList.add(i);
+        }
+        Collections.shuffle(potentialRoundsList);
+        for (int i=0; i <= playerManager.getNumGameRounds()/3; i++){
+            randomEventRoundsList.add(potentialRoundsList.get(i));
+        }
+        this.randomEventRounds = randomEventRoundsList;
+    }
+    /**
      * Generates a random event and executes the corresponding action based on the event type.
      * The event type determines whether to increase tower level, decrease tower level, or break a tower.
      */
@@ -94,62 +151,7 @@ public class RandomEvent {
             System.out.println("Uh Oh, error, no random tower generated");
         }
     }
-    /**
-     * Gets the text describing the most recent random event.
-     * @return the text describing the random event
-     */
-    public String getRandomEventText(){
-        return randomEventText;
-    }
-    /**
-     * Gets the list of rounds when random events occur.
-     *
-     * @return the list of rounds when random events occur
-     */
-    public List<Integer> getRandomEventRounds() {
-        return randomEventRounds;
-    }
-    /**
-     * Retrieves a randomly selected tower from the player's tower inventory.
-     * If the player's tower inventory is empty, returns null.
-     * @return a randomly selected tower, or null if the inventory is empty
-     */
-    private Tower getRandomTower() {
-        if (player.getTowerInventory().isEmpty()) {
-            return null;
-        } else {
-            double usedTowerProbability = 0.8;
-            if (random.nextDouble() < usedTowerProbability) {
-                if (player.getReserveTowers().isEmpty()) {
-                    return player.getTowersInGame().get(random.nextInt(player.getTowersInGame().size()));
-                }else {
-                    return player.getReserveTowers().get(random.nextInt(player.getReserveTowers().size()));
-                }
-            } else {
-                if (player.getReserveTowers().isEmpty()){ //  to stop invocation error or non postiive bound
-                    return player.getTowersInGame().get(random.nextInt(player.getTowersInGame().size()));
-                }else{
-                    return player.getReserveTowers().get(random.nextInt(player.getReserveTowers().size()));
-                }
-            }
-        }
-    }
-    /**
-     * Sets the rounds when random events will occur during the game.
-     * Randomly selects rounds based on the total number of game rounds.
-     */
-    public void setRandomEventRounds(){
-        List<Integer> randomEventRoundsList = new ArrayList<>();
-        List<Integer> potentialRoundsList = new ArrayList<>();
-        for (int i=1; i <= playerManager.getNumGameRounds();i++){
-            potentialRoundsList.add(i);
-        }
-        Collections.shuffle(potentialRoundsList);
-        for (int i=0; i <= playerManager.getNumGameRounds()/3; i++){
-            randomEventRoundsList.add(potentialRoundsList.get(i));
-        }
-        this.randomEventRounds = randomEventRoundsList;
-    }
+
 }
 
 

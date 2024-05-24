@@ -92,7 +92,7 @@ public class RoundService {
     }
     /**
      * stores boolean of round success
-     * @return boolean true if sucess
+     * @return boolean true if success
      */
     public boolean isSuccess() {
         return isSuccess;

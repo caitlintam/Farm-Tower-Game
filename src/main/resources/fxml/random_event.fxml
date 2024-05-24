@@ -8,34 +8,34 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.RandomEventController">
-   <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="315.0" layoutX="155.0" layoutY="137.0" stroke="BLACK" strokeType="INSIDE" width="596.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="229.0" layoutX="205.0" layoutY="183.0" stroke="BLACK" strokeType="INSIDE" width="482.0" />
-      <Label layoutX="243.0" layoutY="64.0" text="A Random Event Has Occured !">
-         <font>
-            <Font name="System Bold" size="29.0" />
-         </font>
-      </Label>
-      <Label fx:id="RandomEventLabel" alignment="CENTER" layoutX="209.0" layoutY="181.0" prefHeight="230.0" prefWidth="477.0" textAlignment="CENTER" wrapText="true">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Button fx:id="NextButtonRandomEventPage" layoutX="404.0" layoutY="502.0" mnemonicParsing="false" onAction="#onNextClicked" text="Continue">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Button>
-      <ImageView fitHeight="60.0" fitWidth="62.0" layoutX="171.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Images/signRandomEventImage.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="60.0" fitWidth="62.0" layoutX="676.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Images/signRandomEventImage.png" />
-         </image>
-      </ImageView>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+            prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="seng201.team0.gui.RandomEventController">
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="315.0" layoutX="155.0" layoutY="137.0"
+              stroke="BLACK" strokeType="INSIDE" width="596.0"/>
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="229.0" layoutX="205.0" layoutY="183.0" stroke="BLACK"
+              strokeType="INSIDE" width="482.0"/>
+   <Label layoutX="243.0" layoutY="64.0" text="A Random Event Has Occurred !">
+      <font>
+         <Font name="System Bold" size="29.0"/>
+      </font>
+   </Label>
+   <Label fx:id="randomEventLabel" alignment="CENTER" layoutX="209.0" layoutY="181.0" prefHeight="230.0"
+          prefWidth="477.0" textAlignment="CENTER" wrapText="true">
+      <font>
+         <Font size="18.0"/>
+      </font>
+   </Label>
+   <Button fx:id="nextButtonRandomEventPage" layoutX="404.0" layoutY="502.0" mnemonicParsing="false"
+           onAction="#onNextClicked" text="Continue">
+      <font>
+         <Font size="25.0"/>
+      </font>
+   </Button>
+   <ImageView fitHeight="60.0" fitWidth="62.0" layoutX="171.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../Images/signRandomEventImage.png"/>
+   </ImageView>
+   <ImageView fitHeight="60.0" fitWidth="62.0" layoutX="676.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../Images/signRandomEventImage.png"/>
+   </ImageView>
 </AnchorPane>

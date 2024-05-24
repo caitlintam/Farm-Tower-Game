@@ -14,6 +14,7 @@ import java.io.IOException;
 public class FXWrapper {
     @FXML
     private Pane pane;
+    @FXML
     private Stage stage;
 
     /**
@@ -31,7 +32,6 @@ public class FXWrapper {
     private void launchInventoryScreen(PlayerManager playerManager) {
         try {
             FXMLLoader setupLoader = new FXMLLoader(getClass().getResource("/fxml/inventory.fxml"));
-            // provide a custom Controller with parameters
             setupLoader.setControllerFactory(param -> new InventoryController(playerManager));
             Parent setupParent = setupLoader.load();
             pane.getChildren().add(setupParent);
@@ -47,7 +47,6 @@ public class FXWrapper {
     public void launchSetupScreen(PlayerManager playerManager) {
         try {
             FXMLLoader setupLoader = new FXMLLoader(getClass().getResource("/fxml/set_up_screen.fxml"));
-            // provide a custom Controller with parameters
             setupLoader.setControllerFactory(param -> new SetUpScreenController(playerManager));
             Parent setupParent = setupLoader.load();
             pane.getChildren().add(setupParent);

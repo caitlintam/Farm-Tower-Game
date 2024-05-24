@@ -13,11 +13,12 @@ import java.util.Random;
  */
 public class CartService {
     private final Player player;
-    private final List<Cart> cartsInRound;
-    private List<String> potentialCartResourceTypes;
     private final Tower towerManager;
-    private List<String> cartsInRoundResourceTypes;
+    private final List<Cart> cartsInRound;
     private final Random random;
+    private List<String> potentialCartResourceTypes;
+
+    private List<String> cartsInRoundResourceTypes;
     private int numberOfCarts;
     public List<Cart> getCartsInRound() {
         return cartsInRound;
@@ -31,7 +32,7 @@ public class CartService {
      */
     public CartService(Player player) {
         this.towerManager = new Tower();
-        this.cartsInRound = new ArrayList<Cart>();
+        this.cartsInRound = new ArrayList<>();
         this.potentialCartResourceTypes = new ArrayList<>();
         this.random = new Random(201);
         this.player = player;
@@ -57,38 +58,12 @@ public class CartService {
         this.numberOfCarts = player.getTowersInGame().size();
     }
     /**
-     * Generates new carts for the game round based on player's towers and their resource types.
-     * This method generates new carts for the game round by clearing existing carts, determining the number of carts
-     * based on the number of towers owned by the player, shuffling cart resource types, and creating new carts
-     * with random sizes, speeds, and primary and secondary resource types.
-     * The primary resource type is based on the carts in round resource types list, and the secondary resource type is
-     * randomly selected from available resource types different from the primary type.
-     * Cart size and speed are assumed to be based on the corresponding tower's resource amount and reload speed.
-     */
-    public void generateNewCartsInGame() {
-        System.out.println("------ Generating New Carts -------");
-        setNumberOfCarts();
-        shuffleCartsInGameResourceTypes();
-        List<Tower> towersInGame = player.getTowersInGame();
-        cartsInRound.clear();
-        for (int i = 0; i < numberOfCarts; i++) {
-            String primaryResourceType = cartsInRoundResourceTypes.get(i);
-            String secondaryResourceType = getRandomResTypeDiffFromPrimary(primaryResourceType);
-            int cartSize = generateRandomCartSize(towersInGame.get(i).getTowerResourceAmount()) ;
-            int cartSpeed = generateRandomCartSpeed(towersInGame.get(i).getTowerReloadSpeed());
-            System.out.println("Cart "+i + " -- Size: " + cartSize + " -- Primary Res Type: " + primaryResourceType + " -- Secondary Res Type: " + secondaryResourceType + " -- Cart Speed: "+cartSpeed);
-            cartsInRound.add(new Cart(i, cartSize, primaryResourceType, secondaryResourceType, cartSpeed));
-        }
-        System.out.println("My Towers: " + player.getTowersResTypeInGame());
-        System.out.println("-------------------");
-    }
-    /**
      * Retrieves a random resource type different from the primary resource type.
      * @param primaryResourceType The primary resource type.
      * @return A random resource type different from the primary resource type.
      */
     private String getRandomResTypeDiffFromPrimary(String primaryResourceType) {
-        List<String> otherTypes = new ArrayList<String>(potentialCartResourceTypes);
+        List<String> otherTypes = new ArrayList<>(potentialCartResourceTypes);
         otherTypes.remove(primaryResourceType);
         return otherTypes.get(random.nextInt(otherTypes.size()));
     }
@@ -122,8 +97,35 @@ public class CartService {
         System.out.println("Shuffling Potential Cart Resource Types");
         Collections.shuffle(potentialCartResourceTypes);
         System.out.println("Number of carts:  " + numberOfCarts);
-        cartsInRoundResourceTypes = new ArrayList<String>(potentialCartResourceTypes.subList(0, numberOfCarts));
+        cartsInRoundResourceTypes = new ArrayList<>(potentialCartResourceTypes.subList(0, numberOfCarts));
         System.out.println("New  Carts in Round Resource Types: " + cartsInRoundResourceTypes);
     }
+    /**
+     * Generates new carts for the game round based on player's towers and their resource types.
+     * This method generates new carts for the game round by clearing existing carts, determining the number of carts
+     * based on the number of towers owned by the player, shuffling cart resource types, and creating new carts
+     * with random sizes, speeds, and primary and secondary resource types.
+     * The primary resource type is based on the carts in round resource types list, and the secondary resource type is
+     * randomly selected from available resource types different from the primary type.
+     * Cart size and speed are assumed to be based on the corresponding tower's resource amount and reload speed.
+     */
+    public void generateNewCartsInGame() {
+        System.out.println("------ Generating New Carts -------");
+        setNumberOfCarts();
+        shuffleCartsInGameResourceTypes();
+        List<Tower> towersInGame = player.getTowersInGame();
+        cartsInRound.clear();
+        for (int i = 0; i < numberOfCarts; i++) {
+            String primaryResourceType = cartsInRoundResourceTypes.get(i);
+            String secondaryResourceType = getRandomResTypeDiffFromPrimary(primaryResourceType);
+            int cartSize = generateRandomCartSize(towersInGame.get(i).getTowerResourceAmount()) ;
+            int cartSpeed = generateRandomCartSpeed(towersInGame.get(i).getTowerReloadSpeed());
+            System.out.println("Cart "+i + " -- Size: " + cartSize + " -- Primary Res Type: " + primaryResourceType + " -- Secondary Res Type: " + secondaryResourceType + " -- Cart Speed: "+cartSpeed);
+            cartsInRound.add(new Cart(i, cartSize, primaryResourceType, secondaryResourceType, cartSpeed));
+        }
+        System.out.println("My Towers: " + player.getTowersResTypeInGame());
+        System.out.println("-------------------");
+    }
+
 }
 

@@ -13,7 +13,6 @@ import seng201.team0.models.Tower;
 import java.util.List;
 
 public class ShopController {
-    private final Player player;
     @FXML
     public Button upgradeButton3;
     @FXML
@@ -21,7 +20,7 @@ public class ShopController {
     @FXML
     public Button upgradeButton1;
     @FXML
-    public Button buyTowerbutton3;
+    public Button buyTowerButton3;
     @FXML
     public Button buyTowerButton2;
     @FXML
@@ -30,31 +29,37 @@ public class ShopController {
     public Label errorNoMoneyLabel;
     @FXML
     public Label errorInventoryFullLabel;
+    @FXML
     public Label itemBoughtLabel;
     @FXML
-    private Label ShopMoneyLabel;
+    public Button buyButton;
     @FXML
-    private Label ShopNameLabel;
+    public Button shopHomeButton;
     @FXML
-    private Label ShopCostLabel;
+    private Label shopMoneyLabel;
     @FXML
-    private Label ShopInfoLabel;
+    private Label shopNameLabel;
     @FXML
-    private Label LoadLabel;
+    private Label shopCostLabel;
     @FXML
-    private Label SpeedLabel;
+    private Label shopInfoLabel;
     @FXML
-    private Label TypeLabel;
+    private Label loadLabel;
+    @FXML
+    private Label speedLabel;
+    @FXML
+    private Label typeLabel;
+    @FXML
+    private Button selectedButton = null;
     private final PlayerManager playerManager;
+    private final Player player;
     private final Upgrade upgrade;
+    private final Shop shop;
     private int selectedUpgradeIndex = -1;
     private int selectedTowerIndex = -1;
-    private Button selectedButton = null;
-    private final Shop shop;
 
     /**
      * Constructs a new ShopController.
-     *
      * @param playerManager  The PlayerManager instance responsible for managing player-related operations.
      *
      */
@@ -70,13 +75,14 @@ public class ShopController {
      * The method populates the buy buttons with the names of upgrades and towers available for purchase,
      * sets up event handlers to update information labels when a button is clicked, and highlights the selected button.
      */
+    @FXML
     public void initialize() {
         updateMoneyLabel();
         itemBoughtLabel.setVisible(false);
         errorInventoryFullLabel.setVisible(false);
         errorNoMoneyLabel.setVisible(false);
         List<Button> buyUpgradeButtons = List.of(upgradeButton1, upgradeButton2, upgradeButton3);
-        List<Button> buyTowerButtons = List.of(buyTowerButton1, buyTowerButton2, buyTowerbutton3);
+        List<Button> buyTowerButtons = List.of(buyTowerButton1, buyTowerButton2, buyTowerButton3);
         List<Tower> newPurchasableTowers = shop.generateNewPurchasableTowers();
 
         for (int i = 0; i < buyUpgradeButtons.size(); i++) {
@@ -114,7 +120,7 @@ public class ShopController {
     private void onBuyButtonClicked() {
         System.out.println("Buy Button Clicked");
         if (selectedButton != null) {
-            if (selectedButton == buyTowerButton1 || selectedButton == buyTowerButton2 || selectedButton == buyTowerbutton3) {
+            if (selectedButton == buyTowerButton1 || selectedButton == buyTowerButton2 || selectedButton == buyTowerButton3) {
                 errorNoMoneyLabel.setVisible(false);
                 errorInventoryFullLabel.setVisible(false);
                 boolean canBuy = shop.tryBuyTower(selectedTowerIndex);
@@ -166,31 +172,34 @@ public class ShopController {
      * Sets the name, cost, level, load, reload speed, and type of the tower.
      * @param tower The tower whose information is to be displayed.
      */
+    @FXML
     private void updateTowerInfo(Tower tower) {
-        ShopNameLabel.setText("Name: " + tower.getTowerName());
-        ShopCostLabel.setText("Cost: $" + tower.getTowerCost());
-        ShopInfoLabel.setText("Level: " + tower.getTowerLevel());
-        LoadLabel.setText("Load: " + tower.getTowerResourceAmount());
-        SpeedLabel.setText("Reload Speed: " + tower.getTowerReloadSpeed());
-        TypeLabel.setText("Type: " + tower.getTowerResourceType());
+        shopNameLabel.setText("Name: " + tower.getTowerName());
+        shopCostLabel.setText("Cost: $" + tower.getTowerCost());
+        shopInfoLabel.setText("Level: " + tower.getTowerLevel());
+        loadLabel.setText("Load: " + tower.getTowerResourceAmount());
+        speedLabel.setText("Reload Speed: " + tower.getTowerReloadSpeed());
+        typeLabel.setText("Type: " + tower.getTowerResourceType());
     }
     /**
      * Updates the money label in the shop UI with the current amount of money owned by the player.
      */
+    @FXML
     private void updateMoneyLabel(){
-        ShopMoneyLabel.setText("Money: $"+ playerManager.getMoney());
+        shopMoneyLabel.setText("Money: $"+ playerManager.getMoney());
     }
     /**
      * Updates the information displayed in the shop UI based on the selected upgrade.
      * Sets the name and cost of the upgrade.
      * @param upgrade The upgrade whose information is to be displayed.
      */
+    @FXML
     private void updateUpgradeInfo(Upgrade upgrade) {
-        ShopNameLabel.setText("Upgrade: " + upgrade.getUpgradeName());
-        ShopCostLabel.setText("Cost: $" + upgrade.getUpgradeCost());
-        ShopInfoLabel.setText("");
-        LoadLabel.setText("");
-        SpeedLabel.setText("");
-        TypeLabel.setText("");
+        shopNameLabel.setText("Upgrade: " + upgrade.getUpgradeName());
+        shopCostLabel.setText("Cost: $" + upgrade.getUpgradeCost());
+        shopInfoLabel.setText("");
+        loadLabel.setText("");
+        speedLabel.setText("");
+        typeLabel.setText("");
     }
 }

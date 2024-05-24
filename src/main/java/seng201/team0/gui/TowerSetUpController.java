@@ -47,17 +47,15 @@ public class TowerSetUpController {
     public Button selectedTower1;
     @FXML
     public Label errorTowerNumLabel;
-    @FXML
     private final PlayerManager playerManager;
-    @FXML
     private final Tower towerManager;
+    private final Player player;
     private int selectedTowerIndex = -1;
     private final Tower[] selectedTowers = new Tower[3];
-    private final Player player;
+
     /**
      * Constructor for the TowerSetUpController.
      * Initializes the controller with a PlayerManager instance.
-     *
      * @param playerManager the PlayerManager instance
      */
     public TowerSetUpController(PlayerManager playerManager){
@@ -70,6 +68,7 @@ public class TowerSetUpController {
      * Sets up the initial state of the UI components and event handlers for the tower selection buttons.
      * Highlights the selected tower button and resets the style for non-selected buttons.
      */
+    @FXML
     public void initialize(){
         System.out.println("----- Tower Set Up Screen ------");
         errorTowerNumLabel.setVisible(false);
@@ -103,6 +102,7 @@ public class TowerSetUpController {
      * Updates the tower stats labels with the information of the selected tower.
      * @param tower the selected tower
      */
+    @FXML
     private void updateStats(Tower tower){
         towerNameLabel.setText(tower.getTowerName());
         resTypeLabel.setText(tower.getTowerResourceType());

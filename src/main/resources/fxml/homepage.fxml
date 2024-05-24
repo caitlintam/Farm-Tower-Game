@@ -5,104 +5,122 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.HomePageController">
-   <children>
-      <GridPane layoutX="-1.0" layoutY="-1.0" prefHeight="601.0" prefWidth="901.0">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="316.4000244140625" minWidth="10.0" prefWidth="60.4444529215495" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="415.11112848917645" minWidth="10.0" prefWidth="284.888916015625" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="303.1999755859375" minWidth="10.0" prefWidth="265.11108398437506" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="331.7778523763021" minWidth="10.0" prefWidth="279.77783203125" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="303.1999755859375" minWidth="10.0" prefWidth="66.88881429036451" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="123.00000610351563" minHeight="0.0" prefHeight="58.200006103515626" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="266.8" minHeight="10.0" prefHeight="87.66665649414062" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="258.20001220703125" minHeight="10.0" prefHeight="150.3333435058594" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="258.20001220703125" minHeight="0.0" prefHeight="87.66664632161456" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="243.33333333333337" minHeight="10.0" prefHeight="151.00002034505212" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="141.33333333333331" minHeight="0.0" prefHeight="44.33332316080737" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label fx:id="HomeLabel" alignment="CENTER" contentDisplay="CENTER" text="Home" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER">
-               <font>
-                  <Font name="Berenis ADF Pro Math Regular" size="53.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets top="20.0" />
-               </GridPane.margin>
-            </Label>
-            <Label fx:id="playerNameLabel" text="Hello" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <font>
-                  <Font name="Berenis ADF Pro Math Regular" size="30.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="15.0" />
-               </GridPane.margin>
-            </Label>
-            <Label fx:id="homepageNameLabel" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets left="100.0" />
-               </GridPane.margin>
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Label>
-            <Button fx:id="goToShopButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onGoToShopButtonClicked" text="Go To Shop" GridPane.columnIndex="1" GridPane.rowIndex="4">
-               <GridPane.margin>
-                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-               </GridPane.margin>
-               <font>
-                  <Font name="Berenis ADF Pro Math Regular" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="playRoundButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPlayRoundButtonClicked" text="Play Round" GridPane.columnIndex="2" GridPane.rowIndex="4">
-               <GridPane.margin>
-                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-               </GridPane.margin>
-               <font>
-                  <Font name="Berenis ADF Pro Math Regular" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="viewInventoryButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onViewInventoryButtonClicked" text="View/Edit Inventory" GridPane.columnIndex="3" GridPane.rowIndex="4">
-               <GridPane.margin>
-                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-               </GridPane.margin>
-               <font>
-                  <Font name="Berenis ADF Pro Math Regular" size="20.0" />
-               </font>
-            </Button>
-            <Label fx:id="homepageMoney" text="Money:" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <font>
-                  <Font name="Berenis ADF Pro Math Regular" size="30.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="15.0" />
-               </GridPane.margin>
-            </Label>
-            <Label fx:id="homepageCurrentRoundLabel" text="Current round:" GridPane.columnIndex="2" GridPane.rowIndex="2">
-               <font>
-                  <Font size="22.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="40.0" />
-               </GridPane.margin>
-               <font>
-                  <Font name="Berenis ADF Pro Math Regular" size="30.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-            </Label>
-            <Label fx:id="errorNoTowersInGameLabel" text="Error: Must have at least 3 Towers In-Game" textFill="#fb0505" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
-            <Button fx:id="giveUpButton" mnemonicParsing="false" onAction="#onGiveUpClicked" prefHeight="59.0" prefWidth="118.0" text="Give Up" textFill="#eb0707" GridPane.columnIndex="3" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets left="50.0" />
-               </GridPane.margin>
-               <font>
-                  <Font name="Berenis ADF Pro Math Regular" size="20.0" />
-               </font></Button>
-         </children>
-      </GridPane>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+            prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="seng201.team0.gui.HomePageController">
+   <GridPane layoutX="-1.0" layoutY="-1.0" prefHeight="601.0" prefWidth="901.0">
+      <columnConstraints>
+         <ColumnConstraints hgrow="SOMETIMES" maxWidth="316.4000244140625" minWidth="10.0"
+                            prefWidth="60.4444529215495"/>
+         <ColumnConstraints hgrow="SOMETIMES" maxWidth="415.11112848917645" minWidth="10.0"
+                            prefWidth="284.888916015625"/>
+         <ColumnConstraints hgrow="SOMETIMES" maxWidth="303.1999755859375" minWidth="10.0"
+                            prefWidth="265.11108398437506"/>
+         <ColumnConstraints hgrow="SOMETIMES" maxWidth="331.7778523763021" minWidth="10.0" prefWidth="279.77783203125"/>
+         <ColumnConstraints hgrow="SOMETIMES" maxWidth="303.1999755859375" minWidth="10.0"
+                            prefWidth="66.88881429036451"/>
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints maxHeight="123.00000610351563" minHeight="0.0" prefHeight="58.200006103515626"
+                         vgrow="SOMETIMES"/>
+         <RowConstraints maxHeight="266.8" minHeight="10.0" prefHeight="87.66665649414062" vgrow="SOMETIMES"/>
+         <RowConstraints maxHeight="258.20001220703125" minHeight="10.0" prefHeight="150.3333435058594"
+                         vgrow="SOMETIMES"/>
+         <RowConstraints maxHeight="258.20001220703125" minHeight="0.0" prefHeight="87.66664632161456"
+                         vgrow="SOMETIMES"/>
+         <RowConstraints maxHeight="243.33333333333337" minHeight="10.0" prefHeight="151.00002034505212"
+                         vgrow="SOMETIMES"/>
+         <RowConstraints maxHeight="141.33333333333331" minHeight="0.0" prefHeight="44.33332316080737"
+                         vgrow="SOMETIMES"/>
+      </rowConstraints>
+      <Label fx:id="homeLabel" alignment="CENTER" contentDisplay="CENTER" text="Home" textAlignment="CENTER"
+             GridPane.columnIndex="2" GridPane.halignment="CENTER">
+         <font>
+            <Font name="Berenis ADF Pro Math Regular" size="53.0"/>
+         </font>
+         <GridPane.margin>
+            <Insets top="20.0"/>
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="playerNameLabel" text="Hello" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <font>
+            <Font name="Berenis ADF Pro Math Regular" size="30.0"/>
+         </font>
+         <GridPane.margin>
+            <Insets left="15.0"/>
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="homepageNameLabel" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="100.0"/>
+         </GridPane.margin>
+         <font>
+            <Font size="25.0"/>
+         </font>
+      </Label>
+      <Button fx:id="goToShopButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+              mnemonicParsing="false" onAction="#onGoToShopButtonClicked" text="Go To Shop" GridPane.columnIndex="1"
+              GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+         </GridPane.margin>
+         <font>
+            <Font name="Berenis ADF Pro Math Regular" size="20.0"/>
+         </font>
+      </Button>
+      <Button fx:id="playRoundButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+              mnemonicParsing="false" onAction="#onPlayRoundButtonClicked" text="Play Round" GridPane.columnIndex="2"
+              GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+         </GridPane.margin>
+         <font>
+            <Font name="Berenis ADF Pro Math Regular" size="20.0"/>
+         </font>
+      </Button>
+      <Button fx:id="viewInventoryButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+              mnemonicParsing="false" onAction="#onViewInventoryButtonClicked" text="View/Edit Inventory"
+              GridPane.columnIndex="3" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+         </GridPane.margin>
+         <font>
+            <Font name="Berenis ADF Pro Math Regular" size="20.0"/>
+         </font>
+      </Button>
+      <Label fx:id="homepageMoney" text="Money:" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <font>
+            <Font name="Berenis ADF Pro Math Regular" size="30.0"/>
+         </font>
+         <GridPane.margin>
+            <Insets left="15.0"/>
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="homepageCurrentRoundLabel" text="Current round:" GridPane.columnIndex="2" GridPane.rowIndex="2">
+         <font>
+            <Font size="22.0"/>
+         </font>
+         <GridPane.margin>
+            <Insets left="40.0"/>
+         </GridPane.margin>
+         <font>
+            <Font name="Berenis ADF Pro Math Regular" size="30.0"/>
+         </font>
+         <GridPane.margin>
+            <Insets/>
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="errorNoTowersInGameLabel" text="Error: Must have at least 3 Towers In-Game" textFill="#fb0505"
+             GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3"
+             GridPane.valignment="BOTTOM"/>
+      <Button fx:id="giveUpButton" mnemonicParsing="false" onAction="#onGiveUpClicked" prefHeight="59.0"
+              prefWidth="118.0" text="Give Up" textFill="#eb0707" GridPane.columnIndex="3" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="50.0"/>
+         </GridPane.margin>
+         <font>
+            <Font name="Berenis ADF Pro Math Regular" size="20.0"/>
+         </font>
+      </Button>
+   </GridPane>
 </AnchorPane>

@@ -23,31 +23,52 @@ import java.util.Objects;
  * Manages the UI elements and interactions related to buying, selling and editing the inventory.
  */
 public class InventoryController {
-    private final PlayerManager playerManager;
-    private final Player player;
     @FXML
     public TableView<Tower> towerTable;
     @FXML
     public TableView<Upgrade> upgradeTable;
+    @FXML
     public TableColumn<Tower, String> towerNameColumn;
+    @FXML
     public TableColumn<Tower, String> towerResTypeColumn;
+    @FXML
     public TableColumn<Tower, Integer> towerResAmountColumn;
+    @FXML
     public TableColumn<Tower, Integer> towerReloadColumn;
+    @FXML
     public TableColumn<Tower, Integer> towerLevelColumn;
+    @FXML
     public TableColumn<Tower, Integer> towerCostColumn;
+    @FXML
     public Button inventoryHomeButton;
+    @FXML
     public TableColumn<Tower, String> towerStatusColumn;
+    @FXML
     public Button sellSelectedTowerButton;
+    @FXML
     public Label moneyLabel;
+    @FXML
     public Button changeTowerStatusButton;
+    @FXML
     public Label errorChangeStatusLabel;
+    @FXML
     public Label errorNoTowerSelectedLabel;
+    @FXML
     public Button sellSelectedUpgradeButton;
+    @FXML
     public Label errorNoUpgradeSelectedLabel;
+    @FXML
     public TableColumn<Upgrade,Double> upgradeCostColumn;
+    @FXML
     public TableColumn<Upgrade,String> upgradeNameColumn;
+    private final PlayerManager playerManager;
+    private final Player player;
 
-    InventoryController(PlayerManager playerManager) {
+    /**
+     * Constructs new instance of Inventory Controller class with Playermanager
+     * @param playerManager the PlayerManager instance assoicated with inventory
+     */
+    public InventoryController(PlayerManager playerManager) {
         this.playerManager = playerManager;
         this.player = playerManager.getPlayer();
     }
@@ -57,8 +78,8 @@ public class InventoryController {
      * updates the players money
      * sets error checking labels to not visible
      */
+    @FXML
     public void initialize() {
-        // Populate tower inventory table
         updateMoneyLabel();
         initializeTowerTable();
         errorChangeStatusLabel.setVisible(false);
@@ -71,17 +92,17 @@ public class InventoryController {
      * Retrieves tower inventory data from the PlayerManager, converts it into ObservableList,
      * and binds the data to table columns. Finally, sets the tower inventory data to the table.
      */
+    @FXML
     private void initializeTowerTable() {
         ArrayList<Tower> towerInventory = (ArrayList<Tower>) player.getTowerInventory();
-        System.out.println("here" + towerInventory.toString());
         ObservableList<Tower> towerData = FXCollections.observableArrayList(towerInventory);
-        towerNameColumn.setCellValueFactory(new PropertyValueFactory<Tower, String>("towerName"));
-        towerResTypeColumn.setCellValueFactory(new PropertyValueFactory<Tower, String>("towerResourceType"));
-        towerResAmountColumn.setCellValueFactory(new PropertyValueFactory<Tower, Integer>("towerResourceAmount"));
-        towerReloadColumn.setCellValueFactory(new PropertyValueFactory<Tower, Integer>("towerReloadSpeed"));
-        towerLevelColumn.setCellValueFactory(new PropertyValueFactory<Tower, Integer>("towerLevel"));
-        towerCostColumn.setCellValueFactory(new PropertyValueFactory<Tower, Integer>("towerCost"));
-        towerStatusColumn.setCellValueFactory(new PropertyValueFactory<Tower, String>("towerStatus"));
+        towerNameColumn.setCellValueFactory(new PropertyValueFactory<>("towerName"));
+        towerResTypeColumn.setCellValueFactory(new PropertyValueFactory<>("towerResourceType"));
+        towerResAmountColumn.setCellValueFactory(new PropertyValueFactory<>("towerResourceAmount"));
+        towerReloadColumn.setCellValueFactory(new PropertyValueFactory<>("towerReloadSpeed"));
+        towerLevelColumn.setCellValueFactory(new PropertyValueFactory<>("towerLevel"));
+        towerCostColumn.setCellValueFactory(new PropertyValueFactory<>("towerCost"));
+        towerStatusColumn.setCellValueFactory(new PropertyValueFactory<>("towerStatus"));
         towerTable.setItems(towerData);
     }
     /**
@@ -128,7 +149,6 @@ public class InventoryController {
             errorNoTowerSelectedLabel.setVisible(false);
             if (Objects.equals(selectedTower.getTowerStatus(), "Reserve") && countInGame >= 5) {
                 errorChangeStatusLabel.setVisible(true);
-                System.out.println("Cannot Change Status");
             } else {
                 errorChangeStatusLabel.setVisible(false);
                 selectedTower.updateTowerStatus(selectedTower);
@@ -144,12 +164,12 @@ public class InventoryController {
      * Retrieves upgrade inventory data from the PlayerManager, converts it into ObservableList,
      * and binds the data to table columns. Finally, sets the upgrade inventory data to the table.
      */
+    @FXML
     private void initializeUpgradeTable() {
         ArrayList<Upgrade> upgradeInventory = (ArrayList<Upgrade>) player.getUpgradeInventory();
-        System.out.println(upgradeInventory);
         ObservableList<Upgrade> upgradeData = FXCollections.observableArrayList(upgradeInventory);
-        upgradeNameColumn.setCellValueFactory(new PropertyValueFactory<Upgrade, String>("upgradeName"));
-        upgradeCostColumn.setCellValueFactory(new PropertyValueFactory<Upgrade, Double>("upgradeCost"));
+        upgradeNameColumn.setCellValueFactory(new PropertyValueFactory<>("upgradeName"));
+        upgradeCostColumn.setCellValueFactory(new PropertyValueFactory<>("upgradeCost"));
         upgradeTable.setItems(upgradeData);
     }
     /**
@@ -179,6 +199,7 @@ public class InventoryController {
      * Clears the tower table by removing all items from it.
      * This method removes all items from the ObservableList associated with the tower table.
      */
+    @FXML
     public void clearTowerTable(){
         ObservableList<Tower> items = towerTable.getItems();
         items.clear();
@@ -187,6 +208,7 @@ public class InventoryController {
      * Updates the money label in the UI with the current amount of money the player has.
      * This method retrieves the current amount of money from the PlayerManager and sets it as the text of the money label.
      */
+    @FXML
     public void updateMoneyLabel(){
         moneyLabel.setText("Money: $"+playerManager.getMoney());
     }
