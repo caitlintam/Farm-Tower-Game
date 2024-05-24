@@ -95,13 +95,10 @@ public class ApplyUpgradeScreenController {
             if (selectedUpgrade == null && selectedTower == null){
                 errorNoTowerSelectedLabel.setVisible(true);
                 errorNoUpgradeSelectedLabel.setVisible(true);
-                System.out.println("Error: No Upgrade or Tower Selected");
             } else if (selectedUpgrade == null){
                 errorNoUpgradeSelectedLabel.setVisible(true);
-                System.out.println("Error: No Upgrade Selected");
             } else{
                 errorNoTowerSelectedLabel.setVisible(true);
-                System.out.println("Error: No Tower Selected");
             }
         } else {
             errorNoTowerSelectedLabel.setVisible(false);
