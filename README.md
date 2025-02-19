@@ -3,8 +3,8 @@
 
 ## Authors
 - SENG201 Teaching team
-- Caitlin Tam 88675910
-- Sophie Moller 68087975
+- Caitlin Tam 
+- Sophie Moller 
 
 ## Run Project
 1. Open a command line interface inside the project directory and run `./gradlew run` to run the app.
